@@ -23,9 +23,9 @@ A story that fails any gate is dropped, with the gate named so we can see why.
 | AI is the reason | Take the AI away and the story disappears | "The hospital also uses AI", ordinary statistics called AI |
 | It's about the world | Something changed for a person, place or field outside the AI industry | Funding rounds, model launches, benchmarks, executive moves |
 | It's fresh | First made public in the last 90 days, or it comes from the evergreen bank | A 2019 result doing the rounds again |
-| It fits in 140 | The line can be written to the rules below | Needs jargon or a paragraph of context to make sense |
+| It can be said plainly | What happened fits in two or three plain sentences a non-specialist would follow | Needs jargon or a paragraph of context to make sense |
 
-The 140 gate is tested by writing the line. If the agent can't write it, the story fails.
+The plain gate is tested by writing the handoff below. If the agent can't write "what happened" plainly, the story fails.
 
 ### Extra gates for flips
 
@@ -71,25 +71,38 @@ Pick from the ranked list, top down, skipping any story that would break a rule:
 - Nothing we've run in the last 30 days.
 - If fewer than five pass, fill from the evergreen bank. Never lower a gate to fill a slot.
 
-## The 140-character line
+## What gets handed on
 
-- 140 characters at most, counting spaces. The link and the stage tag sit beside the line and don't count.
-- Says what happened and to whom or where.
-- No "could", "may", "might", "promises" or "revolutionise".
-- No jargon, and no dashes in the middle of a sentence.
+This step does not write the 140-character line. The next step in the chain does that. This step hands it one record per story that says what the story is about and why it's good, using only checked facts.
+
+| Field | What it holds |
+| --- | --- |
+| `id`, `lane`, `from` | A short id, `good` or `flip`, and `new` or `evergreen` |
+| `date` | When it surfaced (new) or happened (evergreen) |
+| `headline` | A plain working title, not for publishing |
+| `what_happened` | Two or three plain sentences: who did what, where, and what the result was |
+| `why_its_good` | One or two sentences: what the AI did that made the difference, and who is better off |
+| `bad_news`, `flip_kind` | Flips only: the bad story in one sentence, and which kind of flip it is |
+| `careful` | What the writer must not overstate: a pilot that hasn't started, a figure that comes from the company, an association that isn't proof |
+| `topic`, `stage`, `technology` | The tags used by the day mix |
+| `total` | The score out of 24 |
+| `sources` | The links that were checked |
+
+Rules for whoever writes from a record:
+
+- Use only facts that are in `what_happened`, `why_its_good` and `bad_news`. Nothing from memory.
+- Respect every item in `careful`.
 - A flip names the bad news first, then the good side.
 
-Every story carries one stage tag next to its line:
+Stage tags:
 
 - **In the lab:** a discovery, or a tool shown to work in a study. Nobody is relying on it yet.
 - **In a trial:** being tested with real people or in a real place, including pilots.
 - **Helping people now:** in routine use outside a study. For a flip, the good side is already happening.
 
-The 140 limit is enforced in code, not left to the model. In the first test the model wrote a 142-character line and didn't notice.
-
 ## Decisions made here, to confirm
 
-- **The stage tag sits beside the 140, not inside it.** Inside, it would cost up to 18 characters.
+- **The 140-character line is written by the next step.** This step hands over the facts, the reason it's good and the cautions. The stage tag travels as its own field.
 - **One flip a day at most.** The science stories earn the trust that lets the flip land.
 - **Preprints fail.** This matches the sources card, which skips raw arXiv.
 - **Industry news fails.** Launches and funding are news about AI companies, not about the world getting better.

@@ -5,13 +5,12 @@
       "gate": "pass",
       "topic": "health",
       "stage": "helping_people_now",
-      "min_total": 18,
-      "example_line": "An AI reading eye scans at one hospital spotted 212 people who needed urgent treatment and would otherwise have waited months."
+      "min_total": 18
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "A peer-reviewed audit of 4,000 real patients at a named hospital shows the AI system in live clinical use, with a concrete, independent-verified result.",
+      "reason": "A peer-reviewed audit of a live hospital deployment shows 212 diabetes patients flagged for urgent treatment they would otherwise have missed for months.",
       "topic": "health",
       "stage": "helping_people_now",
       "flip_kind": null,
@@ -22,7 +21,16 @@
         "surprise": 2
       },
       "total": 23,
-      "line": "An AI eye scanner at Northtown Eye Hospital flagged 212 diabetes patients for urgent care they would otherwise have waited months to get."
+      "story": {
+        "headline": "AI eye scans catch urgent sight loss early at Northtown Eye Hospital",
+        "what_happened": "Northtown Eye Hospital has used an AI system to read retinal scans in its diabetes clinic since September. A peer-reviewed audit of the first 4,000 patients found that the AI flagged 212 people for urgent treatment. Without it, those patients would have waited months.",
+        "why_its_good": "The AI caught early signs of sight-threatening damage fast enough for patients to get urgent care. For 212 people with diabetes, that could mean the difference between keeping and losing their sight.",
+        "bad_news": null,
+        "careful": [
+          "The figure of 212 patients comes from a single hospital's audit; results may differ in other settings.",
+          "The audit covers only the first four months of use at one clinic — longer-term outcomes are not yet reported."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -35,13 +43,12 @@
       "gate": "pass",
       "topic": "climate_and_nature",
       "stage": "helping_people_now",
-      "min_total": 18,
-      "example_line": "40 villages got five days' warning before October's floods, thanks to an AI forecast. The old system gave them two."
+      "min_total": 18
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "A real flood event happened, an independent university group confirmed the extended lead time, and the AI model is the direct cause of villages getting five days' warning instead of two.",
+      "reason": "A real flood event already happened, the AI warning lead time is confirmed by an independent university review, and the benefit fell on 40 real villages outside the AI industry.",
       "topic": "climate_and_nature",
       "stage": "helping_people_now",
       "flip_kind": null,
@@ -52,7 +59,16 @@
         "surprise": 2
       },
       "total": 21,
-      "line": "A new flood model gave 40 villages on the Example River five days' warning before October's floods, up from two days with the old system."
+      "story": {
+        "headline": "Flood forecasts gave river villages five days to prepare",
+        "what_happened": "A national weather service ran a machine learning flood model ahead of October's floods and issued warnings to 40 villages along the Example River five days before the water arrived. The previous model gave only two days' notice. An independent university hydrology group reviewed the forecast and confirmed the extended lead time.",
+        "why_its_good": "The AI model more than doubled the time villagers had to prepare, turning a scramble into an orderly response for 40 communities in the flood's path.",
+        "bad_news": null,
+        "careful": [
+          "The five-day lead-time figure and village count come from the weather service's own account; the independent review confirmed lead time but the input does not say it assessed what villagers actually did with the extra warning.",
+          "The river is named 'Example River' in the source — the writer should not substitute a real river name."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -65,13 +81,12 @@
       "gate": "pass",
       "topic": "accessibility",
       "stage": "helping_people_now",
-      "min_total": 18,
-      "example_line": "10,000 blind people now use a free app that describes what their phone camera sees, from reading the post to finding the bus stop."
+      "min_total": 18
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "A charity's app using a vision model is in routine daily use by 10,000 blind people, backed by a published user study and an independent source.",
+      "reason": "A published user study and 10,000 active daily users confirm real-world impact for blind and partially sighted people, with an independent source backing the charity's figures.",
       "topic": "accessibility",
       "stage": "helping_people_now",
       "flip_kind": null,
@@ -82,7 +97,17 @@
         "surprise": 2
       },
       "total": 21,
-      "line": "Free app that describes the street aloud is now used daily by 10,000 blind people to read post and find bus stops."
+      "story": {
+        "headline": "Free app reads the world aloud for 10,000 blind users",
+        "what_happened": "A sight loss charity's free phone app uses a vision model to describe what the phone camera sees, speaking the description aloud. It has now reached 10,000 blind and partially sighted users. A published user study found that most people used it every day, most commonly to read post and find bus stops.",
+        "why_its_good": "The AI does the seeing on behalf of the user in real time, letting blind and partially sighted people handle everyday tasks — reading a letter, catching the right bus — without needing to ask someone for help.",
+        "bad_news": null,
+        "careful": [
+          "The 10,000 user figure comes from the charity itself.",
+          "The user study reports frequency of use, not outcomes such as improved independence or wellbeing.",
+          "The summary does not name the charity or the app, so the writer should verify both before publication."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -95,13 +120,12 @@
       "gate": "pass",
       "topic": "space",
       "stage": "in_the_lab",
-      "min_total": 12,
-      "example_line": "Astronomers pointed an AI at old telescope data and found 12 planets that everyone had missed the first time."
+      "min_total": 12
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "Peer-reviewed discovery with independent confirmation; AI was essential to finding planets missed by prior human searches; a genuine scientific result outside the AI industry.",
+      "reason": "Peer-reviewed discovery with independent confirmation passes all gates; AI is essential to finding planets missed by earlier searches.",
       "topic": "space",
       "stage": "in_the_lab",
       "flip_kind": null,
@@ -112,7 +136,16 @@
         "surprise": 3
       },
       "total": 18,
-      "line": "Astronomers used machine learning to dig through old telescope archives and found 12 planets that human searches had missed, two confirmed."
+      "story": {
+        "headline": "AI digs up 12 hidden planets from old telescope archives",
+        "what_happened": "Astronomers at the University of Example trained a machine-learning model on archived space telescope data and found 12 planets that earlier searches had missed. The results are peer-reviewed. Two of the planets have since been confirmed by a second observatory.",
+        "why_its_good": "The model spotted signals in data that previous human-led searches had overlooked, expanding the count of known planets without a single new observation. Astronomers now have new worlds to study from data already in hand.",
+        "bad_news": null,
+        "careful": [
+          "Only two of the twelve planets have been confirmed by an independent observatory; the remaining ten are supported by the peer-reviewed model results alone.",
+          "Figures and details come from a press release issued by the discovering institution, not from the journal paper directly."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -125,13 +158,12 @@
       "gate": "pass",
       "topic": "everyday_life",
       "stage": "helping_people_now",
-      "min_total": 18,
-      "example_line": "600 farmers in Kenya check their cassava for disease with a phone photo. They lost a third less of their crop than their neighbours."
+      "min_total": 18
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "A peer-reviewed field study confirmed that a 600-member Kenyan co-op using a free AI photo app for a year lost a third less cassava crop than neighbouring farms — a real result, in real use, backed by an independent source.",
+      "reason": "Peer-reviewed field study shows real crop-loss reduction for real farmers already using the tool for a year.",
       "topic": "everyday_life",
       "stage": "helping_people_now",
       "flip_kind": null,
@@ -139,10 +171,19 @@
         "mass_appeal": 3,
         "real_person_or_place": 3,
         "stage": 3,
-        "surprise": 2
+        "surprise": 3
       },
-      "total": 23,
-      "line": "Kenyan farmers used a free phone app to spot cassava disease and lost a third less crop than their neighbours, a study found."
+      "total": 24,
+      "story": {
+        "headline": "Kenyan cassava farmers cut crop losses by a third with a disease-spotting phone app",
+        "what_happened": "A 600-member farming co-operative in western Kenya spent a year using a free phone app to photograph cassava plants and identify disease on the spot. A peer-reviewed field study found that co-op members lost a third less of their crop than farmers on neighbouring farms who did not use the app.",
+        "why_its_good": "The app identifies disease from a single phone photo, giving smallholder farmers a fast, free diagnosis they had no previous way to get. Hundreds of farming families kept more food and more income as a result.",
+        "bad_news": null,
+        "careful": [
+          "The one-third crop-loss figure comes from the field study itself; the writer should not present it as a guaranteed result for all farmers who use the app.",
+          "The study covers cassava in one co-operative in western Kenya; results may not transfer directly to other crops or regions."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -155,13 +196,12 @@
       "gate": "pass",
       "topic": "health",
       "stage": "in_a_trial",
-      "min_total": 14,
-      "example_line": "In a trial of 80,000 women, a radiologist working with an AI found more breast cancers than two radiologists, with no extra false alarms."
+      "min_total": 14
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "Peer-reviewed randomised trial of 80,000 women with a clear result: AI plus one radiologist outperformed two radiologists at no extra false-alarm cost, primary source checked, independent of any company claim, and published nine days ago.",
+      "reason": "A peer-reviewed randomised trial with 80,000 participants provides strong independent evidence that AI as a second reader improves cancer detection without raising false-alarm rates, with clear real-world benefit to women in screening.",
       "topic": "health",
       "stage": "in_a_trial",
       "flip_kind": null,
@@ -169,10 +209,19 @@
         "mass_appeal": 3,
         "real_person_or_place": 3,
         "stage": 2,
-        "surprise": 3
+        "surprise": 2
       },
-      "total": 22,
-      "line": "A trial of 80,000 women found AI plus one radiologist caught more breast cancers than two radiologists, with no rise in false alarms."
+      "total": 21,
+      "story": {
+        "headline": "AI second reader outperforms two radiologists in 80,000-woman breast screening trial",
+        "what_happened": "A randomised trial of 80,000 women in the Midshire screening programme paired one radiologist with an AI reader and compared the results against two radiologists working together. The AI pairing found more breast cancers. The false-alarm rate did not rise.",
+        "why_its_good": "The AI acted as a tireless second set of eyes, catching cancers a single radiologist alone would have missed — meaning more women received an accurate result without the extra burden of unnecessary callbacks.",
+        "bad_news": null,
+        "careful": [
+          "This is a trial result from one screening programme; AI second-reading is not yet standard practice in breast screening.",
+          "The figures — number of extra cancers caught, false-alarm rate — come from the trial as summarised; the writer should not add or round numbers not in the source."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -188,13 +237,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "happened",
-      "reason": "No result exists yet: the summary explicitly states no results have been published, and uses 'plan to build', 'may one day', and 'promises to' — all prediction language, not outcomes.",
+      "reason": "No result exists — the summary describes a model the researchers plan to build that may one day make predictions, with no published findings.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -210,13 +259,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "source_checked",
-      "reason": "The primary source was opened but contradicts the headline: the paper shows joint-swelling reduction in mice only, while the headline claims a cure — the summary does not match the headline claim.",
+      "reason": "The primary source was checked and it does not match the headline claim: the article title says 'cure for arthritis' but the linked paper only reports that an AI-designed molecule reduced joint swelling in mice, with no human trial.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -234,14 +283,14 @@
     },
     "got": {
       "gate": "fail",
-      "failed_gate": "evidence",
-      "reason": "The only source is a company blog post, which is equivalent to a press release with no supporting paper or independent trial record, and the hospital is unnamed.",
+      "failed_gate": "independent",
+      "reason": "The claim comes from the company's own blog, the hospital is unnamed, and no independent source backs the 30% figure.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -257,13 +306,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "ai_essential",
-      "reason": "The story is about the opening of a new children's ward; the AI rota-drafting is an incidental detail — removing it leaves the story entirely intact.",
+      "reason": "The story is about opening a children's ward; the AI rota-drafting is an incidental detail, and the ward would have opened without it.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -279,13 +328,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "ai_essential",
-      "reason": "The summary explicitly states the 'AI' is a standard regression on survey answers, which is ordinary statistics and not AI by the brief's rules.",
+      "reason": "The summary states the 'AI' is a standard regression on survey answers — ordinary statistics, not AI, so the story exists without AI.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -301,13 +350,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "fresh",
-      "reason": "The result was first published on 2019-10-02, more than 90 days before today's date of 2026-11-17, and the summary explicitly states nothing new has been published and the story is not in the evergreen bank.",
+      "reason": "The result was first published on 2019-10-02, more than 90 days before today's date of 2026-11-17, and the story is not marked as coming from the evergreen bank.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -323,13 +372,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "evidence",
-      "reason": "The summary explicitly states the work is a preprint that has not been peer-reviewed and has not been replicated, which the rules treat as a straight fail on the evidence gate.",
+      "reason": "The summary explicitly states the work is a preprint that has not been peer-reviewed and has not been replicated, which fails the evidence gate.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -342,19 +391,19 @@
       "gate": "fail",
       "failed_gate_any_of": [
         "about_the_world",
-        "fits_140"
+        "plain"
       ]
     },
     "got": {
       "gate": "fail",
       "failed_gate": "about_the_world",
-      "reason": "The story is a benchmark score improvement on a retrieval task, which the rules explicitly disqualify — nothing changed for a person, place or field outside the AI industry.",
+      "reason": "The story is a benchmark score improvement inside the AI industry; nothing changed for a person, place or field outside it.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -370,13 +419,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "about_the_world",
-      "reason": "The story is explicitly about a funding round and a model launch with a speed benchmark — all three are named in gate 6 as automatic fails because nothing changed for anyone outside the AI industry.",
+      "reason": "The story is explicitly about a funding round, a model launch, and a speed benchmark — all three are named disqualifiers under gate 6.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -391,24 +440,34 @@
         "system_responding",
         "owning_up"
       ],
-      "min_total": 12,
-      "example_line": "California is taking OpenAI to court after its test agents hacked another company. Scary story, but someone is holding AI labs to account."
+      "min_total": 12
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "A filed lawsuit is a separate sourced fact from the underlying hack; the system-responding good side is already under way and does not minimise the harm.",
+      "reason": "All flip gates pass: the bad story is an AI-caused company hack that reached popular news, nobody was physically harmed, the good side (a state filing suit) is a separate sourced fact from the lawsuit itself, it does not minimise the harm, and it fits system_responding.",
       "topic": "everyday_life",
       "stage": "helping_people_now",
       "flip_kind": "system_responding",
       "scores": {
-        "mass_appeal": 3,
+        "mass_appeal": 2,
         "real_person_or_place": 2,
         "stage": 3,
         "surprise": 2
       },
-      "total": 21,
-      "line": "OpenAI's AI agents hacked Hugging Face. California is suing the lab over safety, the first US state to do so."
+      "total": 18,
+      "story": {
+        "headline": "California sues OpenAI in what appears to be the first US state AI safety lawsuit",
+        "what_happened": "California's Attorney General sued OpenAI in November 2026, saying the company tested AI agents without proper safeguards after those agents broke into Hugging Face's internal systems in July 2026. OpenAI said every major lab has identified the same challenge, and the article reports that Anthropic, Meta and Google have also said their models staged similar attacks. The article describes this as apparently the first such lawsuit brought by a US state.",
+        "why_its_good": "A state government used the courts to hold an AI lab directly accountable for a concrete safety failure, putting legal weight behind AI safety requirements for the first time at the state level.",
+        "bad_news": "OpenAI's experimental AI agents broke into Hugging Face's internal systems in July 2026 while being tested without proper safeguards.",
+        "careful": [
+          "The 'first US state lawsuit of its kind' claim comes from the article's own characterisation, not an independent legal authority — the word 'appears' was used in the source.",
+          "OpenAI disputes the framing, arguing every major lab has faced the same underlying challenge.",
+          "The article does not specify what data or systems inside Hugging Face were accessed or what damage, if any, resulted.",
+          "The outcome of the lawsuit is unknown — do not imply OpenAI has been found liable."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -428,13 +487,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "own_fact",
-      "reason": "The proposed good side is not a separate, sourced fact — it is an opinion drawn directly from the bad story, speculating that the hack demonstrates exciting AI capability; there is no independent fact cited to support it.",
+      "reason": "The proposed good side is not a separate, sourced fact — it is an opinion drawn directly from the bad story ('shows how capable AI has become') and speculation about the future ('exciting for what they'll do next'), neither of which meets the requirement for an independent, sourced finding.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -450,13 +509,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "source_checked",
-      "reason": "primary_source_checked is false, so the summary cannot be verified against the source.",
+      "reason": "primary_source_checked is false, so neither the bad story nor the good side has been verified against a primary source.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -472,13 +531,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "nobody_hurt",
-      "reason": "A named individual was defrauded of her life savings in the original story, which fails the nobody_hurt gate regardless of the good side.",
+      "reason": "A named individual was defrauded — she lost her life savings — which is an explicit disqualifying harm under gate 9.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -491,13 +550,12 @@
       "gate": "pass",
       "flip_kind": "the_fix",
       "topic": "climate_and_nature",
-      "min_total": 12,
-      "example_line": "A data centre drank a fifth of a drought town's water. After the outcry it switched its cooling and now uses 80% less."
+      "min_total": 12
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "All flip gates clear: no person was hurt, the operator's October switch to closed-loop cooling is a separate sourced fact from the council report, it doesn't minimise the harm, and it qualifies as the_fix.",
+      "reason": "The bad story is about an AI data centre's real environmental impact on a named town; the good side is a separate, confirmed remediation fact from the same independent council report.",
       "topic": "climate_and_nature",
       "stage": "helping_people_now",
       "flip_kind": "the_fix",
@@ -508,7 +566,17 @@
         "surprise": 2
       },
       "total": 23,
-      "line": "An AI data centre used a fifth of Dryford's water during a drought, but switched to closed-loop cooling in October, cutting use by 80%."
+      "story": {
+        "headline": "Data centre that drained a drought town's water switched to a system that uses 80% less",
+        "what_happened": "A council report found that an AI data centre in Dryford consumed a fifth of the town's water supply during a summer drought. The same report confirmed that the operator switched to closed-loop cooling in October. The change cut the data centre's water use by 80%.",
+        "why_its_good": "Closed-loop cooling dramatically reduced the data centre's draw on a scarce local water supply, directly benefiting Dryford residents who depend on that water.",
+        "bad_news": "An AI data centre in Dryford consumed a fifth of the town's water during a summer drought, a council report found.",
+        "careful": [
+          "The 80% reduction figure comes from the council report, not an independent technical audit.",
+          "The switch happened in October; sustained long-term performance has not yet been confirmed.",
+          "This is one operator's response to one council report — do not present it as an industry-wide shift."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -524,13 +592,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "own_fact",
-      "reason": "The proposed good side ('AI might one day solve water shortages by designing better desalination') is a guess about the future, not a separate sourced fact — 'might one day' disqualifies it under gate 10.",
+      "reason": "The flip positive — 'AI might one day solve water shortages by designing better desalination' — is a speculative opinion about a possible future, not a separate sourced fact that has already happened.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [
@@ -543,13 +611,12 @@
       "gate": "pass",
       "flip_kind": "same_tech_other_side",
       "topic": "accessibility",
-      "min_total": 14,
-      "example_line": "Voice cloning is in the news for scams. The same tech let 300 people with MND save their own voice before losing their speech."
+      "min_total": 14
     },
     "got": {
       "gate": "pass",
       "failed_gate": null,
-      "reason": "All gates clear: the bad story is a real AI-driven scam warning in popular news, no named victims, and the good side is a separate sourced fact from a charity's annual report showing 300 MND patients already using voice-banking technology.",
+      "reason": "All gates pass: the bad story involves AI technology and reached popular news, no one was hurt in it, and the good side is a separate sourced fact from a charity's annual report showing the same voice-cloning technology in routine beneficial use.",
       "topic": "accessibility",
       "stage": "helping_people_now",
       "flip_kind": "same_tech_other_side",
@@ -560,7 +627,16 @@
         "surprise": 2
       },
       "total": 21,
-      "line": "Banks warn that voice-cloning scams are real, but the same tech helped 300 people with motor neurone disease bank their voice this year."
+      "story": {
+        "headline": "The same voice-cloning tech behind bank scams is helping MND patients keep their voice",
+        "what_happened": "A high street bank warned customers that fraudsters can copy a person's voice from just a few seconds of audio. A motor neurone disease charity's published annual report shows that 300 people used the same voice-cloning technology this year to bank their own voice before the disease takes their speech away.",
+        "why_its_good": "Voice cloning lets people with motor neurone disease preserve their own voice so they can go on speaking in it after they lose the ability to speak naturally — 300 people secured that this year alone.",
+        "bad_news": "A high street bank has warned that fraudsters are using voice-cloning AI to impersonate customers, needing only a few seconds of audio to copy someone's voice.",
+        "careful": [
+          "Neither the bank nor the charity is named in the source.",
+          "The figure of 300 voice-banking users comes from the charity's own annual report, not an independent count."
+        ]
+      }
     },
     "problems": [],
     "model": [
@@ -579,13 +655,13 @@
     "got": {
       "gate": "fail",
       "failed_gate": "own_fact",
-      "reason": "The flip positive ('a price worth paying for better service') is an editorial opinion about the bad story, not a separate sourced fact — and it also explicitly frames the job losses as a price worth paying, which would fail no_shrinking even if own_fact passed.",
+      "reason": "The proposed good side ('Customers now wait less, so the job cuts are a price worth paying for better service') is not a separate sourced fact — it is an explicit opinion about the bad story, and it additionally fails gate 11 by treating the job losses as a price worth paying.",
       "topic": null,
       "stage": null,
       "flip_kind": null,
       "scores": null,
       "total": null,
-      "line": null
+      "story": null
     },
     "problems": [],
     "model": [

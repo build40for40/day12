@@ -18,8 +18,7 @@
         "gate": "pass",
         "topic": "health",
         "stage": "helping_people_now",
-        "min_total": 18,
-        "example_line": "An AI reading eye scans at one hospital spotted 212 people who needed urgent treatment and would otherwise have waited months."
+        "min_total": 18
       }
     },
     {
@@ -38,8 +37,7 @@
         "gate": "pass",
         "topic": "climate_and_nature",
         "stage": "helping_people_now",
-        "min_total": 18,
-        "example_line": "40 villages got five days' warning before October's floods, thanks to an AI forecast. The old system gave them two."
+        "min_total": 18
       }
     },
     {
@@ -58,8 +56,7 @@
         "gate": "pass",
         "topic": "accessibility",
         "stage": "helping_people_now",
-        "min_total": 18,
-        "example_line": "10,000 blind people now use a free app that describes what their phone camera sees, from reading the post to finding the bus stop."
+        "min_total": 18
       }
     },
     {
@@ -78,8 +75,7 @@
         "gate": "pass",
         "topic": "space",
         "stage": "in_the_lab",
-        "min_total": 12,
-        "example_line": "Astronomers pointed an AI at old telescope data and found 12 planets that everyone had missed the first time."
+        "min_total": 12
       }
     },
     {
@@ -98,8 +94,7 @@
         "gate": "pass",
         "topic": "everyday_life",
         "stage": "helping_people_now",
-        "min_total": 18,
-        "example_line": "600 farmers in Kenya check their cassava for disease with a phone photo. They lost a third less of their crop than their neighbours."
+        "min_total": 18
       }
     },
     {
@@ -119,8 +114,7 @@
         "gate": "pass",
         "topic": "health",
         "stage": "in_a_trial",
-        "min_total": 14,
-        "example_line": "In a trial of 80,000 women, a radiologist working with an AI found more breast cancers than two radiologists, with no extra false alarms."
+        "min_total": 14
       }
     },
     {
@@ -261,7 +255,7 @@
         "gate": "fail",
         "failed_gate_any_of": [
           "about_the_world",
-          "fits_140"
+          "plain"
         ]
       }
     },
@@ -302,8 +296,7 @@
           "system_responding",
           "owning_up"
         ],
-        "min_total": 12,
-        "example_line": "California is taking OpenAI to court after its test agents hacked another company. Scary story, but someone is holding AI labs to account."
+        "min_total": 12
       }
     },
     {
@@ -383,8 +376,7 @@
         "gate": "pass",
         "flip_kind": "the_fix",
         "topic": "climate_and_nature",
-        "min_total": 12,
-        "example_line": "A data centre drank a fifth of a drought town's water. After the outcry it switched its cooling and now uses 80% less."
+        "min_total": 12
       }
     },
     {
@@ -422,8 +414,7 @@
         "gate": "pass",
         "flip_kind": "same_tech_other_side",
         "topic": "accessibility",
-        "min_total": 14,
-        "example_line": "Voice cloning is in the news for scams. The same tech let 300 people with MND save their own voice before losing their speech."
+        "min_total": 14
       }
     },
     {
