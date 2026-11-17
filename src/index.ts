@@ -1,3 +1,4 @@
+import { bankHealth, dailyPick, refillBank } from './bank'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import { scheduledPull } from './schedule'
@@ -26,12 +27,30 @@ async function pull(request: Request, env: Env): Promise<Response> {
   return Response.json(await runPull(env, new Date()))
 }
 
+async function pick(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  const dryRun = new URL(request.url).searchParams.get('dry') === '1'
+  const now = new Date()
+  const result = await dailyPick(env.DB, now, dryRun)
+  const refilled = dryRun ? 0 : await refillBank(env.DB, now)
+  return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
+}
+
+async function bank(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return Response.json(await bankHealth(env.DB))
+}
+
 export default {
   async fetch(request, env, ctx) {
     const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
     switch (`${request.method} ${pathname}`) {
       case 'POST /pull':
         return pull(request, env)
+      case 'POST /pick':
+        return pick(request, env)
+      case 'GET /bank':
+        return bank(request, env)
       case 'OPTIONS /signups':
         return signupPreflight(request, env)
       case 'POST /signups':

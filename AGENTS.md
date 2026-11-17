@@ -54,6 +54,15 @@ The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC
 
 `npm run dev` never fires crons by itself. To run the handler by hand, call `curl "localhost:8787/cdn-cgi/local/scheduled?cron=0+6+*+*+*&time=1794895200000&format=json"`. `time` is the scheduled time in epoch milliseconds (that one is 06:00 London on 17 November 2026). Leave it out to use the current time, which will usually skip. The pull's logs show in the dev server's output, and the response's `outcome` is `exception` if it failed.
 
+## The evergreen bank and the daily pick
+
+The bank is the `evergreen` table in D1, seeded from `data/backlog.json` with `npm run db:seed` (remote: see the header of `scripts/seed-evergreen.ts`). Statuses: `banked` (checked, can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. The seed can be re-run: it refreshes wording and never undoes a pick.
+
+- **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. Asking twice in a day returns the same story. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
+- **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.
+- **Health:** `GET /bank` (same token) reports ready, review and used counts, topic spread and `low: true` under 20 ready stories.
+- **Scoring:** candidates are scored outside the Worker, which only reads `candidates.score` (out of 24).
+
 ## Signups and email
 
 The MVP is an email newsletter called Feel good AI, so the Worker also keeps the list of subscribers and sends mail through [Postmark](https://postmarkapp.com), called over its HTTP API. The website and its sign-up form are built separately and post to this Worker.
