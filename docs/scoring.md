@@ -1,12 +1,12 @@
 # Scoring and quality filter
 
-How a story gets from a source into the daily five. The model-facing version is `prompts/score-story.md`, and the cases that check it are in `evals/stories.json`.
+How a story gets from a source to being the day's story. The model-facing version is `prompts/score-story.md`, and the cases that check it are in `evals/stories.json`.
 
 There are three layers, because the criteria do three different jobs:
 
 1. **Gates** decide whether a story is allowed in at all. Pass or fail, no points.
 2. **Scores** rank the stories that passed.
-3. **The day mix** picks five from the ranked list so the day is varied.
+3. **The daily pick** chooses one story from the ranked list.
 
 There are also two lanes. Most stories are **good news** (something good happened and AI was the reason). A few are **flips** (a bad AI story in the popular news that has an honest good side). Flips go through every gate the good news does, plus three of their own.
 
@@ -59,22 +59,23 @@ For flips, swap Surprise for **How well known the bad story is**, same weight. A
 
 Mass appeal carries the most weight on purpose. The best evidence in the world doesn't help if nobody outside the field cares, and the evidence is already protected by the gates.
 
-## Layer 3: the day mix
+## Layer 3: the daily pick
 
-Pick from the ranked list, top down, skipping any story that would break a rule:
+One story a day. This changed on 17 November: the brief was five stories a day, and the simulated week in `runs/2026-11-17/` was run under the old five-a-day rules.
 
-- Five stories a day.
-- No more than one per topic. The topics are health, climate and nature, space, accessibility, science and everyday life.
-- No more than one flip.
-- At least one story at the "helping people now" stage.
-- No more than two at the "in the lab" stage.
-- Nothing we've run in the last 30 days.
-- A new story needs a score of 12 or more to take a slot. Below that it waits, and a bank story takes the slot. It only runs if the bank has nothing left that fits.
-- If fewer than five pass, fill from the evergreen bank. Never lower a gate to fill a slot.
+- Pick the highest-scoring story that has not run before.
+- Nothing we've already run. `data/backlog.json` records what has been published.
+- Never lower a gate to have something to run. The evergreen bank is there for days with no strong news.
+
+Proposed, to confirm:
+
+- **News before bank:** a story from the last 14 days scoring 16 or more runs ahead of the bank. Below that, the best bank story runs. At five a day the floor was 12, but with one slot a higher bar keeps the day's story strong. In the week of 11 to 17 November, 9 news stories scored 16 or more, which is about one a day.
+- **Variety:** not the same topic two days running.
+- **Flips:** one a week at most, and a person signs off each one.
 
 ## What gets handed on
 
-This step does not write the 140-character line. The next step in the chain does that. This step hands it one record per story that says what the story is about and why it's good, using only checked facts.
+This step does not write the published post. The headline editor does that, from `prompts/headline-editor.md`. This step hands it one record per story that says what the story is about and why it's good, using only checked facts.
 
 | Field | What it holds |
 | --- | --- |
@@ -85,7 +86,7 @@ This step does not write the 140-character line. The next step in the chain does
 | `why_its_good` | One or two sentences: what the AI did that made the difference, and who is better off |
 | `bad_news`, `flip_kind` | Flips only: the bad story in one sentence, and which kind of flip it is |
 | `careful` | What the writer must not overstate: a pilot that hasn't started, a figure that comes from the company, an association that isn't proof |
-| `topic`, `stage`, `technology` | The tags used by the day mix |
+| `topic`, `stage`, `technology` | The tags used by the daily pick |
 | `total` | The score out of 24 |
 | `sources` | The links that were checked |
 
@@ -104,7 +105,7 @@ Stage tags:
 
 ## Decisions made here, to confirm
 
-- **The 140-character line is written by the next step.** This step hands over the facts, the reason it's good and the cautions. The stage tag travels as its own field.
+- **The post is written by the headline editor.** This step hands over the facts, the reason it's good and the cautions. The stage tag travels as its own field.
 - **One flip a day at most.** The science stories earn the trust that lets the flip land.
 - **Preprints fail.** This matches the sources card, which skips raw arXiv.
 - **Industry news fails.** Launches and funding are news about AI companies, not about the world getting better.
