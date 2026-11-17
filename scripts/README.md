@@ -1,6 +1,8 @@
 # Scripts
 
-One-off Python scripts from Day 12, kept so the runs in `runs/2026-11-17/` can be traced. They are not part of the Worker and nothing imports them. The live source pull is in `src/`.
+`daily.py` is the daily run: it picks the day's story from `data/backlog.json`, has the headline editor write the post, sends it through the Worker's `POST /publish` and marks the story as published. See "The daily run" in `AGENTS.md`. Its tests are in `test_daily.py` (`python3 scripts/test_daily.py`).
+
+The rest are one-off Python scripts from Day 12, kept so the runs in `runs/2026-11-17/` can be traced. They are not part of the Worker and nothing imports them. The live source pull is in `src/`.
 
 | Script | What it does |
 | --- | --- |

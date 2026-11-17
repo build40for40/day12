@@ -1,3 +1,4 @@
+import { issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import type { Env } from './types'
@@ -25,12 +26,24 @@ async function pull(request: Request, env: Env): Promise<Response> {
   return Response.json(await runPull(env, new Date()))
 }
 
+// The daily run posts the day's story here. It uses the same token as /pull.
+async function publishIssue(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return publishRoute(request, env)
+}
+
 export default {
   async fetch(request, env, ctx) {
     const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
     switch (`${request.method} ${pathname}`) {
       case 'POST /pull':
         return pull(request, env)
+      case 'POST /publish':
+        return publishIssue(request, env)
+      case 'GET /issues':
+        return issuesRoute(request, env)
+      case 'GET /issues/latest':
+        return latestIssueRoute(request, env)
       case 'OPTIONS /signups':
         return signupPreflight(request, env)
       case 'POST /signups':

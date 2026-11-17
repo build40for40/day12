@@ -103,6 +103,44 @@ To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fa
 3. **Ask for custom unsubscribes:** broadcast streams default to Postmark managing unsubscribes, which adds Postmark's own link and sets its own `List-Unsubscribe` headers in place of ours. Ask Postmark support to approve "Manage unsubscribes on your own", then pick it in the broadcast stream's settings. Until then mail still goes out and people who leave through Postmark's link stop getting mail after the next send hits a 406, but their row only shows `suppressed_at`, not `unsubscribed`.
 4. **Set the secrets:** `npm run wrangler -- secret put POSTMARK_SERVER_TOKEN` with the server's API token, and `npm run wrangler -- secret put EMAIL_FROM` with the verified from address. Worker secrets survive deploys, so GitHub Actions doesn't need them.
 
+## The daily run
+
+One story a day goes out by email, is stored for the website, and is printed as a post for X. `scripts/daily.py` does it in four steps:
+
+1. **Pick:** the rules in `docs/scoring.md`, layer 3, read from `data/backlog.json`. A news story from the last 14 days scoring 16 or more runs ahead of the evergreen bank, otherwise the best bank story (ties go to the earlier one in the file). Never a story that has run, one flip a week at most. A story with no link a reader can use (only EurekAlert, or only an API search) is skipped until it's re-sourced. A Europe PMC search link becomes the paper's DOI link.
+2. **Write:** `prompts/headline-editor.md`, called through the `claude` command line tool, which has to be installed and signed in where the run happens. The post is checked before it goes anywhere: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
+3. **Publish:** `POST /publish` on the Worker, with the same bearer token as `/pull`. It emails every confirmed subscriber and stores the issue in the `issues` table. The Worker refuses a second send for the same date, so a rerun can't email people twice.
+4. **Mark:** sets `status` and `published_on` in `data/backlog.json` and writes `runs/<date>/daily.json`. Commit both, or the same story is picked again tomorrow.
+
+The X post is printed, not posted: there's no X account or API key in the repo yet.
+
+### For the 6am agent
+
+```bash
+python3 scripts/daily.py --dry-run --worker https://build40for40.com/feel-good
+python3 scripts/daily.py --worker https://build40for40.com/feel-good
+git add data/backlog.json runs/ && git commit -m "Publish the daily story" && git push
+```
+
+Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`. Useful flags: `--date 2026-11-18` for another day, `--story <id>` to run a story chosen by a person, `--text "..."` to use a post written by a person instead of calling the editor, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. If the email went out but the run died before marking the story, run it again for the same date: the Worker answers that the date already went out with that story, and the script marks it without sending again.
+
+The daily run doesn't score new stories. Something still has to run `prompts/score-story.md` over the live pull, open the sources and add the passes to `data/backlog.json` (card 320). Until then the run draws on the 5 waiting news stories and the evergreen bank.
+
+### For the website
+
+- `GET /feel-good/issues/latest`: `{ "ok": true, "issue": { "date", "storyId", "headline", "text", "url", "stage", "createdAt" } }`, or `404` with `{ "ok": false, "error": "no_issues" }` before the first send.
+- `GET /feel-good/issues`: `{ "ok": true, "issues": [...] }`, newest first, at most 30.
+
+Both are public, cached for five minutes, and send `Access-Control-Allow-Origin` to `ALLOWED_ORIGIN` only. `stage` is `in_the_lab`, `in_a_trial` or `helping_people_now`.
+
+### `POST /publish`
+
+Body: `{ "date": "2026-11-18", "story": { "id", "headline", "text", "url", "stage" }, "dry_run": false, "force": false }`. `text` is at most 280 characters. Answers: `200` with `{ ok, issue, report: { sent, failed, suppressed } }`; with `dry_run`, `200` with `{ ok, preview: { subject, html, text } }` and nothing sent or stored; `409` `already_published` with the issue that went out; `400` for a bad body; `502` `send_failed` when nothing was delivered, and then the date is free to retry.
+
+### Trying it locally
+
+With `.dev.vars` set up as in "Signups and email" and `npm run dev` running, sign up a made-up address and confirm it (read the token as shown there and `curl -X POST "localhost:8787/confirm?token=..."`), then `python3 scripts/daily.py --dry-run`. A real run against `POSTMARK_API_TEST` goes through Postmark's checks and delivers nothing, but it does mark the story in `data/backlog.json`, so `git checkout data/backlog.json` afterwards.
+
 ## Deploying it
 
 GitHub Actions does the checking and the deploying. `.github/workflows/ci.yml` runs `npm ci`, `npm run typecheck` and `npm test` on every pull request, on the Node version in `.node-version`. `.github/workflows/deploy.yml` runs the same checks on every push to `main`, then applies the D1 migrations to the remote database and deploys the Worker. Deploys queue up one at a time and never overlap.
