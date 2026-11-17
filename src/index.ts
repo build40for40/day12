@@ -31,7 +31,8 @@ async function pick(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   const dryRun = new URL(request.url).searchParams.get('dry') === '1'
   const now = new Date()
-  const result = await dailyPick(env.DB, now, dryRun)
+  const story = new URL(request.url).searchParams.get('story') ?? undefined
+  const result = await dailyPick(env.DB, now, { dryRun, ...(story ? { story } : {}) })
   const refilled = dryRun ? 0 : await refillBank(env.DB, now)
   return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
 }

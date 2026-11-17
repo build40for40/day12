@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bankHealth, dailyPick, londonDay, refillBank } from './bank'
+import { bankHealth, dailyPick, londonDay, readerLink, refillBank } from './bank'
 import { fakeD1 } from './fake-d1'
 
 const now = new Date('2026-11-17T06:00:00Z')
@@ -62,7 +62,7 @@ describe('dailyPick', () => {
   it('does not change anything on a dry run', async () => {
     const { db, bank, sqlite } = setup()
     bank('a', 20)
-    expect(await dailyPick(db, now, true)).toMatchObject({ status: 'dry_run', pick: { storyKey: 'evergreen:a' } })
+    expect(await dailyPick(db, now, { dryRun: true })).toMatchObject({ status: 'dry_run', pick: { storyKey: 'evergreen:a' } })
     expect(sqlite.prepare('SELECT COUNT(*) AS n FROM picks').get()).toEqual({ n: 0 })
     expect(sqlite.prepare("SELECT status FROM evergreen WHERE slug = 'a'").get()).toEqual({ status: 'banked' })
   })
@@ -70,6 +70,31 @@ describe('dailyPick', () => {
   it('uses the London date for the day', () => {
     expect(londonDay(new Date('2026-07-01T23:30:00Z'))).toBe('2026-07-02')
     expect(londonDay(new Date('2026-11-17T23:30:00Z'))).toBe('2026-11-17')
+  })
+})
+
+describe('the story record and links', () => {
+  it('hands on the checked fields and skips stories with no usable link', async () => {
+    const { db, sqlite, bank } = setup()
+    bank('top', 24)
+    bank('next', 20)
+    sqlite.exec(`UPDATE evergreen SET sources = '["https://www.eurekalert.org/x"]' WHERE slug = 'top'`)
+    sqlite.exec(`UPDATE evergreen SET sources = '["https://example.com/a"]', why_its_good = 'Because.', careful = '["Be careful"]' WHERE slug = 'next'`)
+    const result = await dailyPick(db, now)
+    expect(result).toMatchObject({ status: 'picked', record: { id: 'next', whyItsGood: 'Because.', careful: ['Be careful'], sourceUrl: 'https://example.com/a' } })
+    expect(await dailyPick(db, now)).toMatchObject({ status: 'already_picked', record: { id: 'next' } })
+  })
+
+  it('turns a Europe PMC DOI search into a DOI link and drops other API links', () => {
+    expect(readerLink('https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1/x&format=json')).toBe('https://doi.org/10.1/x')
+    expect(readerLink('https://example.com/api/v1/thing')).toBeNull()
+  })
+
+  it('runs a story chosen by hand', async () => {
+    const { db, bank } = setup()
+    bank('a', 24)
+    bank('b', 12)
+    expect(await dailyPick(db, now, { story: 'b' })).toMatchObject({ pick: { storyKey: 'evergreen:b' } })
   })
 })
 

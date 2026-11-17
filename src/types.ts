@@ -19,8 +19,12 @@ export interface Env {
 
 export interface Pick { day: string; storyKey: string; lane: 'news' | 'evergreen'; title: string; total: number; reason: string }
 export interface Considered { news: { title: string; total: number } | null; bank: { title: string; total: number } | null }
+export interface StoryRecord {
+  id: string; headline: string; whatHappened: string; whyItsGood: string | null; careful: string[]
+  stage: string | null; topic: string | null; lane: 'good' | 'flip'; sourceUrl: string | null
+}
 export type PickResult =
-  | { day: string; status: 'picked' | 'dry_run'; pick: Pick; considered: Considered }
-  | { day: string; status: 'already_picked'; pick: Pick }
-  | { day: string; status: 'nothing_to_run'; pick: null; considered: Considered }
+  | { day: string; status: 'picked' | 'dry_run'; pick: Pick; record: StoryRecord; considered: Considered }
+  | { day: string; status: 'already_picked'; pick: Pick; record: StoryRecord | null }
+  | { day: string; status: 'nothing_to_run'; pick: null; record: null; considered: Considered }
 export interface BankHealth { ready: number; review: number; used: number; low: boolean; floor: number; topics: Record<string, number> }

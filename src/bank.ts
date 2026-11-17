@@ -1,4 +1,4 @@
-import type { BankHealth, Pick, PickResult } from './types'
+import type { BankHealth, Pick, PickResult, StoryRecord } from './types'
 
 // Rules from docs/scoring.md, "The daily pick".
 export const NEWS_MIN_SCORE = 16
@@ -33,41 +33,109 @@ export function londonDay(now: Date): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(now)
 }
 
-const topNews = (db: D1Database, now: Date) =>
-  db
+/** The link a reader should get for one source, or null. Mirrors reader_link in scripts/daily.py. */
+export function readerLink(url: string): string | null {
+  if (url.includes('eurekalert.org')) return null // its terms restrict reuse, so these need re-sourcing
+  if (url.includes('europepmc/webservices')) {
+    const query = URL.canParse(url) ? (new URL(url).searchParams.get('query') ?? '') : ''
+    return /^doi:/i.test(query) ? `https://doi.org/${query.slice(4)}` : null
+  }
+  if (url.includes('format=json') || url.includes('/api/')) return null
+  return url
+}
+
+function usableLink(sources: unknown): string | null {
+  let list: unknown = sources
+  if (typeof sources === 'string') {
+    try {
+      list = JSON.parse(sources)
+    } catch {
+      list = [sources]
+    }
+  }
+  for (const url of Array.isArray(list) ? list : []) {
+    const link = typeof url === 'string' ? readerLink(url) : null
+    if (link) return link
+  }
+  return null
+}
+
+interface NewsRow { id: number; title: string; summary: string; url: string; score: number }
+interface BankRow { slug: string; title: string; summary: string; why_its_good: string | null; careful: string | null; sources: string | null; url: string; stage: string | null; topic: string | null; total: number }
+
+const BANK_COLUMNS = 'slug, title, summary, why_its_good, careful, sources, url, stage, topic, score AS total'
+
+async function topNews(db: D1Database, now: Date): Promise<NewsRow | null> {
+  const rows = await db
     .prepare(
-      `SELECT id, title, score FROM candidates
+      `SELECT id, title, summary, url, score FROM candidates
        WHERE score >= ? AND pulled_at >= ? AND 'news:' || id NOT IN (SELECT story_key FROM picks)
-       ORDER BY score DESC, pulled_at DESC LIMIT 1`,
+       ORDER BY score DESC, pulled_at DESC LIMIT 20`,
     )
     .bind(NEWS_MIN_SCORE, new Date(now.getTime() - NEWS_WINDOW_DAYS * DAY).toISOString())
-    .first<{ id: number; title: string; score: number }>()
+    .all<NewsRow>()
+  return rows.results.find((r) => readerLink(r.url)) ?? null
+}
 
-const topBank = (db: D1Database) =>
-  db
-    .prepare(
-      `SELECT slug, title, score AS total FROM evergreen
-       WHERE status = 'banked'
-       ORDER BY score DESC, id ASC LIMIT 1`,
-    )
-    .first<{ slug: string; title: string; total: number }>()
+/** The best banked story a reader can be given a link for. `slug` forces one by hand. */
+async function topBank(db: D1Database, slug?: string): Promise<BankRow | null> {
+  const rows = slug
+    ? await db.prepare(`SELECT ${BANK_COLUMNS} FROM evergreen WHERE status = 'banked' AND slug = ?`).bind(slug).all<BankRow>()
+    : await db.prepare(`SELECT ${BANK_COLUMNS} FROM evergreen WHERE status = 'banked' ORDER BY score DESC, id ASC`).all<BankRow>()
+  return rows.results.find((r) => usableLink(r.sources ?? [r.url])) ?? null
+}
+
+const bankRecord = (r: BankRow): StoryRecord => ({
+  id: r.slug,
+  headline: r.title,
+  whatHappened: r.summary,
+  whyItsGood: r.why_its_good,
+  careful: r.careful ? (JSON.parse(r.careful) as string[]) : [],
+  stage: r.stage,
+  topic: r.topic,
+  lane: 'good',
+  sourceUrl: usableLink(r.sources ?? [r.url]),
+})
+
+const newsRecord = (r: NewsRow): StoryRecord => ({
+  id: `news-${r.id}`,
+  headline: r.title,
+  whatHappened: r.summary || r.title,
+  whyItsGood: null,
+  careful: [],
+  stage: null,
+  topic: null,
+  lane: 'good',
+  sourceUrl: readerLink(r.url),
+})
+
+async function recordFor(db: D1Database, storyKey: string): Promise<StoryRecord | null> {
+  if (storyKey.startsWith('news:')) {
+    const row = await db.prepare('SELECT id, title, summary, url, score FROM candidates WHERE id = ?').bind(Number(storyKey.slice(5))).first<NewsRow>()
+    return row ? newsRecord(row) : null
+  }
+  const row = await db.prepare(`SELECT ${BANK_COLUMNS} FROM evergreen WHERE slug = ?`).bind(storyKey.slice('evergreen:'.length)).first<BankRow>()
+  return row ? bankRecord(row) : null
+}
 
 /**
- * Picks the one story for the day. Asking twice for the same day returns the same answer.
- * A fresh news story scoring 16 or more runs first; otherwise the best banked story runs,
- * and the bank gives it up for good.
+ * Picks the one story for the day. Asking twice for the same day returns the same answer, so a run that
+ * died after picking can be run again without burning a second story. A fresh news story scoring 16 or
+ * more runs first; otherwise the best banked story runs and the bank gives it up for good.
+ * `story` forces a banked story by slug. Stories with no link a reader can use are skipped.
  */
-export async function dailyPick(db: D1Database, now: Date, dryRun = false): Promise<PickResult> {
+export async function dailyPick(db: D1Database, now: Date, options: { dryRun?: boolean; story?: string } = {}): Promise<PickResult> {
+  const { dryRun = false, story } = options
   const day = londonDay(now)
   const existing = await db.prepare('SELECT * FROM picks WHERE day = ?').bind(day).first<PickRow>()
-  if (existing) return { day, status: 'already_picked', pick: toPick(existing) }
+  if (existing) return { day, status: 'already_picked', pick: toPick(existing), record: await recordFor(db, existing.story_key) }
 
-  const [news, bank] = await Promise.all([topNews(db, now), topBank(db)])
+  const [news, bank] = await Promise.all([story ? null : topNews(db, now), topBank(db, story)])
   const considered = {
     news: news ? { title: news.title, total: news.score } : null,
     bank: bank ? { title: bank.title, total: bank.total } : null,
   }
-  if (!news && !bank) return { day, status: 'nothing_to_run', pick: null, considered }
+  if (!news && !bank) return { day, status: 'nothing_to_run', pick: null, record: null, considered }
 
   const pick: Pick = news
     ? {
@@ -86,9 +154,12 @@ export async function dailyPick(db: D1Database, now: Date, dryRun = false): Prom
         lane: 'evergreen',
         title: bank!.title,
         total: bank!.total,
-        reason: `No news story scored ${NEWS_MIN_SCORE} or more in the last ${NEWS_WINDOW_DAYS} days, so the best banked story runs.`,
+        reason: story
+          ? 'Chosen by hand.'
+          : `No news story scored ${NEWS_MIN_SCORE} or more in the last ${NEWS_WINDOW_DAYS} days, so the best banked story runs.`,
       }
-  if (dryRun) return { day, status: 'dry_run', pick, considered }
+  const record = news ? newsRecord(news) : bankRecord(bank!)
+  if (dryRun) return { day, status: 'dry_run', pick, record, considered }
 
   const written = await db
     .prepare('INSERT OR IGNORE INTO picks (day, story_key, lane, title, total, reason, picked_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
@@ -97,7 +168,7 @@ export async function dailyPick(db: D1Database, now: Date, dryRun = false): Prom
   if (written.meta.changes === 0) {
     // Someone picked this day while we were deciding.
     const winner = await db.prepare('SELECT * FROM picks WHERE day = ?').bind(day).first<PickRow>()
-    if (winner) return { day, status: 'already_picked', pick: toPick(winner) }
+    if (winner) return { day, status: 'already_picked', pick: toPick(winner), record: await recordFor(db, winner.story_key) }
     throw new Error('pick was not saved')
   }
   if (bank && !news) {
@@ -106,7 +177,7 @@ export async function dailyPick(db: D1Database, now: Date, dryRun = false): Prom
       .bind(day, now.toISOString(), bank.slug)
       .run()
   }
-  return { day, status: 'picked', pick, considered }
+  return { day, status: 'picked', pick, record, considered }
 }
 
 const slugify = (title: string): string =>
