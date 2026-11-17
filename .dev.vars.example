@@ -2,3 +2,5 @@
 PULL_TOKEN=
 POSTMARK_SERVER_TOKEN=
 EMAIL_FROM=
+# The company Anthropic key, for the headline editor in the daily run. Leave empty to test with a hand-written post.
+ANTHROPIC_API_KEY=

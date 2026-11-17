@@ -58,7 +58,7 @@ The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC
 
 The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 stories from `data/backlog.json`, and `0004` adds the pick and `0005` the issues. Statuses: `banked` (can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. Deploys apply the migrations to the remote database, so there is no separate seed step.
 
-- **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
+- **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. The daily run (below) calls it at 06:00 London and sends the result.
 - **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.
 - **Health:** `GET /bank` (same token) reports ready, review and used counts, topic spread and `low: true` under 20 ready stories.
 - **Scoring:** candidates are scored outside the Worker, which only reads `candidates.score` (out of 24).
@@ -125,39 +125,38 @@ The Worker serves its own sign-up page, "Feel good AI stories", at the base path
 
 ## The daily run
 
-One story a day goes out by email, is stored for the website, and is printed as a post for X. `scripts/daily.py` does it in four steps:
+One story a day goes out by email and onto the landing page at 06:00 London, from the Worker's own Cloudflare cron. It's the same pair of crons as the pull (`0 5 * * *` and `0 6 * * *`, see "The daily pull"), and `scheduledDaily` in `src/schedule.ts` only runs on the one that is 6am in London. `runDaily` in `src/daily.ts` does three things:
 
-1. **Pick:** `POST /pick` on the Worker, which keeps the evergreen bank and what has run in D1 (see "The evergreen bank and the daily pick"). The rules are `docs/scoring.md`, layer 3. A story with no link a reader can use (only EurekAlert, or only an API search) is skipped until it's re-sourced, and a Europe PMC search link becomes the paper's DOI link. The pick is saved when it's made, so running again the same day gets the same story.
-2. **Write:** `prompts/headline-editor.md`, sent to Claude Opus 5.5 with the company key in `ANTHROPIC_API_KEY`, through the `anthropic` Python package, with server-side fallbacks on so a decline is retried on another model. Without the key it falls back to the `claude` command line tool, signed in, for running on a laptop. The post is checked before it goes anywhere: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
-3. **Publish:** `POST /publish` on the Worker, with the same bearer token as `/pull`. It emails every confirmed subscriber and stores the issue in the `issues` table. The Worker refuses a second send for the same date, so a rerun can't email people twice.
-4. **Log:** writes `runs/<date>/daily.json`. The database already knows the story has run, so nothing else needs committing.
+1. **Pick:** `dailyPick` in `src/bank.ts`, the same as `POST /pick` (see "The evergreen bank and the daily pick"). It records the pick in `picks`, and a banked story becomes `used`.
+2. **Write:** `src/editor.ts` sends the pick's story record to Claude Opus 5.5 with the headline editor prompt, using the Worker secret `ANTHROPIC_API_KEY` through the `@anthropic-ai/sdk` package. The reply is held to a JSON schema, server-side fallbacks retry a decline on another model, and the post is checked before use: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
+3. **Send:** the same path as `POST /publish`. It emails every confirmed subscriber and stores the issue in `issues`, which the landing page reads. Then it refills the bank, as `POST /pick` does.
 
-The X post is printed, not posted: there's no X account or API key in the repo yet.
+If today's issue has already gone out, the run does nothing. The pick gives the same story if asked twice in a day, so a run that stopped part way can simply run again. A run that fails logs `daily story failed for <date>: <reason>` and fails the invocation, so it shows as an error in the Worker's logs in Cloudflare. The X post isn't sent anywhere yet: it comes back in the `xPost` field of `POST /daily`.
 
-### The 6am schedule
+### The headline editor prompt
 
-`.github/workflows/daily.yml` runs it every morning at 06:00 London, using the organisation's `ANTHROPIC_API_KEY` secret, and commits the run log to `main`. It runs on two UTC crons and only goes ahead from 06:00 London, so it's right in summer and winter. Before it calls the model it checks `GET /issues/latest`: if today's issue already went out it stops.
-
-Switching it on is a one-time job for a human:
-
-1. **Give the repo the key:** the organisation secret `ANTHROPIC_API_KEY` has to list this repository under its repository access.
-2. **Add the publish token:** the Actions secret `PUBLISH_TOKEN`, with the same value as the Worker's `PULL_TOKEN`.
-3. **Point it at the Worker:** optional. The Actions variable `WORKER_URL` defaults to `https://build40for40.com/feel-good`.
-4. **Try it:** run "Daily story" by hand from the Actions tab. It defaults to a dry run, which shows the pick, the post and the email without sending.
-5. **Flip the switch:** add the Actions variable `DAILY_ENABLED` with the value `true`. Until then the schedule is skipped, and only manual runs work.
-
-If `main` has branch protection, the workflow's push of the run log needs to be allowed.
+The prompt is `prompts/headline-editor.md`. A Worker can't read files, so `src/editor-prompt.ts` holds a copy. After editing the Markdown, run `npm run prompt` to update the copy; a test fails until the two match.
 
 ### Running it by hand
 
+`POST /daily`, with the same bearer token as `/pull`, runs the day now. The body is optional JSON:
+
+- `dry_run: true` picks and writes the post and returns the email preview, without sending, storing or using up a story.
+- `date: "2026-11-18"` runs another day. The default is today in London.
+- `story: "<slug>"` runs that banked story instead of the pick. Add `text: "..."` to send a post written by a person instead of calling the editor (`text` only works with `story`), and `place: "..."` for the place line on the page.
+- `force: true` sends a date again.
+
+It answers `200` with the pick and its reason, the post, the link, the place, `xPost` and the send report (or the preview), and `422` with the reason when the run can't go ahead.
+
 ```bash
-python3 scripts/daily.py --dry-run --worker https://build40for40.com/feel-good
-python3 scripts/daily.py --worker https://build40for40.com/feel-good
+curl -X POST -H "Authorization: Bearer $PULL_TOKEN" https://build40for40.com/feel-good/daily -d '{"dry_run": true}'
 ```
 
-Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`, and `ANTHROPIC_API_KEY` if you have the key; otherwise sign in the `claude` command. Useful flags: `--story <slug>` to run a banked story chosen by a person (the pick is for today in London, so there is no `--date`), `--story <id> --text "..."` to use a post written by a person instead of calling the editor (`--text` only works with `--story`, so the post can't go out with the wrong story), `--place "..."` for the place line on the page, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. A real run writes `runs/`, so commit it.
+### Switching it on
 
-The daily run doesn't score new stories. Something still has to run `prompts/score-story.md` over the live pull, open the sources and write the score onto `candidates.score` (card 320). Until then no news story can reach 16, so every day runs from the evergreen bank.
+1. **Deploy:** merge to `main`. The deploy applies the migrations and the cron is already in `wrangler.jsonc`.
+2. **Give the Worker the key:** the deploy copies the organisation secret `ANTHROPIC_API_KEY` into the Worker's secrets, as long as that secret lists this repository under its repository access. Otherwise set it by hand: `npm run wrangler -- secret put ANTHROPIC_API_KEY`. Without it the 6am run fails with that reason in the logs, and nothing is sent.
+3. **Check it:** the `curl` above with `dry_run`. The cron then runs at the next 06:00 London.
 
 ### For the website
 
@@ -174,7 +173,13 @@ Body: `{ "date": "2026-11-18", "story": { "id", "headline", "text", "url", "stag
 
 ### Trying it locally
 
-With `.dev.vars` set up as in "Signups and email" and `npm run dev` running, sign up a made-up address and confirm it (read the token as shown there and `curl -X POST "localhost:8787/confirm?token=..."`), then `python3 scripts/daily.py --dry-run`. A real run against `POSTMARK_API_TEST` goes through Postmark's checks and delivers nothing, but it does use up that day's pick in your local database.
+With `.dev.vars` set up as in "Signups and email" and `npm run dev` running, sign up a made-up address and confirm it (read the token as shown there and `curl -X POST "localhost:8787/confirm?token=..."`). Then run a day by hand. Without `ANTHROPIC_API_KEY` in `.dev.vars`, send a post written by a person:
+
+```bash
+curl -X POST -H "Authorization: Bearer $PULL_TOKEN" localhost:8787/daily -d '{"story": "monsoon-forecasts-for-farmers", "text": "38 million farmers in India got AI monsoon forecasts by text.", "place": "India"}'
+```
+
+To fire the cron itself, use the `/cdn-cgi/local/scheduled` call in "The daily pull" with a `time` at 06:00 London. Postmark's `POSTMARK_API_TEST` token checks the email and delivers nothing. A real run uses up that day's pick in your local database only.
 
 ## Deploying it
 

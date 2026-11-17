@@ -1,9 +1,10 @@
 import { bankHealth, dailyPick, refillBank } from './bank'
+import { dailyRoute } from './daily'
 import { renderLanding, type LandingView } from './landing'
 import { findIssue, findLatestIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
-import { scheduledPull } from './schedule'
+import { scheduledDaily, scheduledPull } from './schedule'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -37,6 +38,12 @@ async function pick(request: Request, env: Env): Promise<Response> {
   const result = await dailyPick(env.DB, now, { dryRun, ...(story ? { story } : {}) })
   const refilled = dryRun ? 0 : await refillBank(env.DB, now)
   return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
+}
+
+// Runs the day's story by hand, or previews it. Same token as /pull.
+async function daily(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return dailyRoute(request, env)
 }
 
 async function bank(request: Request, env: Env): Promise<Response> {
@@ -87,6 +94,8 @@ export default {
         return issuesRoute(request, env)
       case 'GET /issues/latest':
         return latestIssueRoute(request, env)
+      case 'POST /daily':
+        return daily(request, env)
       case 'POST /pick':
         return pick(request, env)
       case 'GET /bank':
@@ -110,5 +119,6 @@ export default {
 
   async scheduled(controller, env, ctx) {
     ctx.waitUntil(scheduledPull(controller.scheduledTime, env))
+    ctx.waitUntil(scheduledDaily(controller.scheduledTime, env))
   },
 } satisfies ExportedHandler<Env>

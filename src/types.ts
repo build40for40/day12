@@ -15,6 +15,8 @@ export interface Env {
   ALLOWED_ORIGIN: string
   POSTMARK_TRANSACTIONAL_STREAM: string
   POSTMARK_BROADCAST_STREAM: string
+  // The company Anthropic key, for the headline editor. A Worker secret.
+  ANTHROPIC_API_KEY?: string
 }
 
 export interface Pick { day: string; storyKey: string; lane: 'news' | 'evergreen'; title: string; total: number; reason: string }
