@@ -1,3 +1,4 @@
+import { STAGE_LABELS, type Stage } from './templates'
 import type { BankHealth, Pick, PickResult, StoryRecord } from './types'
 
 // Rules from docs/scoring.md, "The daily pick".
@@ -251,4 +252,22 @@ export async function bankHealth(db: D1Database): Promise<BankHealth> {
   for (const r of rows.results) if (r.status === 'banked') topics[r.topic ?? 'untagged'] = (topics[r.topic ?? 'untagged'] ?? 0) + r.n
   const ready = count('banked')
   return { ready, review: count('review'), used: count('used'), low: ready < BANK_FLOOR, floor: BANK_FLOOR, topics }
+}
+
+export interface StandIn {
+  title: string
+  url: string | null
+  stage: Stage | null
+}
+
+/** The bank story that stands in for a day with no issue yet. It moves on one story a day. */
+export async function standInFor(db: D1Database, day: string): Promise<StandIn | null> {
+  const { results } = await db
+    .prepare("SELECT title, url, stage FROM evergreen WHERE status = 'banked' ORDER BY id ASC")
+    .all<{ title: string; url: string; stage: string | null }>()
+  if (results.length === 0) return null
+  const dayNumber = Math.round(Date.parse(`${day}T00:00:00Z`) / 86_400_000)
+  const row = results[dayNumber % results.length]!
+  const stage = Object.keys(STAGE_LABELS).find((known) => known === row.stage) as Stage | undefined
+  return { title: row.title, url: readerLink(row.url), stage: stage ?? null }
 }
