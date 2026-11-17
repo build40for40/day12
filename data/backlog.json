@@ -30,8 +30,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-11"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "ai-glasses-helped-a-blind-vietnam-veteran-find-h",
@@ -117,8 +117,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-14"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "mayo-clinic-ai-predicts-what-a-kidney-stone-is-m",
@@ -146,8 +146,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-12"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "an-ai-trained-on-photos-of-cats-dogs-and-cars-in",
@@ -342,8 +342,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-17"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "south-korea-bans-ai-glasses-from-its-university",
@@ -611,7 +611,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-17"
+      "published_on": "2026-11-11"
     },
     {
       "id": "casey-harrell-speaks-again",
@@ -759,7 +759,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-13"
+      "published_on": "2026-11-12"
     },
     {
       "id": "herculaneum-scroll-read",
@@ -783,7 +783,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-14"
+      "published_on": "2026-11-13"
     },
     {
       "id": "sepsis-early-warning-johns-hopkins",
@@ -808,7 +808,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-17"
+      "published_on": "2026-11-14"
     },
     {
       "id": "masai-breast-screening-sweden",
@@ -833,8 +833,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "in_bank",
-      "published_on": null
+      "status": "published",
+      "published_on": "2026-11-17"
     },
     {
       "id": "diabetic-eye-check-without-specialist",
@@ -859,8 +859,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "in_bank",
-      "published_on": null
+      "status": "published",
+      "published_on": "2026-11-17"
     },
     {
       "id": "elephants-name-each-other",
@@ -885,7 +885,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-15"
+      "published_on": "2026-11-14"
     },
     {
       "id": "ecmwf-ai-weather-forecast",
@@ -936,8 +936,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "in_bank",
-      "published_on": null
+      "status": "published",
+      "published_on": "2026-11-17"
     },
     {
       "id": "contrail-avoidance-flights",
@@ -1013,8 +1013,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "in_bank",
-      "published_on": null
+      "status": "published",
+      "published_on": "2026-11-17"
     },
     {
       "id": "alphafold-protein-shapes",
@@ -1040,7 +1040,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-16"
+      "published_on": "2026-11-15"
     },
     {
       "id": "mars-fresh-craters",
@@ -1114,7 +1114,7 @@
       "checked_by": "agent",
       "note": null,
       "status": "published",
-      "published_on": "2026-11-17"
+      "published_on": "2026-11-16"
     }
   ]
 }

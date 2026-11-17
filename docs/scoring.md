@@ -69,6 +69,7 @@ Pick from the ranked list, top down, skipping any story that would break a rule:
 - At least one story at the "helping people now" stage.
 - No more than two at the "in the lab" stage.
 - Nothing we've run in the last 30 days.
+- A new story needs a score of 12 or more to take a slot. Below that it waits, and a bank story takes the slot. It only runs if the bank has nothing left that fits.
 - If fewer than five pass, fill from the evergreen bank. Never lower a gate to fill a slot.
 
 ## What gets handed on
