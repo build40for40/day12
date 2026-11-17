@@ -56,7 +56,7 @@ The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC
 
 ## The evergreen bank and the daily pick
 
-The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 stories from `data/backlog.json`, and `0004` adds the pick. Statuses: `banked` (can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. Deploys apply the migrations to the remote database, so there is no separate seed step.
+The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 stories from `data/backlog.json`, and `0004` adds the pick and `0005` the issues. Statuses: `banked` (can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. Deploys apply the migrations to the remote database, so there is no separate seed step.
 
 - **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
 - **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.
@@ -120,8 +120,61 @@ To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fa
 
 The Worker serves its own sign-up page, "Feel good AI stories", at the base path: `build40for40.com/feel-good` in production and `localhost:8787/feel-good` locally.
 
-- **The page:** `src/landing.ts` renders it as one HTML string. The story it shows is a constant at the top of that file until the pipeline publishes one.
+- **The page:** `src/landing.ts` renders it as one HTML string. It shows the most recent issue in the `issues` table, which the daily run fills (see below): the post's text, its date in London and the place the editor named. Before the first issue goes out it shows a fallback story kept at the top of that file. Past days are at `/feel-good?date=2026-11-15`, and every page links to the issues either side ("Earlier" and "Later"). A date with no issue answers 404 with "No story went out on ...".
 - **Signing up:** a few lines of inline script post the email to `POST /signups`, described above, and swap the form for "Check your inbox" when it answers `ok`. An `invalid_email` answer shows a message under the field, and anything else asks the reader to try again.
+
+## The daily run
+
+One story a day goes out by email, is stored for the website, and is printed as a post for X. `scripts/daily.py` does it in four steps:
+
+1. **Pick:** `POST /pick` on the Worker, which keeps the evergreen bank and what has run in D1 (see "The evergreen bank and the daily pick"). The rules are `docs/scoring.md`, layer 3. A story with no link a reader can use (only EurekAlert, or only an API search) is skipped until it's re-sourced, and a Europe PMC search link becomes the paper's DOI link. The pick is saved when it's made, so running again the same day gets the same story.
+2. **Write:** `prompts/headline-editor.md`, sent to Claude Opus 5.5 with the company key in `ANTHROPIC_API_KEY`, through the `anthropic` Python package, with server-side fallbacks on so a decline is retried on another model. Without the key it falls back to the `claude` command line tool, signed in, for running on a laptop. The post is checked before it goes anywhere: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
+3. **Publish:** `POST /publish` on the Worker, with the same bearer token as `/pull`. It emails every confirmed subscriber and stores the issue in the `issues` table. The Worker refuses a second send for the same date, so a rerun can't email people twice.
+4. **Log:** writes `runs/<date>/daily.json`. The database already knows the story has run, so nothing else needs committing.
+
+The X post is printed, not posted: there's no X account or API key in the repo yet.
+
+### The 6am schedule
+
+`.github/workflows/daily.yml` runs it every morning at 06:00 London, using the organisation's `ANTHROPIC_API_KEY` secret, and commits the run log to `main`. It runs on two UTC crons and only goes ahead from 06:00 London, so it's right in summer and winter. Before it calls the model it checks `GET /issues/latest`: if today's issue already went out it stops.
+
+Switching it on is a one-time job for a human:
+
+1. **Give the repo the key:** the organisation secret `ANTHROPIC_API_KEY` has to list this repository under its repository access.
+2. **Add the publish token:** the Actions secret `PUBLISH_TOKEN`, with the same value as the Worker's `PULL_TOKEN`.
+3. **Point it at the Worker:** optional. The Actions variable `WORKER_URL` defaults to `https://build40for40.com/feel-good`.
+4. **Try it:** run "Daily story" by hand from the Actions tab. It defaults to a dry run, which shows the pick, the post and the email without sending.
+5. **Flip the switch:** add the Actions variable `DAILY_ENABLED` with the value `true`. Until then the schedule is skipped, and only manual runs work.
+
+If `main` has branch protection, the workflow's push of the run log needs to be allowed.
+
+### Running it by hand
+
+```bash
+python3 scripts/daily.py --dry-run --worker https://build40for40.com/feel-good
+python3 scripts/daily.py --worker https://build40for40.com/feel-good
+```
+
+Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`, and `ANTHROPIC_API_KEY` if you have the key; otherwise sign in the `claude` command. Useful flags: `--story <slug>` to run a banked story chosen by a person (the pick is for today in London, so there is no `--date`), `--story <id> --text "..."` to use a post written by a person instead of calling the editor (`--text` only works with `--story`, so the post can't go out with the wrong story), `--place "..."` for the place line on the page, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. A real run writes `runs/`, so commit it.
+
+The daily run doesn't score new stories. Something still has to run `prompts/score-story.md` over the live pull, open the sources and write the score onto `candidates.score` (card 320). Until then no news story can reach 16, so every day runs from the evergreen bank.
+
+### For the website
+
+The landing page at `/feel-good` already shows the latest issue. For anything else that wants it:
+
+- `GET /feel-good/issues/latest`: `{ "ok": true, "issue": { "date", "storyId", "headline", "text", "url", "stage", "place", "createdAt" } }`, or `404` with `{ "ok": false, "error": "no_issues" }` before the first send.
+- `GET /feel-good/issues`: `{ "ok": true, "issues": [...] }`, newest first, at most 30.
+
+Both are public, cached for five minutes, and send `Access-Control-Allow-Origin` to `ALLOWED_ORIGIN` only. `stage` is `in_the_lab`, `in_a_trial` or `helping_people_now`.
+
+### `POST /publish`
+
+Body: `{ "date": "2026-11-18", "story": { "id", "headline", "text", "url", "stage", "place" }, "dry_run": false, "force": false }`. `text` is at most 280 characters, `place` at most 80 and optional. Answers: `200` with `{ ok, issue, report: { sent, failed, suppressed } }`; with `dry_run`, `200` with `{ ok, preview: { subject, html, text } }` and nothing sent or stored; `409` `already_published` with the issue that went out; `400` for a bad body; `502` `send_failed` when nothing was delivered, and then the date is free to retry.
+
+### Trying it locally
+
+With `.dev.vars` set up as in "Signups and email" and `npm run dev` running, sign up a made-up address and confirm it (read the token as shown there and `curl -X POST "localhost:8787/confirm?token=..."`), then `python3 scripts/daily.py --dry-run`. A real run against `POSTMARK_API_TEST` goes through Postmark's checks and delivers nothing, but it does use up that day's pick in your local database.
 
 ## Deploying it
 

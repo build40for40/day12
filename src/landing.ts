@@ -1,7 +1,49 @@
-const story = {
+import type { Issue } from './publish'
+
+interface LandingStory {
+  date: string
+  line: string
+  place: string | null
+}
+
+// Shown only until the daily run publishes its first issue.
+const FALLBACK: LandingStory = {
   date: '17 November 2026',
   line: 'Dublin is piloting an AI flood warning that, in tests on past storms, flagged some floods 13 hours early.',
   place: 'Dublin, Ireland',
+}
+
+function escapeHtml(value: string): string {
+  return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
+}
+
+// "2026-11-18" becomes "18 November 2026". The issue date is already the London day.
+function longDate(isoDate: string): string {
+  return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${isoDate}T12:00:00Z`))
+}
+
+export interface LandingView {
+  // The issue to show. Without one, the page shows the fallback story.
+  issue?: Issue | null
+  // A date someone asked for that has no issue.
+  missingDate?: string
+  // Links to the issues either side, as dates, under the page's base path.
+  days?: { basePath: string; previous: string | null; next: string | null }
+}
+
+function storyFor(view: LandingView): LandingStory {
+  if (view.missingDate) return { date: longDate(view.missingDate), line: `No story went out on ${longDate(view.missingDate)}.`, place: null }
+  if (!view.issue) return FALLBACK
+  return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place }
+}
+
+function daysNav(days: LandingView['days']): string {
+  if (!days || (!days.previous && !days.next)) return ''
+  const link = (date: string, label: string, rel: string) =>
+    `<a href="${escapeHtml(`${days.basePath}?date=${date}`)}" rel="${rel}">${label}</a>`
+  const previous = days.previous ? link(days.previous, '&larr; Earlier', 'prev') : '<span></span>'
+  const next = days.next ? link(days.next, 'Later &rarr;', 'next') : '<span></span>'
+  return `\n    <nav class="days" aria-label="Other days">${previous}${next}</nav>`
 }
 
 const styles = `
@@ -41,6 +83,7 @@ a:hover { color: #55524B; }
 .story p { margin: 0; font-size: clamp(31px, 8.6vw, 40px); line-height: 1.2; letter-spacing: -0.005em; }
 .story hr { width: 40px; margin: 26px 0; border: 0; border-top: 1px solid #1C1B19; }
 .story .place { font-size: 17px; font-style: italic; }
+.days { margin-top: 40px; display: flex; justify-content: space-between; gap: 16px; font-size: 16px; font-style: italic; }
 .join { margin-top: clamp(64px, 14vh, 130px); display: flex; flex-direction: column; gap: 28px; }
 .join .pitch { margin: 0; font-size: 22px; line-height: 1.35; }
 .join form { display: flex; flex-direction: column; gap: 18px; }
@@ -111,7 +154,9 @@ form.addEventListener('submit', async (event) => {
 })
 `
 
-export function renderLanding(signupsPath: string): string {
+export function renderLanding(signupsPath: string, view: LandingView = {}): string {
+  const story = storyFor(view)
+  const place = story.place ? `\n      <hr>\n      <div class="place">${escapeHtml(story.place)}</div>` : ''
   return `<!doctype html>
 <html lang="en-GB">
 <head>
@@ -130,13 +175,11 @@ export function renderLanding(signupsPath: string): string {
   <main class="sheet">
     <header class="masthead">
       <h1>Feel good AI stories</h1>
-      <div>${story.date}</div>
+      <div>${escapeHtml(story.date)}</div>
     </header>
     <article class="story">
-      <p>${story.line}</p>
-      <hr>
-      <div class="place">${story.place}</div>
-    </article>
+      <p>${escapeHtml(story.line)}</p>${place}
+    </article>${daysNav(view.days)}
     <section class="join">
       <p class="pitch">Daily positive AI news you can read in 10 seconds</p>
       <form method="post" action="${signupsPath}">
