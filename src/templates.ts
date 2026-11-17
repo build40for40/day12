@@ -18,7 +18,7 @@ export interface RenderedEmail {
   text: string
 }
 
-const STAGE_LABELS: Record<Stage, string> = {
+export const STAGE_LABELS: Record<Stage, string> = {
   in_the_lab: 'In the lab',
   in_a_trial: 'In a trial',
   helping_people_now: 'Helping people now',
@@ -49,7 +49,7 @@ function longDate(date: Date): string {
   return `${part(date, { weekday: 'long' }, 'weekday')} ${part(date, { day: 'numeric' }, 'day')} ${part(date, { month: 'long' }, 'month')}`
 }
 
-function sourceName(url: string): string {
+export function sourceName(url: string): string {
   return new URL(url).hostname.replace(/^www\./, '')
 }
 
