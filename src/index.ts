@@ -1,3 +1,4 @@
+import { bankHealth, dailyPick, refillBank } from './bank'
 import { renderLanding, type LandingView } from './landing'
 import { findIssue, findLatestIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
@@ -26,6 +27,21 @@ async function authorised(request: Request, env: Env): Promise<boolean> {
 async function pull(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   return Response.json(await runPull(env, new Date()))
+}
+
+async function pick(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  const dryRun = new URL(request.url).searchParams.get('dry') === '1'
+  const now = new Date()
+  const story = new URL(request.url).searchParams.get('story') ?? undefined
+  const result = await dailyPick(env.DB, now, { dryRun, ...(story ? { story } : {}) })
+  const refilled = dryRun ? 0 : await refillBank(env.DB, now)
+  return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
+}
+
+async function bank(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return Response.json(await bankHealth(env.DB))
 }
 
 // The daily run posts the day's story here. It uses the same token as /pull.
@@ -71,6 +87,10 @@ export default {
         return issuesRoute(request, env)
       case 'GET /issues/latest':
         return latestIssueRoute(request, env)
+      case 'POST /pick':
+        return pick(request, env)
+      case 'GET /bank':
+        return bank(request, env)
       case 'OPTIONS /signups':
         return signupPreflight(request, env)
       case 'POST /signups':

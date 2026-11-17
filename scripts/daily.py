@@ -2,86 +2,65 @@
 
 Usage:
   python3 scripts/daily.py --dry-run                 pick and write, preview the email, change nothing
-  python3 scripts/daily.py                           pick, write, send the email, update data/backlog.json
-  python3 scripts/daily.py --date 2026-11-18 --story japan-ai-lost-property-keio --worker https://build40for40.com/feel-good
+  python3 scripts/daily.py                           pick, write, send the email
+  python3 scripts/daily.py --story japan-ai-lost-property-keio --worker https://build40for40.com/feel-good
 
 Steps:
-  1. Pick: the rules in docs/scoring.md, layer 3. A news story from the last 14 days scoring 16 or more runs ahead of
-     the evergreen bank, otherwise the best bank story. Never a story that has run, one flip a week at most, and never
-     a story whose only sources are EurekAlert (they need re-sourcing first).
+  1. Pick: POST /pick on the Worker, which owns the evergreen bank and the record of what has run (the D1 database).
+     A news story from the last 14 days scoring 16 or more runs ahead of the bank, otherwise the best bank story.
+     Never a story that has run, and never one with no link a reader can use. The pick is saved when it is made, so
+     running this again the same day gets the same story back.
   2. Write: prompts/headline-editor.md. With ANTHROPIC_API_KEY set (the company key, as in GitHub Actions) it calls the
      Claude API through the anthropic package. Without it, it falls back to the `claude` command line tool, signed in.
   3. Publish: POST /publish on the Worker, which emails every confirmed subscriber and stores the issue for the website.
      The Worker refuses a second send for the same date.
-  4. Mark: sets status and published_on in data/backlog.json and writes runs/<date>/daily.json. Commit both.
+  4. Log: writes runs/<date>/daily.json. The Worker's database already knows the story has run.
 
 The token is PUBLISH_TOKEN, or PULL_TOKEN, from the environment or from .dev.vars. Standard library only, plus the
 anthropic package when the API key is used.
 """
 import argparse, json, os, re, subprocess, sys, tempfile, urllib.error, urllib.request
-from datetime import date, datetime
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BACKLOG = os.path.join(REPO, 'data', 'backlog.json')
 EVERGREEN = os.path.join(REPO, 'data', 'evergreen.json')
 PROMPT = os.path.join(REPO, 'prompts', 'headline-editor.md')
 MAX_TEXT = 255  # X counts the link as 23, so 255 + space + link fits in 280
-NEWS_DAYS, NEWS_FLOOR, FLIP_DAYS = 14, 16, 7
 
 
 class Stop(Exception):
     pass
 
 
-def days_between(earlier, later):
-    return (date.fromisoformat(later) - date.fromisoformat(earlier)).days
-
-
-def reader_link(url):
-    """The link a reader should get for one source, or None. Europe PMC API searches become the paper's DOI link."""
-    from urllib.parse import parse_qs, urlparse
-    if 'eurekalert.org' in url:
-        return None  # its terms restrict reuse, and these need re-sourcing to the institution's own page
-    if 'europepmc/webservices' in url:
-        query = parse_qs(urlparse(url).query).get('query', [''])[0]
-        return f"https://doi.org/{query[4:]}" if query.upper().startswith('DOI:') else None
-    if 'format=json' in url or '/api/' in url:
-        return None
-    return url
-
-
-def source_url(story):
-    return next((link for link in map(reader_link, story.get('sources') or []) if link), None)
-
-
-def needs_resourcing(story):
-    return source_url(story) is None
-
-
-def pick(stories, day):
-    """Return (story, reason) for the day, following docs/scoring.md layer 3."""
-    flip_ran = [s for s in stories if s['lane'] == 'flip' and s.get('published_on') and 0 <= days_between(s['published_on'], day) < FLIP_DAYS]
-    usable = [s for s in stories if s['status'] in ('waiting', 'in_bank') and not needs_resourcing(s) and not (s['lane'] == 'flip' and flip_ran)]
-
-    news = [s for s in usable if s['from'] == 'new' and s.get('added') and 0 <= days_between(s['added'], day) < NEWS_DAYS and s['total'] >= NEWS_FLOOR]
-    if news:
-        best = max(news, key=lambda s: (s['total'], s['added']))
-        return best, f"News story from {best['added']} scoring {best['total']} of 24, so it runs ahead of the bank."
-
-    bank = [s for s in usable if s['from'] == 'evergreen' and s['status'] == 'in_bank']
-    if not bank:
+def pick_story(worker, day, dry_run, story_id):
+    """Ask the Worker for the day's story. Returns (record, reason)."""
+    if day != datetime.now(ZoneInfo('Europe/London')).date().isoformat():
+        raise Stop('The Worker picks for today in London, so --date can only be today.')
+    query = ('dry=1' if dry_run else '') + (('&' if dry_run else '') + 'story=' + story_id if story_id else '')
+    request = urllib.request.Request(worker.rstrip('/') + '/pick' + ('?' + query if query else ''), data=b'', method='POST',
+                                     headers={'Authorization': f'Bearer {token()}'})
+    try:
+        with urllib.request.urlopen(request, timeout=60) as response:
+            answer = json.loads(response.read())
+    except urllib.error.HTTPError as error:
+        raise Stop(f'The Worker refused the pick ({error.code}).')
+    except urllib.error.URLError as error:
+        raise Stop(f'Could not reach the Worker at {worker}: {error.reason}')
+    if not answer.get('record'):
         raise Stop('Nothing left to run: no news story scores 16 or more and the evergreen bank is empty.')
-    top = max(s['total'] for s in bank)
-    best = next(s for s in bank if s['total'] == top)  # ties go to the earlier story in the file
-    return best, f"No news story from the last {NEWS_DAYS} days scored {NEWS_FLOOR} or more, so the best bank story runs: {best['total']} of 24."
+    if not answer['record'].get('sourceUrl'):
+        raise Stop(f"{answer['record']['id']} has no link a reader can use.")
+    bank = answer.get('bank') or {}
+    if bank.get('low'):
+        print(f"Warning: only {bank['ready']} ready stories left in the evergreen bank, the floor is {bank['floor']}.", file=sys.stderr)
+    return answer['record'], answer['pick']['reason']
 
 
 def editor_input(story, draft_lines):
-    record = {k: story.get(k) for k in ('headline', 'what_happened', 'why_its_good', 'careful', 'stage', 'topic', 'lane')}
-    if story['lane'] == 'flip':
-        record.update(bad_news=story.get('bad_news'), flip_kind=story.get('flip_kind'))
-    record['source_url'] = source_url(story)
+    record = {'headline': story['headline'], 'what_happened': story['whatHappened'], 'why_its_good': story['whyItsGood'],
+              'careful': story['careful'], 'stage': story['stage'], 'topic': story['topic'], 'lane': story['lane'],
+              'source_url': story['sourceUrl']}
     if story['id'] in draft_lines:
         record['draft_line'] = draft_lines[story['id']]
     return record
@@ -223,16 +202,6 @@ def issue_on(worker, day):
     return issue if issue.get('date') == day else None
 
 
-def mark(backlog, story_id, day):
-    for story in backlog['stories']:
-        if story['id'] == story_id:
-            story['status'], story['published_on'] = 'published', day
-    backlog['updated'] = day
-    with open(BACKLOG, 'w', encoding='utf-8') as f:
-        json.dump(backlog, f, indent=2, ensure_ascii=False)
-        f.write('\n')
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/London')).date().isoformat(), help='the issue date, default today in London')
@@ -248,27 +217,12 @@ def main():
     if args.text and not args.story:
         raise Stop('--text needs --story too, so a hand-written post can only go out with the story it was written for.')
 
-    backlog = json.load(open(BACKLOG, encoding='utf-8'))
-    stories = backlog['stories']
     if not args.dry_run and not args.force:
         sent = issue_on(args.worker, args.date)
         if sent:
-            story = next((s for s in stories if s['id'] == sent['storyId']), None)
-            if story and story['status'] != 'published':
-                mark(backlog, story['id'], args.date)  # the email went out but the last run died before marking it
-                print(f"{args.date} already went out with {sent['storyId']}. Marked it as published, nothing sent.")
-            else:
-                print(f"{args.date} already went out with {sent['storyId']}. Nothing to do.")
+            print(f"{args.date} already went out with {sent['storyId']}. Nothing to do.")
             return
-    if args.story:
-        story = next((s for s in stories if s['id'] == args.story), None)
-        if not story:
-            raise Stop(f'No story with id {args.story} in data/backlog.json.')
-        if story['status'] not in ('waiting', 'in_bank') and not args.force:
-            raise Stop(f"{args.story} is {story['status']}, so it can't run again without --force.")
-        reason = 'Chosen by hand with --story.'
-    else:
-        story, reason = pick(stories, args.date)
+    story, reason = pick_story(args.worker, args.date, args.dry_run, args.story)
     print(f"1. Pick ({args.date}): {story['id']}\n   {story['headline']}\n   {reason}")
 
     draft_lines = {s['id']: s['line'] for s in json.load(open(EVERGREEN, encoding='utf-8'))['stories'] if s.get('line')}
@@ -289,7 +243,8 @@ def main():
     print(f"   Place: {place or '(none)'}")
     payload = {
         'date': args.date,
-        'story': {'id': story['id'], 'headline': story['headline'], 'text': text, 'url': record['source_url'], 'stage': story['stage'], 'place': place},
+        'story': {'id': story['id'], 'headline': story['headline'], 'text': text, 'url': record['source_url'], 'place': place,
+                  **({'stage': story['stage']} if story['stage'] else {})},
         'dry_run': args.dry_run,
         'force': args.force,
     }
@@ -309,14 +264,13 @@ def main():
     report = answer.get('report')
     print(f"3. Publish: {'sent ' + str(report['sent']) + ', failed ' + str(report['failed']) + ', suppressed ' + str(report['suppressed']) if report else 'already sent earlier today'}")
 
-    mark(backlog, story['id'], args.date)
     log_dir = os.path.join(REPO, 'runs', args.date)
     os.makedirs(log_dir, exist_ok=True)
     with open(os.path.join(log_dir, 'daily.json'), 'w', encoding='utf-8') as f:
         json.dump({'date': args.date, 'story_id': story['id'], 'pick_reason': reason, 'editor_input': record, 'editor_output': editor,
                    'text': text, 'x_post': f"{text} {record['source_url']}", 'email_report': report}, f, indent=2, ensure_ascii=False)
         f.write('\n')
-    print(f"4. Marked {story['id']} as published on {args.date}. Commit data/backlog.json and runs/{args.date}/daily.json.")
+    print(f"4. Logged to runs/{args.date}/daily.json.")
     print(f"\nX post, ready to paste:\n{text} {record['source_url']}")
 
 

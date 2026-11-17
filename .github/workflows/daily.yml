@@ -1,7 +1,7 @@
 name: Daily story
 
 # Picks the day's story, has the headline editor write it with the company Anthropic key, emails it through the
-# Worker and commits the updated backlog. See "The daily run" in AGENTS.md.
+# Worker and commits the run log. See "The daily run" in AGENTS.md.
 #
 # GitHub crons run in UTC and can start late, so there are two, and the run only goes ahead from 06:00 London.
 # In winter the 05:00 UTC run is 05:00 London and stops; in summer the 06:00 UTC run is 07:00 London and finds
@@ -21,7 +21,7 @@ on:
         description: Issue date (YYYY-MM-DD), default today in London
         required: false
       story:
-        description: Run this story id instead of the pick
+        description: Run this banked story (its slug) instead of the pick
         required: false
 
 permissions:
@@ -76,10 +76,10 @@ jobs:
           [ -n "$STORY_ID" ] && args+=(--story "$STORY_ID")
           "$RUNNER_TEMP/venv/bin/python" scripts/daily.py "${args[@]}"
 
-      - name: Commit the updated backlog
+      - name: Commit the run log
         if: steps.clock.outputs.go == 'true' && inputs.dry_run != true
         run: |
-          git add data/backlog.json runs/
+          git add runs/
           if git diff --cached --quiet; then echo "Nothing to commit."; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
