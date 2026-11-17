@@ -52,9 +52,18 @@ Cloudflare crons run in UTC, so a single cron is 06:00 London only in winter. Fo
 
 ## Deploying it
 
-`wrangler.jsonc` holds a placeholder `database_id`, so the first deploy needs the remote database created first:
+GitHub Actions does the checking and the deploying. `.github/workflows/ci.yml` runs `npm ci`, `npm run typecheck` and `npm test` on every pull request, on the Node version in `.node-version`. `.github/workflows/deploy.yml` runs the same checks on every push to `main`, then applies the D1 migrations to the remote database and deploys the Worker. Deploys queue up one at a time and never overlap.
 
-1. **Create the database:** `npm run wrangler -- d1 create day12`, then put the id it prints into `wrangler.jsonc`.
-2. **Migrate:** `npm run wrangler -- d1 migrations apply day12 --remote`
-3. **Set the token:** `npm run wrangler -- secret put PULL_TOKEN`
-4. **Deploy:** `npm run wrangler -- deploy`
+The deploy job is switched off until the repository variable `DEPLOY_ENABLED` is `true`, so it shows as skipped rather than failed. CI calls `npx wrangler` directly with `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` from the environment, because the `wrangler` npm script needs the `40for40` profile that only exists on the team's machines.
+
+Switching it on is a one-time job for a human, in this order:
+
+1. **Create the database:** `npm run wrangler -- d1 create day12`
+2. **Paste its id:** replace the all-zero `database_id` in `wrangler.jsonc` with the id that command prints, and merge that change to `main`. The checks run and the deploy is still skipped.
+3. **Set the token:** `npm run wrangler -- secret put PULL_TOKEN`, with a long random string. If wrangler says the Worker doesn't exist yet, let it create the Worker when it offers.
+4. **Add the GitHub secrets:** in the repo's Actions secrets, add `CLOUDFLARE_API_TOKEN` (a Cloudflare API token that can edit Workers Scripts and D1 on the account) and `CLOUDFLARE_ACCOUNT_ID` (the `account_id` in `wrangler.jsonc`).
+5. **Flip the switch:** add the Actions repository variable `DEPLOY_ENABLED` with the value `true`.
+
+After that every merge to `main` deploys. To deploy without a new commit, rerun the latest Deploy workflow on `main`. To stop deploys, set `DEPLOY_ENABLED` to anything else.
+
+Migrations run before the deploy, so a migration has to work with the Worker version that's already live.
