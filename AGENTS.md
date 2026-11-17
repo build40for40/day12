@@ -54,6 +54,15 @@ The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC
 
 `npm run dev` never fires crons by itself. To run the handler by hand, call `curl "localhost:8787/cdn-cgi/local/scheduled?cron=0+6+*+*+*&time=1794895200000&format=json"`. `time` is the scheduled time in epoch milliseconds (that one is 06:00 London on 17 November 2026). Leave it out to use the current time, which will usually skip. The pull's logs show in the dev server's output, and the response's `outcome` is `exception` if it failed.
 
+## The evergreen bank and the daily pick
+
+The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 stories from `data/backlog.json`, and `0004` adds the pick. Statuses: `banked` (can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. Deploys apply the migrations to the remote database, so there is no separate seed step.
+
+- **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
+- **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.
+- **Health:** `GET /bank` (same token) reports ready, review and used counts, topic spread and `low: true` under 20 ready stories.
+- **Scoring:** candidates are scored outside the Worker, which only reads `candidates.score` (out of 24).
+
 ## Signups and email
 
 The MVP is an email newsletter called Feel good AI, so the Worker also keeps the list of subscribers and sends mail through [Postmark](https://postmarkapp.com), called over its HTTP API. The Worker's own landing page posts to it, and so can a form on the main website.
