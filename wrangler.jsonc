@@ -12,6 +12,10 @@
       "migrations_dir": "migrations"
     }
   ],
+  "routes": [
+    { "pattern": "build40for40.com/feel-good", "zone_name": "build40for40.com" },
+    { "pattern": "build40for40.com/feel-good/*", "zone_name": "build40for40.com" }
+  ],
   "workers_dev": true,
   "observability": { "enabled": true }
 }

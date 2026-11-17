@@ -50,6 +50,16 @@ The source pull is a Cloudflare Worker (`src/index.ts`) with its own local D1 da
 
 Cloudflare crons run in UTC, so a single cron is 06:00 London only in winter. For 06:00 London all year, add two crons to `wrangler.jsonc` under `triggers.crons` (`0 5 * * *` and `0 6 * * *`) and a `scheduled` handler in `src/index.ts` that calls `runPull` only when the hour in Europe/London is 6.
 
+## The landing page
+
+The Worker also serves the signup page, "Feel good AI stories", at `/feel-good`. Locally that's `localhost:8787/feel-good`, and `wrangler.jsonc` routes `build40for40.com/feel-good` to it once deployed.
+
+- **The page:** `src/landing.ts` renders it as one HTML string with no client-side JavaScript. The story it shows is a constant at the top of that file until the pipeline publishes one.
+- **Signing up:** the form posts to `/feel-good/subscribe`, which saves the email to the `subscribers` table and redirects back with `?joined=1`, or `?error=email` if the address is no good. A hidden `website` field catches bots: anything that fills it in is told it worked and nothing is stored.
+- **Not built yet:** nothing sends the email. Signups only collect in D1.
+
+Emails are personal data, so they stay in D1 and never go into the repo, logs or fixtures.
+
 ## Deploying it
 
 GitHub Actions does the checking and the deploying. `.github/workflows/ci.yml` runs `npm ci`, `npm run typecheck` and `npm test` on every pull request, on the Node version in `.node-version`. `.github/workflows/deploy.yml` runs the same checks on every push to `main`, then applies the D1 migrations to the remote database and deploys the Worker. Deploys queue up one at a time and never overlap.
@@ -61,7 +71,7 @@ Switching it on is a one-time job for a human, in this order:
 1. **Create the database:** `npm run wrangler -- d1 create day12`
 2. **Paste its id:** replace the all-zero `database_id` in `wrangler.jsonc` with the id that command prints, and merge that change to `main`. The checks run and the deploy is still skipped.
 3. **Set the token:** `npm run wrangler -- secret put PULL_TOKEN`, with a long random string. If wrangler says the Worker doesn't exist yet, let it create the Worker when it offers.
-4. **Add the GitHub secrets:** in the repo's Actions secrets, add `CLOUDFLARE_API_TOKEN` (a Cloudflare API token that can edit Workers Scripts and D1 on the account) and `CLOUDFLARE_ACCOUNT_ID` (the `account_id` in `wrangler.jsonc`).
+4. **Add the GitHub secrets:** in the repo's Actions secrets, add `CLOUDFLARE_API_TOKEN` (a Cloudflare API token that can edit Workers Scripts and D1 on the account, and Workers Routes on the `build40for40.com` zone) and `CLOUDFLARE_ACCOUNT_ID` (the `account_id` in `wrangler.jsonc`).
 5. **Flip the switch:** add the Actions repository variable `DEPLOY_ENABLED` with the value `true`.
 
 After that every merge to `main` deploys. To deploy without a new commit, rerun the latest Deploy workflow on `main`. To stop deploys, set `DEPLOY_ENABLED` to anything else.
