@@ -39,9 +39,12 @@ const fakeFetch: FetchLike = async (url) => {
   return new Response(feed(''))
 }
 
+const noWait = async () => {}
+const isGnews = (url: string) => url.startsWith('https://news.google.com/')
+
 describe('runPull', () => {
   it('records a failing source in the report and still stores the rest', async () => {
-    const report = await runPull({ DB: fakeD1(), PULL_TOKEN: 'x' } as Env, now, fakeFetch)
+    const report = await runPull({ DB: fakeD1(), PULL_TOKEN: 'x' } as Env, now, fakeFetch, noWait)
 
     expect(report.sources.find((s) => s.sourceId === 'physorg-ml-ai')).toMatchObject({ fetched: 0, error: expect.stringContaining('connection reset') })
     expect(report.sources.find((s) => s.sourceId === 'sciencedaily-ai')).toEqual({ sourceId: 'sciencedaily-ai', fetched: 2, kept: 2, stored: 2 })
@@ -50,10 +53,45 @@ describe('runPull', () => {
 
   it('stores nothing when the same items come back on a second run', async () => {
     const env = { DB: fakeD1(), PULL_TOKEN: 'x' } as Env
-    await runPull(env, now, fakeFetch)
-    const second = await runPull(env, new Date(now.getTime() + 3_600_000), fakeFetch)
+    await runPull(env, now, fakeFetch, noWait)
+    const second = await runPull(env, new Date(now.getTime() + 3_600_000), fakeFetch, noWait)
 
     expect(second.stored).toBe(0)
     expect(second.sources.find((s) => s.sourceId === 'sciencedaily-ai')).toMatchObject({ fetched: 2, kept: 2, stored: 0 })
+  })
+
+  it('sends the Google News searches one at a time, with a pause between them', async () => {
+    let inFlight = 0
+    let mostAtOnce = 0
+    const waits: number[] = []
+    const fetchImpl: FetchLike = async (url) => {
+      if (!isGnews(url)) return new Response(feed(''))
+      mostAtOnce = Math.max(mostAtOnce, ++inFlight)
+      await Promise.resolve()
+      inFlight--
+      return new Response(feed(''))
+    }
+
+    const report = await runPull({ DB: fakeD1(), PULL_TOKEN: 'x' } as Env, now, fetchImpl, async (ms) => void waits.push(ms))
+
+    const searches = report.sources.filter((s) => s.sourceId.startsWith('gnews-')).length
+    expect(mostAtOnce).toBe(1)
+    expect(waits).toEqual(Array(searches - 1).fill(2_000))
+  })
+
+  it('tries a Google News search again after a 429 instead of reporting it failed', async () => {
+    const refused = new Set<string>()
+    const fetchImpl: FetchLike = async (url) => {
+      if (isGnews(url) && !refused.has(url)) {
+        refused.add(url)
+        return new Response('slow down', { status: 429 })
+      }
+      return new Response(feed(''))
+    }
+
+    const report = await runPull({ DB: fakeD1(), PULL_TOKEN: 'x' } as Env, now, fetchImpl, noWait)
+
+    expect(refused.size).toBeGreaterThan(0)
+    expect(report.sources.filter((s) => s.error)).toEqual([])
   })
 })
