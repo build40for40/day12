@@ -67,11 +67,9 @@ One story a day. This changed on 17 November: the brief was five stories a day, 
 - Nothing we've already run. `data/backlog.json` records what has been published.
 - Never lower a gate to have something to run. The evergreen bank is there for days with no strong news.
 
-Proposed, to confirm:
-
-- **News before bank:** a story from the last 14 days scoring 16 or more runs ahead of the bank. Below that, the best bank story runs. At five a day the floor was 12, but with one slot a higher bar keeps the day's story strong. In the week of 11 to 17 November, 9 news stories scored 16 or more, which is about one a day.
-- **Variety:** not the same topic two days running.
-- **Flips:** one a week at most, and a person signs off each one.
+- **News before bank:** a story from the last 14 days scoring 16 or more runs ahead of the bank. Below that, the best bank story runs. In the week of 11 to 17 November, 9 news stories scored 16 or more, which is about one a day.
+- **Flips:** one a week at most. A flip does not need a person's sign-off, so the flip gates are the only check.
+- The same topic can run two days in a row.
 
 ## What gets handed on
 
@@ -117,11 +115,12 @@ Stage tags:
 - An organisation's own figures are allowed, as long as the text says they are theirs.
 - The date the story first appeared is what counts for freshness.
 - A pilot that has started counts as something that happened.
+- One story a day. A news story scoring 16 or more runs ahead of the bank.
+- The same topic can run two days in a row.
+- A flip does not need a person's sign-off.
 
 ## Still open
 
-- Whether a person signs off every flip before it runs, and whether two flips on the same underlying story can run in one week. Until decided, treat every flip as needing a person's sign-off.
-
 - The Day 12 "Define the 5 W's" card is empty. Mass appeal is written for people worn down by AI doom who don't work in tech. If the audience is different, that score changes first.
-- Who does the fact-check: the agent, a person, or the agent with a person signing off flips.
+- Who does the fact-check before a story runs: the agent or a person.
 - Whether job-loss stories count as "somebody was hurt". The test set treats them as flippable only when the good side is documented and doesn't play down the losses.
