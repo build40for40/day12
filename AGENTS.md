@@ -68,7 +68,7 @@ The Worker is served at `build40for40.com/feel-good`, so every route below lives
 
 1. **Sign up:** `POST /signups` trims and lower-cases the address, stores a `pending` row in `signups` and sends a confirmation email on the transactional stream. The same address gets at most one confirmation email every 24 hours.
 2. **Confirm:** the email links to `GET /confirm?token=...`, which shows a page with a button, so mail scanners that open links don't confirm anyone. The button does `POST /confirm?token=...`, which marks the row `confirmed`. Only confirmed rows are ever sent the newsletter.
-3. **Send:** the publish stage builds the issue with `renderNewsletter(stories, date, signupUrl)` from `src/templates.ts` and passes the result to `sendNewsletter(env, { subject, html, text })` from `src/emails.ts`. It sends to every confirmed subscriber on the broadcast stream, 500 per Postmark batch call, and returns `{ sent, failed, suppressed }`. Put `{{unsubscribe_url}}` in the html and text where the unsubscribe link should go, or leave it out and a plain link is added at the end. Every message also carries `List-Unsubscribe` and `List-Unsubscribe-Post` headers for one-click unsubscribe. There's no HTTP route that triggers a send.
+3. **Send:** the publish stage builds the issue with `renderNewsletter(stories, date, signupUrl)` from `src/templates.ts` and passes the result to `sendNewsletter(env, { subject, html, text })` from `src/emails.ts`. It sends to every confirmed subscriber on the broadcast stream, 500 per Postmark batch call, and returns `{ sent, failed, suppressed }`. The body carries no unsubscribe link of ours: Postmark adds its own to every message on the broadcast stream. Every message still carries our `List-Unsubscribe` and `List-Unsubscribe-Post` headers, which only take effect if the stream is ever switched to managing unsubscribes ourselves. There's no HTTP route that triggers a send.
 4. **Unsubscribe:** `GET /unsubscribe?token=...` shows a page with a button, so mail scanners that open links don't unsubscribe anyone. The button and the one-click header both `POST /unsubscribe?token=...`, which marks the row `unsubscribed`. Signing up again after that goes back through a fresh confirmation.
 
 Our `signups` table is the source of truth for who gets mail. Postmark keeps its own suppression list per stream for hard bounces, spam complaints and its own unsubscribes, and refuses those recipients with error code 406. When a send gets a 406 the row's `suppressed_at` is set and we stop sending to it, so the two lists converge without a webhook.
@@ -81,7 +81,7 @@ Email addresses are personal data: never log them, and only use made-up `example
 
 - **The issue:** `renderNewsletter` takes a list of stories, each with `text` (280 characters at most), a source `url` and an optional `stage`. It throws on a story that is too long or has no usable link. The subject is the London date then the name, like `Nov 17th - Feel good AI`.
 - **The confirmation:** `renderConfirmation` takes the confirm link.
-- **The footer:** links "Day 12 Build" to the sign-up page and names build40for40.com. The issue adds the unsubscribe link.
+- **The footer:** the issue asks "Was this forwarded to you?" with a subscribe link to the sign-up page, then links build40for40.com. The confirmation only links build40for40.com. Neither has an unsubscribe link, since Postmark adds one.
 
 ### Config
 

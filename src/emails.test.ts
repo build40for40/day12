@@ -36,7 +36,7 @@ describe('sendConfirmation', () => {
 })
 
 describe('sendNewsletter', () => {
-  it('sends each confirmed subscriber their own unsubscribe link and one-click headers on the broadcast stream', async () => {
+  it('sends each confirmed subscriber the issue with their own one-click unsubscribe headers on the broadcast stream', async () => {
     const env = fakeEnv()
     await subscribe(env, 'fake.one@example.com')
     await subscribe(env, 'fake.two@example.com')
@@ -48,7 +48,7 @@ describe('sendNewsletter', () => {
       return Response.json(batch.map(() => ({ ErrorCode: 0 })))
     }
 
-    const report = await sendNewsletter(env, { subject: 'Fake brief', html: '<p>News</p><a href="{{unsubscribe_url}}">Leave</a>', text: 'News' }, fetchImpl, now)
+    const report = await sendNewsletter(env, { subject: 'Fake brief', html: '<p>News</p>', text: 'News' }, fetchImpl, now)
 
     expect(report).toEqual({ sent: 2, failed: 0, suppressed: 0 })
     expect(sent.map((message) => message.To)).toEqual(['fake.one@example.com', 'fake.two@example.com'])
@@ -56,8 +56,8 @@ describe('sendNewsletter', () => {
     sent.forEach((message, index) => {
       const url = `https://brief.example.com/unsubscribe?token=${subscribers[index]!.unsubscribeToken}`
       expect(message.MessageStream).toBe('broadcast')
-      expect(message.HtmlBody).toBe(`<p>News</p><a href="${url}">Leave</a>`)
-      expect(message.TextBody).toBe(`News\n\nUnsubscribe: ${url}\n`)
+      expect(message.HtmlBody).toBe('<p>News</p>')
+      expect(message.TextBody).toBe('News')
       expect(message.Headers).toEqual([
         { Name: 'List-Unsubscribe', Value: `<${url}>` },
         { Name: 'List-Unsubscribe-Post', Value: 'List-Unsubscribe=One-Click' },

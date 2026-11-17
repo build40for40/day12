@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { issueSubject, renderConfirmation, renderNewsletter, UNSUBSCRIBE_PLACEHOLDER, type NewsletterStory } from './templates'
+import { issueSubject, renderConfirmation, renderNewsletter, type NewsletterStory } from './templates'
 
 const date = new Date('2026-11-17T06:00:00Z')
 const SIGNUP = 'https://site.example.com/feel-good'
@@ -29,13 +29,14 @@ describe('renderNewsletter', () => {
     expect(email.text).toContain('1. A made-up robot <helped> a fake farmer & friends.\n   In a trial. Source: https://www.example.com/story?a=1&b=2')
   })
 
-  it('ends with the Day 12 Build link, the home link and the unsubscribe placeholder', () => {
+  it('ends with a subscribe link for forwarded copies and the home link, leaving unsubscribe to Postmark', () => {
     const email = renderNewsletter([story], date, SIGNUP)
 
-    expect(email.html).toContain(`<a href="${SIGNUP}">Day 12 Build</a>`)
+    expect(email.html).toContain(`Was this forwarded to you? <a href="${SIGNUP}">Subscribe here</a>.`)
     expect(email.html).toContain('<a href="https://build40for40.com">build40for40.com</a>')
-    expect(email.html).toContain(`<a href="${UNSUBSCRIBE_PLACEHOLDER}">Unsubscribe</a>`)
-    expect(email.text).toContain(`Unsubscribe: ${UNSUBSCRIBE_PLACEHOLDER}`)
+    expect(email.text).toContain(`Was this forwarded to you? Subscribe here: ${SIGNUP}\nhttps://build40for40.com`)
+    expect(email.html.toLowerCase()).not.toContain('unsubscribe')
+    expect(email.text.toLowerCase()).not.toContain('unsubscribe')
   })
 
   it('refuses a story over 280 characters, a missing link and an empty issue', () => {
@@ -47,13 +48,13 @@ describe('renderNewsletter', () => {
 })
 
 describe('renderConfirmation', () => {
-  it('carries the confirm link and the same footer, with no unsubscribe link', () => {
-    const email = renderConfirmation('https://site.example.com/feel-good/confirm?token=abc', SIGNUP)
+  it('carries the confirm link and the home link, with no subscribe prompt', () => {
+    const email = renderConfirmation('https://site.example.com/feel-good/confirm?token=abc')
 
     expect(email.subject).toBe('Confirm your Feel good AI sign-up')
     expect(email.html).toContain('<a href="https://site.example.com/feel-good/confirm?token=abc"')
     expect(email.text).toContain('https://site.example.com/feel-good/confirm?token=abc')
-    expect(email.html).toContain(`<a href="${SIGNUP}">Day 12 Build</a>`)
-    expect(email.html).not.toContain(UNSUBSCRIBE_PLACEHOLDER)
+    expect(email.html).toContain('<a href="https://build40for40.com">build40for40.com</a>')
+    expect(email.html).not.toContain('Subscribe here')
   })
 })
