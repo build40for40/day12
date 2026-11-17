@@ -1,0 +1,1146 @@
+[
+  {
+    "key": "11-11-01",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "AI Heart MRI Measurements Improve Mortality Prediction",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "Peer-reviewed study in The Lancet Digital Health, published 2 November 2026, with a real if small result that depends on the AI.",
+    "checked": "news-medical.net report of the university release and the EMJ article (both opened); the City St George's page returned 403 and the Lancet paper itself was not opened",
+    "headline": "AI measurements of heart scans predicted survival slightly better than doctors' measurements, in seconds",
+    "what_happened": "Researchers at City St George's, University of London and University College London compared an AI tool with experienced clinicians at measuring how well the heart pumps from MRI scans of 27,382 patients in the UK and the United States. Most scans came from Barts Heart Centre in London, and 3,458 patients died over a median follow-up of 5.6 years. The AI's measurements were slightly but significantly better at predicting who died, and the study was published in The Lancet Digital Health on 2 November 2026.",
+    "why_its_good": "The AI did in about 2 to 3 seconds per patient a measurement that takes an expert around 13 minutes, and its numbers were at least as good a guide to survival. The researchers support using it as a first check on heart MRI scans, with experts reviewing where needed.",
+    "careful": [
+      "The gain is small: a C index of 0.781 for the AI against 0.777 for clinicians",
+      "It looked back at old scans, so it shows a link with survival, not that using the tool helps patients live longer",
+      "The tool is not described as being in routine use",
+      "The 2 to 3 seconds against 13 minutes figure comes from the team's earlier work, not from this study",
+      "The senior author invented the tool",
+      "About 1% of patients had an AI error, so clinicians still need to check"
+    ],
+    "topic": "health",
+    "stage": "in_the_lab",
+    "technology": "vision",
+    "scores": {
+      "mass_appeal": 1,
+      "real_person_or_place": 2,
+      "stage": 1,
+      "surprise": 1
+    },
+    "sources": [
+      "https://www.news-medical.net/news/20261102/AI-powered-heart-MRI-measurements-better-predict-patients-survival.aspx",
+      "https://www.emjreviews.com/?p=612455"
+    ],
+    "total": 10,
+    "bad_news": null,
+    "flip_kind": null
+  },
+  {
+    "key": "11-11-02",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "An AI tool helps with the early diagnosis of genetic diseases by analyzing patients' clinical trajectories",
+    "gate": "fail",
+    "failed_gate": "evidence",
+    "reason": "The results were presented at a Spanish nephrology congress with no journal paper named, and the tool was built with a company, IOMED; the real-world evaluation has only just begun.",
+    "checked": "democrata.es report (opened); search summaries of the IOMED page"
+  },
+  {
+    "key": "11-11-03",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "AI-derived inflammation score improves cardiovascular risk prediction beyond CAC",
+    "gate": "fail",
+    "failed_gate": "fresh",
+    "reason": "The same ORFAN finding, that an inflammation score from contrast or non-contrast heart CT adds to the calcium score, was presented at the SCCT meeting on 11 July 2026, more than 90 days ago; several authors also have ties to the maker, Caristo.",
+    "checked": "Afya summary of the JAMA Cardiology paper and the TCTMD report of the July conference talk (both opened); Radiology Business returned 403 and the JAMA Cardiology paper itself was not opened"
+  },
+  {
+    "key": "11-11-04",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "AI tool CLARA accelerates the development of bioreactors",
+    "gate": "fail",
+    "failed_gate": "plain",
+    "reason": "A peer-reviewed speed-up of engineering simulations that needs bioreactors, flow simulations and compartment models explained before it means anything to a general reader, and nothing has yet changed outside the lab.",
+    "checked": "chemeurope.com copy of the TU Graz release (opened); the journal paper was not opened"
+  },
+  {
+    "key": "11-11-05",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "AI glasses offer visually impaired veterans a new way to see DC war memorials",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "It happened on a reported trip, a named veteran describes what the glasses did for him to an independent news team, and the AI description is the whole point.",
+    "checked": "Gray TV report on wcax.com (opened); the Stars and Stripes article could not be found, search summaries only for the wider Meta and Blinded Veterans Association programme",
+    "headline": "AI glasses helped a blind Vietnam veteran find his friend's name on the memorial wall",
+    "what_happened": "Veterans from across the United States, many of them blind or visually impaired, toured the war memorials in Washington DC on a three-day honour flight sponsored by Meta, reported on 11 November 2026. Each was given a pair of Ray-Ban Meta AI glasses, which use cameras, microphones and AI to describe what is in front of the wearer. Victor Dunham, a Vietnam veteran from Texas, said the glasses helped him find the name of his friend Anthony on the Vietnam Veterans Memorial wall after searching without success, and that he had 'closed that loop today'.",
+    "why_its_good": "The AI described the memorials aloud to people who cannot see them, so a veteran could find a fallen friend's name for himself. Blind and visually impaired veterans are the ones better off.",
+    "careful": [
+      "The trip and the glasses were paid for by Meta, which makes the glasses",
+      "Meta says it plans to donate 130,000 pairs to blind and visually impaired veterans: that is a plan, not something done",
+      "The report does not say how many veterans were on the trip",
+      "Only the Vietnam Veterans Memorial is named",
+      "The account of what the glasses did comes from Victor Dunham and from a Meta employee, not from a study"
+    ],
+    "topic": "accessibility",
+    "stage": "helping_people_now",
+    "technology": "vision",
+    "scores": {
+      "mass_appeal": 3,
+      "real_person_or_place": 3,
+      "stage": 3,
+      "surprise": 2
+    },
+    "sources": [
+      "https://www.wcax.com/2026/11/11/veterans-tour-washington-war-memorials-using-ai-glasses/"
+    ],
+    "total": 23,
+    "bad_news": null,
+    "flip_kind": null
+  },
+  {
+    "key": "11-11-06",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "AI has proved that a theory underpinning fundamental physics is trustworthy",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Economist article could not be opened and no other source says which theory was proved, by whom or where it was published.",
+    "checked": "search summaries only (economist.com could not be fetched)"
+  },
+  {
+    "key": "11-11-07",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "Citrus County Sheriff's Office using AI to help screen calls, save time for emergencies",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "In real use at a named sheriff's office, reported first hand by a local news outlet, and the AI is what takes the calls.",
+    "checked": "Bay News 9 article (opened)",
+    "headline": "An AI operator now answers most non-emergency calls to the Citrus County sheriff, leaving 911 to people",
+    "what_happened": "The Citrus County Sheriff's Office in Florida is using an AI operator to answer non-emergency calls at its emergency operations centre in Lecanto, Bay News 9 reported on 11 November 2026. The centre takes about 5,000 calls a week, and Sheriff David Vincent said the AI has handled about 60% of the non-emergency calls so far. Emergency 911 calls still go to human dispatchers, callers can ask for a person, and staff watch the AI calls in real time.",
+    "why_its_good": "The AI takes routine calls so that human call takers are free for people who need help straight away. Residents with an emergency and the dispatchers themselves are the ones better off.",
+    "careful": [
+      "The AI does not answer 911 calls, only the non-emergency line, even though the article's opening line says it screens 911 calls",
+      "The 60% figure comes from the sheriff and has not been independently measured",
+      "There is no evidence yet that emergency response got faster",
+      "The article does not say when the system started or who makes it",
+      "Some residents raised concerns, and a University of South Florida AI expert warned about replacing trained workers"
+    ],
+    "topic": "everyday_life",
+    "stage": "helping_people_now",
+    "technology": "voice",
+    "scores": {
+      "mass_appeal": 1,
+      "real_person_or_place": 3,
+      "stage": 3,
+      "surprise": 1
+    },
+    "sources": [
+      "https://baynews9.com/fl/tampa/news/2026/11/11/citrus-county-sheriffs-office-using-ai-technology-to-help-screen-calls-save-time-for-those-emergencies-that-require-attention"
+    ],
+    "total": 16,
+    "bad_news": null,
+    "flip_kind": null
+  },
+  {
+    "key": "11-11-08",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "Guideline-informed AI chat associated with lower mental effort, task difficulty, and higher confidence among home-visit nurses",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "Only the EurekAlert release could be found and no journal or university page for the trial could be opened; from summaries it was also a simulated task measuring how nurses felt, not patient care.",
+    "checked": "search summaries only (a JMIR page tried came back empty)"
+  },
+  {
+    "key": "11-11-09",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "New method reveals how brain cancer cells spread",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "Peer-reviewed in Nature Communications on 11 November 2026, and the cell tracking that produced the findings was done by AI.",
+    "checked": "Uppsala University press release on mynewsdesk.com (opened); the Nature Communications paper itself was not opened",
+    "headline": "AI let scientists watch thousands of brain cancer cells spread through living tissue",
+    "what_happened": "Researchers at Uppsala University in Sweden built a method called GlioTrace that films slices of living mouse brain containing tumour cells from six glioblastoma patients for up to five days, then uses AI to follow thousands of individual cancer cells. They found that some tumours spread mainly along blood vessels while others spread more widely through the tissue, and that a single cell can switch between the two. The study was published in Nature Communications on 11 November 2026, and the software is free for other researchers.",
+    "why_its_good": "The AI picks out and follows each cell across a whole brain slice, which showed for the first time how thousands of individual tumour cells move through living brain tissue. Cancer researchers now have a way to test what slows that spread.",
+    "careful": [
+      "The tissue was mouse brain slices carrying human tumour cells, not patients",
+      "It is a research method, and the team says more studies are needed before it could guide treatment",
+      "Two drug substances reduced cell movement in the slices, but they are unnamed and the effect varied between tumours: this is not a treatment",
+      "Cells came from only six patients",
+      "'For the first time' is the researchers' own claim"
+    ],
+    "topic": "health",
+    "stage": "in_the_lab",
+    "technology": "vision",
+    "scores": {
+      "mass_appeal": 1,
+      "real_person_or_place": 1,
+      "stage": 1,
+      "surprise": 2
+    },
+    "sources": [
+      "https://www.mynewsdesk.com/uu/pressreleases/new-method-reveals-how-brain-cancer-cells-spread-3476334"
+    ],
+    "total": 9,
+    "bad_news": null,
+    "flip_kind": null
+  },
+  {
+    "key": "11-11-10",
+    "date": "2026-11-11",
+    "lane": "good",
+    "title": "Detection of vascular pathologies in non-contrast magnetic resonance images for early screening",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "Only the EurekAlert release could be found and the journal page could not be located; from summaries it is a comparison of three models with modest accuracy, not a result that changed anything for patients.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-11-11",
+    "date": "2026-11-11",
+    "lane": "flip",
+    "title": "United Airlines Is Banning AI Bots From Booking Flights",
+    "gate": "fail",
+    "failed_gate": "own_fact",
+    "reason": "There is no separate bad story with a good side: the ban is the whole story, CBS found no documented abuse by AI bots, and it is a company protecting its own booking system, not a court, regulator or law acting.",
+    "checked": "CBS News article (opened)"
+  },
+  {
+    "key": "11-12-01",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "Barts Health project sees AI eye-tracking tech to help patients with speech difficulties communicate",
+    "gate": "fail",
+    "failed_gate": "happened",
+    "reason": "Project VOCAL is a prototype still under expert review at Barts Health, with no working version deployed and no patients using it yet.",
+    "checked": "HTN article (opened)"
+  },
+  {
+    "key": "11-12-02",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "AI-ECG Shows Promise for Monitoring Severe Hypokalemia",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Medscape article and the study behind it could not be found or opened, so the claim could not be confirmed.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-12-03",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "Mayo Clinic researchers use AI to better predict kidney stone composition",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "Peer-reviewed in Mayo Clinic Proceedings, with a clear result on a held-out group of patients that depends on the AI model.",
+    "checked": "Mayo Clinic news release on newswise.com (opened); the journal paper itself was not opened",
+    "headline": "Mayo Clinic AI predicts what a kidney stone is made of from a routine urine test",
+    "what_happened": "Mayo Clinic researchers built an AI model that reads the many measurements in a standard 24-hour urine test, plus age and sex, to predict what type of kidney stone a patient has. It was built on data from more than 13,000 patients and tested on 1,653 others, where it was right for 73% of patients against 33% for the usual urine-based calculation. The study was published in Mayo Clinic Proceedings and announced on 12 November 2026.",
+    "why_its_good": "The AI found patterns in a test patients already take, more than doubling how often the stone type was predicted correctly. That helps people whose stone was never caught for analysis, which the researchers say is common.",
+    "careful": [
+      "It is a research finding: the release does not say the model is in clinical use",
+      "It is meant to add to existing results, not replace analysing a real stone",
+      "73% still means roughly one in four predictions was wrong",
+      "The figures come from Mayo Clinic's own patients and its own release",
+      "Do not say it spares patients procedures: the release does not claim that"
+    ],
+    "topic": "health",
+    "stage": "in_the_lab",
+    "technology": "other",
+    "scores": {
+      "mass_appeal": 1,
+      "real_person_or_place": 2,
+      "stage": 1,
+      "surprise": 1
+    },
+    "sources": [
+      "https://www.newswise.com/articles/mayo-clinic-researchers-use-ai-to-better-predict-kidney-stone-composition"
+    ],
+    "total": 10,
+    "bad_news": null,
+    "flip_kind": null
+  },
+  {
+    "key": "11-12-04",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "NHS trials AI assistant to phone patients with long-term illness",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'NHS trials AI phone assistant for patients with long-term illness'.",
+    "checked": "not opened"
+  },
+  {
+    "key": "11-12-05",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "More than 280,000 AI-read ECGs point to money worries and food insecurity as major markers of an older-looking heart",
+    "gate": "fail",
+    "failed_gate": "fresh",
+    "reason": "The Mayo Clinic Proceedings study was published and press released in December 2025 (Elsevier release dated 18 December 2025), well over 90 days ago.",
+    "checked": "Elsevier press release (opened)"
+  },
+  {
+    "key": "11-12-06",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "Samsung Medical Centre tests AI speech-to-text for medical records",
+    "gate": "fail",
+    "failed_gate": "happened",
+    "reason": "This is a test that is only starting: what could be found is an agreement with the company Heidi to run a proof of concept and a registered trial with no results; the Healthcare Asia article itself could not be found.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-12-07",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "Perth scientists confirm famous black hole image using AI",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "Peer-reviewed in Nature, announced 12 November 2026, with the director of the original telescope project agreeing the result matches.",
+    "checked": "CSIRO news release and CSIRO's republished Conversation article by the authors (both opened); scimex.org returned 403, the PerthNow article and the Nature paper itself were not opened",
+    "headline": "An AI trained on photos of cats, dogs and cars independently confirmed the first picture of a black hole",
+    "what_happened": "Four researchers at CSIRO, Australia's national science agency, re-made the famous 2019 image of the black hole at the centre of the galaxy M87 using a new AI method called GenDIReCT. The AI was trained on everyday pictures such as cats, dogs and cars, so it had no idea what a black hole should look like, and it still produced a ring almost identical in size and shape to the original. The work was published in Nature and announced on 12 November 2026.",
+    "why_its_good": "Scientists had asked how much the original picture was shaped by the way it was processed. An AI that had never seen a black hole reaching the same ring by a different route shows the ring is a real feature, which the director of the Event Horizon Telescope collaboration said is in excellent agreement with their results.",
+    "careful": [
+      "It reanalysed the same telescope data, it is not a new observation or a new photo",
+      "Fine details such as the ring's width and brightness differ a little between methods",
+      "'First truly independent validation' is the lead author's own phrase",
+      "The sources opened do not say the team is in Perth, so do not call them Perth scientists without checking",
+      "The idea that the technique could help medical imaging or earthquake mapping is only a possibility raised by the team"
+    ],
+    "topic": "space",
+    "stage": "in_the_lab",
+    "technology": "other",
+    "scores": {
+      "mass_appeal": 3,
+      "real_person_or_place": 2,
+      "stage": 1,
+      "surprise": 3
+    },
+    "sources": [
+      "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole",
+      "https://www.csiro.au/en/news/All/Articles/2026/November/Blackhole-Conversation"
+    ],
+    "total": 18,
+    "bad_news": null,
+    "flip_kind": null
+  },
+  {
+    "key": "11-12-08",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "AI found Linux kernel bugs that remained undetected for decades",
+    "gate": "fail",
+    "failed_gate": "independent",
+    "reason": "Every figure, and the claim that AI agents found the bugs, comes from Microsoft's own blog post; CSO Online says it has no independent verification and there is no paper.",
+    "checked": "CSO Online article (opened); search summaries only for one CVE record"
+  },
+  {
+    "key": "11-12-09",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "Multimodal Artificial Intelligence Accurately Detects Alzheimer Disease but Stumbles on Staging",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "Neither the Bioengineer.org article nor the study behind it could be found, so the claim could not be confirmed.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-12-10",
+    "date": "2026-11-12",
+    "lane": "good",
+    "title": "AI can help construction cut emissions and brace for climate change, but it is no silver bullet",
+    "gate": "fail",
+    "failed_gate": "happened",
+    "reason": "A literature review of what AI can do in construction is not a result: nothing was built, cut or measured, and the review itself could not be found outside EurekAlert.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-12-11",
+    "date": "2026-11-12",
+    "lane": "flip",
+    "title": "Advocacy groups sue AI giants to freeze new models, warning of 'catastrophic' risks",
+    "gate": "fail",
+    "failed_gate": "own_fact",
+    "reason": "The lawsuit and the alleged danger are one and the same story: four nonprofits filed a complaint warning of future catastrophic harm, no court has acted, and a request to freeze AI is not a sourced good side separate from the bad news.",
+    "checked": "Al Jazeera report (opened); search summaries of the AP story"
+  },
+  {
+    "key": "11-13-01",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "Cleerly's AI-powered plaque assessments outperform cardiac stress testing",
+    "gate": "fail",
+    "failed_gate": "evidence",
+    "reason": "The PARAMOUNT trial result was presented at a conference by Cleerly itself, and the company's own release says it has not been peer reviewed and is preliminary until published.",
+    "checked": "Cleerly press release as republished by Cath Lab Digest (hmpgloballearningnetwork.com); Cardiovascular Business article could not be opened, search summary only"
+  },
+  {
+    "key": "11-13-02",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "AI Tool Predicts PTSD Risk From Emergency Room Narratives",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "Peer-reviewed study in Nature Communications, published 9 November 2026, confirmed on the journal page and the NYU Langone page.",
+    "checked": "NYU Langone news page; Nature Communications paper (first 100,000 characters)",
+    "headline": "AI reads what emergency room patients say and flags who is at risk of PTSD",
+    "what_happened": "Researchers at NYU Langone Health built an AI tool called PREVIA that reads a patient's own answer to the question of what brought them to the emergency room. They tested it on the accounts of 145 injured patients at two New York trauma centres and checked it against a specialist interview one month later. It picked out about 95 in 100 of the patients who went on to have PTSD, and the study was published in Nature Communications on 9 November 2026.",
+    "why_its_good": "The AI turned a routine question into an early warning and gave a plain explanation with each risk score. The NYU Langone page says only about 28% of emergency departments routinely screen for PTSD, so people who would otherwise be missed are the ones who stand to benefit.",
+    "bad_news": null,
+    "flip_kind": null,
+    "careful": [
+      "It is a study, not a tool in use in any hospital",
+      "Small study: 145 patients at two New York trauma centres, and the authors say larger independent validation is needed",
+      "About half of the patients it flagged did not go on to have PTSD (precision about 47%)",
+      "The comparison with a clinician used one specialist and 30 patients, so do not say it beats doctors; the paper says it performed comparably",
+      "It predicts PTSD at one month, not longer",
+      "It estimates risk, it does not diagnose or treat PTSD",
+      "English-speaking patients only, and 31% of the sample were women"
+    ],
+    "topic": "health",
+    "stage": "in_the_lab",
+    "technology": "language model",
+    "scores": {
+      "mass_appeal": 2,
+      "real_person_or_place": 2,
+      "stage": 1,
+      "surprise": 2
+    },
+    "total": 14,
+    "sources": [
+      "https://nyulangone.org/news/ai-predicts-ptsd-risk-based-stories-about-what-brought-patients-emergency-room",
+      "https://www.nature.com/articles/s41467-026-78768-3"
+    ]
+  },
+  {
+    "key": "11-13-03",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "AI detects cardiovascular risk in 27,300 patients in Kirov",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "No source could be found or opened that confirms AI detected cardiovascular risk in 27,300 patients in Kirov; searches in English, Spanish and Russian returned only older background on the region's programme.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-13-04",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "Lip-reading AI fills gaps in sentences by recognizing most certain words first",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'KAIST develops lip-reading AI'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-13-05",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "Traffic Lights Equipped with Artificial Intelligence Installed in Bishkek",
+    "gate": "fail",
+    "failed_gate": "happened",
+    "reason": "The lights are installed at one Bishkek junction but only in pilot mode while the system collects data, and the report gives no result for traffic, journeys or safety.",
+    "checked": "economist.kg article of 13 November 2026 citing the Ministry of Transport; EGOV.KG page not found"
+  },
+  {
+    "key": "11-13-06",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "This AI finds patterns in visual brain activity and turns them into pictures",
+    "gate": "fail",
+    "failed_gate": "fresh",
+    "reason": "The Brain-IT work from the Weizmann Institute was first posted on arXiv on 29 October 2025 and accepted at ICLR 2026, so it was first public far more than 90 days ago, and it has no journal publication listed.",
+    "checked": "arXiv listing 2510.25976; Live Science page opened but body did not load; search summaries for the rest"
+  },
+  {
+    "key": "11-13-07",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "AI imaging reports comparable to the work of sonographers and cardiologists",
+    "gate": "fail",
+    "failed_gate": "evidence",
+    "reason": "The Kaiser Permanente echocardiogram trial is a conference abstract, and the American Heart Association release says such abstracts are not peer reviewed and the findings are preliminary.",
+    "checked": "American Heart Association newsroom release; Cardiovascular Business page returned 403"
+  },
+  {
+    "key": "11-13-08",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "Artificial Intelligence Models Predict Alzheimer's Progression Years Before Clinical Symptoms Emerge",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The paper behind the headline is a review article in Behavioral and Brain Functions that summarises other people's studies, so there is no new result that matches the headline.",
+    "checked": "Bioengineer.org article (which names the review and its DOI); journal page not opened"
+  },
+  {
+    "key": "11-13-09",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "Machine-learning models accurately predict mortality after a heart attack",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Already assessed: 'Machine-learning models accurately predict mortality after a heart attack'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-13-10",
+    "date": "2026-11-13",
+    "lane": "good",
+    "title": "Having older AI-estimated heart age than actual age is linked with cardiovascular/dementia-related death",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Already assessed: 'Older AI-estimated heart age linked with cardiovascular and dementia death'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-13-11",
+    "date": "2026-11-13",
+    "lane": "flip",
+    "title": "Duffy says FAA's new AI air traffic tool played no role in nationwide ground stop",
+    "gate": "fail",
+    "failed_gate": "ai_essential",
+    "reason": "The only link between the ground stop and the AI tool is timing; no official has tied the tool to the outage and the cause is not established, so the bad story is not shown to be about AI and the proposed good side is just a denial.",
+    "checked": "Futurism article; Washington Times page returned 403; search summaries for the rest"
+  },
+  {
+    "key": "11-13-12",
+    "date": "2026-11-13",
+    "lane": "flip",
+    "title": "Malaysia and Singapore step up Nvidia AI chip probes as charges brought against Chinese national over 917 smuggled servers",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Tom's Hardware body would not load, and the Reuters report I could open describes the person charged in Singapore as a 34-year-old Singaporean, not a Chinese national, and says nothing of the audit, the Malaysia probe or where the servers went.",
+    "checked": "Reuters report on TimesLIVE; Tom's Hardware article page (headline only loaded); Malay Mail and FourWeekMBA returned 403"
+  },
+  {
+    "key": "11-14-01",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "AI discovers a hidden heart signal that could predict sudden death",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Already assessed: 'AI discovers a hidden heart signal that could predict sudden death'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-14-02",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "NHS trials AI phone assistant for patients with long-term condition",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Already assessed: 'NHS trials AI phone assistant for patients with long-term illness'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-14-03",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "KAIST develops lip-reading AI that decodes clear words first to resolve ambiguous mouth movements",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Already assessed: 'KAIST develops lip-reading AI'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-14-04",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "New AI app helps Montreal woman with ALS get her voice back",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "A named Montreal woman with ALS has been using the app daily since May 2026, reported by The Canadian Press on 11 November 2026 and not only by the company.",
+    "checked": "The Canadian Press report on Global News; the CBC version could not be found, search summaries of Narcity and MTL Blog copies",
+    "headline": "Montreal woman with ALS speaks in her own voice again through an AI app",
+    "what_happened": "Anne-Marie Poirier of Montreal has ALS and began losing her voice in October 2025. Since May 2026 she has used Vocality, an app built by two Montreal entrepreneurs, Thomas Houlachi and David Ruiz. She types a few keywords and the app turns them into full sentences, spoken aloud in a synthetic voice made from recordings of her own speech.",
+    "why_its_good": "The AI does two things she could not do otherwise: it builds whole sentences from a few keywords and it speaks them in a voice that sounds like hers. Poirier told The Canadian Press, \"It gives me energy, a feeling of being alive.\"",
+    "bad_news": null,
+    "flip_kind": null,
+    "careful": [
+      "The voice is synthetic, made with ElevenLabs technology from her recordings; she has not regained natural speech",
+      "The app launched on iPhone and iPad in June 2026, so the app itself is not new this week; the news is her story",
+      "The figure of more than 100 daily users across North America comes from the company",
+      "It is a paid subscription and the price is not given",
+      "No clinician or outside expert assessed the app in the report",
+      "She reported a bug where the app sometimes erased sentences after reading them",
+      "The source opened is The Canadian Press via Global News, not the CBC article named in the shortlist"
+    ],
+    "topic": "accessibility",
+    "stage": "helping_people_now",
+    "technology": "voice",
+    "scores": {
+      "mass_appeal": 3,
+      "real_person_or_place": 3,
+      "stage": 3,
+      "surprise": 1
+    },
+    "total": 22,
+    "sources": [
+      "https://globalnews.ca/news/12147285/quebec-woman-als-ai-voice-app/"
+    ]
+  },
+  {
+    "key": "11-14-05",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "Blind New Orleans Veteran Uses AI Glasses To Find His Way To D.C. Pizza Dinner",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Hoodline article could not be opened and no other source confirms a New Orleans veteran finding a pizza dinner; the nearest report is a Meta-sponsored veterans' trip to Washington that names no such person.",
+    "checked": "Gray TV report on cleveland19.com (related trip, does not confirm the claim); hoodline.com blocked; search summaries"
+  },
+  {
+    "key": "11-14-06",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "Artificial Intelligence Reconstructs Damaged Ships to Rapidly Evaluate Seaworthiness in Emergencies",
+    "gate": "fail",
+    "failed_gate": "about_the_world",
+    "reason": "The method was only shown on a simulated dent in a computer model of a cargo ship using synthesised images, with no real ship, test tank or emergency involved.",
+    "checked": "Bioengineer.org article (names the paper in Discover Artificial Intelligence); journal page not opened"
+  },
+  {
+    "key": "11-14-07",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "Using artificial intelligence to accelerate neuroscience research",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The only source is a EurekAlert release about findings due to be presented at the Neuroscience 2026 meeting, and no society or journal page with the findings could be opened.",
+    "checked": "search summaries only"
+  },
+  {
+    "key": "11-14-08",
+    "date": "2026-11-14",
+    "lane": "good",
+    "title": "Interpretable Machine Learning Accurately Classifies Endangered Austrian Cattle Breeds Using Genomic Markers",
+    "gate": "fail",
+    "failed_gate": "ai_essential",
+    "reason": "The machine learning models scored 0.842 against 0.817 for an ordinary linear baseline, so the AI is not what makes the result, and nothing has yet changed for the breeds.",
+    "checked": "Bioengineer.org article (names the paper in Genetics Selection Evolution); journal page not opened"
+  },
+  {
+    "key": "11-14-09",
+    "date": "2026-11-14",
+    "lane": "flip",
+    "title": "'Unable to determine probable cause': Arizona judge releases DUI suspect over AI-generated police report",
+    "gate": "fail",
+    "failed_gate": "own_fact",
+    "reason": "The judge's order is the bad story itself, not a separate good fact, and whether freeing a man accused of driving at 100 mph is good news is an opinion; reports also disagree on whether the case was dismissed or he was only released.",
+    "checked": "AZFamily report; ABC News report on goodmorningamerica.com"
+  },
+  {
+    "key": "11-14-10",
+    "date": "2026-11-14",
+    "lane": "flip",
+    "title": "South Korea probes top exam scorer after AI cheating confession",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "The cheating and the official response are both confirmed by AFP and Korea JoongAng Daily, nobody was physically hurt or defrauded, and police and government action are separate facts already under way.",
+    "checked": "Korea JoongAng Daily report; AFP report on Arab News",
+    "headline": "South Korea's top tax exam scorer admits cheating with AI, and the authorities move in",
+    "what_happened": "The top scorer in South Korea's national tax accountant exam admitted in a video and in a written confession to police that he cheated in both rounds. He said he photographed the questions with a miniature camera, sent them to an AI tool and read the answers on his smartphone. The Seoul Metropolitan Police Agency has assigned the case to investigators, the exam body's president apologised and said it would file a criminal complaint, and the presidential office decided to investigate all suspected AI cheating across national qualification exams.",
+    "why_its_good": "The cheating came out in public and the system responded within days: police are investigating, the finance ministry is moving to suspend his certificate so he cannot practise, and checks for AI devices are planned for the college entrance exam on 19 November. Honest candidates are the ones this protects.",
+    "bad_news": "The man who came first in both rounds of South Korea's national tax accountant exam, with 397.5 out of 400 in the first, got there by secretly using AI to answer the questions.",
+    "flip_kind": "system_responding",
+    "careful": [
+      "He first denied cheating and confessed only after suspicion spread online, so do not present it as a prompt or voluntary confession",
+      "The certificate suspension is being moved, not done; the ministry says a confession alone is not enough to revoke it",
+      "The police investigation has only begun: no charge or conviction",
+      "The exam body said it would file a criminal complaint; it is not confirmed as filed",
+      "He says he used a miniature camera and a smartphone; smart glasses were the online suspicion, not what he admitted",
+      "He also said he used the same method on the first stage of the public accountant exam",
+      "The reports do not give his real name, so do not name him",
+      "Do not suggest AI cheating has been solved"
+    ],
+    "topic": "everyday_life",
+    "stage": "helping_people_now",
+    "technology": "language model",
+    "scores": {
+      "mass_appeal": 2,
+      "real_person_or_place": 2,
+      "stage": 3,
+      "surprise": 2
+    },
+    "total": 18,
+    "sources": [
+      "https://www.koreajoongangdaily.com/korea/top-scorer-on-tax-accountant-exam-admits-using-ai-to-cheat/12973195",
+      "https://www.arabnews.pk/world/south-korea-probes-top-exam-scorer-after-ai-cheating-confession-3007127"
+    ]
+  },
+  {
+    "key": "11-14-11",
+    "date": "2026-11-14",
+    "lane": "flip",
+    "title": "Japan-led probe finds 1,000 servers likely used for AI-driven cyberattacks",
+    "gate": "fail",
+    "failed_gate": "own_fact",
+    "reason": "Finding about 1,000 servers used for AI-driven attacks is the bad news itself; the report mentions no takedown, arrest or fix, so there is no separate good fact.",
+    "checked": "Kyodo report as carried by The Vibes; Mainichi page not found"
+  },
+  {
+    "key": "11-15-01",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "\"AI in an Ambulance Saved a Life\"... Heart Attack Detected Before Hospital Arrival, Dramatically Shortening Treatment Time",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "A real pilot with reported use figures and a named hospital, where an approved AI heart-trace reader flagged a heart attack in the ambulance, though no figure shows time saved.",
+    "checked": "Kormedi, ZDNet Korea, Seoul Economic Daily, Medipana and News1 reports of the hospital's 16 November announcement (Sports Chosun article itself and the hospital's own page not found; Kuki News returned 403)",
+    "headline": "AI heart-trace reader in Korean ambulances flags heart attacks before patients reach hospital",
+    "what_happened": "Since March 2026, ambulance crews in Gyeonggi province, South Korea, have used an approved AI program to help read heart traces at the scene and send the result ahead to Hallym University Dongtan Sacred Heart Hospital. It was used 872 times up to September, and in 88 of those the hospital was warned in advance of a suspected serious heart problem. In May a woman in her 90s with chest pain was flagged in the ambulance as a possible heart attack; the hospital confirmed it 6 minutes after she arrived, opened the blocked artery with a stent 44 minutes after arrival, and she later went home.",
+    "why_its_good": "The AI gives paramedics a reading in seconds, where before they had to phone a supervising doctor, so the hospital team can be ready before the patient arrives. People with chest pain in the area served by the pilot are the ones who benefit.",
+    "bad_news": null,
+    "flip_kind": null,
+    "careful": [
+      "No source gives a comparison with cases handled without the AI, so do not say treatment time was cut, shortened or 'dramatically' reduced, and do not say the AI saved her life.",
+      "The AI assists the reading; hospital emergency doctors make the final diagnosis using the trace, symptoms and vital signs.",
+      "This is a pilot between one hospital and the Gyeonggi fire service, announced by the hospital itself. No published paper.",
+      "One showcase case (plus a second, a man in his 60s diagnosed with a different heart condition). Do not generalise from it.",
+      "The AI program and its maker are not named in the reports. 'Approved' means cleared by South Korea's Ministry of Food and Drug Safety.",
+      "The woman's exact age is not given, only 'in her 90s'.",
+      "Reports say similar systems are spreading to Jeju and Seoul, without detail; do not state figures for those."
+    ],
+    "topic": "health",
+    "stage": "in_a_trial",
+    "technology": "other",
+    "scores": {
+      "mass_appeal": 3,
+      "real_person_or_place": 3,
+      "stage": 2,
+      "surprise": 1
+    },
+    "total": 20,
+    "sources": [
+      "https://kormedi.com/2906004/",
+      "https://zdnet.co.kr/view/?no=20261116165136",
+      "https://m.sedaily.com/article/20114732",
+      "https://www.medipana.com/news/articleView.html?idxno=421926",
+      "https://www.news1.kr/bio/welfare-medical/6355655"
+    ]
+  },
+  {
+    "key": "11-15-02",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "ALS Singer Sings Again via Brain Signal AI",
+    "gate": "fail",
+    "failed_gate": "evidence",
+    "reason": "The UC Davis singing result (a 58-year-old singer with ALS, participant T21) is described as not yet published in a journal and due to be presented at the Neuroscience 2026 conference.",
+    "checked": "La Voce di New York article of 15 November (cites a New York Times report); the Chosun article and any paper were not found"
+  },
+  {
+    "key": "11-15-03",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "AI Scribe Technology Helps Physicians Spend Time Where it Matters Most",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Ontario Hospital Association page could not be opened (connection refused) and searches found no copy of the article, so nothing confirms which hospital, what result or when.",
+    "checked": "oha.com fetch attempts failed; search summaries only"
+  },
+  {
+    "key": "11-15-04",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "Breast Cancer Patients Rate AI-Generated Summaries Similarly to Original Cochrane Reviews",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "A peer-reviewed randomised trial published on 16 November 2026 found patients understood and trusted ChatGPT-written summaries as well as the original ones.",
+    "checked": "Frontiers in Artificial Intelligence paper page (DOI 10.3389/frai.2026.1989422) and the Bioengineer.org write-up",
+    "headline": "Breast cancer patients in Croatia understood AI-written research summaries as well as the originals",
+    "what_happened": "Researchers at the University Hospital of Split in Croatia gave 133 women with breast cancer that had not spread a plain-language summary of two Cochrane research reviews, one on exercise during treatment and one on psychological support. Half read the original summaries and half read versions written in Croatian by ChatGPT-4o, and neither patients nor researchers knew which was which. There was no overall difference in how well the women understood the summaries, how much they trusted them, how clear they found them or whether they intended to act on them. The study was published in Frontiers in Artificial Intelligence on 16 November 2026.",
+    "why_its_good": "The AI produced patient summaries that real patients found as clear and trustworthy as ones written by people, which points to a quicker way of putting medical evidence into plain words for patients. The authors say expert checking is still needed before such summaries reach patients.",
+    "bad_news": null,
+    "flip_kind": null,
+    "careful": [
+      "The finding is 'no overall difference', not that the AI summaries were better.",
+      "Answers were collected straight after reading; the study did not measure whether anyone changed behaviour or had better health.",
+      "One hospital, Croatian-speaking women only, two supportive-care topics, five comprehension questions.",
+      "The authors say expert editing and fact-checking are necessary before AI-written summaries are given to patients; the study did not test factual safety.",
+      "146 women were randomised and 133 analysed.",
+      "The equivalence analysis was done after the fact and is exploratory. One sub-result (higher confidence with the AI summary on the psychological topic) is exploratory and should not be the headline.",
+      "Results may not hold for other AI models or prompts."
+    ],
+    "topic": "health",
+    "stage": "in_the_lab",
+    "technology": "language model",
+    "scores": {
+      "mass_appeal": 1,
+      "real_person_or_place": 2,
+      "stage": 1,
+      "surprise": 1
+    },
+    "total": 10,
+    "sources": [
+      "https://www.frontiersin.org/articles/10.3389/frai.2026.1989422/full",
+      "https://bioengineer.org/breast-cancer-patients-rate-ai-generated-summaries-similarly-to-original-cochrane-reviews/"
+    ]
+  },
+  {
+    "key": "11-15-05",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "How AI Helped Conservators Find What Restorers Erased From a William Merritt Chase Painting",
+    "gate": "fail",
+    "failed_gate": "ai_essential",
+    "reason": "The AI only overlaid an old photograph on a new image of the Chase painting, which the conservator said was faster than doing it in Photoshop; the findings came from the photograph and from conservators' own checks, so the story stands without the AI.",
+    "checked": "The Art Newspaper article of 13 November and the Art in Context article (The Art Insider piece not found)"
+  },
+  {
+    "key": "11-15-06",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "AI Made a Visual-Cortex Implant More Precise in One Blind Man—But It Did Not Restore Sight",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'AI made a visual-cortex implant more precise in one blind man'.",
+    "checked": "not opened, already assessed"
+  },
+  {
+    "key": "11-15-07",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "SNU's STARLINC AI Filters SpaceX Starlink Trails from Telescope Data",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'SNU's STARLINC AI filters Starlink trails from telescope data'.",
+    "checked": "not opened, already assessed"
+  },
+  {
+    "key": "11-15-08",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "AI Deciphers Speech Through Lip Movements Alone",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Search points to the KAIST lip-reading research announced on 15 November, the same story as the already assessed 'KAIST develops lip-reading AI'.",
+    "checked": "search summaries only, to confirm it is the KAIST story"
+  },
+  {
+    "key": "11-15-09",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "Virginia representative addresses Congress using AI voice",
+    "gate": "fail",
+    "failed_gate": "fresh",
+    "reason": "This is Rep. Jennifer Wexton's House floor speech with an AI-cloned voice, reported on 25 July 2024, far more than 90 days ago; the Britannica item is a reference page about it.",
+    "checked": "Fox 5 NY report dated 25 July 2024; Britannica page seen in search results only"
+  },
+  {
+    "key": "11-15-10",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "What can your face reveal about your health? AI finds new clues",
+    "gate": "fail",
+    "failed_gate": "fresh",
+    "reason": "The FAHR-Face study (Mass General Brigham, The Lancet Digital Health) was first made public as an arXiv paper on 17 June 2025 with the same headline results, and no patient's care has changed because of it.",
+    "checked": "Earth.com article and the arXiv record 2506.14909; journal date (19 October 2026) from search summaries only"
+  },
+  {
+    "key": "11-15-11",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "Integrated Multi-Omics and Artificial Intelligence Pipeline Accelerates Climate-Resilient Cotton Breeding",
+    "gate": "fail",
+    "failed_gate": "happened",
+    "reason": "The source is a review article in Discover Plants proposing a pipeline; it reports no new experiment and no cotton variety bred or released.",
+    "checked": "Bioengineer.org article"
+  },
+  {
+    "key": "11-15-12",
+    "date": "2026-11-15",
+    "lane": "good",
+    "title": "Aerial Drones and Artificial Intelligence Identify Optimal Cattle Slaughter Timing in Feedlots",
+    "gate": "fail",
+    "failed_gate": "fresh",
+    "reason": "The Embrapa drone and AI cattle study was published in Computers and Electronics in Agriculture in April 2026, more than 90 days ago, and is still a near-prototype tested on one batch of 110 cattle.",
+    "checked": "Agência FAPESP article of 30 October 2026 and the Embrapa repository record for the paper (ScienceDirect returned 403)"
+  },
+  {
+    "key": "11-15-13",
+    "date": "2026-11-15",
+    "lane": "flip",
+    "title": "South Korea to Deploy Radio-Wave Detectors to Catch AI Exam Cheating Early Next Year, but On-Device AI Remains a Blind Spot",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "Nobody was physically hurt or defrauded, the cheat confessed publicly and went to the police, and the government's emergency response is a separate reported fact; the radio-wave detectors themselves are not yet in use.",
+    "checked": "Korea Herald articles 10937701 and 10937481 and the Kyunghyang Shinmun English article, all dated 15 November 2026 (BigGo Finance piece not opened)",
+    "headline": "South Korea orders a check of every national licensing exam after a top scorer admits cheating with AI",
+    "what_happened": "Han Won-seok, the top scorer in South Korea's 63rd certified tax accountant exam, said on a lawyer's YouTube channel that he photographed the questions with a miniature camera, sent them to an AI and read the answers on a smartphone, and he reported himself to the police. On Sunday 15 November the presidential policy chief and the vice minister of employment and labour each chaired an emergency meeting. The authorities said they will examine every national licensing exam held this year for AI cheating, open tip-off centres and deliver an anti-cheating plan by the end of the year, and the exam agency apologised and decided to file a complaint against him.",
+    "why_its_good": "The cheating came to light because the person responsible owned up, and within days the government and the exam agency were acting on it across all national licensing exams. Honest candidates are the ones who gain from that.",
+    "bad_news": "The top scorer in a South Korean national tax accountant exam cheated in both rounds using a hidden camera, a smartphone and generative AI, sitting in front of two proctors who did not notice, and the exam agency's own review had found nothing wrong.",
+    "flip_kind": "system_responding",
+    "careful": [
+      "Radio-wave detectors are not in use. One report says they are being developed and will be deployed quickly, another says they are only under review and will not be considered until next year. Do not say they are being rolled out.",
+      "The review of all exams, the tip-off centres and the year-end plan are announced measures, not finished ones.",
+      "Penalties (results cancelled, five-year ban, criminal referral) are described as being pursued or under consideration, not imposed.",
+      "The exam agency did not catch the cheating; on 13 November it had said it found no irregularities. Do not credit the system with detecting it.",
+      "The sources opened do not report any cheating in the college entrance exam (CSAT); the tighter CSAT rules are a precaution.",
+      "Han did not disclose his exact method. The Kyunghyang article refers to him only as 'A'; his name comes from the Korea Herald.",
+      "Do not suggest the AI or the cheating was clever or impressive, and do not play down that a professional licence was obtained by cheating.",
+      "The story is little known outside South Korea, which weakens it as a flip for UK readers."
+    ],
+    "topic": "everyday_life",
+    "stage": "helping_people_now",
+    "technology": "language model",
+    "scores": {
+      "mass_appeal": 1,
+      "real_person_or_place": 3,
+      "stage": 3,
+      "surprise": 1
+    },
+    "total": 16,
+    "sources": [
+      "https://mbiz.heraldcorp.com/article/10937701",
+      "https://mbiz.heraldcorp.com/article/10937481",
+      "https://www.khan.co.kr/en/article/202611151658017"
+    ]
+  },
+  {
+    "key": "11-16-01",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "India launches Khushi AI chatbot to aid tuberculosis patients",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Khushi chatbot uses BharatGPT to help TB patients find care'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-16-02",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "New AI flood warning system to be rolled out in Dublin this week with 'time most valuable thing' to help people prepare",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'New AI warning system for flooding to be rolled out in Dublin'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-16-03",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "ALS Singer Sings via AI Brain Signals",
+    "gate": "fail",
+    "failed_gate": "evidence",
+    "reason": "The singing result from UC Davis is unpublished and is only being presented at the Neuroscience 2026 conference; the report says it has not yet appeared in a scientific journal.",
+    "checked": "lavocedinewyork.com article of 15 Nov 2026 (which relays a New York Times report of 14 Nov); the Chosun article itself was not found"
+  },
+  {
+    "key": "11-16-04",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "AI learning tool helps blind students excel in Malawi",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Malawian innovator uses AI to improve learning for blind students'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-16-05",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "Bolivian Engineer Built the First AI That Speaks Aymara — and Officials Are Already Using It",
+    "gate": "fail",
+    "failed_gate": "independent",
+    "reason": "Every claim about Luzi being used by El Alto's citizen security office and a school in Laja comes from the developer himself in one EFE interview; no official, teacher or user is quoted and there are no usage figures, and the 'first' in the headline is not in the EFE report.",
+    "checked": "latintimes.com article of 16 Nov 2026 and the EFE report it relies on, as carried by infobae.com on 16 Nov 2026"
+  },
+  {
+    "key": "11-16-06",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "Research spotlight: Novel algorithm predicts brain surgery outcomes in dystonia patients",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Novel algorithm predicts brain surgery outcomes in dystonia patients'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-16-07",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "Utah tests if AI can safely diagnose patients, prescribe medication",
+    "gate": "fail",
+    "failed_gate": "happened",
+    "reason": "The Utah pilot of AI prescribing is under way but has reported no results; the KUTV piece says its meaning will depend on results that do not exist yet.",
+    "checked": "kutv.com Fact Check Team article of 16 Oct 2026 on the Nolla Health pilot (the closest KUTV piece found; the exact headline was not located)"
+  },
+  {
+    "key": "11-16-08",
+    "date": "2026-11-16",
+    "lane": "good",
+    "title": "eVaka users' wish came true thanks to artificial intelligence [City of Tampere]",
+    "gate": "fail",
+    "failed_gate": "ai_essential",
+    "reason": "The app-like eVaka with phone notifications is real and live, but the saving is measured against a 2024 estimate for separate native apps, so the cheaper web app approach explains much of it and AI coding help is not clearly the reason.",
+    "checked": "tampere.fi news item of 17 Nov 2026 (full text read)"
+  },
+  {
+    "key": "11-16-09",
+    "date": "2026-11-16",
+    "lane": "flip",
+    "title": "California sues OpenAI, alleges it endangered the public by building AI without safeguards",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'OpenAI sued by California over Hugging Face attack'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-16-10",
+    "date": "2026-11-16",
+    "lane": "flip",
+    "title": "In a first, Google detects AI-automated cyberattack",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Google flags first autonomous AI cyberattack'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-17-01",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "Khushi chatbot uses BharatGPT to help TB patients find care",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Khushi chatbot uses BharatGPT to help TB patients find care'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-17-02",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "'You're not alone': Mom brings rare disease mission, AI tool to Las Vegas",
+    "gate": "fail",
+    "failed_gate": "independent",
+    "reason": "The only voice is the co-founder of Citizen Health describing her own company's tool before a conference; no outside expert, study, user family or figures back it.",
+    "checked": "ktnv.com article (full text read)"
+  },
+  {
+    "key": "11-17-03",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "Malawian Innovator Uses AI To Improve Learning For Blind Students",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Malawian innovator uses AI to improve learning for blind students'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-17-04",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "Eye AI: 3D-printed glasses that guide blind people with audio",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "No page could be opened that confirms an 'Eye AI' 3D-printed glasses product; the Foro3D item was not found on the site and searches returned only other, unrelated projects.",
+    "checked": "foro3d.com search page and news index; web search summaries only otherwise"
+  },
+  {
+    "key": "11-17-05",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "Artificial intelligence for antibiotic discovery and design",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Nature item could not be found or opened, and its title reads as a review of a field, not a new result.",
+    "checked": "search summaries only (nature.com search needs a login)"
+  },
+  {
+    "key": "11-17-06",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "Artificial Intelligence Enhances CT Scan Outcome Predictions in Adult Brain Trauma",
+    "gate": "fail",
+    "failed_gate": "about_the_world",
+    "reason": "It is a review pooling 12 earlier retrospective studies; no tool is in clinical use, there is no comparison with the scores doctors already use, and nothing has changed for patients.",
+    "checked": "bioengineer.org article of 17 Nov 2026 describing the systematic review in Discover Neuroscience (DOI 10.1186/s13064-026-00306-0); the journal page itself was not opened"
+  },
+  {
+    "key": "11-17-07",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "The government weather bureau launched the integration of artificial intelligence to its PANaHON app",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "No openable source confirms an AI integration in the PANaHON app; the only trace is a Facebook post, and all coverage found is of the June 2026 app launch with no mention of AI.",
+    "checked": "search summaries only (PAGASA, DOST and Philippine news results, none about AI)"
+  },
+  {
+    "key": "11-17-08",
+    "date": "2026-11-17",
+    "lane": "good",
+    "title": "Not all treatment-resistant depression is the same: AI and brain biology point to staged, precision care",
+    "gate": "fail",
+    "failed_gate": "source_checked",
+    "reason": "The Brain Medicine paper could not be found outside EurekAlert, so the claim could not be checked against the journal or an institution page.",
+    "checked": "bm.genomicpress.com home page (paper not listed); search summaries otherwise"
+  },
+  {
+    "key": "11-17-09",
+    "date": "2026-11-17",
+    "lane": "flip",
+    "title": "The government's emergency measures to prevent 'artificial intelligence (AI) cheating' in the College entrance exam",
+    "gate": "pass",
+    "failed_gate": null,
+    "reason": "A widely reported run of exam cheating with AI glasses in South Korea has a separate, sourced good side: the government has banned the glasses at the national university entrance exam and set out checks and penalties.",
+    "checked": "koreajoongangdaily.com (Yonhap) of 13 Nov 2026 and koreatimes.co.kr (Yonhap) of 29 Oct 2026; other coverage seen in search results only",
+    "headline": "South Korea bans AI glasses from its university entrance exam and promises checks at every test site",
+    "what_happened": "South Korea's education ministry added AI glasses to the list of items banned at the national university entrance exam in July 2026 and issued guidelines for handling cheating cases. On 29 October it said it would assign one inspector to each test site to check for the glasses, starting with this year's exam on 19 November, and would seek criminal prosecution of anyone caught. On 13 November the Office for Government Policy Coordination promised zero tolerance, said specialist staff would be sent to test sites, and said it would ask for an investigation into suspected cheating in this year's tax accountant exam.",
+    "why_its_good": "The authorities moved before the country's biggest exam, not after it, with a ban already in force and named checks at test sites. Students sitting the exam honestly are the ones who benefit.",
+    "bad_news": "People in South Korea have been caught or suspected of using AI glasses and other AI tools to cheat in exams, including university entrance exams, and the top score in this year's tax accountant exam (397.5 out of 400) is under suspicion.",
+    "flip_kind": "system_responding",
+    "careful": [
+      "Nobody has been caught cheating at the national entrance exam (CSAT) itself; it takes place on 19 November 2026, after these announcements. The cheating cases are from other exams.",
+      "The inspectors and specialist staff are announced plans for the 19 November exam; the sources do not show them at work yet.",
+      "The three-year exam ban is something the ministry is pushing for, not yet the rule; the current exclusion is one year.",
+      "Radio wave detectors are only under review for next year's exam.",
+      "Cheating in the tax accountant exam is suspected, not confirmed, in the article opened.",
+      "Do not mention the LEET law school test case or any police investigation of an individual; no source for those was opened.",
+      "The sources do not say how many cheating cases there have been."
+    ],
+    "topic": "everyday_life",
+    "stage": "helping_people_now",
+    "technology": "other",
+    "scores": {
+      "mass_appeal": 2,
+      "real_person_or_place": 2,
+      "stage": 3,
+      "surprise": 2
+    },
+    "sources": [
+      "https://www.koreajoongangdaily.com/korea/government-vows-zero-tolerance-against-cheating-with-ai-glasses/12971738",
+      "https://koreatimes.co.kr/southkorea/20261029/govt-to-pursue-criminal-punishment-3-year-exam-ban-for-csat-cheaters-using-ai-glasses"
+    ],
+    "total": 18
+  },
+  {
+    "key": "11-17-10",
+    "date": "2026-11-17",
+    "lane": "flip",
+    "title": "Google flags first autonomous AI cyberattack, warns of growing threats",
+    "gate": "skip",
+    "failed_gate": null,
+    "reason": "Same story as the already assessed 'Google flags first autonomous AI cyberattack'.",
+    "checked": "not opened, matched against the already assessed list"
+  },
+  {
+    "key": "11-17-11",
+    "date": "2026-11-17",
+    "lane": "flip",
+    "title": "NY Attorney General James announces new unit to oversee AI safety and enforcement",
+    "gate": "fail",
+    "failed_gate": "about_the_world",
+    "reason": "The new unit is real, but as a flip it has no single bad story from the popular news behind it; the press release says it builds on existing work and ties it to no specific incident, and the law it will mainly enforce does not start until 1 January 2027.",
+    "checked": "ag.ny.gov press release of 17 Nov 2026 (full text read) and the ag.ny.gov press release index"
+  }
+]

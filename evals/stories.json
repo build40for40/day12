@@ -1,0 +1,478 @@
+{
+  "about": "Test cases for prompts/score-story.md. Every case marked synthetic is made up to exercise one rule: the places, studies and numbers are not real and must never be published. The two real cases say where they came from.",
+  "today": "2026-11-17",
+  "cases": [
+    {
+      "id": "good-eye-screening",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "AI eye scans now catch sight loss early at Northtown Eye Hospital",
+        "summary": "Northtown Eye Hospital has used an AI system to read retinal scans in its diabetes clinic since September. A peer-reviewed audit of the first 4,000 patients found it flagged 212 people for urgent treatment who would otherwise have waited months.",
+        "published": "2026-11-10",
+        "source_type": "journal",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "pass",
+        "topic": "health",
+        "stage": "helping_people_now",
+        "min_total": 18
+      }
+    },
+    {
+      "id": "good-flood-warning",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Flood forecasts gave river villages five days to prepare",
+        "summary": "A national weather service says its machine learning flood model warned 40 villages along the Example River five days before October's floods, up from two days with the old model. An independent review by a university hydrology group confirmed the lead time.",
+        "published": "2026-11-03",
+        "source_type": "organisation",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "pass",
+        "topic": "climate_and_nature",
+        "stage": "helping_people_now",
+        "min_total": 18
+      }
+    },
+    {
+      "id": "good-describe-surroundings",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Charity's app that describes the street aloud reaches 10,000 blind users",
+        "summary": "A sight loss charity reports that 10,000 blind and partially sighted people now use its free phone app, which uses a vision model to describe what the camera sees. A published user study found most used it daily for reading post and finding bus stops.",
+        "published": "2026-10-28",
+        "source_type": "organisation",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "pass",
+        "topic": "accessibility",
+        "stage": "helping_people_now",
+        "min_total": 18
+      }
+    },
+    {
+      "id": "good-exoplanets",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Machine learning finds 12 planets hiding in old telescope data",
+        "summary": "Astronomers at the University of Example trained a model on archived space telescope data and found 12 planets that earlier searches had missed. The results are peer-reviewed and two of the planets have been confirmed by a second observatory.",
+        "published": "2026-11-12",
+        "source_type": "press_release",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "pass",
+        "topic": "space",
+        "stage": "in_the_lab",
+        "min_total": 12
+      }
+    },
+    {
+      "id": "good-crop-disease",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Farmers in a Kenyan co-op diagnose crop disease from a phone photo",
+        "summary": "A 600-member farming co-operative in western Kenya has used a free photo app, built on a machine learning model, to identify cassava disease for a year. A peer-reviewed field study found members lost a third less of their crop than neighbouring farms.",
+        "published": "2026-11-05",
+        "source_type": "journal",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "pass",
+        "topic": "everyday_life",
+        "stage": "helping_people_now",
+        "min_total": 18
+      }
+    },
+    {
+      "id": "good-screening-trial",
+      "synthetic": true,
+      "note": "A second health story, so the day mix has to choose between this and good-eye-screening.",
+      "input": {
+        "lane": "good",
+        "title": "Trial finds AI second reader catches more breast cancers",
+        "summary": "A randomised trial of 80,000 women in the Midshire screening programme found that pairing one radiologist with an AI reader found more cancers than two radiologists, with no rise in false alarms. Published in a peer-reviewed journal.",
+        "published": "2026-11-08",
+        "source_type": "journal",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "pass",
+        "topic": "health",
+        "stage": "in_a_trial",
+        "min_total": 14
+      }
+    },
+    {
+      "id": "fail-could-revolutionise",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "New AI could revolutionise dementia care",
+        "summary": "Researchers at the University of Example say a model they plan to build may one day predict dementia a decade early and promises to transform care. No results have been published yet.",
+        "published": "2026-11-14",
+        "source_type": "press_release",
+        "primary_source_checked": true,
+        "independent_source": false
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "happened"
+      }
+    },
+    {
+      "id": "fail-mouse-cure",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "AI discovers cure for arthritis",
+        "summary": "The headline says cure. The paper it links to reports that an AI-designed molecule reduced joint swelling in mice. No human has taken it.",
+        "published": "2026-11-11",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "source_checked"
+      }
+    },
+    {
+      "id": "fail-company-blog-only",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Our model cut hospital waiting times by 30%",
+        "summary": "An AI company's blog says its scheduling model cut waiting times by 30% at a partner hospital. The hospital isn't named and nobody else has reported it.",
+        "published": "2026-11-09",
+        "source_type": "company_blog",
+        "primary_source_checked": true,
+        "independent_source": false
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "independent",
+          "evidence"
+        ]
+      }
+    },
+    {
+      "id": "fail-also-uses-ai",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Northtown opens new children's ward",
+        "summary": "Northtown Hospital has opened a 30-bed children's ward with a garden and family rooms. The hospital also uses AI to draft its staff rotas.",
+        "published": "2026-11-13",
+        "source_type": "organisation",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "ai_essential"
+      }
+    },
+    {
+      "id": "fail-ordinary-statistics",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "AI reveals walking to school makes children happier",
+        "summary": "A peer-reviewed survey of 2,000 children found those who walk to school report higher wellbeing. The 'AI' in the headline is a standard regression on the survey answers.",
+        "published": "2026-11-06",
+        "source_type": "journal",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "ai_essential"
+      }
+    },
+    {
+      "id": "fail-recycled",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "AI spots rare whales from space",
+        "summary": "A conservation group's 2019 peer-reviewed result on counting whales in satellite images is being shared again this week. Nothing new has been published and it isn't in the evergreen bank.",
+        "published": "2019-10-02",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "fresh"
+      }
+    },
+    {
+      "id": "fail-preprint-only",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Model designs enzyme that eats plastic",
+        "summary": "A preprint from a university lab describes an AI-designed enzyme that breaks down a common plastic in a test tube. It hasn't been peer-reviewed and no other lab has repeated it.",
+        "published": "2026-11-15",
+        "source_type": "press_release",
+        "primary_source_checked": true,
+        "independent_source": false
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "evidence"
+      }
+    },
+    {
+      "id": "fail-jargon-benchmark",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "Sparse attention variant improves long-context retrieval by 2.3 points",
+        "summary": "A peer-reviewed paper reports a new attention mechanism that scores 2.3 points higher on a retrieval benchmark at a quarter of the memory cost.",
+        "published": "2026-11-12",
+        "source_type": "journal",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "about_the_world",
+          "plain"
+        ]
+      }
+    },
+    {
+      "id": "fail-industry-news",
+      "synthetic": true,
+      "input": {
+        "lane": "good",
+        "title": "AI startup raises record funding round and launches faster model",
+        "summary": "An AI company, Examplr, has raised a record round and released a model it says is 30% faster. Widely reported.",
+        "published": "2026-11-16",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "about_the_world"
+      }
+    },
+    {
+      "id": "flip-state-sues-lab",
+      "synthetic": false,
+      "origin": "BBC News, 16 November 2026, 'OpenAI sued by California over Hugging Face attack'. Read in full on 17 November 2026.",
+      "input": {
+        "lane": "flip",
+        "title": "OpenAI sued by California over Hugging Face attack",
+        "summary": "California's Attorney General has sued OpenAI, saying it tested AI agents without proper safeguards after experimental agents broke into Hugging Face's internal systems in July 2026. OpenAI says every major lab has identified the same challenge. The article says Anthropic, Meta and Google have also said their models staged similar attacks, and that this appears to be the first such suit by a US state.",
+        "published": "2026-11-16",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "A US state is taking an AI lab to court over safety, apparently for the first time. The source is the lawsuit itself, as reported in the article."
+      },
+      "expect": {
+        "gate": "pass",
+        "flip_kind_any_of": [
+          "system_responding",
+          "owning_up"
+        ],
+        "min_total": 12
+      }
+    },
+    {
+      "id": "flip-fail-capability-spin",
+      "synthetic": false,
+      "origin": "Same BBC article as flip-state-sues-lab, with a bad flip proposed.",
+      "input": {
+        "lane": "flip",
+        "title": "OpenAI sued by California over Hugging Face attack",
+        "summary": "California's Attorney General has sued OpenAI after experimental agents broke into Hugging Face's internal systems in July 2026.",
+        "published": "2026-11-16",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "Agents that can coordinate a two-day hack show how capable AI has become, which is exciting for what they'll do next."
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "own_fact",
+          "no_shrinking",
+          "flip_kind"
+        ]
+      }
+    },
+    {
+      "id": "flip-fail-unverified-digest",
+      "synthetic": false,
+      "origin": "Two items seen only in newsletter round-ups on 17 November 2026. Neither has been traced to a primary source, which is the point of the case.",
+      "input": {
+        "lane": "flip",
+        "title": "AI scraper bots are overwhelming research library collections",
+        "summary": "A newsletter says scraper bots are locking real users out of university library collections.",
+        "published": "2026-11-16",
+        "source_type": "newsletter",
+        "primary_source_checked": false,
+        "independent_source": false,
+        "flip_positive": "Another newsletter says four big AI companies have backed one shared signal that lets publishers opt out of scraping."
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "source_checked"
+      }
+    },
+    {
+      "id": "flip-fail-scam-victim",
+      "synthetic": true,
+      "input": {
+        "lane": "flip",
+        "title": "Pensioner loses life savings to deepfake video call",
+        "summary": "A 74-year-old in Northtown lost her savings to fraudsters who used a deepfake of her son on a video call.",
+        "published": "2026-11-14",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "Banks are trialling deepfake detection on video calls."
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "nobody_hurt"
+      }
+    },
+    {
+      "id": "flip-data-centre-water-fix",
+      "synthetic": true,
+      "input": {
+        "lane": "flip",
+        "title": "AI data centre used a fifth of drought town's water",
+        "summary": "A data centre built to train AI models in Dryford used a fifth of the town's water during a summer drought, a council report found.",
+        "published": "2026-11-07",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "The same council report confirms the operator switched to closed-loop cooling in October, cutting its water use by 80%."
+      },
+      "expect": {
+        "gate": "pass",
+        "flip_kind": "the_fix",
+        "topic": "climate_and_nature",
+        "min_total": 12
+      }
+    },
+    {
+      "id": "flip-fail-speculation",
+      "synthetic": true,
+      "input": {
+        "lane": "flip",
+        "title": "AI data centre used a fifth of drought town's water",
+        "summary": "A data centre built to train AI models in Dryford used a fifth of the town's water during a summer drought, a council report found.",
+        "published": "2026-11-07",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "AI might one day solve water shortages by designing better desalination."
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "own_fact"
+      }
+    },
+    {
+      "id": "flip-voice-cloning-other-side",
+      "synthetic": true,
+      "input": {
+        "lane": "flip",
+        "title": "Bank warns customers about voice cloning scams",
+        "summary": "A high street bank has warned that fraudsters can clone a voice from a few seconds of audio. The warning names no victims.",
+        "published": "2026-11-10",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "A motor neurone disease charity's published annual report says 300 people banked their voice with the same technology this year, so they can keep speaking in it after they lose their speech."
+      },
+      "expect": {
+        "gate": "pass",
+        "flip_kind": "same_tech_other_side",
+        "topic": "accessibility",
+        "min_total": 14
+      }
+    },
+    {
+      "id": "flip-fail-job-losses-shrunk",
+      "synthetic": true,
+      "input": {
+        "lane": "flip",
+        "title": "Firm replaces 200 call centre staff with AI",
+        "summary": "Examplr Telecom has cut 200 call centre jobs after bringing in an AI assistant.",
+        "published": "2026-11-13",
+        "source_type": "news",
+        "primary_source_checked": true,
+        "independent_source": true,
+        "flip_positive": "Customers now wait less, so the job cuts are a price worth paying for better service."
+      },
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "own_fact",
+          "no_shrinking"
+        ]
+      }
+    }
+  ],
+  "day_mix": {
+    "about": "Run the day mix over every case that passed. There is no single right five, so check the rules rather than exact picks.",
+    "rules": {
+      "count": 5,
+      "max_per_topic": 1,
+      "max_flips": 1,
+      "min_helping_people_now": 1,
+      "max_in_the_lab": 2
+    },
+    "must_not_pick_together": [
+      [
+        "good-eye-screening",
+        "good-screening-trial"
+      ],
+      [
+        "flip-state-sues-lab",
+        "flip-data-centre-water-fix"
+      ],
+      [
+        "flip-state-sues-lab",
+        "flip-voice-cloning-other-side"
+      ],
+      [
+        "flip-data-centre-water-fix",
+        "flip-voice-cloning-other-side"
+      ],
+      [
+        "good-flood-warning",
+        "flip-data-centre-water-fix"
+      ],
+      [
+        "good-describe-surroundings",
+        "flip-voice-cloning-other-side"
+      ]
+    ]
+  }
+}

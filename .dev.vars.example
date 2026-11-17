@@ -1,0 +1,4 @@
+# Copy to .dev.vars for wrangler dev. Set each one in production with: npm run wrangler -- secret put <NAME>
+PULL_TOKEN=
+POSTMARK_SERVER_TOKEN=
+EMAIL_FROM=

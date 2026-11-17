@@ -1,0 +1,144 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    1
+   ],
+   "lane": "good",
+   "story": "A new clinical trial is testing an AI phone assistant that checks in on patients living with long-term illnesses.",
+   "best_title": "New trial of AI phone assistant to monitor patients with long-term illness",
+   "publisher": "Medical Xpress",
+   "why": "The word 'trial' signals something has started; AI is clearly the monitoring tool; real patients with chronic conditions are the subject, not the AI industry itself."
+  },
+  {
+   "items": [
+    8
+   ],
+   "lane": "good",
+   "story": "A randomised clinical trial called PARAMOUNT found that AI-guided plaque-based heart care met its primary endpoint, presented at AHA 2026.",
+   "best_title": "PARAMOUNT, the First Randomized Trial of AI-Enabled Plaque-Based Care, Meets Primary Endpoint in Late-Breaking Results at AHA 2026",
+   "publisher": "Business Wire",
+   "why": "A named RCT with a reported primary endpoint is strong evidence; presented at a major cardiology conference; AI is the specific intervention, not incidental; about patient health outcomes."
+  },
+  {
+   "items": [
+    10
+   ],
+   "lane": "good",
+   "story": "WeCare's AI chatbot is currently enabling three GPs to manage a patient load of 30,000 people.",
+   "best_title": "WeCare's chatbot lets three GPs carry 30,000 patients",
+   "publisher": "B2B News",
+   "why": "Present tense 'lets' implies current deployment; specific numbers suggest real evidence; AI is the direct reason a small team can cover the load; clearly about healthcare delivery, not AI industry."
+  },
+  {
+   "items": [
+    15
+   ],
+   "lane": "good",
+   "story": "UAE researchers have built and deployed an AI system to track marine biodiversity in the Arabian Gulf.",
+   "best_title": "UAE Researchers Develop AI System to Monitor Marine Biodiversity in the Arabian Gulf",
+   "publisher": "CIVILNET",
+   "why": "Past tense 'develop' indicates completion; AI is the instrument; about environmental monitoring in a named real-world body of water, not AI industry news."
+  },
+  {
+   "items": [
+    18
+   ],
+   "lane": "good",
+   "story": "A new AI study found that severe wildfires can increase snowpack downstream, but also identified why that effect does not offset broader climate harm.",
+   "best_title": "Severe wildfire left more snow on the ground, but a new AI study shows why that is not the whole story",
+   "publisher": "Bioengineer.org",
+   "why": "Study is completed; AI drove the analysis that produced a nuanced climate finding; subject is the natural world, not the AI sector."
+  },
+  {
+   "items": [
+    19
+   ],
+   "lane": "good",
+   "story": "Agentic AI is now being used to scan radio signals as part of the search for extraterrestrial intelligence.",
+   "best_title": "Agentic AI Joins the Search for Extraterrestrial Signals",
+   "publisher": "Astrobiology Web",
+   "why": "Present-tense 'joins' implies something has started; AI is the specific new capability enabling signal analysis at scale; space/science topic well outside AI industry."
+  },
+  {
+   "items": [
+    22
+   ],
+   "lane": "good",
+   "story": "Howard University and Google Research published research aimed at reducing the bias in AI speech recognition systems that disadvantages Black American speakers.",
+   "best_title": "Howard University and Google Research Address AI Speech Bias Against Black Americans",
+   "publisher": "UNCF",
+   "why": "Research published, so something happened; AI is both the source of the problem and the site of the fix; directly concerns a named, real population; accessibility/fairness outcome."
+  },
+  {
+   "items": [
+    25
+   ],
+   "lane": "good",
+   "story": "Lighthouse Guild is deploying Meta's AI-powered smart glasses with blind veterans to help them overcome everyday barriers.",
+   "best_title": "Lighthouse Guild partners with Meta to help blind veterans overcome barriers using AI glasses",
+   "publisher": "militaryfamilies.com",
+   "why": "Partnership implies current use; real people (blind veterans) are named; AI glasses are the specific tool making the difference; accessibility outcome, not an industry announcement."
+  },
+  {
+   "items": [
+    51
+   ],
+   "lane": "good",
+   "story": "A fire department tried AI to address a longstanding recruitment problem and the headline implies it worked.",
+   "best_title": "Did Artificial Intelligence Solve the Fire Department Recruitment Conundrum?",
+   "publisher": "Firehouse.com",
+   "why": "Rhetorical 'did…?' with 'solve' implies a positive result was reported; real institution, public-safety outcome; AI is the stated reason; worth opening to confirm."
+  },
+  {
+   "items": [
+    60
+   ],
+   "lane": "good",
+   "story": "Texas A&M researchers used AI to identify new disease targets hidden among hundreds of previously mysterious proteins inside mitochondria.",
+   "best_title": "Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+   "publisher": "Texas A&M AgriLife Communications (via EurekaAlert)",
+   "why": "Clear lab result from a named institution via EurekaAlert; AI is the specific tool that made the discovery possible; medical science finding with real-world implications."
+  },
+  {
+   "items": [
+    75
+   ],
+   "lane": "good",
+   "story": "Researchers used a physics-informed AI framework to convert ordinary fibre-optic communication cables into large-scale highway traffic sensors, requiring no new infrastructure.",
+   "best_title": "Turning fiber-optic cables into traffic sensors: A new physics-informed AI approach for highway monitoring",
+   "publisher": "Tsinghua University Press (via EurekaAlert)",
+   "why": "Research result published; AI is what makes the repurposing work; everyday-life application; surprising reuse of existing cables; plainly explainable."
+  },
+  {
+   "items": [
+    6
+   ],
+   "lane": "flip",
+   "story": "Weill Cornell disclosed that radiology patients' medical records were fed into AI tools without authorisation — the institution itself made the disclosure.",
+   "best_title": "Weill Cornell Says Radiology Patients' Medical Details Were Entered Into AI Tools Without Authorization",
+   "publisher": "Medical Daily",
+   "why": "Owning-up flip: a named institution publicly disclosed its own AI data-handling failure; no patient was physically harmed; the good side — institutional transparency — is a separate documented fact, not spin."
+  },
+  {
+   "items": [
+    49
+   ],
+   "lane": "flip",
+   "story": "Employers who mandated AI tool use are now publicly admitting the approach backfired, suggesting a course-correction is under way.",
+   "best_title": "Remember When Bosses Were Forcing Their Workers to Use AI? They're Now Realizing They Made a Huge Mistake",
+   "publisher": "Futurism",
+   "why": "Owning-up flip: employers acknowledging a mistake is itself a good-side fact; widely covered bad story (forced AI mandates); no physical injury; good side is documented employer recalibration, not mere opinion."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 9,
+  "industry_news": 17,
+  "opinion_or_explainer": 24,
+  "ai_not_the_reason": 1,
+  "negative_no_flip": 2,
+  "other": 9
+ },
+ "date": "2026-11-06",
+ "n_items": 75
+}

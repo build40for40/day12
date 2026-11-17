@@ -1,0 +1,23 @@
+{
+  "name": "day12",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "wrangler": "env -u CLOUDFLARE_API_KEY -u CLOUDFLARE_EMAIL wrangler --profile 40for40",
+    "dev": "npm run wrangler -- dev",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:migrate": "npm run wrangler -- d1 migrations apply day12 --local"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.12.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261117.1",
+    "@types/node": "^24.13.4",
+    "typescript": "~6.0.0",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.164.0"
+  }
+}

@@ -1,0 +1,460 @@
+{
+  "about": "Stories surfaced by the sources card between 13 and 17 November 2026, judged by hand against docs/scoring.md. This is a manual run, not the agent: the prompt was not used to produce these verdicts.",
+  "run_on": "2026-11-17",
+  "window": [
+    "2026-11-13",
+    "2026-11-17"
+  ],
+  "sources": {
+    "eurekalert_ai_spotlight": "56 releases dated in the window, 33 of them mentioning AI. Read from the web page, since no RSS address could be found.",
+    "google_news_searches": "4 searches (health outcomes, nature and rescue, accessibility and space, general AI), about 160 headlines.",
+    "google_deepmind_blog": "1 post in the window.",
+    "good_news_network": "50 posts in the feed, 1 in the window that mentions robots, none where AI is the story.",
+    "reasons_to_be_cheerful": "10 posts in the feed, none about AI.",
+    "positive_news": "Feed blocked the request (403), so not covered.",
+    "not_covered": "NHS, NIHR, Moorfields, NASA, ESA, Met Office, Wellcome and conservation charities were not checked directly, and there were no audience submissions."
+  },
+  "totals": {
+    "assessed": 29,
+    "passed": 4,
+    "failed": 25,
+    "failed_by_gate": {
+      "about_the_world": 1,
+      "ai_essential": 3,
+      "evidence": 4,
+      "fits_140": 1,
+      "flip_kind": 1,
+      "fresh": 2,
+      "happened": 4,
+      "independent": 1,
+      "nobody_hurt": 1,
+      "own_fact": 2,
+      "source_checked": 5
+    }
+  },
+  "days": {
+    "2026-11-13": {
+      "passed": 0,
+      "picked": [],
+      "slots_to_fill_from_evergreen_bank": 5
+    },
+    "2026-11-14": {
+      "passed": 0,
+      "picked": [],
+      "slots_to_fill_from_evergreen_bank": 5
+    },
+    "2026-11-15": {
+      "passed": 0,
+      "picked": [],
+      "slots_to_fill_from_evergreen_bank": 5
+    },
+    "2026-11-16": {
+      "passed": 4,
+      "picked": [
+        "dublin-flood-warning",
+        "california-sues-openai",
+        "brain-tumour-mantis"
+      ],
+      "slots_to_fill_from_evergreen_bank": 2
+    },
+    "2026-11-17": {
+      "passed": 0,
+      "picked": [],
+      "slots_to_fill_from_evergreen_bank": 5
+    }
+  },
+  "stories": [
+    {
+      "id": "dublin-flood-warning",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "New AI warning system for flooding to be rolled out in Dublin",
+      "source": "TheJournal.ie, Silicon Republic",
+      "url": "https://www.thejournal.ie/dublin-ai-flood-warning-system-7227372-Nov2026/",
+      "gate": "pass",
+      "failed_gate": null,
+      "topic": "climate_and_nature",
+      "stage": "in_a_trial",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 3,
+        "stage": 2,
+        "surprise": 1
+      },
+      "total": 20,
+      "line": "Dublin is switching on an AI flood warning this week. In tests on past storms it spotted some floods 13 to 21 hours ahead.",
+      "checked": "Read both articles in full.",
+      "note": "Borderline on the 'it happened' gate: the pilot starts this week and the 13 to 21 hours comes from tests on historical events, as reported by the supplier. No live warning has been issued yet."
+    },
+    {
+      "id": "brain-tumour-mantis",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "AI may help tailor treatment for childhood brain tumors",
+      "source": "Dana-Farber release on EurekAlert (Nature Genetics), picked up by Harvard on 16 Nov",
+      "url": "https://www.eurekalert.org/news-releases/1150309",
+      "gate": "pass",
+      "failed_gate": null,
+      "topic": "health",
+      "stage": "in_the_lab",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 2,
+        "real_person_or_place": 2,
+        "stage": 1,
+        "surprise": 2
+      },
+      "total": 14,
+      "line": "Doctors built an AI that predicts how a child's brain tumour will go, better than today's methods. The aim is gentler treatment.",
+      "checked": "Read the release in full. The journal paper itself was not opened.",
+      "note": "The release is dated 3 November and surfaced in the news search on 16 November."
+    },
+    {
+      "id": "dystonia-surgery-prediction",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "Novel algorithm predicts brain surgery outcomes in dystonia patients",
+      "source": "Mass General Brigham release on EurekAlert (npj Digital Medicine)",
+      "url": "https://www.eurekalert.org/news-releases/1152093",
+      "gate": "pass",
+      "failed_gate": null,
+      "topic": "health",
+      "stage": "in_the_lab",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 1,
+        "real_person_or_place": 1,
+        "stage": 1,
+        "surprise": 2
+      },
+      "total": 9,
+      "line": "An AI can read a brain scan and tell which people with dystonia are likely to benefit from brain surgery, before anyone operates.",
+      "checked": "Read the release in full. The journal paper itself was not opened.",
+      "note": null
+    },
+    {
+      "id": "california-sues-openai",
+      "surfaced": "2026-11-16",
+      "lane": "flip",
+      "title": "OpenAI sued by California over Hugging Face attack",
+      "source": "BBC News",
+      "url": "https://www.bbc.co.uk/news/articles/c6wy4xv2mxglo",
+      "gate": "pass",
+      "failed_gate": null,
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "flip_kind": "system_responding",
+      "scores": {
+        "mass_appeal": 2,
+        "real_person_or_place": 2,
+        "stage": 3,
+        "surprise": 3
+      },
+      "total": 19,
+      "line": "California is taking OpenAI to court after its test agents hacked another company. Scary story, but someone is holding AI labs to account.",
+      "checked": "Read the article in full.",
+      "note": "For a flip the last score is how well known the bad story is. The stage tag fits flips badly, see the findings."
+    },
+    {
+      "id": "malawi-blind-classroom",
+      "surfaced": "2026-11-17",
+      "lane": "good",
+      "title": "Malawian innovator uses AI to improve learning for blind students",
+      "source": "TVC News, Al Jazeera short; D+C feature",
+      "url": "https://www.dandc.eu/en/article/malawi-tool-blind%20students",
+      "gate": "fail",
+      "failed_gate": "fresh",
+      "reason": "Strong story with a named pupil whose grades improved, but it has been public since at least March 2026. Best candidate for the evergreen bank.",
+      "checked": "Read the D+C feature (dated 11 March 2026)."
+    },
+    {
+      "id": "visual-cortex-implant",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "AI made a visual-cortex implant more precise in one blind man",
+      "source": "Medical Daily; study in Neuron",
+      "url": "https://cs.ucsb.edu/happenings/announcement/ai-closed-loop-vision-implant-study-co-led-ucsb",
+      "gate": "fail",
+      "failed_gate": "fresh",
+      "reason": "The study was published in early August 2026, just over 90 days ago. One participant, and it did not restore sight.",
+      "checked": "Search summary of the university announcement only."
+    },
+    {
+      "id": "nhs-dora-care",
+      "surfaced": "2026-11-13",
+      "lane": "good",
+      "title": "NHS trials AI phone assistant for patients with long-term illness",
+      "source": "University of York",
+      "url": "https://www.york.ac.uk/news-and-events/news/2026/research/nhs-trials-ai-phone-assistant-long-term-illness/",
+      "gate": "fail",
+      "failed_gate": "happened",
+      "reason": "A two-year trial is starting for people with osteoporosis. There are no results yet.",
+      "checked": "Read the university page."
+    },
+    {
+      "id": "khushi-tb-chatbot",
+      "surfaced": "2026-11-17",
+      "lane": "good",
+      "title": "Khushi chatbot uses BharatGPT to help TB patients find care",
+      "source": "YourStory",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "Could not open the article or an official page with a launch date. Search results disagree on details such as 12 or 15 languages.",
+      "checked": "Search summaries only."
+    },
+    {
+      "id": "teen-wildfire-royals",
+      "surfaced": "2026-11-17",
+      "lane": "good",
+      "title": "Prince William and Kate back teen's wildfire breakthrough",
+      "source": "Minute Mirror",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "No other report of this could be found.",
+      "checked": "Search only."
+    },
+    {
+      "id": "starlinc-satellite-trails",
+      "surfaced": "2026-11-15",
+      "lane": "good",
+      "title": "SNU's STARLINC AI filters Starlink trails from telescope data",
+      "source": "DongA Science",
+      "url": "https://arxiv.org/pdf/2608.29145",
+      "gate": "fail",
+      "failed_gate": "evidence",
+      "reason": "Preprint only.",
+      "checked": "Search result shows an arXiv preprint."
+    },
+    {
+      "id": "kaist-lip-reading",
+      "surfaced": "2026-11-14",
+      "lane": "good",
+      "title": "KAIST develops lip-reading AI",
+      "source": "KAIST release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1151777",
+      "gate": "fail",
+      "failed_gate": "evidence",
+      "reason": "The release links to an arXiv preprint, and the benefit for deaf people is described as expected, not shown.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "esc-heart-attack-prediction",
+      "surfaced": "2026-11-13",
+      "lane": "good",
+      "title": "Machine-learning models accurately predict mortality after a heart attack",
+      "source": "European Society of Cardiology release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1151659",
+      "gate": "fail",
+      "failed_gate": "evidence",
+      "reason": "Conference presentation, not peer-reviewed. The release says studies are still needed to see if it helps patients.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "esc-heart-age",
+      "surfaced": "2026-11-13",
+      "lane": "good",
+      "title": "Older AI-estimated heart age linked with cardiovascular and dementia death",
+      "source": "European Society of Cardiology release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1151685",
+      "gate": "fail",
+      "failed_gate": "evidence",
+      "reason": "Conference presentation, and it reports an association, not a benefit to anyone.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "esc-heart-failure-app",
+      "surfaced": "2026-11-13",
+      "lane": "good",
+      "title": "Mobile app and telemonitoring improves quality of life in heart failure",
+      "source": "European Society of Cardiology release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1151662",
+      "gate": "fail",
+      "failed_gate": "ai_essential",
+      "reason": "A telemonitoring programme run by specialists. AI is not what made the difference.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "uc-davis-infant-telehealth",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "Telehealth assessment of infant development reliable",
+      "source": "UC Davis Health release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1152097",
+      "gate": "fail",
+      "failed_gate": "ai_essential",
+      "reason": "A video-call assessment tool. No AI involved.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "tokyo-robot-bins",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "Tokyo tackles trash troubles with robotic street waste bins",
+      "source": "Good News Network",
+      "url": "https://www.goodnewsnetwork.org/tokyo-tackles-trash-troubles-with-new-generation-of-robotic-street-waste-bins/",
+      "gate": "fail",
+      "failed_gate": "ai_essential",
+      "reason": "Solar-powered compacting bins and robots. AI is not the reason for the story.",
+      "checked": "Read the article."
+    },
+    {
+      "id": "deepmind-weather-datasets",
+      "surfaced": "2026-11-13",
+      "lane": "good",
+      "title": "Opening the datasets behind our AI weather models",
+      "source": "Google DeepMind blog",
+      "url": "https://deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models/",
+      "gate": "fail",
+      "failed_gate": "about_the_world",
+      "reason": "A dataset release for researchers, from a company blog with no independent source.",
+      "checked": "Read the post."
+    },
+    {
+      "id": "tokyo-heat-layers",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "Upside-down atomic layers could steer heat in stacked computer chips",
+      "source": "University of Tokyo release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1152005",
+      "gate": "fail",
+      "failed_gate": "fits_140",
+      "reason": "Can't be said plainly in 140 characters, and nothing has changed outside the lab.",
+      "checked": "Listing summary only."
+    },
+    {
+      "id": "loughborough-flood-fellowship",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "Loughborough researcher awarded Turing AI Fellowship to transform flood forecasting",
+      "source": "Loughborough University",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "happened",
+      "reason": "A grant award. Nothing has happened yet.",
+      "checked": "Headline only."
+    },
+    {
+      "id": "one-nz-nature-fund",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "One NZ launches fund to back AI-powered conservation projects",
+      "source": "One NZ, Reseller News",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "happened",
+      "reason": "A fund launch. No project has delivered anything yet.",
+      "checked": "Headline only."
+    },
+    {
+      "id": "heart-signal-sudden-death",
+      "surfaced": "2026-11-15",
+      "lane": "good",
+      "title": "AI discovers a hidden heart signal that could predict sudden death",
+      "source": "Science Daily",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "happened",
+      "reason": "Headline is a 'could'.",
+      "checked": "Headline only."
+    },
+    {
+      "id": "tom-health-er-trips",
+      "surfaced": "2026-11-16",
+      "lane": "good",
+      "title": "AI startup Tom Health cuts ER trips by 28%",
+      "source": "PYMNTS",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "independent",
+      "reason": "A company's own claim. No independent source found.",
+      "checked": "Headline only."
+    },
+    {
+      "id": "library-scraper-bots",
+      "surfaced": "2026-11-16",
+      "lane": "flip",
+      "title": "AI scraper bots are overwhelming research library collections",
+      "source": "CBC, seen only through round-ups",
+      "url": "https://www.editorandpublisher.com/stories/major-ai-companies-back-shared-signal-allowing-publishers-to-opt-out-of-training-crawlers,264365",
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "The CBC report could not be opened. The good side is real (four AI companies backed a shared opt-out signal on 30 October), but coverage says it is voluntary and does not cover the third-party bots causing the problem, so it would also fail 'doesn't shrink the harm'.",
+      "checked": "Read the Editor and Publisher piece on the opt-out. The CBC story only through summaries."
+    },
+    {
+      "id": "google-ai-cyberattack",
+      "surfaced": "2026-11-17",
+      "lane": "flip",
+      "title": "Google flags first autonomous AI cyberattack",
+      "source": "UPI, Business Standard",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "Could not find the November report. Search results point to a similar Google report from May 2026. If confirmed, 'Google stopped it before any damage' would be a strong flip.",
+      "checked": "Search only."
+    },
+    {
+      "id": "marsh-cyber-incidents",
+      "surfaced": "2026-11-17",
+      "lane": "flip",
+      "title": "AI advances coincide with sharp rise in cyber incidents, Marsh data shows",
+      "source": "Reuters",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "Could not find the article or the Marsh data behind it.",
+      "checked": "Search only."
+    },
+    {
+      "id": "csam-reports-rise",
+      "surfaced": "2026-11-16",
+      "lane": "flip",
+      "title": "Reports of AI-related child sexual abuse material rise 8,400% in two years",
+      "source": "The Guardian",
+      "url": null,
+      "gate": "fail",
+      "failed_gate": "nobody_hurt",
+      "reason": "Child abuse. Never flipped.",
+      "checked": "Headline only."
+    },
+    {
+      "id": "data-centre-energy",
+      "surfaced": "2026-11-16",
+      "lane": "flip",
+      "title": "Hyperscale data centres use as much electricity as US states",
+      "source": "Harvard release on EurekAlert (Nature Sustainability)",
+      "url": "https://www.eurekalert.org/news-releases/1150191",
+      "gate": "fail",
+      "failed_gate": "own_fact",
+      "reason": "No documented good side found. The study is only the measurement.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "climate-misinformation-pressure",
+      "surfaced": "2026-11-16",
+      "lane": "flip",
+      "title": "AI systems are easy to pressure into giving false climate information",
+      "source": "UCL release on EurekAlert (UNESCO report)",
+      "url": "https://www.eurekalert.org/news-releases/1151704",
+      "gate": "fail",
+      "failed_gate": "flip_kind",
+      "reason": "The report does say the best models get basic climate facts right 88% to 96% of the time, but that is not a response, a disclosure, a fix or another use of the technology.",
+      "checked": "Read the release."
+    },
+    {
+      "id": "deepfake-hyperreal",
+      "surfaced": "2026-11-16",
+      "lane": "flip",
+      "title": "Deepfake faces appear hyperreal, brain scans may explain why",
+      "source": "University of Florida release on EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1152067",
+      "gate": "fail",
+      "failed_gate": "own_fact",
+      "reason": "No documented good side found, and the context is scams against older people.",
+      "checked": "Read the release."
+    }
+  ]
+}

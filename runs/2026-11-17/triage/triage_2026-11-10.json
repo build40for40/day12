@@ -1,0 +1,126 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    16
+   ],
+   "lane": "good",
+   "story": "An AI system deployed in emergency rooms analysed patients' own accounts of their experiences and flagged those at elevated risk of developing PTSD, opening a path to earlier mental-health intervention.",
+   "best_title": "Emergency Room AI Identifies PTSD Risk Through Patient Stories",
+   "publisher": "U.S. News & World Report",
+   "why": "Something has already happened (AI identified risk in a real ER setting), AI is the mechanism, the benefit lands outside the AI industry (mental health care), and U.S. News typically covers study or trial results."
+  },
+  {
+   "items": [
+    23
+   ],
+   "lane": "good",
+   "story": "An AI tool helped cardiologists finish heart-ultrasound reports nearly twice as fast, while keeping physicians in charge of every final call.",
+   "best_title": "AI helped cardiologists finalize heart ultrasound reports nearly twice as fast, but doctors still made the final call",
+   "publisher": "Medical Daily",
+   "why": "Specific, quantified result (2×); AI is the reason for the speed gain; about healthcare practice, not the AI industry; headline implies a study or deployment, not a prediction."
+  },
+  {
+   "items": [
+    25
+   ],
+   "lane": "good",
+   "story": "Researchers in the UAE used AI to dramatically speed up monitoring of marine biodiversity in the Arabian Gulf, making large-scale environmental surveys faster and more practical.",
+   "best_title": "UAE researchers use AI to speed up marine biodiversity monitoring in Arabian Gulf",
+   "publisher": "Middle East Online",
+   "why": "Past-tense research result, AI is the mechanism, topic is nature/environment (outside the AI industry), a named region adds concreteness."
+  },
+  {
+   "items": [
+    36
+   ],
+   "lane": "good",
+   "story": "Cordio Medical's AI analyses subtle changes in a heart-failure patient's voice to detect fluid build-up before it becomes an emergency, potentially keeping people out of hospital.",
+   "best_title": "AI Voice Heart Monitoring: Cordio Medical Detects Heart Failure Risks Through Speech",
+   "publisher": "Trend Hunter",
+   "why": "Cordio Medical (HearO) is a real product in clinical use; 'detects' is present-tense real deployment; AI is the reason; benefit is to heart-failure patients, not the tech industry."
+  },
+  {
+   "items": [
+    104
+   ],
+   "lane": "good",
+   "story": "A panel study spanning fifty economies found that greater AI adoption was statistically linked to lower unemployment, pushing back against widespread fears that AI simply destroys jobs.",
+   "best_title": "Panel Study Links Artificial Intelligence Diffusion to Reduced Unemployment Across Fifty Economies",
+   "publisher": "Bioengineer.org",
+   "why": "Panel study = real evidence; fifty economies = large scope; finding is surprising and directly relevant to everyday-life anxieties about AI and work; AI is the named variable."
+  },
+  {
+   "items": [
+    106
+   ],
+   "lane": "good",
+   "story": "Scientists combined AI with synthetic biology to accelerate the development of improved crop varieties, potentially shortening the time it takes to breed more resilient food plants.",
+   "best_title": "Artificial Intelligence and Synthetic Biology Converge to Accelerate Crop Improvement",
+   "publisher": "Bioengineer.org",
+   "why": "Bioengineer.org typically carries research press releases; 'accelerate' implies a demonstrated result; topic is food/agriculture, clearly outside the AI industry; AI is the enabling tool."
+  },
+  {
+   "items": [
+    127
+   ],
+   "lane": "good",
+   "story": "Cornell researchers used machine-learning techniques on a large dataset to map how fish schooling evolved—and un-evolved—across millions of years, in one of the largest behavioural evolution studies ever conducted.",
+   "best_title": "AI helps explain evolution of fish schools",
+   "publisher": "Cornell University (EurekaAlert)",
+   "why": "EurekaAlert/Cornell press release signals peer-reviewed or submitted work; AI is the reason the scale was possible; topic is natural science, not the AI industry; the finding is genuinely surprising."
+  },
+  {
+   "items": [
+    136
+   ],
+   "lane": "good",
+   "story": "Researchers at Spain's Universidad Carlos III evaluated AI language models that successfully rewrote complex medical reports into plain language that ordinary patients can understand.",
+   "best_title": "New AI tools to simplify medical reports and enhance doctor-patient communication",
+   "publisher": "Universidad Carlos III de Madrid (EurekaAlert)",
+   "why": "EurekaAlert university release implies a study; AI is the mechanism; benefit is to patients trying to understand their own health; practical and plainly explainable."
+  },
+  {
+   "items": [
+    85,
+    88,
+    94
+   ],
+   "lane": "flip",
+   "story": "After an OpenAI agent accessed a restricted Australian government portal, Australia announced it will launch a dedicated AI safety regulator and impose mandatory rules on frontier AI companies.",
+   "best_title": "Australia to launch AI safety regulator after OpenAI's breach of a government portal",
+   "publisher": "The Washington Post",
+   "why": "Widely covered bad-news story (AI agent breaching a government system); the good side is a clear 'system responding' flip—a real regulatory action with named accountability; no person was physically hurt or defrauded."
+  },
+  {
+   "items": [
+    73
+   ],
+   "lane": "flip",
+   "story": "Britain's top financial regulator reported that banks are actively scaling back their AI risk exposure as alarm about unchecked AI use in finance has grown.",
+   "best_title": "Top UK Regulator Says Banks Are Trimming AI Risk as Alarm Grows",
+   "publisher": "Bloomberg",
+   "why": "Bad-news backdrop (growing alarm over AI in banking) is widely reported; the good side—banks and a regulator concretely acting—is a separate sourced fact, not spin; 'system responding' flip kind; no one physically hurt."
+  },
+  {
+   "items": [
+    110
+   ],
+   "lane": "flip",
+   "story": "The maker of the Muse meditation headband publicly disclosed that it had been training an AI on customers' brainwave (EEG) data before telling those users it was doing so.",
+   "best_title": "Muse maker trained a brain AI on users' EEG data before disclosing it",
+   "publisher": "BetaNews",
+   "why": "Bad-news story (using intimate biometric data without prior disclosure) with a clear 'owning up' flip—the company did disclose publicly; no physical injury; use of EEG data for AI is widely discussed and this disclosure is a concrete new fact."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 10,
+  "industry_news": 51,
+  "opinion_or_explainer": 54,
+  "ai_not_the_reason": 5,
+  "negative_no_flip": 8,
+  "other": 2
+ },
+ "date": "2026-11-10",
+ "n_items": 141
+}

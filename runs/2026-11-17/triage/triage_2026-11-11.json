@@ -1,0 +1,126 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    3
+   ],
+   "lane": "good",
+   "story": "AI analysis of heart MRI measurements improved mortality prediction beyond existing methods.",
+   "best_title": "AI Heart MRI Measurements Improve Mortality Prediction",
+   "publisher": "EMJ",
+   "why": "Study result, AI-derived cardiac measurements predict death risk better than current tools, happened, health world impact, AI is the reason."
+  },
+  {
+   "items": [
+    4
+   ],
+   "lane": "good",
+   "story": "An AI tool that analyzes patients' clinical histories helped doctors diagnose rare genetic diseases earlier.",
+   "best_title": "An AI tool helps with the early diagnosis of genetic diseases by analyzing patients' clinical trajectories",
+   "publisher": "Fundació Puigvert",
+   "why": "Clinical tool developed and tested at a hospital; happened, AI is the reason, real-world health impact, likely study or pilot evidence."
+  },
+  {
+   "items": [
+    11
+   ],
+   "lane": "good",
+   "story": "An AI-derived inflammation score from imaging improved cardiovascular risk prediction beyond the standard coronary artery calcium test.",
+   "best_title": "AI-derived inflammation score improves cardiovascular risk prediction beyond CAC",
+   "publisher": "Radiology Business",
+   "why": "Study result comparing AI score against established benchmark; happened, AI is the reason, real clinical impact, different mechanism from #3."
+  },
+  {
+   "items": [
+    28,
+    130
+   ],
+   "lane": "good",
+   "story": "Researchers at Graz University of Technology published an AI toolbox (CLARA) that accelerates bioreactor simulations by up to 10,000 times without sacrificing physical accuracy.",
+   "best_title": "AI tool CLARA accelerates the development of bioreactors",
+   "publisher": "Bioengineer.org (EurekaAlert)",
+   "why": "Peer-reviewed publication, striking quantified result, AI is the reason, could significantly speed up development of biotech products and medicines."
+  },
+  {
+   "items": [
+    38,
+    41
+   ],
+   "lane": "good",
+   "story": "Visually impaired veterans used AI-powered glasses to experience Washington DC war memorials, including details invisible to them before.",
+   "best_title": "AI glasses offer visually impaired veterans a new way to see DC war memorials",
+   "publisher": "Stars and Stripes",
+   "why": "Real named people (veterans) benefiting from AI accessibility tech in actual use; real place, mass appeal, happened, AI is the reason."
+  },
+  {
+   "items": [
+    64
+   ],
+   "lane": "good",
+   "story": "AI analysis independently validated a foundational theory in fundamental physics, confirming its trustworthiness through computational proof.",
+   "best_title": "AI has proved that a theory underpinning fundamental physics is trustworthy",
+   "publisher": "The Economist",
+   "why": "Happened, AI is the reason (independent computational verification), about the world of science, surprising result with credible publisher."
+  },
+  {
+   "items": [
+    99
+   ],
+   "lane": "good",
+   "story": "Citrus County Sheriff's Office deployed AI to screen incoming calls, freeing human dispatchers to focus on genuine emergencies.",
+   "best_title": "Citrus County Sheriff's Office using AI to help screen calls, save time for emergencies",
+   "publisher": "Bay News 9",
+   "why": "In real use, real named place, public safety benefit, AI is the reason, happened — strong 'helping people now' candidate."
+  },
+  {
+   "items": [
+    126
+   ],
+   "lane": "good",
+   "story": "A randomized controlled trial found nurses using a guideline-informed AI chat system reported less mental effort, lower task difficulty, and higher confidence on clinical decisions.",
+   "best_title": "Guideline-informed AI chat associated with lower mental effort, task difficulty, and higher confidence among home-visit nurses",
+   "publisher": "Osaka Metropolitan University (EurekaAlert)",
+   "why": "RCT evidence, AI is the reason, real professionals (nurses) measurably supported, happened — strong on evidence gate."
+  },
+  {
+   "items": [
+    129
+   ],
+   "lane": "good",
+   "story": "Uppsala University researchers combined live brain-tissue imaging with AI to track exactly how individual glioblastoma cells spread and change behavior, revealing mechanisms previously invisible.",
+   "best_title": "New method reveals how brain cancer cells spread",
+   "publisher": "Uppsala University (EurekaAlert)",
+   "why": "Research published, AI is a key enabling component, reveals cancer biology that could inform future treatment; happened, evidence present."
+  },
+  {
+   "items": [
+    131
+   ],
+   "lane": "good",
+   "story": "Spanish researchers found that self-configuring AI software could detect stroke-related vascular damage in routine brain MRI scans that require no contrast dye.",
+   "best_title": "Detection of vascular pathologies in non-contrast magnetic resonance images for early screening",
+   "publisher": "Bentham Science Publishers (EurekaAlert)",
+   "why": "Comparative study with real clinical question; AI detects damage in standard scans already in clinical use, no extra procedure needed — accessibility angle is strong."
+  },
+  {
+   "items": [
+    76
+   ],
+   "lane": "flip",
+   "story": "United Airlines banned AI bots from its booking system after they were used to game flight reservations.",
+   "best_title": "United Airlines Is Banning AI Bots From Booking Flights",
+   "publisher": "WSJ",
+   "why": "Bad news: AI bots exploiting airline booking at scale. Good side: a major carrier took concrete defensive action — flip kind 'system is responding'. Nobody physically hurt; ban is an independent verified fact; WSJ exclusive gives wide reach."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 12,
+  "industry_news": 62,
+  "opinion_or_explainer": 30,
+  "ai_not_the_reason": 8,
+  "negative_no_flip": 7,
+  "other": 3
+ },
+ "date": "2026-11-11",
+ "n_items": 135
+}

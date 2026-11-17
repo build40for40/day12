@@ -1,0 +1,165 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    1,
+    3
+   ],
+   "lane": "good",
+   "story": "The NHS is trialling an AI phone assistant to remotely monitor patients with long-term conditions, backed by the University of York.",
+   "best_title": "NHS trials AI phone assistant to monitor patients with long-term illness",
+   "publisher": "University of York",
+   "why": "Named health system in an active trial, specific university involved, real patients with chronic conditions; AI is the monitoring mechanism; plausibly evidence-backed."
+  },
+  {
+   "items": [
+    2
+   ],
+   "lane": "good",
+   "story": "A study found that AI analysis of cardiac MRI scans improves prediction of patient mortality compared with standard approaches.",
+   "best_title": "AI Marginally Improves Mortality Prediction from Cardiac MRI",
+   "publisher": "Inside Precision Medicine",
+   "why": "Reports a measured study result; AI is the tool; clinical application outside the AI industry; 'marginally improves' signals a real, cautious finding rather than hype."
+  },
+  {
+   "items": [
+    5
+   ],
+   "lane": "good",
+   "story": "Doctors using an AI documentation tool say it frees them to focus on listening to patients rather than taking notes during consultations.",
+   "best_title": "Doctors report using AI tool means they can listen to patients",
+   "publisher": "Bristol Live",
+   "why": "Real clinicians reporting a real outcome in routine use; AI transcription/documentation tools are deployed in UK primary care; directly about patient care quality."
+  },
+  {
+   "items": [
+    7
+   ],
+   "lane": "good",
+   "story": "An AI-powered glucose monitor has been made available to NHS patients across Devon.",
+   "best_title": "AI glucose monitor now available on the NHS for patients across Devon",
+   "publisher": "Exmouth Journal",
+   "why": "Named NHS region, specific device in real use rather than announced; AI is the reason for the monitoring capability; concrete benefit for patients managing blood sugar."
+  },
+  {
+   "items": [
+    10
+   ],
+   "lane": "good",
+   "story": "An AI environmental monitoring system detected a hidden sewage pipe burst in a field in Bournemouth before it could cause wider damage.",
+   "best_title": "AI monitoring system spots hidden sewage pipe burst in field next to alpacas",
+   "publisher": "Bournemouth Echo",
+   "why": "Specific real event, named location, AI as the detection tool catching something invisible to human inspection; environmental/infrastructure benefit; plausibly in active deployment."
+  },
+  {
+   "items": [
+    12
+   ],
+   "lane": "good",
+   "story": "A team at Rensselaer Polytechnic Institute built an AI model shown to screen for Parkinson's disease more effectively at an early stage.",
+   "best_title": "RPI Team Builds AI Model for More Effective Early Parkinson's Screening",
+   "publisher": "Newswise",
+   "why": "Named university, specific disease with a known early-detection problem, specific performance claim; AI is the screening tool; plausibly backed by a published result."
+  },
+  {
+   "items": [
+    13
+   ],
+   "lane": "good",
+   "story": "Researchers demonstrated that AI can estimate a cancer patient's survival risk from a single photograph, without invasive testing.",
+   "best_title": "AI can estimate cancer patients' survival risk from a single photo",
+   "publisher": "Griffon News",
+   "why": "A demonstrated capability rather than a forecast; non-invasive approach is a real departure from current practice; AI is the reason it works; plausibly a published study result."
+  },
+  {
+   "items": [
+    18
+   ],
+   "lane": "good",
+   "story": "Banner Health is using an AI system to support care for heart patients in the Sun Cities area of Arizona.",
+   "best_title": "Banner Health using AI for heart patients in the Sun Cities",
+   "publisher": "Your Valley",
+   "why": "Named health system, named community, heart patients are a large and relatable group; phrasing suggests active use rather than a future plan."
+  },
+  {
+   "items": [
+    24
+   ],
+   "lane": "good",
+   "story": "Mayo Clinic's AI model identified patients at elevated risk of pancreatic cancer years before they received an actual diagnosis.",
+   "best_title": "Mayo Clinic AI Model Spotted Pancreatic Cancer Risk Years Before Patients Were Diagnosed",
+   "publisher": "AOL.com",
+   "why": "Named leading institution, the most lethal common cancer (notorious for late detection), a concrete time advantage ('years before'); AI is the reason early detection was possible."
+  },
+  {
+   "items": [
+    30
+   ],
+   "lane": "good",
+   "story": "A Nature-published study empirically validated an AI-IoT system for predicting and preventing deterioration of tropical heritage building facades, tested at multiple sites in Indonesia.",
+   "best_title": "A hybrid AI-IoT framework for predictive conservation of tropical heritage façades: empirical validation from a multi-site study in Indonesia",
+   "publisher": "Nature",
+   "why": "Nature publication, multi-site empirical validation, named country, real heritage buildings at risk; AI is the prediction engine; conservation benefit is tangible."
+  },
+  {
+   "items": [
+    33
+   ],
+   "lane": "good",
+   "story": "IFPRI researchers showed that AI speech technologies can enable far more women to access agricultural advisory services than is possible through human-only outreach.",
+   "best_title": "Listening at scale: Advancing women's participation in agricultural advisory through AI speech technologies",
+   "publisher": "IFPRI",
+   "why": "Reputable international research institution, specific beneficiary group (rural women), specific mechanism (AI speech); plausibly grounded in field evidence given IFPRI's methods."
+  },
+  {
+   "items": [
+    68
+   ],
+   "lane": "good",
+   "story": "AI analysis guided researchers to previously hidden disease targets inside mitochondria, opening new directions for treatment.",
+   "best_title": "Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+   "publisher": "AgriLife Today",
+   "why": "Texas A&M research news outlet typically reports published studies; specific biological finding (mitochondrial targets); AI is the discovery tool; real consequence for drug development."
+  },
+  {
+   "items": [
+    73
+   ],
+   "lane": "good",
+   "story": "Researchers used plain-language-guided generative AI to design multiple classes of metamaterials, with results published in Nature.",
+   "best_title": "Language-guided inverse design of multiclass metamaterials using generative artificial intelligence",
+   "publisher": "Nature",
+   "why": "Nature publication, specific materials science application, AI is the design tool enabling a new class of materials; could accelerate engineering with broad downstream uses."
+  },
+  {
+   "items": [
+    116
+   ],
+   "lane": "good",
+   "story": "Researchers developed a machine-learning framework that accurately maps soil organic matter across regions with mixed soil types, improving agricultural and environmental monitoring.",
+   "best_title": "Zoning-based machine learning framework for accurate soil organic matter prediction across Mollisol and non-Mollisol regions",
+   "publisher": "KeAi Communications Co., Ltd.",
+   "why": "Peer-reviewed scientific publication, specific agricultural/environmental application, ML is the reason for improved accuracy over existing methods; soil health links to food security and carbon tracking."
+  },
+  {
+   "items": [
+    105
+   ],
+   "lane": "flip",
+   "story": "Google confirmed it has set Gemini and Search AI tools to off by default in schools and that schools control whether to enable them, responding to widespread controversy about AI being pushed on children.",
+   "best_title": "Schools are in control, Gemini and Search off by default: Google says amid controversy over Artificial Intelligence",
+   "publisher": "Livemint",
+   "why": "The fix: a concrete protective measure shipped in response to a widely-covered controversy about AI in classrooms; no child was physically harmed in the underlying story; the opt-in default and school control are separate, verifiable facts distinct from the bad news."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 14,
+  "industry_news": 38,
+  "opinion_or_explainer": 32,
+  "ai_not_the_reason": 9,
+  "negative_no_flip": 6,
+  "other": 2
+ },
+ "date": "2026-11-04",
+ "n_items": 117
+}

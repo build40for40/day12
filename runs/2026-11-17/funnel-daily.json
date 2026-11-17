@@ -1,0 +1,156 @@
+{
+ "2026-11-04": {
+  "gn_raw": 151,
+  "gn_unique": 149,
+  "gn_ai": 106,
+  "gn_ai_outcome": 30,
+  "eure": 23,
+  "eure_ai": 11,
+  "eure_ai_journal": 8,
+  "rtbc": 1
+ },
+ "2026-11-05": {
+  "gn_raw": 144,
+  "gn_unique": 80,
+  "gn_ai": 67,
+  "gn_ai_outcome": 21,
+  "eure": 26,
+  "eure_ai": 17,
+  "eure_ai_journal": 14,
+  "dm": 1,
+  "rtbc": 1
+ },
+ "2026-11-06": {
+  "gn_raw": 134,
+  "gn_unique": 69,
+  "gn_ai": 59,
+  "gn_ai_outcome": 18,
+  "eure": 23,
+  "eure_ai": 16,
+  "eure_ai_journal": 10,
+  "rtbc": 1
+ },
+ "2026-11-07": {
+  "gn_raw": 124,
+  "gn_unique": 94,
+  "gn_ai": 73,
+  "gn_ai_outcome": 9,
+  "gnn": 2
+ },
+ "2026-11-08": {
+  "gn_raw": 127,
+  "gn_unique": 92,
+  "gn_ai": 61,
+  "gn_ai_outcome": 10,
+  "eure": 7,
+  "eure_ai": 4,
+  "eure_ai_journal": 3,
+  "gnn": 4
+ },
+ "2026-11-09": {
+  "gn_raw": 171,
+  "gn_unique": 143,
+  "gn_ai": 103,
+  "gn_ai_outcome": 20,
+  "gn_capped": 1,
+  "eure": 22,
+  "eure_ai": 14,
+  "eure_ai_journal": 9,
+  "dm": 1,
+  "gnn": 6,
+  "gnn_ai": 1,
+  "rtbc": 1
+ },
+ "2026-11-10": {
+  "gn_raw": 163,
+  "gn_unique": 149,
+  "gn_ai": 124,
+  "gn_ai_outcome": 27,
+  "gn_capped": 1,
+  "eure": 24,
+  "eure_ai": 14,
+  "eure_ai_journal": 8,
+  "dm": 3,
+  "gnn": 5
+ },
+ "2026-11-11": {
+  "gn_raw": 164,
+  "gn_unique": 154,
+  "gn_ai": 116,
+  "gn_ai_outcome": 18,
+  "gn_capped": 1,
+  "eure": 34,
+  "eure_ai": 18,
+  "eure_ai_journal": 14,
+  "dm": 1,
+  "gnn": 6,
+  "rtbc": 1
+ },
+ "2026-11-12": {
+  "gn_raw": 162,
+  "gn_unique": 148,
+  "gn_ai": 107,
+  "gn_ai_outcome": 26,
+  "gn_capped": 1,
+  "eure": 31,
+  "eure_ai": 15,
+  "eure_ai_journal": 8,
+  "dm": 1,
+  "gnn": 6,
+  "rtbc": 1
+ },
+ "2026-11-13": {
+  "gn_raw": 181,
+  "gn_unique": 169,
+  "gn_ai": 127,
+  "gn_ai_outcome": 27,
+  "gn_capped": 1,
+  "eure": 20,
+  "eure_ai": 12,
+  "eure_ai_journal": 2,
+  "gnn": 5,
+  "rtbc": 1
+ },
+ "2026-11-14": {
+  "gn_raw": 152,
+  "gn_unique": 145,
+  "gn_ai": 104,
+  "gn_ai_outcome": 13,
+  "eure": 4,
+  "eure_ai": 2,
+  "gnn": 5
+ },
+ "2026-11-15": {
+  "gn_raw": 141,
+  "gn_unique": 131,
+  "gn_ai": 103,
+  "gn_ai_outcome": 21,
+  "eure": 5,
+  "eure_ai": 3,
+  "eure_ai_journal": 3,
+  "gnn": 4
+ },
+ "2026-11-16": {
+  "gn_raw": 181,
+  "gn_unique": 173,
+  "gn_ai": 134,
+  "gn_ai_outcome": 39,
+  "gn_capped": 1,
+  "eure": 25,
+  "eure_ai": 15,
+  "eure_ai_journal": 11,
+  "gnn": 5,
+  "rtbc": 1
+ },
+ "2026-11-17": {
+  "gn_raw": 111,
+  "gn_unique": 104,
+  "gn_ai": 80,
+  "gn_ai_outcome": 18,
+  "eure": 2,
+  "eure_ai": 1,
+  "eure_ai_journal": 1,
+  "gnn": 2,
+  "rtbc": 1
+ }
+}
