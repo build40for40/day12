@@ -643,26 +643,6 @@
       "line": null
     },
     {
-      "id": "great-grevys-rally-zebra-photo-census",
-      "title": "Volunteers' photos and stripe-reading software give Kenya its first precise count of a rare zebra",
-      "summary": "Over two days in January 2016, more than 350 volunteers drove across northern Kenya photographing every Grevy's zebra they saw, taking over 40,000 pictures. Image recognition software called IBEIS read each animal's stripes like a barcode and picked out 1,942 individual zebras. From that, scientists put Kenya's total at about 2,350, and the Kenya Wildlife Service accepted the result as the official count.",
-      "happened": "2016",
-      "topic": "climate_and_nature",
-      "stage": "helping_people_now",
-      "technology": "vision",
-      "primary_source": "https://www.grevyszebratrust.org/wp-content/uploads/2023/05/Great-Grevys-Rally-2016-Report-FINAL.pdf",
-      "independent_source": "https://www.grevyszebratrust.org/great-grevys-rally/",
-      "confirmed": "The Great Grevy's Rally 2016 report says over 350 members of the public took over 40,000 images on 30 and 31 January 2016, that the IBEIS hotspotter analysis identified 1,942 unique individuals and that the national estimate is 2,350; the Grevy's Zebra Trust page says the Kenya Wildlife Service accepted the rally results as the official population figures.",
-      "scores": {
-        "mass_appeal": 2,
-        "real_person_or_place": 3,
-        "stage": 3,
-        "surprise": 2
-      },
-      "total": 20,
-      "line": null
-    },
-    {
       "id": "salmon-vision-first-nations-weirs",
       "title": "AI counts salmon swimming past First Nations fish fences in British Columbia",
       "summary": "On the Kitwanga, Bear and Koeye rivers in British Columbia, First Nations fisheries teams and the Wild Salmon Center put underwater video cameras at traditional fish-counting fences and trained an AI called Salmon Vision to recognise and count the fish going past. In a pilot published in Frontiers in Marine Science, it was more than 90% accurate for coho salmon and more than 80% for sockeye, and it tracks 12 kinds of fish.",
@@ -700,26 +680,6 @@
         "surprise": 2
       },
       "total": 12,
-      "line": null
-    },
-    {
-      "id": "curiosity-picks-its-own-laser-targets",
-      "title": "NASA's Curiosity rover picks its own rocks to zap with a laser on Mars",
-      "summary": "Since 2016, NASA's Curiosity rover on Mars has used software called AEGIS to look at its own photos after a drive, choose a rock that matches what scientists are after, and fire its laser at it to read what the rock is made of. NASA said it was the first time any robot on another planet had been able to choose targets for this kind of instrument by itself. By mid 2016 the rover was doing this several times most weeks.",
-      "happened": "2016-07",
-      "topic": "space",
-      "stage": "helping_people_now",
-      "technology": "vision",
-      "primary_source": "https://www.jpl.nasa.gov/news/nasa-mars-rover-can-choose-laser-targets-on-its-own",
-      "independent_source": null,
-      "confirmed": "The NASA JPL release of 21 July 2016 says Curiosity uses AEGIS software to select and point its ChemCam laser at targets autonomously, that this is the first time autonomous target selection is available for an instrument of this kind on any robotic planetary mission, and that ChemCam gets multiple autonomously selected targets most weeks.",
-      "scores": {
-        "mass_appeal": 2,
-        "real_person_or_place": 2,
-        "stage": 3,
-        "surprise": 2
-      },
-      "total": 18,
       "line": null
     },
     {
@@ -1103,26 +1063,6 @@
       "line": null
     },
     {
-      "id": "nigeria-ai-tutor-after-school-trial",
-      "title": "Pupils in Nigeria made big gains in English after six weeks with an AI tutor",
-      "summary": "In June and July 2024, secondary school pupils in Edo State in Nigeria took part in a six-week after-school programme where they used an AI chatbot as a tutor, guided by their teachers. Pupils were picked at random to join or not. The World Bank, which ran the trial, reported that those who joined did clearly better in English, AI knowledge and digital skills, and that girls, who started behind, gained the most.",
-      "happened": "2024-07",
-      "topic": "everyday_life",
-      "stage": "in_a_trial",
-      "technology": "language model",
-      "primary_source": "https://blogs.worldbank.org/en/education/From-chalkboards-to-chatbots-Transforming-learning-in-Nigeria",
-      "independent_source": null,
-      "confirmed": "The World Bank blog of 9 January 2025 describes the six-week randomised after-school pilot in Edo State in June and July 2024, gains of about 0.3 standard deviations, better end-of-year exam scores, and girls gaining more.",
-      "scores": {
-        "mass_appeal": 3,
-        "real_person_or_place": 3,
-        "stage": 2,
-        "surprise": 2
-      },
-      "total": 21,
-      "line": null
-    },
-    {
       "id": "japan-ai-lost-property-keio",
       "title": "A Tokyo railway returned nearly three times as many lost items after AI took over the lost property desk",
       "summary": "Keio, a railway company in Tokyo with 69 stations, gets about 500 enquiries a day about lost property. Since 2023 its staff have photographed each found item, and AI from the Tokyo start-up Find records its colour, shape and size so owners can search by picture and chat in four languages. In Keio's trial the share of items returned to their owners nearly tripled and enquiries by phone and at station counters fell by about a third.",
@@ -1180,26 +1120,6 @@
         "surprise": 2
       },
       "total": 20,
-      "line": null
-    },
-    {
-      "id": "brazil-ai-essay-feedback-espirito-santo",
-      "title": "A Brazilian state gave every final-year pupil an AI writing coach after it raised exam scores",
-      "summary": "In 2019, about 12,000 final-year pupils in 110 state schools in Espírito Santo in Brazil used Letrus, an AI tool that gives instant feedback on practice essays for the national university entrance exam. A randomised trial across 178 schools found their essay scores rose by about 17 points out of 1,000, which closed about 9% of the gap with private school pupils. In 2022 the state announced it would offer the tool to every final-year pupil in its state schools, and more than 100,000 have been enrolled since 2020.",
-      "happened": "2022",
-      "topic": "everyday_life",
-      "stage": "helping_people_now",
-      "technology": "language model",
-      "primary_source": "https://www.povertyactionlab.org/case-study/artificial-intelligence-strengthen-high-school-students-writing-skills",
-      "independent_source": null,
-      "confirmed": "J-PAL's case study describes the 2019 randomised evaluation in 178 Espírito Santo schools, the gain of about 17 points out of 1,000 closing about 9% of the public-private gap, the 2022 statewide roll-out and more than 100,000 pupils enrolled since 2020.",
-      "scores": {
-        "mass_appeal": 2,
-        "real_person_or_place": 3,
-        "stage": 3,
-        "surprise": 1
-      },
-      "total": 19,
       "line": null
     },
     {

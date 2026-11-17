@@ -1,5 +1,5 @@
 {
-  "about": "The big list. Every story that has passed the gates, with its handoff record and what has happened to it. status is waiting, published or in_bank (evergreen, not yet used). A published story is never picked again. This file is the memory: the daily run reads it, ranks what is waiting, and writes back what it published.",
+  "about": "The big list. Every story that has passed the gates, with its handoff record and what has happened to it. status is waiting, published, in_bank (evergreen, not yet used) or removed (failed a later ruling, kept so it is not added again). A published story is never picked again. This file is the memory: the daily run reads it, ranks what is waiting, and writes back what it published.",
   "updated": "2026-11-17",
   "stories": [
     {
@@ -1342,8 +1342,8 @@
         "https://paw.princeton.edu/article/ecology-and-evolutionary-biology-counting-stripes"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov: the source calls it computer vision software, not AI.",
+      "status": "removed",
       "published_on": null
     },
     {
@@ -1425,8 +1425,8 @@
         "https://www.jpl.nasa.gov/news/nasa-mars-rover-can-choose-laser-targets-on-its-own"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov: NASA's page calls the software autonomous, not AI.",
+      "status": "removed",
       "published_on": null
     },
     {
@@ -1989,8 +1989,8 @@
         "https://blogs.worldbank.org/en/education/From-chalkboards-to-chatbots-Transforming-learning-in-Nigeria"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov: the result is a working paper that has not been peer-reviewed.",
+      "status": "removed",
       "published_on": null
     },
     {
@@ -2100,8 +2100,8 @@
         "https://www.povertyactionlab.org/case-study/artificial-intelligence-strengthen-high-school-students-writing-skills"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov: the result is a working paper that has not been peer-reviewed.",
+      "status": "removed",
       "published_on": null
     },
     {

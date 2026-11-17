@@ -21,13 +21,13 @@ Use only what is in the input. Never add facts, names or numbers from memory.
 
 Check each gate in order. Stop at the first fail.
 
-1. `happened`: there is a result, not a prediction. Fail on "could", "may", "promises to", "set to".
+1. `happened`: there is a result, not a prediction. A pilot that has started counts. Fail on "could", "may", "promises to", "set to", and on a trial that is only planned.
 2. `source_checked`: `primary_source_checked` is true and the summary matches the headline claim.
-3. `evidence`: peer-reviewed, a trial result, or in real use. A preprint or a press release with no paper fails.
+3. `evidence`: peer-reviewed, a trial result, or in real use. A paper that has not been peer-reviewed never counts: a preprint, a working paper or a press release with no paper fails.
 4. `independent`: a claim from a company has an independent source.
-5. `ai_essential`: without the AI there is no story. Ordinary statistics don't count as AI.
+5. `ai_essential`: without the AI there is no story. The source itself must call it AI or machine learning. Ordinary statistics don't count, and neither does software the source only calls "autonomous" or "computer vision".
 6. `about_the_world`: something changed for a person, place or field outside the AI industry. Funding, launches, benchmarks and executive moves fail.
-7. `fresh`: first public in the last 90 days, or marked as from the evergreen bank.
+7. `fresh`: the story first appeared in the last 90 days, even if the tool behind it is older, or it is marked as from the evergreen bank.
 8. `plain`: you can write `what_happened` in step 3 in two or three plain sentences a non-specialist would follow.
 
 For flips, read gates 5 and 6 differently: gate 5 passes when the bad story is about AI or the things built to run it (data centres, chips), and gate 6 passes when the bad story reached the popular news. Then also check, in this order:
@@ -56,7 +56,7 @@ You do not write the published line. Another step does that, working only from w
 - `what_happened`: two or three plain sentences. Who did what, where, and what the result was. Keep the names, places and numbers from the input.
 - `why_its_good`: one or two sentences. What the AI did that made the difference, and who is better off.
 - `bad_news` (flips only): the bad story in one sentence, without softening it.
-- `careful`: a list of things the writer must not overstate, such as a pilot that hasn't started, a figure that comes from the company itself, a result in mice, or an association that isn't proof. Use an empty list if there is nothing.
+- `careful`: a list of things the writer must not overstate, and any figure that comes from the organisation itself, which the writer must attribute to them. Examples: a pilot that has only just started, a figure that comes from the company itself, a result in mice, or an association that isn't proof. Use an empty list if there is nothing.
 
 No jargon. No "could", "may" or "might" in `what_happened`. Use only facts from the input.
 

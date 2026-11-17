@@ -16,13 +16,13 @@ A story that fails any gate is dropped, with the gate named so we can see why.
 
 | Gate | Passes when | Typical fail |
 | --- | --- | --- |
-| It happened | There is a result, not a prediction | "could", "may", "promises to", "set to revolutionise" |
+| It happened | There is a result, not a prediction. A pilot that has started counts | "could", "may", "promises to", "set to revolutionise", a trial that is only planned |
 | The source checks out | The primary source is opened and says what the headline says | Mouse study sold as a cure, a newsletter summary nobody traced back |
-| Enough evidence | Peer-reviewed, a trial result, or in real use | Preprint only, press release with no paper |
+| Enough evidence | Peer-reviewed, a trial result, or in real use. A paper that has not been peer-reviewed never counts | Preprint, working paper, press release with no paper |
 | Independent for company claims | A company's claim has one source that isn't the company | Lab blog post on its own |
-| AI is the reason | Take the AI away and the story disappears | "The hospital also uses AI", ordinary statistics called AI |
+| AI is the reason | Take the AI away and the story disappears. The source itself must call it AI or machine learning | "The hospital also uses AI", ordinary statistics called AI, software the source only calls "autonomous" or "computer vision" |
 | It's about the world | Something changed for a person, place or field outside the AI industry | Funding rounds, model launches, benchmarks, executive moves |
-| It's fresh | First made public in the last 90 days, or it comes from the evergreen bank | A 2019 result doing the rounds again |
+| It's fresh | The story first appeared in the last 90 days, even if the tool behind it is older, or it comes from the evergreen bank | A 2019 result doing the rounds again |
 | It can be said plainly | What happened fits in two or three plain sentences a non-specialist would follow | Needs jargon or a paragraph of context to make sense |
 
 The plain gate is tested by writing the handoff below. If the agent can't write "what happened" plainly, the story fails.
@@ -93,6 +93,7 @@ Rules for whoever writes from a record:
 
 - Use only facts that are in `what_happened`, `why_its_good` and `bad_news`. Nothing from memory.
 - Respect every item in `careful`.
+- A figure that comes from the organisation itself (a company, a charity, a government) can be used, but the text must say whose figure it is.
 - A flip names the bad news first, then the good side.
 
 Stage tags:
@@ -108,7 +109,17 @@ Stage tags:
 - **Preprints fail.** This matches the sources card, which skips raw arXiv.
 - **Industry news fails.** Launches and funding are news about AI companies, not about the world getting better.
 
+## Rulings from Samira, 17 November
+
+- Software that its own source does not call AI does not count as AI.
+- No papers that have not been peer-reviewed.
+- An organisation's own figures are allowed, as long as the text says they are theirs.
+- The date the story first appeared is what counts for freshness.
+- A pilot that has started counts as something that happened.
+
 ## Still open
+
+- Whether a person signs off every flip before it runs, and whether two flips on the same underlying story can run in one week. Until decided, treat every flip as needing a person's sign-off.
 
 - The Day 12 "Define the 5 W's" card is empty. Mass appeal is written for people worn down by AI doom who don't work in tech. If the audience is different, that score changes first.
 - Who does the fact-check: the agent, a person, or the agent with a person signing off flips.
