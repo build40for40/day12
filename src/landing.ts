@@ -6,9 +6,8 @@ interface LandingStory {
   place: string | null
 }
 
-// Shown only until the daily run publishes its first issue.
-const FALLBACK: LandingStory = {
-  date: '17 November 2026',
+// Shown only when today has no issue and the bank has nothing ready.
+const FALLBACK = {
   line: 'Dublin is piloting an AI flood warning that, in tests on past storms, flagged some floods 13 hours early.',
   place: 'Dublin, Ireland',
 }
@@ -23,8 +22,11 @@ function longDate(isoDate: string): string {
 }
 
 export interface LandingView {
-  // The issue to show. Without one, the page shows the fallback story.
+  // The issue to show. Without one, the page shows a stand-in dated today.
   issue?: Issue | null
+  // The London day, and the bank story standing in until that day's issue goes out.
+  today?: string
+  standIn?: string | null
   // A date someone asked for that has no issue.
   missingDate?: string
   // Links to the issues either side, as dates, under the page's base path.
@@ -33,8 +35,9 @@ export interface LandingView {
 
 function storyFor(view: LandingView): LandingStory {
   if (view.missingDate) return { date: longDate(view.missingDate), line: `No story went out on ${longDate(view.missingDate)}.`, place: null }
-  if (!view.issue) return FALLBACK
-  return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place }
+  if (view.issue) return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place }
+  const date = view.today ? longDate(view.today) : ''
+  return view.standIn ? { date, line: view.standIn, place: null } : { date, ...FALLBACK }
 }
 
 function daysNav(days: LandingView['days']): string {

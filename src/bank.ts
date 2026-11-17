@@ -33,6 +33,14 @@ export function londonDay(now: Date): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(now)
 }
 
+/** The headline of the bank story that stands in for a day with no issue yet. It moves on one story a day. */
+export async function standInFor(db: D1Database, day: string): Promise<string | null> {
+  const { results } = await db.prepare("SELECT title FROM evergreen WHERE status = 'banked' ORDER BY id ASC").all<{ title: string }>()
+  if (results.length === 0) return null
+  const dayNumber = Math.round(Date.parse(`${day}T00:00:00Z`) / 86_400_000)
+  return results[dayNumber % results.length]!.title
+}
+
 /** The link a reader should get for one source, or null. Mirrors reader_link in scripts/daily.py. */
 export function readerLink(url: string): string | null {
   if (url.includes('eurekalert.org')) return null // its terms restrict reuse, so these need re-sourcing

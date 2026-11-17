@@ -1,8 +1,16 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import worker from './index'
 import { fakeEnv } from './test-env'
 
 describe('GET /', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(new Date('2026-11-18T09:00:00Z'))
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
   it('serves the landing page with a form that posts to the signups route under the base path', async () => {
     const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
 
@@ -13,24 +21,55 @@ describe('GET /', () => {
     expect(await response.text()).toContain('action="/feel-good/signups"')
   })
 
-  it('shows the fallback story before anything is published, then the latest issue', async () => {
+  it("shows today's issue, not an older or a later one", async () => {
     const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
-    const page = async () => (await worker.fetch(new Request('https://site.example.com/feel-good'), env, {} as ExecutionContext)).text()
-
-    expect(await page()).toContain('Dublin is piloting an AI flood warning')
-
     const insert = env.sqlite.prepare(
       `INSERT INTO issues (date, story_id, text, url, stage, place, created_at) VALUES (?, ?, ?, ?, 'in_a_trial', ?, '2026-11-18T06:00:00Z')`,
     )
     insert.run('2026-11-17', 'older', 'An older story.', 'https://example.org/older', null)
     insert.run('2026-11-18', 'eagles', 'AI cameras slow turbines when eagles fly near <fast>.', 'https://example.org/eagles', 'Wyoming, USA')
-    const html = await page()
+
+    const html = await (await worker.fetch(new Request('https://site.example.com/feel-good'), env, {} as ExecutionContext)).text()
 
     expect(html).toContain('18 November 2026')
     expect(html).toContain('AI cameras slow turbines when eagles fly near &lt;fast&gt;.')
     expect(html).toContain('<div class="place">Wyoming, USA</div>')
-    expect(html).not.toContain('Dublin is piloting')
     expect(html).not.toContain('An older story.')
+  })
+
+  it('shows a different bank story each day while no issue has gone out for it', async () => {
+    const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
+    env.sqlite
+      .prepare(`INSERT INTO issues (date, story_id, text, url, created_at) VALUES ('2026-11-17', 'older', 'An older story.', 'https://example.org/older', '2026-11-17T06:00:00Z')`)
+      .run()
+    const titles = env.sqlite.prepare(`SELECT title FROM evergreen WHERE status = 'banked'`).all().map((row) => String(row.title))
+    const shown = async () => {
+      const html = await (await worker.fetch(new Request('https://site.example.com/feel-good'), env, {} as ExecutionContext)).text()
+      return /<article class="story">\s*<p>(.*?)<\/p>/.exec(html)![1]!.replaceAll('&amp;', '&')
+    }
+
+    const wednesday = await shown()
+    vi.setSystemTime(new Date('2026-11-19T09:00:00Z'))
+    const thursday = await shown()
+
+    expect(titles).toContain(wednesday)
+    expect(titles).toContain(thursday)
+    expect(thursday).not.toBe(wednesday)
+
+    const html = await (await worker.fetch(new Request('https://site.example.com/feel-good'), env, {} as ExecutionContext)).text()
+    expect(html).toContain('19 November 2026')
+    expect(html).not.toContain('An older story.')
+    expect(html).toContain('href="/feel-good?date=2026-11-17" rel="prev"')
+  })
+
+  it('shows the fallback story when the bank has nothing ready', async () => {
+    const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
+    env.sqlite.exec(`UPDATE evergreen SET status = 'used'`)
+
+    const html = await (await worker.fetch(new Request('https://site.example.com/feel-good'), env, {} as ExecutionContext)).text()
+
+    expect(html).toContain('Dublin is piloting an AI flood warning')
+    expect(html).toContain('18 November 2026')
   })
 
   it('shows a past day at ?date= with links to the days either side', async () => {
@@ -51,6 +90,7 @@ describe('GET /', () => {
     expect(html).toContain('href="/feel-good?date=2026-11-15" rel="prev"')
     expect(html).toContain('href="/feel-good?date=2026-11-17" rel="next"')
 
+    vi.setSystemTime(new Date('2026-11-17T09:00:00Z'))
     const latest = await (await get('')).text()
     expect(latest).toContain('Story of the seventeenth.')
     expect(latest).toContain('rel="prev"')
