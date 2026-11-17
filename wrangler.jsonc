@@ -12,10 +12,12 @@
       "migrations_dir": "migrations"
     }
   ],
-  // EMAIL_FROM and PUBLIC_BASE_URL are placeholders. Set the real values before switching signups on.
+  "routes": [
+    { "pattern": "build40for40.com/feel-good", "zone_name": "build40for40.com" },
+    { "pattern": "build40for40.com/feel-good/*", "zone_name": "build40for40.com" }
+  ],
   "vars": {
-    "EMAIL_FROM": "replace-me@example.com",
-    "PUBLIC_BASE_URL": "https://replace-me.example.com",
+    "PUBLIC_BASE_URL": "https://build40for40.com/feel-good",
     "ALLOWED_ORIGIN": "https://build40for40.com",
     "POSTMARK_TRANSACTIONAL_STREAM": "outbound",
     "POSTMARK_BROADCAST_STREAM": "broadcast"

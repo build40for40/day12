@@ -1,5 +1,5 @@
 import { runPull } from './pull'
-import { confirm, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
+import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -27,7 +27,7 @@ async function pull(request: Request, env: Env): Promise<Response> {
 
 export default {
   async fetch(request, env, ctx) {
-    const { pathname } = new URL(request.url)
+    const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
     switch (`${request.method} ${pathname}`) {
       case 'POST /pull':
         return pull(request, env)
@@ -36,7 +36,9 @@ export default {
       case 'POST /signups':
         return signup(request, env, (work) => ctx.waitUntil(work))
       case 'GET /confirm':
-        return confirm(request, env)
+        return confirmForm(request)
+      case 'POST /confirm':
+        return confirmNow(request, env)
       case 'GET /unsubscribe':
         return unsubscribeForm(request)
       case 'POST /unsubscribe':

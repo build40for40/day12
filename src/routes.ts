@@ -1,6 +1,6 @@
 import { sendConfirmation } from './emails'
 import { readText } from './fetchers/http'
-import { brokenLinkPage, confirmedPage, unsubscribedPage, unsubscribePage } from './pages'
+import { brokenLinkPage, confirmedPage, confirmPage, unsubscribedPage, unsubscribePage } from './pages'
 import { addSignup, confirmSignup, isToken, normaliseEmail, releaseConfirmation, unsubscribe } from './signups'
 import type { Env, FetchLike } from './types'
 
@@ -58,14 +58,25 @@ export async function signup(request: Request, env: Env, defer: Defer, fetchImpl
   return Response.json({ ok: true }, { headers })
 }
 
-export async function confirm(request: Request, env: Env, now = new Date()): Promise<Response> {
+export function routePath(pathname: string, publicBaseUrl: string): string {
+  const base = URL.canParse(publicBaseUrl) ? new URL(publicBaseUrl).pathname.replace(/\/+$/, '') : ''
+  if (base && (pathname === base || pathname.startsWith(`${base}/`))) return pathname.slice(base.length) || '/'
+  return pathname
+}
+
+export function confirmForm(request: Request): Response {
+  const token = new URL(request.url).searchParams.get('token')
+  return isToken(token) ? confirmPage() : brokenLinkPage()
+}
+
+export async function confirmNow(request: Request, env: Env, now = new Date()): Promise<Response> {
   const token = new URL(request.url).searchParams.get('token') ?? ''
   return (await confirmSignup(env.DB, token, now)) ? confirmedPage() : brokenLinkPage()
 }
 
 export function unsubscribeForm(request: Request): Response {
   const token = new URL(request.url).searchParams.get('token')
-  return isToken(token) ? unsubscribePage(token) : brokenLinkPage()
+  return isToken(token) ? unsubscribePage() : brokenLinkPage()
 }
 
 export async function unsubscribeNow(request: Request, env: Env, now = new Date()): Promise<Response> {

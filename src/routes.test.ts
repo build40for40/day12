@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { confirm, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
+import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import { fakeEnv } from './test-env'
 import type { Env, FetchLike } from './types'
 
@@ -145,10 +145,21 @@ describe('confirm and unsubscribe', () => {
     return { env, ...rows(env)[0]! } as { env: ReturnType<typeof fakeEnv>; confirm_token: string; unsubscribe_token: string }
   }
 
-  it('GET /confirm confirms the row and says so', async () => {
+  const confirmed = (env: Env, token: string) => confirmNow(new Request(`${BASE}/confirm?token=${token}`, { method: 'POST' }), env, now)
+
+  it('GET /confirm shows a button that posts and changes nothing', async () => {
     const { env, confirm_token } = await signedUp()
 
-    const response = await confirm(new Request(`${BASE}/confirm?token=${confirm_token}`), env, now)
+    const response = confirmForm(new Request(`${BASE}/confirm?token=${confirm_token}`))
+
+    expect(await response.text()).toContain('<form method="post">')
+    expect(rows(env)).toMatchObject([{ status: 'pending' }])
+  })
+
+  it('POST /confirm confirms the row and says so', async () => {
+    const { env, confirm_token } = await signedUp()
+
+    const response = await confirmed(env, confirm_token)
 
     expect(response.status).toBe(200)
     expect(response.headers.get('Content-Type')).toContain('text/html')
@@ -156,10 +167,10 @@ describe('confirm and unsubscribe', () => {
     expect(rows(env)).toMatchObject([{ status: 'confirmed' }])
   })
 
-  it('GET /confirm with a bad token changes nothing', async () => {
+  it('POST /confirm with a bad token changes nothing', async () => {
     const { env } = await signedUp()
 
-    const response = await confirm(new Request(`${BASE}/confirm?token=nope`), env, now)
+    const response = await confirmed(env, 'nope')
 
     expect(response.status).toBe(404)
     expect(rows(env)).toMatchObject([{ status: 'pending' }])
@@ -167,11 +178,11 @@ describe('confirm and unsubscribe', () => {
 
   it('GET /unsubscribe shows a button that posts and changes nothing', async () => {
     const { env, confirm_token, unsubscribe_token } = await signedUp()
-    await confirm(new Request(`${BASE}/confirm?token=${confirm_token}`), env, now)
+    await confirmed(env, confirm_token)
 
     const response = unsubscribeForm(new Request(`${BASE}/unsubscribe?token=${unsubscribe_token}`))
 
-    expect(await response.text()).toContain(`<form method="post" action="/unsubscribe?token=${unsubscribe_token}">`)
+    expect(await response.text()).toContain('<form method="post">')
     expect(rows(env)).toMatchObject([{ status: 'confirmed' }])
   })
 
@@ -184,7 +195,7 @@ describe('confirm and unsubscribe', () => {
 
   it('POST /unsubscribe unsubscribes, as the one-click target does', async () => {
     const { env, confirm_token, unsubscribe_token } = await signedUp()
-    await confirm(new Request(`${BASE}/confirm?token=${confirm_token}`), env, now)
+    await confirmed(env, confirm_token)
 
     const response = await unsubscribeNow(
       new Request(`${BASE}/unsubscribe?token=${unsubscribe_token}`, { method: 'POST', body: new URLSearchParams({ 'List-Unsubscribe': 'One-Click' }) }),
@@ -194,5 +205,15 @@ describe('confirm and unsubscribe', () => {
 
     expect(response.status).toBe(200)
     expect(rows(env)).toMatchObject([{ status: 'unsubscribed' }])
+  })
+})
+
+describe('routePath', () => {
+  it('strips the public base path, and leaves root paths alone', () => {
+    expect(routePath('/feel-good/signups', 'https://site.example.com/feel-good')).toBe('/signups')
+    expect(routePath('/feel-good', 'https://site.example.com/feel-good/')).toBe('/')
+    expect(routePath('/signups', 'https://site.example.com/feel-good')).toBe('/signups')
+    expect(routePath('/feel-goodness', 'https://site.example.com/feel-good')).toBe('/feel-goodness')
+    expect(routePath('/signups', 'https://site.example.com')).toBe('/signups')
   })
 })

@@ -28,16 +28,23 @@ ${body}
 }
 
 export const confirmedPage = () =>
-  page("You're in!", '<p>Thanks for confirming. The next daily brief of hopeful AI stories is heading for your inbox.</p>')
+  page("You're in!", '<p>Thanks for confirming. The next Feel good AI is heading for your inbox.</p>')
 
 export const brokenLinkPage = () =>
   page("That link didn't work", "<p>It might be old, or a bit of it went missing on the way. Sign up again and we'll send you a fresh one.</p>", 404)
 
-export const unsubscribePage = (token: string) =>
+export const confirmPage = () =>
+  page(
+    'Nearly there',
+    `<p>Hit the button and Feel good AI starts landing in your inbox.</p>
+<form method="post"><button type="submit">Yes, send me the good news</button></form>`,
+  )
+
+export const unsubscribePage = () =>
   page(
     'Off so soon?',
-    `<p>Hit the button and we'll stop sending you the daily brief. No hard feelings.</p>
-<form method="post" action="/unsubscribe?token=${token}"><button type="submit">Unsubscribe me</button></form>`,
+    `<p>Hit the button and we'll stop sending you Feel good AI. No hard feelings.</p>
+<form method="post"><button type="submit">Unsubscribe me</button></form>`,
   )
 
 export const unsubscribedPage = () =>

@@ -52,11 +52,13 @@ Cloudflare crons run in UTC, so a single cron is 06:00 London only in winter. Fo
 
 ## Signups and email
 
-The MVP is an email newsletter, so the Worker also keeps the list of subscribers and sends mail through [Postmark](https://postmarkapp.com), called over its HTTP API. The website and its sign-up form live elsewhere and post to this Worker.
+The MVP is an email newsletter called Feel good AI, so the Worker also keeps the list of subscribers and sends mail through [Postmark](https://postmarkapp.com), called over its HTTP API. The website and its sign-up form are built separately and post to this Worker.
+
+The Worker is served at `build40for40.com/feel-good`, so every route below lives under that path in production: `POST https://build40for40.com/feel-good/signups` and so on. The base path comes from `PUBLIC_BASE_URL` and is stripped before routing, so the same routes also answer at the root on localhost.
 
 ### The contract for `POST /signups`
 
-- **Request:** `POST <worker>/signups` with either JSON (`Content-Type: application/json`, body `{ "email": "reader@example.com" }`) or a plain form post (`email=reader%40example.com`). The body can be at most 4096 bytes.
+- **Request:** `POST /feel-good/signups` with either JSON (`Content-Type: application/json`, body `{ "email": "reader@example.com" }`) or a plain form post (`email=reader%40example.com`). The body can be at most 4096 bytes.
 - **Success:** `200` with `{ "ok": true }`. It's the same answer whether the address is new, already pending, already confirmed or unsubscribed, so the form can't tell and neither can anyone probing. Show something like "check your inbox" every time.
 - **Bad address:** `400` with `{ "ok": false, "error": "invalid_email" }`.
 - **Not set up yet:** `503` with `{ "ok": false, "error": "not_configured" }` while `POSTMARK_SERVER_TOKEN` is missing.
@@ -65,34 +67,41 @@ The MVP is an email newsletter, so the Worker also keeps the list of subscribers
 ### The flow
 
 1. **Sign up:** `POST /signups` trims and lower-cases the address, stores a `pending` row in `signups` and sends a confirmation email on the transactional stream. The same address gets at most one confirmation email every 24 hours.
-2. **Confirm:** the email links to `GET /confirm?token=...`, which marks the row `confirmed`. Only confirmed rows are ever sent the newsletter.
-3. **Send:** the publish stage calls `sendNewsletter(env, { subject, html, text })` from `src/emails.ts`. It sends to every confirmed subscriber on the broadcast stream, 500 per Postmark batch call, and returns `{ sent, failed, suppressed }`. Put `{{unsubscribe_url}}` in the html and text where the unsubscribe link should go, or leave it out and a plain link is added at the end. Every message also carries `List-Unsubscribe` and `List-Unsubscribe-Post` headers for one-click unsubscribe. There's no HTTP route that triggers a send.
+2. **Confirm:** the email links to `GET /confirm?token=...`, which shows a page with a button, so mail scanners that open links don't confirm anyone. The button does `POST /confirm?token=...`, which marks the row `confirmed`. Only confirmed rows are ever sent the newsletter.
+3. **Send:** the publish stage builds the issue with `renderNewsletter(stories, date, signupUrl)` from `src/templates.ts` and passes the result to `sendNewsletter(env, { subject, html, text })` from `src/emails.ts`. It sends to every confirmed subscriber on the broadcast stream, 500 per Postmark batch call, and returns `{ sent, failed, suppressed }`. Put `{{unsubscribe_url}}` in the html and text where the unsubscribe link should go, or leave it out and a plain link is added at the end. Every message also carries `List-Unsubscribe` and `List-Unsubscribe-Post` headers for one-click unsubscribe. There's no HTTP route that triggers a send.
 4. **Unsubscribe:** `GET /unsubscribe?token=...` shows a page with a button, so mail scanners that open links don't unsubscribe anyone. The button and the one-click header both `POST /unsubscribe?token=...`, which marks the row `unsubscribed`. Signing up again after that goes back through a fresh confirmation.
 
 Our `signups` table is the source of truth for who gets mail. Postmark keeps its own suppression list per stream for hard bounces, spam complaints and its own unsubscribes, and refuses those recipients with error code 406. When a send gets a 406 the row's `suppressed_at` is set and we stop sending to it, so the two lists converge without a webhook.
 
 Email addresses are personal data: never log them, and only use made-up `example.com` addresses in tests and docs. Postmark error messages can quote the address, so log error codes only.
 
+### Templates
+
+`src/templates.ts` holds both emails, as plain HTML with a text version, sharing one layout and footer.
+
+- **The issue:** `renderNewsletter` takes a list of stories, each with `text` (280 characters at most), a source `url` and an optional `stage`. It throws on a story that is too long or has no usable link. The subject is the London date then the name, like `Nov 17th - Feel good AI`.
+- **The confirmation:** `renderConfirmation` takes the confirm link.
+- **The footer:** links "Day 12 Build" to the sign-up page and names build40for40.com. The issue adds the unsubscribe link.
+
 ### Config
 
 | Name | Where | What it is |
 | --- | --- | --- |
 | `POSTMARK_SERVER_TOKEN` | Secret, `.dev.vars` locally | The Postmark server API token. Locally, `POSTMARK_API_TEST` makes Postmark check requests without delivering anything |
-| `EMAIL_FROM` | `wrangler.jsonc` vars | The from address. **Placeholder until a human sets it** |
-| `PUBLIC_BASE_URL` | `wrangler.jsonc` vars | The Worker's public URL, used for links in emails. **Placeholder until a human sets it** |
+| `EMAIL_FROM` | Secret, `.dev.vars` locally | The from address, kept out of the repo because it is someone's own address. Mail goes out as `Feel good AI <address>` |
+| `PUBLIC_BASE_URL` | `wrangler.jsonc` vars | Where the Worker is served, `https://build40for40.com/feel-good`. Used for links in emails, the sign-up link in the footer and the base path for routing |
 | `ALLOWED_ORIGIN` | `wrangler.jsonc` vars | The one origin allowed to call `POST /signups` from a browser |
 | `POSTMARK_TRANSACTIONAL_STREAM` | `wrangler.jsonc` vars | Stream for confirmation emails, `outbound` by default |
 | `POSTMARK_BROADCAST_STREAM` | `wrangler.jsonc` vars | Stream for the newsletter, `broadcast` by default |
 
-To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST` and `PUBLIC_BASE_URL=http://localhost:8787` in `.dev.vars`, run `npm run db:migrate` and `npm run dev`, then `curl -X POST localhost:8787/signups -d 'email=fake.reader@example.com'`. Read the tokens back with `npm run wrangler -- d1 execute day12 --local --command "SELECT status, confirm_token, unsubscribe_token FROM signups"`.
+To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fake.sender@example.com` and `PUBLIC_BASE_URL=http://localhost:8787` in `.dev.vars`, run `npm run db:migrate` and `npm run dev`, then `curl -X POST localhost:8787/signups -d 'email=fake.reader@example.com'`. Read the tokens back with `npm run wrangler -- d1 execute day12 --local --command "SELECT status, confirm_token, unsubscribe_token FROM signups"`.
 
 ### One-time Postmark setup, for a human
 
 1. **Create the server:** in Postmark, create a server for this app. It comes with a transactional stream (`outbound`) and a broadcast stream (`broadcast`). If the broadcast stream has a different id, put it in `POSTMARK_BROADCAST_STREAM`.
 2. **Verify the sending domain:** Postmark only sends from an address with a confirmed sender signature or a verified domain, so add the domain's DNS records in Postmark. Check there too whether the account needs approval before it can send to outside addresses.
 3. **Ask for custom unsubscribes:** broadcast streams default to Postmark managing unsubscribes, which adds Postmark's own link and sets its own `List-Unsubscribe` headers in place of ours. Ask Postmark support to approve "Manage unsubscribes on your own", then pick it in the broadcast stream's settings. Until then mail still goes out and people who leave through Postmark's link stop getting mail after the next send hits a 406, but their row only shows `suppressed_at`, not `unsubscribed`.
-4. **Set the real values:** replace the `EMAIL_FROM` and `PUBLIC_BASE_URL` placeholders in `wrangler.jsonc` and merge that.
-5. **Set the secret:** `npm run wrangler -- secret put POSTMARK_SERVER_TOKEN` with the server's API token. Worker secrets survive deploys, so GitHub Actions doesn't need it.
+4. **Set the secrets:** `npm run wrangler -- secret put POSTMARK_SERVER_TOKEN` with the server's API token, and `npm run wrangler -- secret put EMAIL_FROM` with the verified from address. Worker secrets survive deploys, so GitHub Actions doesn't need them.
 
 ## Deploying it
 
