@@ -29,6 +29,7 @@ describe('GET /', () => {
     expect(html).toContain('18 November 2026')
     expect(html).toContain('AI cameras slow turbines when eagles fly near &lt;fast&gt;.')
     expect(html).toContain('<div class="place">Wyoming, USA</div>')
+    expect(html).toContain('<div class="source">In a trial · <a href="https://example.org/eagles">example.org</a></div>')
     expect(html).not.toContain('Dublin is piloting')
     expect(html).not.toContain('An older story.')
   })
