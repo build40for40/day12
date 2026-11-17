@@ -1,4 +1,5 @@
 import { runPull } from './pull'
+import { confirm, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -19,11 +20,29 @@ async function authorised(request: Request, env: Env): Promise<boolean> {
   return tokensMatch(token, env.PULL_TOKEN)
 }
 
+async function pull(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return Response.json(await runPull(env, new Date()))
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url)
-    if (request.method !== 'POST' || pathname !== '/pull') return new Response('Not found', { status: 404 })
-    if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
-    return Response.json(await runPull(env, new Date()))
+    switch (`${request.method} ${pathname}`) {
+      case 'POST /pull':
+        return pull(request, env)
+      case 'OPTIONS /signups':
+        return signupPreflight(request, env)
+      case 'POST /signups':
+        return signup(request, env, (work) => ctx.waitUntil(work))
+      case 'GET /confirm':
+        return confirm(request, env)
+      case 'GET /unsubscribe':
+        return unsubscribeForm(request)
+      case 'POST /unsubscribe':
+        return unsubscribeNow(request, env)
+      default:
+        return new Response('Not found', { status: 404 })
+    }
   },
 } satisfies ExportedHandler<Env>
