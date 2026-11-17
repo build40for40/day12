@@ -62,5 +62,35 @@ class CheckPost(unittest.TestCase):
             self.assertIsNone(daily.check_post({'decision': 'write', 'post': post}, self.url)[0], post)
 
 
+class Api(unittest.TestCase):
+    """ask_api against a stand-in for the anthropic package, so the request shape is checked without a key."""
+
+    def setUp(self):
+        import types
+        self.calls = []
+        calls = self.calls
+
+        class Messages:
+            def create(self, **kwargs):
+                calls.append(kwargs)
+                block = types.SimpleNamespace(type='text', text='{"decision": "write"}')
+                return types.SimpleNamespace(stop_reason=calls[-1].get('_stop', 'end_turn'), content=[block])
+
+        fake = types.ModuleType('anthropic')
+        fake.Anthropic = lambda: types.SimpleNamespace(beta=types.SimpleNamespace(messages=Messages()))
+        for name in ('AuthenticationError', 'RateLimitError', 'APIStatusError', 'APIConnectionError'):
+            setattr(fake, name, type(name, (Exception,), {}))
+        sys.modules['anthropic'] = fake
+
+    def tearDown(self):
+        sys.modules.pop('anthropic', None)
+
+    def test_calls_the_current_opus_with_the_prompt_as_system_and_fallbacks_on(self):
+        self.assertEqual(daily.ask_api('SYSTEM', 'record', None), '{"decision": "write"}')
+        call = self.calls[0]
+        self.assertEqual((call['model'], call['system'], call['fallbacks']), ('claude-opus-5-5', 'SYSTEM', 'default'))
+        self.assertEqual(call['messages'], [{'role': 'user', 'content': 'record'}])
+
+
 if __name__ == '__main__':
     unittest.main()

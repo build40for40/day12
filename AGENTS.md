@@ -108,21 +108,34 @@ To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fa
 One story a day goes out by email, is stored for the website, and is printed as a post for X. `scripts/daily.py` does it in four steps:
 
 1. **Pick:** the rules in `docs/scoring.md`, layer 3, read from `data/backlog.json`. A news story from the last 14 days scoring 16 or more runs ahead of the evergreen bank, otherwise the best bank story (ties go to the earlier one in the file). Never a story that has run, one flip a week at most. A story with no link a reader can use (only EurekAlert, or only an API search) is skipped until it's re-sourced. A Europe PMC search link becomes the paper's DOI link.
-2. **Write:** `prompts/headline-editor.md`, called through the `claude` command line tool, which has to be installed and signed in where the run happens. The post is checked before it goes anywhere: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
+2. **Write:** `prompts/headline-editor.md`, sent to Claude Opus 5.5 with the company key in `ANTHROPIC_API_KEY`, through the `anthropic` Python package, with server-side fallbacks on so a decline is retried on another model. Without the key it falls back to the `claude` command line tool, signed in, for running on a laptop. The post is checked before it goes anywhere: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
 3. **Publish:** `POST /publish` on the Worker, with the same bearer token as `/pull`. It emails every confirmed subscriber and stores the issue in the `issues` table. The Worker refuses a second send for the same date, so a rerun can't email people twice.
 4. **Mark:** sets `status` and `published_on` in `data/backlog.json` and writes `runs/<date>/daily.json`. Commit both, or the same story is picked again tomorrow.
 
 The X post is printed, not posted: there's no X account or API key in the repo yet.
 
-### For the 6am agent
+### The 6am schedule
+
+`.github/workflows/daily.yml` runs it every morning at 06:00 London, using the organisation's `ANTHROPIC_API_KEY` secret, and commits the updated backlog to `main`. It runs on two UTC crons and only goes ahead from 06:00 London, so it's right in summer and winter. Before it calls the model it checks `GET /issues/latest`: if today's issue already went out it stops, and if the last run sent the email but died before marking the story, it marks it without sending again.
+
+Switching it on is a one-time job for a human:
+
+1. **Give the repo the key:** the organisation secret `ANTHROPIC_API_KEY` has to list this repository under its repository access.
+2. **Add the publish token:** the Actions secret `PUBLISH_TOKEN`, with the same value as the Worker's `PULL_TOKEN`.
+3. **Point it at the Worker:** optional. The Actions variable `WORKER_URL` defaults to `https://build40for40.com/feel-good`.
+4. **Try it:** run "Daily story" by hand from the Actions tab. It defaults to a dry run, which shows the pick, the post and the email without sending.
+5. **Flip the switch:** add the Actions variable `DAILY_ENABLED` with the value `true`. Until then the schedule is skipped, and only manual runs work.
+
+If `main` has branch protection, the workflow's push of the backlog needs to be allowed.
+
+### Running it by hand
 
 ```bash
 python3 scripts/daily.py --dry-run --worker https://build40for40.com/feel-good
 python3 scripts/daily.py --worker https://build40for40.com/feel-good
-git add data/backlog.json runs/ && git commit -m "Publish the daily story" && git push
 ```
 
-Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`. Useful flags: `--date 2026-11-18` for another day, `--story <id>` to run a story chosen by a person, `--text "..."` to use a post written by a person instead of calling the editor, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. If the email went out but the run died before marking the story, run it again for the same date: the Worker answers that the date already went out with that story, and the script marks it without sending again.
+Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`, and `ANTHROPIC_API_KEY` if you have the key; otherwise sign in the `claude` command. Useful flags: `--date 2026-11-18` for another day, `--story <id>` to run a story chosen by a person, `--text "..."` to use a post written by a person instead of calling the editor, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. A real run changes `data/backlog.json` and `runs/`, so commit them.
 
 The daily run doesn't score new stories. Something still has to run `prompts/score-story.md` over the live pull, open the sources and add the passes to `data/backlog.json` (card 320). Until then the run draws on the 5 waiting news stories and the evergreen bank.
 

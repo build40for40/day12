@@ -9,12 +9,14 @@ Steps:
   1. Pick: the rules in docs/scoring.md, layer 3. A news story from the last 14 days scoring 16 or more runs ahead of
      the evergreen bank, otherwise the best bank story. Never a story that has run, one flip a week at most, and never
      a story whose only sources are EurekAlert (they need re-sourcing first).
-  2. Write: prompts/headline-editor.md, through the `claude` command line tool, which must be signed in.
+  2. Write: prompts/headline-editor.md. With ANTHROPIC_API_KEY set (the company key, as in GitHub Actions) it calls the
+     Claude API through the anthropic package. Without it, it falls back to the `claude` command line tool, signed in.
   3. Publish: POST /publish on the Worker, which emails every confirmed subscriber and stores the issue for the website.
      The Worker refuses a second send for the same date.
   4. Mark: sets status and published_on in data/backlog.json and writes runs/<date>/daily.json. Commit both.
 
-The token is PUBLISH_TOKEN, or PULL_TOKEN, from the environment or from .dev.vars. Python standard library only.
+The token is PUBLISH_TOKEN, or PULL_TOKEN, from the environment or from .dev.vars. Standard library only, plus the
+anthropic package when the API key is used.
 """
 import argparse, json, os, re, subprocess, sys, tempfile, urllib.error, urllib.request
 from datetime import date, datetime
@@ -106,26 +108,69 @@ def check_post(out, url):
     return text, None
 
 
-def write(record, model):
+API_MODEL = 'claude-opus-5-5'
+
+
+def ask_api(system, prompt, model):
+    """The company API key (ANTHROPIC_API_KEY), through the official SDK. Used in GitHub Actions."""
+    try:
+        import anthropic
+    except ImportError:
+        raise Stop('ANTHROPIC_API_KEY is set but the anthropic package is not installed: pip install anthropic')
+    client = anthropic.Anthropic()
+    try:
+        # Server-side fallbacks: if the model declines, the API reruns the request on a fallback model in the same call.
+        response = client.beta.messages.create(
+            model=model or API_MODEL,
+            max_tokens=16000,
+            output_config={'effort': 'medium'},
+            betas=['server-side-fallback-2026-07-01'],
+            fallbacks='default',
+            system=system,
+            messages=[{'role': 'user', 'content': prompt}],
+        )
+    except anthropic.AuthenticationError:
+        raise Stop('The Anthropic API rejected the key in ANTHROPIC_API_KEY.')
+    except anthropic.RateLimitError:
+        raise Stop('The Anthropic API is rate limiting this key. Try again in a few minutes.')
+    except anthropic.APIStatusError as error:
+        raise Stop(f'The Anthropic API answered {error.status_code}: {error.message}')
+    except anthropic.APIConnectionError:
+        raise Stop('Could not reach the Anthropic API.')
+    if response.stop_reason == 'refusal':
+        raise Stop('The model declined to write this story. Pick another with --story.')
+    return ''.join(block.text for block in response.content if block.type == 'text')
+
+
+def ask_cli(system, prompt, model):
+    """The `claude` command line tool, signed in. For running by hand on a laptop."""
     env = {k: v for k, v in os.environ.items() if k not in ('CLAUDECODE', 'CLAUDE_CODE_ENTRYPOINT')}
+    try:
+        result = subprocess.run(
+            ['claude', '-p', prompt, '--system-prompt', system, '--model', model or 'opus', '--max-turns', '1', '--output-format', 'json'],
+            capture_output=True, text=True, stdin=subprocess.DEVNULL, cwd=tempfile.mkdtemp(), env=env, timeout=300,
+        )
+    except FileNotFoundError:
+        raise Stop('No ANTHROPIC_API_KEY and no `claude` command, so nothing can write the post.')
+    try:
+        answer = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        raise Stop(f"The claude command didn't answer: {(result.stderr or result.stdout).strip()[:300]}")
+    if answer.get('is_error'):
+        raise Stop(f"The claude command failed: {answer.get('result')}. Set ANTHROPIC_API_KEY, or sign `claude` in.")
+    return answer.get('result') or ''
+
+
+def write(record, model):
+    ask = ask_api if os.environ.get('ANTHROPIC_API_KEY') else ask_cli
     message = 'Story record:\n' + json.dumps(record, ensure_ascii=False, indent=2)
     problem = None
     for attempt in range(3):
         prompt = message if not problem else f"{message}\n\nYour last answer was rejected: {problem}. Fix that and answer again."
-        result = subprocess.run(
-            ['claude', '-p', prompt, '--system-prompt', system_prompt(), '--model', model, '--max-turns', '1', '--output-format', 'json'],
-            capture_output=True, text=True, stdin=subprocess.DEVNULL, cwd=tempfile.mkdtemp(), env=env, timeout=300,
-        )
+        reply = ask(system_prompt(), prompt, model)
         try:
-            answer = json.loads(result.stdout)
-        except json.JSONDecodeError:
-            raise Stop(f"The claude command didn't answer: {(result.stderr or result.stdout).strip()[:300]}")
-        if answer.get('is_error'):
-            raise Stop(f"The claude command failed: {answer.get('result')}. Check that `claude` is installed and signed in.")
-        try:
-            reply = answer['result']
             out = json.JSONDecoder().raw_decode(reply[reply.index('{'):])[0]
-        except (ValueError, KeyError, json.JSONDecodeError):
+        except (ValueError, json.JSONDecodeError):
             problem = 'the answer was not the JSON object asked for'
             continue
         text, problem = check_post(out, record['source_url'])
@@ -164,6 +209,20 @@ def publish(worker, payload):
         raise Stop(f'Could not reach the Worker at {worker}: {error.reason}')
 
 
+def issue_on(worker, day):
+    """The issue already sent for this date, or None."""
+    try:
+        with urllib.request.urlopen(worker.rstrip('/') + '/issues/latest', timeout=30) as response:
+            issue = json.loads(response.read()).get('issue') or {}
+    except urllib.error.HTTPError as error:
+        if error.code == 404:
+            return None
+        raise Stop(f'Could not read the latest issue from the Worker: {error.code}')
+    except urllib.error.URLError as error:
+        raise Stop(f'Could not reach the Worker at {worker}: {error.reason}')
+    return issue if issue.get('date') == day else None
+
+
 def mark(backlog, story_id, day):
     for story in backlog['stories']:
         if story['id'] == story_id:
@@ -179,7 +238,7 @@ def main():
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Europe/London')).date().isoformat(), help='the issue date, default today in London')
     parser.add_argument('--worker', default=os.environ.get('WORKER_URL', 'http://localhost:8787'), help='where the Worker is served')
     parser.add_argument('--story', help='run this story id instead of the pick')
-    parser.add_argument('--model', default='opus', help='model for the headline editor, default opus')
+    parser.add_argument('--model', help=f'model for the headline editor, default {API_MODEL} with the API key, opus with the claude command')
     parser.add_argument('--text', help='use this post text instead of calling the headline editor (still checked for length and links)')
     parser.add_argument('--dry-run', action='store_true', help='preview the email, send nothing, change no files')
     parser.add_argument('--force', action='store_true', help='send again even if this date has already gone out')
@@ -187,6 +246,16 @@ def main():
 
     backlog = json.load(open(BACKLOG, encoding='utf-8'))
     stories = backlog['stories']
+    if not args.dry_run and not args.force:
+        sent = issue_on(args.worker, args.date)
+        if sent:
+            story = next((s for s in stories if s['id'] == sent['storyId']), None)
+            if story and story['status'] != 'published':
+                mark(backlog, story['id'], args.date)  # the email went out but the last run died before marking it
+                print(f"{args.date} already went out with {sent['storyId']}. Marked it as published, nothing sent.")
+            else:
+                print(f"{args.date} already went out with {sent['storyId']}. Nothing to do.")
+            return
     if args.story:
         story = next((s for s in stories if s['id'] == args.story), None)
         if not story:
