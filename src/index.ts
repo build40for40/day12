@@ -1,5 +1,5 @@
-import { renderLanding } from './landing'
-import { findLatestIssue, issuesRoute, latestIssueRoute, publishRoute } from './publish'
+import { renderLanding, type LandingView } from './landing'
+import { findIssue, findLatestIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import { scheduledPull } from './schedule'
@@ -34,13 +34,27 @@ async function publishIssue(request: Request, env: Env): Promise<Response> {
   return publishRoute(request, env)
 }
 
-// The page shows the most recent issue the daily run published.
-async function landing(env: Env): Promise<Response> {
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+
+// The page shows the most recent issue, or the one for ?date=YYYY-MM-DD, with links to the days either side.
+async function landing(request: Request, env: Env): Promise<Response> {
   const base = URL.canParse(env.PUBLIC_BASE_URL) ? new URL(env.PUBLIC_BASE_URL).pathname.replace(/\/+$/, '') : ''
-  const issue = await findLatestIssue(env.DB)
-  return new Response(renderLanding(`${base}/signups`, issue), {
-    headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' },
-  })
+  const signups = `${base}/signups`
+  const page = (html: string, status = 200) =>
+    new Response(html, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' } })
+  const daysAround = async (date: string): Promise<LandingView['days']> => ({ basePath: base || '/', ...(await findNeighbours(env.DB, date)) })
+
+  const asked = new URL(request.url).searchParams.get('date')
+  if (asked === null) {
+    const issue = await findLatestIssue(env.DB)
+    return page(renderLanding(signups, issue ? { issue, days: await daysAround(issue.date) } : {}))
+  }
+  if (!ISO_DATE.test(asked) || Number.isNaN(Date.parse(asked))) {
+    return page(renderLanding(signups, { issue: await findLatestIssue(env.DB) }), 404)
+  }
+  const issue = await findIssue(env.DB, asked)
+  const days = await daysAround(asked)
+  return issue ? page(renderLanding(signups, { issue, days })) : page(renderLanding(signups, { missingDate: asked, days }), 404)
 }
 
 export default {
@@ -48,7 +62,7 @@ export default {
     const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
     switch (`${request.method} ${pathname}`) {
       case 'GET /':
-        return landing(env)
+        return landing(request, env)
       case 'POST /pull':
         return pull(request, env)
       case 'POST /publish':

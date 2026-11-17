@@ -67,6 +67,15 @@ export async function findLatestIssue(db: D1Database): Promise<Issue | null> {
   return (await listIssues(db, 1))[0] ?? null
 }
 
+// The dates of the issues just before and just after a date, for the page's earlier and later links.
+export async function findNeighbours(db: D1Database, date: string): Promise<{ previous: string | null; next: string | null }> {
+  const row = await db
+    .prepare('SELECT (SELECT MAX(date) FROM issues WHERE date < ?1) AS previous, (SELECT MIN(date) FROM issues WHERE date > ?1) AS next')
+    .bind(date)
+    .first<{ previous: string | null; next: string | null }>()
+  return { previous: row?.previous ?? null, next: row?.next ?? null }
+}
+
 export async function findIssue(db: D1Database, date: string): Promise<Issue | null> {
   const row = await db.prepare('SELECT * FROM issues WHERE date = ?').bind(date).first<Record<string, unknown>>()
   return row ? toIssue(row) : null

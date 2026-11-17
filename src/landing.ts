@@ -22,9 +22,28 @@ function longDate(isoDate: string): string {
   return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${isoDate}T12:00:00Z`))
 }
 
-function fromIssue(issue: Issue | null | undefined): LandingStory {
-  if (!issue) return FALLBACK
-  return { date: longDate(issue.date), line: issue.text, place: issue.place }
+export interface LandingView {
+  // The issue to show. Without one, the page shows the fallback story.
+  issue?: Issue | null
+  // A date someone asked for that has no issue.
+  missingDate?: string
+  // Links to the issues either side, as dates, under the page's base path.
+  days?: { basePath: string; previous: string | null; next: string | null }
+}
+
+function storyFor(view: LandingView): LandingStory {
+  if (view.missingDate) return { date: longDate(view.missingDate), line: `No story went out on ${longDate(view.missingDate)}.`, place: null }
+  if (!view.issue) return FALLBACK
+  return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place }
+}
+
+function daysNav(days: LandingView['days']): string {
+  if (!days || (!days.previous && !days.next)) return ''
+  const link = (date: string, label: string, rel: string) =>
+    `<a href="${escapeHtml(`${days.basePath}?date=${date}`)}" rel="${rel}">${label}</a>`
+  const previous = days.previous ? link(days.previous, '&larr; Earlier', 'prev') : '<span></span>'
+  const next = days.next ? link(days.next, 'Later &rarr;', 'next') : '<span></span>'
+  return `\n    <nav class="days" aria-label="Other days">${previous}${next}</nav>`
 }
 
 const styles = `
@@ -64,6 +83,7 @@ a:hover { color: #55524B; }
 .story p { margin: 0; font-size: clamp(31px, 8.6vw, 40px); line-height: 1.2; letter-spacing: -0.005em; }
 .story hr { width: 40px; margin: 26px 0; border: 0; border-top: 1px solid #1C1B19; }
 .story .place { font-size: 17px; font-style: italic; }
+.days { margin-top: 40px; display: flex; justify-content: space-between; gap: 16px; font-size: 16px; font-style: italic; }
 .join { margin-top: clamp(64px, 14vh, 130px); display: flex; flex-direction: column; gap: 28px; }
 .join .pitch { margin: 0; font-size: 22px; line-height: 1.35; }
 .join form { display: flex; flex-direction: column; gap: 18px; }
@@ -134,8 +154,8 @@ form.addEventListener('submit', async (event) => {
 })
 `
 
-export function renderLanding(signupsPath: string, issue?: Issue | null): string {
-  const story = fromIssue(issue)
+export function renderLanding(signupsPath: string, view: LandingView = {}): string {
+  const story = storyFor(view)
   const place = story.place ? `\n      <hr>\n      <div class="place">${escapeHtml(story.place)}</div>` : ''
   return `<!doctype html>
 <html lang="en-GB">
@@ -159,7 +179,7 @@ export function renderLanding(signupsPath: string, issue?: Issue | null): string
     </header>
     <article class="story">
       <p>${escapeHtml(story.line)}</p>${place}
-    </article>
+    </article>${daysNav(view.days)}
     <section class="join">
       <p class="pitch">Daily positive AI news you can read in 10 seconds</p>
       <form method="post" action="${signupsPath}">

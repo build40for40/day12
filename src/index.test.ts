@@ -33,6 +33,51 @@ describe('GET /', () => {
     expect(html).not.toContain('An older story.')
   })
 
+  it('shows a past day at ?date= with links to the days either side', async () => {
+    const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
+    const insert = env.sqlite.prepare(
+      `INSERT INTO issues (date, story_id, text, url, place, created_at) VALUES (?, ?, ?, 'https://example.org/x', NULL, '2026-11-17T06:00:00Z')`,
+    )
+    insert.run('2026-11-15', 'a', 'Story of the fifteenth.')
+    insert.run('2026-11-16', 'b', 'Story of the sixteenth.')
+    insert.run('2026-11-17', 'c', 'Story of the seventeenth.')
+    const get = (query: string) => worker.fetch(new Request(`https://site.example.com/feel-good${query}`), env, {} as ExecutionContext)
+
+    const middle = await get('?date=2026-11-16')
+    const html = await middle.text()
+    expect(middle.status).toBe(200)
+    expect(html).toContain('Story of the sixteenth.')
+    expect(html).toContain('16 November 2026')
+    expect(html).toContain('href="/feel-good?date=2026-11-15" rel="prev"')
+    expect(html).toContain('href="/feel-good?date=2026-11-17" rel="next"')
+
+    const latest = await (await get('')).text()
+    expect(latest).toContain('Story of the seventeenth.')
+    expect(latest).toContain('rel="prev"')
+    expect(latest).not.toContain('rel="next"')
+
+    const first = await (await get('?date=2026-11-15')).text()
+    expect(first).not.toContain('rel="prev"')
+  })
+
+  it('answers 404 for a day with no story or a date that is not a date', async () => {
+    const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
+    env.sqlite
+      .prepare(`INSERT INTO issues (date, story_id, text, url, created_at) VALUES ('2026-11-16', 'b', 'Story of the sixteenth.', 'https://example.org/x', '2026-11-16T06:00:00Z')`)
+      .run()
+    const get = (query: string) => worker.fetch(new Request(`https://site.example.com/feel-good${query}`), env, {} as ExecutionContext)
+
+    const gap = await get('?date=2026-11-10')
+    expect(gap.status).toBe(404)
+    const html = await gap.text()
+    expect(html).toContain('No story went out on 10 November 2026.')
+    expect(html).toContain('href="/feel-good?date=2026-11-16" rel="next"')
+
+    const nonsense = await get('?date=<script>')
+    expect(nonsense.status).toBe(404)
+    expect(await nonsense.text()).not.toContain('<script>"')
+  })
+
   it('leaves out the place line when the issue has none', async () => {
     const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
     env.sqlite
