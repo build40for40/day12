@@ -46,9 +46,9 @@ const topNews = (db: D1Database, now: Date) =>
 const topBank = (db: D1Database) =>
   db
     .prepare(
-      `SELECT slug, title, total FROM evergreen
-       WHERE status = 'banked' AND verified_at IS NOT NULL
-       ORDER BY total DESC, id ASC LIMIT 1`,
+      `SELECT slug, title, score AS total FROM evergreen
+       WHERE status = 'banked'
+       ORDER BY score DESC, id ASC LIMIT 1`,
     )
     .first<{ slug: string; title: string; total: number }>()
 
@@ -134,7 +134,7 @@ export async function refillBank(db: D1Database, now: Date): Promise<number> {
   for (const c of aged.results) {
     const result = await db
       .prepare(
-        `INSERT OR IGNORE INTO evergreen (slug, url, title, summary, stage, total, status, sources, added_at)
+        `INSERT OR IGNORE INTO evergreen (slug, url, title, summary, stage, score, status, sources, added_at)
          VALUES (?, ?, ?, ?, ?, ?, 'review', ?, ?)`,
       )
       .bind(

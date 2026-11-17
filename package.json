@@ -8,8 +8,7 @@
     "dev": "npm run wrangler -- dev",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "db:migrate": "npm run wrangler -- d1 migrations apply day12 --local",
-    "db:seed": "node scripts/seed-evergreen.ts > .seed.sql && npm run wrangler -- d1 execute day12 --local --file .seed.sql && rm .seed.sql"
+    "db:migrate": "npm run wrangler -- d1 migrations apply day12 --local"
   },
   "dependencies": {
     "fast-xml-parser": "^5.12.1"

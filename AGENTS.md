@@ -56,7 +56,7 @@ The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC
 
 ## The evergreen bank and the daily pick
 
-The bank is the `evergreen` table in D1, seeded from `data/backlog.json` with `npm run db:seed` (remote: see the header of `scripts/seed-evergreen.ts`). Statuses: `banked` (checked, can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. The seed can be re-run: it refreshes wording and never undoes a pick.
+The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 stories from `data/backlog.json`, and `0004` adds the pick. Statuses: `banked` (can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. Deploys apply the migrations to the remote database, so there is no separate seed step.
 
 - **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. Asking twice in a day returns the same story. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
 - **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.

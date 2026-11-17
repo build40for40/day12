@@ -1,18 +1,17 @@
-import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { bankHealth, dailyPick, londonDay, refillBank } from './bank'
-import { evergreenSeedSql, type BacklogStory } from './bank-seed'
 import { fakeD1 } from './fake-d1'
 
 const now = new Date('2026-11-17T06:00:00Z')
 const daysAgo = (n: number) => new Date(now.getTime() - n * 86_400_000).toISOString()
 
-function setup() {
+function setup(keepMigratedBank = false) {
   const { db, sqlite } = fakeD1()
+  if (!keepMigratedBank) sqlite.exec('DELETE FROM evergreen')
   const bank = (slug: string, total: number, status = 'banked', verified: string | null = '2026-11-17') =>
     sqlite
       .prepare(
-        `INSERT INTO evergreen (slug, url, title, summary, total, status, verified_at, topic) VALUES (?, ?, ?, 'x', ?, ?, ?, 'health')`,
+        `INSERT INTO evergreen (slug, url, title, summary, score, status, verified_at, topic) VALUES (?, ?, ?, 'x', ?, ?, ?, 'health')`,
       )
       .run(slug, `https://example.com/${slug}`, `Bank ${slug}`, total, status, verified)
   const news = (id: number, score: number | null, pulledAt: string) =>
@@ -44,11 +43,10 @@ describe('dailyPick', () => {
     expect(sqlite.prepare("SELECT status FROM evergreen WHERE slug = 'a'").get()).toEqual({ status: 'banked' })
   })
 
-  it('ignores news older than 14 days, unscored news and unchecked bank stories', async () => {
+  it('ignores news older than 14 days, unscored news and stories still in review', async () => {
     const { db, bank, news } = setup()
     news(1, 22, daysAgo(15))
     news(2, null, daysAgo(1))
-    bank('unchecked', 24, 'banked', null)
     bank('review', 24, 'review')
     expect(await dailyPick(db, now)).toMatchObject({ status: 'nothing_to_run', pick: null })
   })
@@ -84,7 +82,7 @@ describe('refillBank', () => {
     news(4, 20, daysAgo(20))
     sqlite.exec("INSERT INTO picks VALUES ('2026-10-30', 'news:4', 'news', 'News 4', 20, 'ran', '2026-10-30T06:00:00Z')")
     expect(await refillBank(db, now)).toBe(1)
-    const rows = sqlite.prepare('SELECT url, status, total FROM evergreen ORDER BY url').all()
+    const rows = sqlite.prepare('SELECT url, status, score FROM evergreen ORDER BY url').all()
     expect(rows.map((r) => r.url)).toEqual(['https://example.com/n1'])
     expect(rows.every((r) => r.status === 'review')).toBe(true)
     expect(await refillBank(db, now)).toBe(0)
@@ -111,54 +109,12 @@ describe('bankHealth', () => {
   })
 })
 
-describe('evergreenSeedSql', () => {
-  const story = (over: Partial<BacklogStory>): BacklogStory => ({
-    id: 'fake-story',
-    from: 'evergreen',
-    status: 'in_bank',
-    headline: "AI finds a fake lab's tool",
-    what_happened: 'Fake researchers did a fake thing.',
-    why_its_good: 'Fake people are better off.',
-    careful: ['Fake caution'],
-    topic: 'health',
-    technology: 'vision',
-    total: 20,
-    sources: ['https://example.com/a', 'https://example.com/b'],
-    ...over,
-  })
-
-  it('loads banked, used and removed stories, and skips news', () => {
-    const { sqlite } = setup()
-    const sql = evergreenSeedSql(
-      [
-        story({}),
-        story({ id: 'used-one', status: 'published', published_on: '2026-11-12', sources: ['https://example.com/u'] }),
-        story({ id: 'gone', status: 'removed', sources: ['https://example.com/g'] }),
-        story({ id: 'news-one', from: 'new', sources: ['https://example.com/n'] }),
-      ],
-      '2026-11-17',
-    )
-    sqlite.exec(sql)
-    expect(sqlite.prepare('SELECT slug, status, used_on FROM evergreen ORDER BY slug').all()).toEqual([
-      { slug: 'fake-story', status: 'banked', used_on: null },
-      { slug: 'gone', status: 'removed', used_on: null },
-      { slug: 'used-one', status: 'used', used_on: '2026-11-12' },
-    ])
-  })
-
-  it('can be run again without undoing a pick', () => {
-    const { sqlite } = setup()
-    sqlite.exec(evergreenSeedSql([story({})], '2026-11-17'))
-    sqlite.exec("UPDATE evergreen SET status = 'used', used_on = '2026-11-18'")
-    sqlite.exec(evergreenSeedSql([story({ headline: 'New wording' })], '2026-11-17'))
-    expect(sqlite.prepare('SELECT title, status FROM evergreen').all()).toEqual([{ title: 'New wording', status: 'used' }])
-  })
-
-  it('seeds the real bank with at least 20 ready stories', () => {
-    const { sqlite } = setup()
-    const backlog = JSON.parse(readFileSync('data/backlog.json', 'utf8')) as { updated: string; stories: BacklogStory[] }
-    sqlite.exec(evergreenSeedSql(backlog.stories, backlog.updated))
-    const ready = sqlite.prepare("SELECT COUNT(*) AS n FROM evergreen WHERE status = 'banked'").get() as { n: number }
-    expect(ready.n).toBeGreaterThanOrEqual(20)
+describe('the bank from the migrations', () => {
+  it('starts with at least 20 ready stories, none used', async () => {
+    const { db, sqlite } = setup(true)
+    const health = await bankHealth(db)
+    expect(health.ready).toBeGreaterThanOrEqual(20)
+    expect(health).toMatchObject({ low: false, used: 0, review: 0 })
+    expect(sqlite.prepare('SELECT COUNT(*) AS n FROM evergreen WHERE last_used_at IS NOT NULL').get()).toEqual({ n: 0 })
   })
 })
