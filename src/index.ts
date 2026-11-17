@@ -2,6 +2,7 @@ import { bankHealth, dailyPick, refillBank } from './bank'
 import { renderLanding, type LandingView } from './landing'
 import { findIssue, findLatestIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
+import { listUnscored, saveVerdicts } from './scores'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import { scheduledPull } from './schedule'
 import type { Env } from './types'
@@ -37,6 +38,20 @@ async function pick(request: Request, env: Env): Promise<Response> {
   const result = await dailyPick(env.DB, now, { dryRun, ...(story ? { story } : {}) })
   const refilled = dryRun ? 0 : await refillBank(env.DB, now)
   return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
+}
+
+// scripts/score.py reads the stories it hasn't scored yet and writes its verdicts back. Same token as /pull.
+async function unscored(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  const limit = Number(new URL(request.url).searchParams.get('limit') ?? '300')
+  return Response.json({ candidates: await listUnscored(env.DB, new Date(), Number.isFinite(limit) ? limit : 300) })
+}
+
+async function scores(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  const body: unknown = await request.json().catch(() => null)
+  if (body === null) return Response.json({ ok: false, error: 'bad_json' }, { status: 400 })
+  return Response.json({ ok: true, ...(await saveVerdicts(env.DB, body, new Date())) })
 }
 
 async function bank(request: Request, env: Env): Promise<Response> {
@@ -91,6 +106,10 @@ export default {
         return pick(request, env)
       case 'GET /bank':
         return bank(request, env)
+      case 'GET /candidates/unscored':
+        return unscored(request, env)
+      case 'POST /candidates/scores':
+        return scores(request, env)
       case 'OPTIONS /signups':
         return signupPreflight(request, env)
       case 'POST /signups':
