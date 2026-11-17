@@ -127,6 +127,7 @@ a:hover { color: #55524B; }
 .join .small { margin: 0; font-size: 16px; line-height: 1.4; }
 .join .error { margin: 0; font-size: 17px; font-style: italic; }
 .join .joined { margin: 0; font-size: 28px; line-height: 1.25; }
+.join .joined:focus { outline: 0; }
 .join button:disabled { opacity: 0.6; cursor: progress; }
 [hidden] { display: none !important; }
 footer { margin-top: auto; padding-top: 48px; font-size: 15px; }
@@ -151,8 +152,13 @@ form.addEventListener('submit', async (event) => {
     const response = await fetch(form.action, { method: 'POST', body: new URLSearchParams({ email: email.value }) })
     const result = await response.json()
     if (result.ok) {
+      // Close the phone keyboard before the form goes, or the page stays shifted up and the top gets clipped
+      email.blur()
       form.hidden = true
-      document.querySelector('.join .joined').hidden = false
+      const joined = document.querySelector('.join .joined')
+      joined.hidden = false
+      joined.focus({ preventScroll: true })
+      requestAnimationFrame(() => joined.scrollIntoView({ block: 'nearest' }))
       return
     }
     if (result.error === 'invalid_email') problem = 'invalid_email'
@@ -210,7 +216,7 @@ export function renderLanding(signupsPath: string, view: LandingView = {}): stri
         <button type="submit">Send me tomorrow's story</button>
         <p class="small">Free. 6am UK time. Leave whenever you like.</p>
       </form>
-      <p class="joined" role="status" hidden>Check your inbox. One click to confirm and you're in.</p>
+      <p class="joined" role="status" tabindex="-1" hidden>Check your inbox. One click to confirm and you're in.</p>
     </section>
     <footer>Day 12 of <a href="https://build40for40.com">40 for 40</a></footer>
   </main>
