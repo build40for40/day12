@@ -63,19 +63,24 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         if: steps.clock.outputs.go == 'true'
 
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: steps.clock.outputs.go == 'true'
+        with:
+          node-version-file: .node-version
+
       - name: Install the Anthropic SDK
         if: steps.clock.outputs.go == 'true'
         run: python3 -m venv "$RUNNER_TEMP/venv" && "$RUNNER_TEMP/venv/bin/pip" install --quiet anthropic
 
-      # The quality filter: triage the stories pulled since the last run and score the shortlist against
+      # The quality filter: research leads pulled since the last run and score them against
       # prompts/score-story.md, opening the sources. If it fails, the day still runs, from the bank.
       - name: Score new stories
-        if: steps.clock.outputs.go == 'true'
+        if: steps.clock.outputs.go == 'true' && inputs.story == ''
         continue-on-error: true
         run: |
           args=(--worker "$WORKER_URL")
           [ "$DRY_RUN" = true ] && args+=(--dry-run)
-          "$RUNNER_TEMP/venv/bin/python" scripts/score.py "${args[@]}"
+          node scripts/score.ts "${args[@]}"
 
       - name: Run the daily story
         if: steps.clock.outputs.go == 'true'

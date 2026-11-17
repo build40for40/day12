@@ -104,7 +104,7 @@ Stage tags:
 ## Decisions made here, to confirm
 
 - **The post is written by the headline editor.** This step hands over the facts, the reason it's good and the cautions. The stage tag travels as its own field.
-- **One flip a day at most.** The science stories earn the trust that lets the flip land.
+- **One flip in any seven London dates.** The science stories earn the trust that lets the flip land.
 - **Preprints fail.** This matches the sources card, which skips raw arXiv.
 - **Industry news fails.** Launches and funding are news about AI companies, not about the world getting better.
 

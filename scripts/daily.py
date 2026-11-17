@@ -61,6 +61,8 @@ def editor_input(story, draft_lines):
     record = {'headline': story['headline'], 'what_happened': story['whatHappened'], 'why_its_good': story['whyItsGood'],
               'careful': story['careful'], 'stage': story['stage'], 'topic': story['topic'], 'lane': story['lane'],
               'source_url': story['sourceUrl']}
+    if story['lane'] == 'flip':
+        record.update(bad_news=story['badNews'], flip_kind=story['flipKind'])
     if story['id'] in draft_lines:
         record['draft_line'] = draft_lines[story['id']]
     return record
