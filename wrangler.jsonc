@@ -8,7 +8,7 @@
     {
       "binding": "DB",
       "database_name": "day12",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "64a11ced-c1d1-4fbf-acdb-77097ad34371",
       "migrations_dir": "migrations"
     }
   ],
