@@ -48,7 +48,11 @@ The source pull is a Cloudflare Worker (`src/index.ts`) with its own local D1 da
 5. **Inspect:** `npm run wrangler -- d1 execute day12 --local --command "SELECT source_id, COUNT(*) FROM candidates GROUP BY source_id"`
 6. **Test:** `npm run typecheck` and `npm test`.
 
-Cloudflare crons run in UTC, so a single cron is 06:00 London only in winter. For 06:00 London all year, add two crons to `wrangler.jsonc` under `triggers.crons` (`0 5 * * *` and `0 6 * * *`) and a `scheduled` handler in `src/index.ts` that calls `runPull` only when the hour in Europe/London is 6.
+### The daily pull
+
+The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC, so `wrangler.jsonc` has two, `0 5 * * *` and `0 6 * * *`, and the `scheduled` handler (`src/schedule.ts`) only runs the pull when the event's scheduled time is 6am in Europe/London. That's the 05:00 UTC cron in summer and the 06:00 UTC one in winter, and the other one logs a skip. It logs how many stories were stored plus the id and error of any source that failed, and a pull that throws logs an error and fails the invocation. A second pull on the same day is harmless: anything already in `seen` is skipped, so it stores nothing new. The crons only fire on a deployed Worker, and a change to them can take up to 15 minutes to reach Cloudflare's network.
+
+`npm run dev` never fires crons by itself. To run the handler by hand, call `curl "localhost:8787/cdn-cgi/local/scheduled?cron=0+6+*+*+*&time=1794895200000&format=json"`. `time` is the scheduled time in epoch milliseconds (that one is 06:00 London on 17 November 2026). Leave it out to use the current time, which will usually skip. The pull's logs show in the dev server's output, and the response's `outcome` is `exception` if it failed.
 
 ## Signups and email
 
