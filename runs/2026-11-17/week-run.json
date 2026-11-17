@@ -1,0 +1,550 @@
+{
+  "about": "A simulated week of the daily loop, 11 to 17 November 2026: stories are added to the backlog on the day they surfaced, the list is ranked each morning, five are published under the mix rules, and published stories are marked in data/backlog.json. Stories were found by one-off fetches, a model triage of headlines and agent source checks, not by the live pull.",
+  "days": [
+    {
+      "date": "2026-11-11",
+      "added_today": [
+        "ai-measurements-of-heart-scans-predicted-surviva",
+        "ai-glasses-helped-a-blind-vietnam-veteran-find-h",
+        "an-ai-operator-now-answers-most-non-emergency-ca",
+        "ai-let-scientists-watch-thousands-of-brain-cance"
+      ],
+      "in_list_this_morning": 4,
+      "published": [
+        "ai-glasses-helped-a-blind-vietnam-veteran-find-h",
+        "an-ai-operator-now-answers-most-non-emergency-ca",
+        "ai-measurements-of-heart-scans-predicted-surviva",
+        "california-wildfire-cameras",
+        "perseverance-ai-planned-drive"
+      ],
+      "new_published": 3,
+      "from_bank": 2,
+      "short_by": 0,
+      "rules_bent": [],
+      "left_waiting": 1,
+      "bank_left": 23,
+      "ranked": [
+        {
+          "id": "ai-glasses-helped-a-blind-vietnam-veteran-find-h",
+          "headline": "AI glasses helped a blind Vietnam veteran find his friend's name on the memorial wall",
+          "total": 23,
+          "topic": "accessibility",
+          "decision": "publish",
+          "reason": "Score 23 of 24, the highest in the list.",
+          "from": "new"
+        },
+        {
+          "id": "an-ai-operator-now-answers-most-non-emergency-ca",
+          "headline": "An AI operator now answers most non-emergency calls to the Citrus County sheriff, leaving 911 to people",
+          "total": 16,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "Score 16. The best remaining story that fits: the everyday life slot was open.",
+          "from": "new"
+        },
+        {
+          "id": "ai-measurements-of-heart-scans-predicted-surviva",
+          "headline": "AI measurements of heart scans predicted survival slightly better than doctors' measurements, in seconds",
+          "total": 10,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 10. The best remaining story that fits: the health slot was open.",
+          "from": "new"
+        },
+        {
+          "id": "california-wildfire-cameras",
+          "headline": "AI-watched cameras spot California wildfires early",
+          "total": 23,
+          "topic": "climate_and_nature",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new climate and nature story was waiting. Score 23.",
+          "from": "evergreen"
+        },
+        {
+          "id": "perseverance-ai-planned-drive",
+          "headline": "Perseverance completes the first AI-planned drives on Mars",
+          "total": 20,
+          "topic": "space",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new space story was waiting. Score 20.",
+          "from": "evergreen"
+        },
+        {
+          "id": "ai-let-scientists-watch-thousands-of-brain-cance",
+          "headline": "AI let scientists watch thousands of brain cancer cells spread through living tissue",
+          "total": 9,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"AI measurements of heart scans predicted survival slightly better than doctors' measurements, in seconds\" (score 10).",
+          "waiting_since": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "added_today": [
+        "mayo-clinic-ai-predicts-what-a-kidney-stone-is-m",
+        "an-ai-trained-on-photos-of-cats-dogs-and-cars-in"
+      ],
+      "in_list_this_morning": 3,
+      "published": [
+        "an-ai-trained-on-photos-of-cats-dogs-and-cars-in",
+        "mayo-clinic-ai-predicts-what-a-kidney-stone-is-m",
+        "sarah-ezekiel-voice-restored",
+        "monsoon-forecasts-for-farmers",
+        "flood-forecasts-80-countries"
+      ],
+      "new_published": 2,
+      "from_bank": 3,
+      "short_by": 0,
+      "rules_bent": [],
+      "left_waiting": 1,
+      "bank_left": 20,
+      "ranked": [
+        {
+          "id": "an-ai-trained-on-photos-of-cats-dogs-and-cars-in",
+          "headline": "An AI trained on photos of cats, dogs and cars independently confirmed the first picture of a black hole",
+          "total": 18,
+          "topic": "space",
+          "decision": "publish",
+          "reason": "Score 18 of 24, the highest in the list.",
+          "from": "new"
+        },
+        {
+          "id": "mayo-clinic-ai-predicts-what-a-kidney-stone-is-m",
+          "headline": "Mayo Clinic AI predicts what a kidney stone is made of from a routine urine test",
+          "total": 10,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 10. The best remaining story that fits: the health slot was open.",
+          "from": "new"
+        },
+        {
+          "id": "sarah-ezekiel-voice-restored",
+          "headline": "AI rebuilds Sarah Ezekiel's voice from seconds of old video",
+          "total": 24,
+          "topic": "accessibility",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new accessibility story was waiting. Score 24.",
+          "from": "evergreen"
+        },
+        {
+          "id": "monsoon-forecasts-for-farmers",
+          "headline": "AI monsoon forecasts reach 38 million farmers in India",
+          "total": 23,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new everyday life story was waiting. Score 23.",
+          "from": "evergreen"
+        },
+        {
+          "id": "flood-forecasts-80-countries",
+          "headline": "AI river flood forecasts running in more than 80 countries",
+          "total": 21,
+          "topic": "climate_and_nature",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new climate and nature story was waiting. Score 21.",
+          "from": "evergreen"
+        },
+        {
+          "id": "ai-let-scientists-watch-thousands-of-brain-cance",
+          "headline": "AI let scientists watch thousands of brain cancer cells spread through living tissue",
+          "total": 9,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"Mayo Clinic AI predicts what a kidney stone is made of from a routine urine test\" (score 10).",
+          "waiting_since": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "added_today": [
+        "ai-reads-what-emergency-room-patients-say-and-fl"
+      ],
+      "in_list_this_morning": 2,
+      "published": [
+        "ai-reads-what-emergency-room-patients-say-and-fl",
+        "be-my-ai-describes-photos",
+        "merlin-birdsong-id",
+        "nazca-303-new-figures",
+        "contrail-avoidance-flights"
+      ],
+      "new_published": 1,
+      "from_bank": 4,
+      "short_by": 0,
+      "rules_bent": [],
+      "left_waiting": 1,
+      "bank_left": 16,
+      "ranked": [
+        {
+          "id": "ai-reads-what-emergency-room-patients-say-and-fl",
+          "headline": "AI reads what emergency room patients say and flags who is at risk of PTSD",
+          "total": 14,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 14 of 24, the highest in the list.",
+          "from": "new"
+        },
+        {
+          "id": "be-my-ai-describes-photos",
+          "headline": "Be My AI describes the world for blind people",
+          "total": 23,
+          "topic": "accessibility",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new accessibility story was waiting. Score 23.",
+          "from": "evergreen"
+        },
+        {
+          "id": "merlin-birdsong-id",
+          "headline": "Merlin tells you which bird is singing",
+          "total": 21,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new everyday life story was waiting. Score 21.",
+          "from": "evergreen"
+        },
+        {
+          "id": "nazca-303-new-figures",
+          "headline": "AI helps find 303 new Nazca figures in six months",
+          "total": 20,
+          "topic": "science",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new science story was waiting. Score 20.",
+          "from": "evergreen"
+        },
+        {
+          "id": "contrail-avoidance-flights",
+          "headline": "Pilots cut planet-warming vapour trails using AI forecasts",
+          "total": 17,
+          "topic": "climate_and_nature",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new climate and nature story was waiting. Score 17.",
+          "from": "evergreen"
+        },
+        {
+          "id": "ai-let-scientists-watch-thousands-of-brain-cance",
+          "headline": "AI let scientists watch thousands of brain cancer cells spread through living tissue",
+          "total": 9,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"AI reads what emergency room patients say and flags who is at risk of PTSD\" (score 14).",
+          "waiting_since": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "added_today": [
+        "montreal-woman-with-als-speaks-in-her-own-voice",
+        "south-korea-s-top-tax-exam-scorer-admits-cheatin"
+      ],
+      "in_list_this_morning": 3,
+      "published": [
+        "montreal-woman-with-als-speaks-in-her-own-voice",
+        "south-korea-s-top-tax-exam-scorer-admits-cheatin",
+        "ai-let-scientists-watch-thousands-of-brain-cance",
+        "herculaneum-scroll-read",
+        "sahara-sahel-tree-count"
+      ],
+      "new_published": 3,
+      "from_bank": 2,
+      "short_by": 0,
+      "rules_bent": [
+        "lab limit"
+      ],
+      "left_waiting": 0,
+      "bank_left": 14,
+      "ranked": [
+        {
+          "id": "montreal-woman-with-als-speaks-in-her-own-voice",
+          "headline": "Montreal woman with ALS speaks in her own voice again through an AI app",
+          "total": 22,
+          "topic": "accessibility",
+          "decision": "publish",
+          "reason": "Score 22 of 24, the highest in the list.",
+          "from": "new"
+        },
+        {
+          "id": "south-korea-s-top-tax-exam-scorer-admits-cheatin",
+          "headline": "South Korea's top tax exam scorer admits cheating with AI, and the authorities move in",
+          "total": 18,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "Score 18. The best remaining story that fits: the everyday life slot was open. Takes today's flip slot.",
+          "from": "new"
+        },
+        {
+          "id": "ai-let-scientists-watch-thousands-of-brain-cance",
+          "headline": "AI let scientists watch thousands of brain cancer cells spread through living tissue",
+          "total": 9,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 9. The best remaining story that fits: the health slot was open. Carried over from 2026-11-11.",
+          "from": "new"
+        },
+        {
+          "id": "herculaneum-scroll-read",
+          "headline": "Students use AI to read a scroll charred by Vesuvius",
+          "total": 20,
+          "topic": "science",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new science story was waiting. Score 20.",
+          "from": "evergreen"
+        },
+        {
+          "id": "sahara-sahel-tree-count",
+          "headline": "AI counts 1.8 billion trees across the West African Sahara and Sahel",
+          "total": 17,
+          "topic": "climate_and_nature",
+          "decision": "publish",
+          "reason": "From the evergreen bank, bending the two-lab-stories limit because nothing else was left for an open topic. Score 17.",
+          "from": "evergreen"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "added_today": [
+        "ai-heart-trace-reader-in-korean-ambulances-flags",
+        "breast-cancer-patients-in-croatia-understood-ai"
+      ],
+      "in_list_this_morning": 2,
+      "published": [
+        "ai-heart-trace-reader-in-korean-ambulances-flags",
+        "casey-harrell-speaks-again",
+        "elephants-name-each-other",
+        "ecmwf-ai-weather-forecast",
+        "mars-fresh-craters"
+      ],
+      "new_published": 1,
+      "from_bank": 4,
+      "short_by": 0,
+      "rules_bent": [],
+      "left_waiting": 1,
+      "bank_left": 10,
+      "ranked": [
+        {
+          "id": "ai-heart-trace-reader-in-korean-ambulances-flags",
+          "headline": "AI heart-trace reader in Korean ambulances flags heart attacks before patients reach hospital",
+          "total": 20,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 20 of 24, the highest in the list.",
+          "from": "new"
+        },
+        {
+          "id": "casey-harrell-speaks-again",
+          "headline": "Brain implant and AI let a man with ALS speak again",
+          "total": 22,
+          "topic": "accessibility",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new accessibility story was waiting. Score 22.",
+          "from": "evergreen"
+        },
+        {
+          "id": "elephants-name-each-other",
+          "headline": "AI helps show that elephants call each other by name",
+          "total": 18,
+          "topic": "science",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new science story was waiting. Score 18.",
+          "from": "evergreen"
+        },
+        {
+          "id": "ecmwf-ai-weather-forecast",
+          "headline": "Europe's weather centre switches on an AI forecast",
+          "total": 18,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new everyday life story was waiting. Score 18.",
+          "from": "evergreen"
+        },
+        {
+          "id": "mars-fresh-craters",
+          "headline": "AI spots fresh craters on Mars",
+          "total": 14,
+          "topic": "space",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new space story was waiting. Score 14.",
+          "from": "evergreen"
+        },
+        {
+          "id": "breast-cancer-patients-in-croatia-understood-ai",
+          "headline": "Breast cancer patients in Croatia understood AI-written research summaries as well as the originals",
+          "total": 10,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"AI heart-trace reader in Korean ambulances flags heart attacks before patients reach hospital\" (score 20).",
+          "waiting_since": "2026-11-15"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "added_today": [
+        "dublin-flood-warning",
+        "brain-tumour-mantis",
+        "dystonia-surgery-prediction",
+        "california-sues-openai"
+      ],
+      "in_list_this_morning": 5,
+      "published": [
+        "dublin-flood-warning",
+        "california-sues-openai",
+        "brain-tumour-mantis",
+        "speech-avatar-after-paralysis",
+        "alphafold-protein-shapes"
+      ],
+      "new_published": 3,
+      "from_bank": 2,
+      "short_by": 0,
+      "rules_bent": [],
+      "left_waiting": 2,
+      "bank_left": 8,
+      "ranked": [
+        {
+          "id": "dublin-flood-warning",
+          "headline": "Dublin starts an AI flood warning pilot",
+          "total": 20,
+          "topic": "climate_and_nature",
+          "decision": "publish",
+          "reason": "Score 20 of 24, the highest in the list.",
+          "from": "new"
+        },
+        {
+          "id": "california-sues-openai",
+          "headline": "California sues OpenAI over its test agents' hack",
+          "total": 19,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "Score 19. The best remaining story that fits: the everyday life slot was open. Takes today's flip slot.",
+          "from": "new"
+        },
+        {
+          "id": "brain-tumour-mantis",
+          "headline": "AI predicts how children's brain tumours will go",
+          "total": 14,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 14. The best remaining story that fits: the health slot was open.",
+          "from": "new"
+        },
+        {
+          "id": "speech-avatar-after-paralysis",
+          "headline": "AI turns brain signals into speech and a talking avatar",
+          "total": 20,
+          "topic": "accessibility",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new accessibility story was waiting. Score 20.",
+          "from": "evergreen"
+        },
+        {
+          "id": "alphafold-protein-shapes",
+          "headline": "AlphaFold works out the shapes of proteins",
+          "total": 15,
+          "topic": "science",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new science story was waiting. Score 15.",
+          "from": "evergreen"
+        },
+        {
+          "id": "breast-cancer-patients-in-croatia-understood-ai",
+          "headline": "Breast cancer patients in Croatia understood AI-written research summaries as well as the originals",
+          "total": 10,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"AI predicts how children's brain tumours will go\" (score 14).",
+          "waiting_since": "2026-11-15"
+        },
+        {
+          "id": "dystonia-surgery-prediction",
+          "headline": "AI predicts who will benefit from dystonia surgery",
+          "total": 9,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"AI predicts how children's brain tumours will go\" (score 14).",
+          "waiting_since": "2026-11-16"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "added_today": [
+        "south-korea-bans-ai-glasses-from-its-university"
+      ],
+      "in_list_this_morning": 3,
+      "published": [
+        "south-korea-bans-ai-glasses-from-its-university",
+        "breast-cancer-patients-in-croatia-understood-ai",
+        "kepler-90-eighth-planet",
+        "stroke-scans-england",
+        "sepsis-early-warning-johns-hopkins"
+      ],
+      "new_published": 2,
+      "from_bank": 3,
+      "short_by": 0,
+      "rules_bent": [
+        "one per topic"
+      ],
+      "left_waiting": 1,
+      "bank_left": 5,
+      "ranked": [
+        {
+          "id": "south-korea-bans-ai-glasses-from-its-university",
+          "headline": "South Korea bans AI glasses from its university entrance exam and promises checks at every test site",
+          "total": 18,
+          "topic": "everyday_life",
+          "decision": "publish",
+          "reason": "Score 18 of 24, the highest in the list. Takes today's flip slot.",
+          "from": "new"
+        },
+        {
+          "id": "breast-cancer-patients-in-croatia-understood-ai",
+          "headline": "Breast cancer patients in Croatia understood AI-written research summaries as well as the originals",
+          "total": 10,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "Score 10. The best remaining story that fits: the health slot was open. Carried over from 2026-11-15.",
+          "from": "new"
+        },
+        {
+          "id": "kepler-90-eighth-planet",
+          "headline": "AI finds an eighth planet around a distant star",
+          "total": 12,
+          "topic": "space",
+          "decision": "publish",
+          "reason": "From the evergreen bank: no new space story was waiting. Score 12.",
+          "from": "evergreen"
+        },
+        {
+          "id": "stroke-scans-england",
+          "headline": "AI brain-scan reading in every stroke centre in England",
+          "total": 22,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "From the evergreen bank, as a second health story because the bank had nothing left for the open topics. Score 22.",
+          "from": "evergreen"
+        },
+        {
+          "id": "sepsis-early-warning-johns-hopkins",
+          "headline": "Sepsis early-warning AI linked to fewer deaths at five hospitals",
+          "total": 19,
+          "topic": "health",
+          "decision": "publish",
+          "reason": "From the evergreen bank, as a second health story because the bank had nothing left for the open topics. Score 19.",
+          "from": "evergreen"
+        },
+        {
+          "id": "dystonia-surgery-prediction",
+          "headline": "AI predicts who will benefit from dystonia surgery",
+          "total": 9,
+          "topic": "health",
+          "decision": "wait",
+          "reason": "Waits: the health slot went to \"Breast cancer patients in Croatia understood AI-written research summaries as well as the originals\" (score 10).",
+          "waiting_since": "2026-11-16"
+        }
+      ]
+    }
+  ]
+}

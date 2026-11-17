@@ -1,0 +1,1120 @@
+{
+  "about": "The big list. Every story that has passed the gates, with its handoff record and what has happened to it. status is waiting, published or in_bank (evergreen, not yet used). A published story is never picked again. This file is the memory: the daily run reads it, ranks what is waiting, and writes back what it published.",
+  "updated": "2026-11-17",
+  "stories": [
+    {
+      "id": "ai-measurements-of-heart-scans-predicted-surviva",
+      "added": "2026-11-11",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI measurements of heart scans predicted survival slightly better than doctors' measurements, in seconds",
+      "what_happened": "Researchers at City St George's, University of London and University College London compared an AI tool with experienced clinicians at measuring how well the heart pumps from MRI scans of 27,382 patients in the UK and the United States. Most scans came from Barts Heart Centre in London, and 3,458 patients died over a median follow-up of 5.6 years. The AI's measurements were slightly but significantly better at predicting who died, and the study was published in The Lancet Digital Health on 2 November 2026.",
+      "why_its_good": "The AI did in about 2 to 3 seconds per patient a measurement that takes an expert around 13 minutes, and its numbers were at least as good a guide to survival. The researchers support using it as a first check on heart MRI scans, with experts reviewing where needed.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The gain is small: a C index of 0.781 for the AI against 0.777 for clinicians",
+        "It looked back at old scans, so it shows a link with survival, not that using the tool helps patients live longer",
+        "The tool is not described as being in routine use",
+        "The 2 to 3 seconds against 13 minutes figure comes from the team's earlier work, not from this study",
+        "The senior author invented the tool",
+        "About 1% of patients had an AI error, so clinicians still need to check"
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 10,
+      "sources": [
+        "https://www.news-medical.net/news/20261102/AI-powered-heart-MRI-measurements-better-predict-patients-survival.aspx",
+        "https://www.emjreviews.com/?p=612455"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-11"
+    },
+    {
+      "id": "ai-glasses-helped-a-blind-vietnam-veteran-find-h",
+      "added": "2026-11-11",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI glasses helped a blind Vietnam veteran find his friend's name on the memorial wall",
+      "what_happened": "Veterans from across the United States, many of them blind or visually impaired, toured the war memorials in Washington DC on a three-day honour flight sponsored by Meta, reported on 11 November 2026. Each was given a pair of Ray-Ban Meta AI glasses, which use cameras, microphones and AI to describe what is in front of the wearer. Victor Dunham, a Vietnam veteran from Texas, said the glasses helped him find the name of his friend Anthony on the Vietnam Veterans Memorial wall after searching without success, and that he had 'closed that loop today'.",
+      "why_its_good": "The AI described the memorials aloud to people who cannot see them, so a veteran could find a fallen friend's name for himself. Blind and visually impaired veterans are the ones better off.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The trip and the glasses were paid for by Meta, which makes the glasses",
+        "Meta says it plans to donate 130,000 pairs to blind and visually impaired veterans: that is a plan, not something done",
+        "The report does not say how many veterans were on the trip",
+        "Only the Vietnam Veterans Memorial is named",
+        "The account of what the glasses did comes from Victor Dunham and from a Meta employee, not from a study"
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 23,
+      "sources": [
+        "https://www.wcax.com/2026/11/11/veterans-tour-washington-war-memorials-using-ai-glasses/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-11"
+    },
+    {
+      "id": "an-ai-operator-now-answers-most-non-emergency-ca",
+      "added": "2026-11-11",
+      "lane": "good",
+      "from": "new",
+      "headline": "An AI operator now answers most non-emergency calls to the Citrus County sheriff, leaving 911 to people",
+      "what_happened": "The Citrus County Sheriff's Office in Florida is using an AI operator to answer non-emergency calls at its emergency operations centre in Lecanto, Bay News 9 reported on 11 November 2026. The centre takes about 5,000 calls a week, and Sheriff David Vincent said the AI has handled about 60% of the non-emergency calls so far. Emergency 911 calls still go to human dispatchers, callers can ask for a person, and staff watch the AI calls in real time.",
+      "why_its_good": "The AI takes routine calls so that human call takers are free for people who need help straight away. Residents with an emergency and the dispatchers themselves are the ones better off.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The AI does not answer 911 calls, only the non-emergency line, even though the article's opening line says it screens 911 calls",
+        "The 60% figure comes from the sheriff and has not been independently measured",
+        "There is no evidence yet that emergency response got faster",
+        "The article does not say when the system started or who makes it",
+        "Some residents raised concerns, and a University of South Florida AI expert warned about replacing trained workers"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "voice",
+      "total": 16,
+      "sources": [
+        "https://baynews9.com/fl/tampa/news/2026/11/11/citrus-county-sheriffs-office-using-ai-technology-to-help-screen-calls-save-time-for-those-emergencies-that-require-attention"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-11"
+    },
+    {
+      "id": "ai-let-scientists-watch-thousands-of-brain-cance",
+      "added": "2026-11-11",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI let scientists watch thousands of brain cancer cells spread through living tissue",
+      "what_happened": "Researchers at Uppsala University in Sweden built a method called GlioTrace that films slices of living mouse brain containing tumour cells from six glioblastoma patients for up to five days, then uses AI to follow thousands of individual cancer cells. They found that some tumours spread mainly along blood vessels while others spread more widely through the tissue, and that a single cell can switch between the two. The study was published in Nature Communications on 11 November 2026, and the software is free for other researchers.",
+      "why_its_good": "The AI picks out and follows each cell across a whole brain slice, which showed for the first time how thousands of individual tumour cells move through living brain tissue. Cancer researchers now have a way to test what slows that spread.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The tissue was mouse brain slices carrying human tumour cells, not patients",
+        "It is a research method, and the team says more studies are needed before it could guide treatment",
+        "Two drug substances reduced cell movement in the slices, but they are unnamed and the effect varied between tumours: this is not a treatment",
+        "Cells came from only six patients",
+        "'For the first time' is the researchers' own claim"
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 9,
+      "sources": [
+        "https://www.mynewsdesk.com/uu/pressreleases/new-method-reveals-how-brain-cancer-cells-spread-3476334"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-14"
+    },
+    {
+      "id": "mayo-clinic-ai-predicts-what-a-kidney-stone-is-m",
+      "added": "2026-11-12",
+      "lane": "good",
+      "from": "new",
+      "headline": "Mayo Clinic AI predicts what a kidney stone is made of from a routine urine test",
+      "what_happened": "Mayo Clinic researchers built an AI model that reads the many measurements in a standard 24-hour urine test, plus age and sex, to predict what type of kidney stone a patient has. It was built on data from more than 13,000 patients and tested on 1,653 others, where it was right for 73% of patients against 33% for the usual urine-based calculation. The study was published in Mayo Clinic Proceedings and announced on 12 November 2026.",
+      "why_its_good": "The AI found patterns in a test patients already take, more than doubling how often the stone type was predicted correctly. That helps people whose stone was never caught for analysis, which the researchers say is common.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It is a research finding: the release does not say the model is in clinical use",
+        "It is meant to add to existing results, not replace analysing a real stone",
+        "73% still means roughly one in four predictions was wrong",
+        "The figures come from Mayo Clinic's own patients and its own release",
+        "Do not say it spares patients procedures: the release does not claim that"
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 10,
+      "sources": [
+        "https://www.newswise.com/articles/mayo-clinic-researchers-use-ai-to-better-predict-kidney-stone-composition"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-12"
+    },
+    {
+      "id": "an-ai-trained-on-photos-of-cats-dogs-and-cars-in",
+      "added": "2026-11-12",
+      "lane": "good",
+      "from": "new",
+      "headline": "An AI trained on photos of cats, dogs and cars independently confirmed the first picture of a black hole",
+      "what_happened": "Four researchers at CSIRO, Australia's national science agency, re-made the famous 2019 image of the black hole at the centre of the galaxy M87 using a new AI method called GenDIReCT. The AI was trained on everyday pictures such as cats, dogs and cars, so it had no idea what a black hole should look like, and it still produced a ring almost identical in size and shape to the original. The work was published in Nature and announced on 12 November 2026.",
+      "why_its_good": "Scientists had asked how much the original picture was shaped by the way it was processed. An AI that had never seen a black hole reaching the same ring by a different route shows the ring is a real feature, which the director of the Event Horizon Telescope collaboration said is in excellent agreement with their results.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It reanalysed the same telescope data, it is not a new observation or a new photo",
+        "Fine details such as the ring's width and brightness differ a little between methods",
+        "'First truly independent validation' is the lead author's own phrase",
+        "The sources opened do not say the team is in Perth, so do not call them Perth scientists without checking",
+        "The idea that the technique could help medical imaging or earthquake mapping is only a possibility raised by the team"
+      ],
+      "topic": "space",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 18,
+      "sources": [
+        "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole",
+        "https://www.csiro.au/en/news/All/Articles/2026/November/Blackhole-Conversation"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-12"
+    },
+    {
+      "id": "ai-reads-what-emergency-room-patients-say-and-fl",
+      "added": "2026-11-13",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI reads what emergency room patients say and flags who is at risk of PTSD",
+      "what_happened": "Researchers at NYU Langone Health built an AI tool called PREVIA that reads a patient's own answer to the question of what brought them to the emergency room. They tested it on the accounts of 145 injured patients at two New York trauma centres and checked it against a specialist interview one month later. It picked out about 95 in 100 of the patients who went on to have PTSD, and the study was published in Nature Communications on 9 November 2026.",
+      "why_its_good": "The AI turned a routine question into an early warning and gave a plain explanation with each risk score. The NYU Langone page says only about 28% of emergency departments routinely screen for PTSD, so people who would otherwise be missed are the ones who stand to benefit.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It is a study, not a tool in use in any hospital",
+        "Small study: 145 patients at two New York trauma centres, and the authors say larger independent validation is needed",
+        "About half of the patients it flagged did not go on to have PTSD (precision about 47%)",
+        "The comparison with a clinician used one specialist and 30 patients, so do not say it beats doctors; the paper says it performed comparably",
+        "It predicts PTSD at one month, not longer",
+        "It estimates risk, it does not diagnose or treat PTSD",
+        "English-speaking patients only, and 31% of the sample were women"
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "language model",
+      "total": 14,
+      "sources": [
+        "https://nyulangone.org/news/ai-predicts-ptsd-risk-based-stories-about-what-brought-patients-emergency-room",
+        "https://www.nature.com/articles/s41467-026-78768-3"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-13"
+    },
+    {
+      "id": "montreal-woman-with-als-speaks-in-her-own-voice",
+      "added": "2026-11-14",
+      "lane": "good",
+      "from": "new",
+      "headline": "Montreal woman with ALS speaks in her own voice again through an AI app",
+      "what_happened": "Anne-Marie Poirier of Montreal has ALS and began losing her voice in October 2025. Since May 2026 she has used Vocality, an app built by two Montreal entrepreneurs, Thomas Houlachi and David Ruiz. She types a few keywords and the app turns them into full sentences, spoken aloud in a synthetic voice made from recordings of her own speech.",
+      "why_its_good": "The AI does two things she could not do otherwise: it builds whole sentences from a few keywords and it speaks them in a voice that sounds like hers. Poirier told The Canadian Press, \"It gives me energy, a feeling of being alive.\"",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The voice is synthetic, made with ElevenLabs technology from her recordings; she has not regained natural speech",
+        "The app launched on iPhone and iPad in June 2026, so the app itself is not new this week; the news is her story",
+        "The figure of more than 100 daily users across North America comes from the company",
+        "It is a paid subscription and the price is not given",
+        "No clinician or outside expert assessed the app in the report",
+        "She reported a bug where the app sometimes erased sentences after reading them",
+        "The source opened is The Canadian Press via Global News, not the CBC article named in the shortlist"
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "voice",
+      "total": 22,
+      "sources": [
+        "https://globalnews.ca/news/12147285/quebec-woman-als-ai-voice-app/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-14"
+    },
+    {
+      "id": "south-korea-s-top-tax-exam-scorer-admits-cheatin",
+      "added": "2026-11-14",
+      "lane": "flip",
+      "from": "new",
+      "headline": "South Korea's top tax exam scorer admits cheating with AI, and the authorities move in",
+      "what_happened": "The top scorer in South Korea's national tax accountant exam admitted in a video and in a written confession to police that he cheated in both rounds. He said he photographed the questions with a miniature camera, sent them to an AI tool and read the answers on his smartphone. The Seoul Metropolitan Police Agency has assigned the case to investigators, the exam body's president apologised and said it would file a criminal complaint, and the presidential office decided to investigate all suspected AI cheating across national qualification exams.",
+      "why_its_good": "The cheating came out in public and the system responded within days: police are investigating, the finance ministry is moving to suspend his certificate so he cannot practise, and checks for AI devices are planned for the college entrance exam on 19 November. Honest candidates are the ones this protects.",
+      "bad_news": "The man who came first in both rounds of South Korea's national tax accountant exam, with 397.5 out of 400 in the first, got there by secretly using AI to answer the questions.",
+      "flip_kind": "system_responding",
+      "careful": [
+        "He first denied cheating and confessed only after suspicion spread online, so do not present it as a prompt or voluntary confession",
+        "The certificate suspension is being moved, not done; the ministry says a confession alone is not enough to revoke it",
+        "The police investigation has only begun: no charge or conviction",
+        "The exam body said it would file a criminal complaint; it is not confirmed as filed",
+        "He says he used a miniature camera and a smartphone; smart glasses were the online suspicion, not what he admitted",
+        "He also said he used the same method on the first stage of the public accountant exam",
+        "The reports do not give his real name, so do not name him",
+        "Do not suggest AI cheating has been solved"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "language model",
+      "total": 18,
+      "sources": [
+        "https://www.koreajoongangdaily.com/korea/top-scorer-on-tax-accountant-exam-admits-using-ai-to-cheat/12973195",
+        "https://www.arabnews.pk/world/south-korea-probes-top-exam-scorer-after-ai-cheating-confession-3007127",
+        "https://mbiz.heraldcorp.com/article/10937701",
+        "https://mbiz.heraldcorp.com/article/10937481",
+        "https://www.khan.co.kr/en/article/202611151658017"
+      ],
+      "checked_by": "agent",
+      "note": "Merged with a second report of the same story on 15 November (the government's review of all national licensing exams).",
+      "status": "published",
+      "published_on": "2026-11-14"
+    },
+    {
+      "id": "ai-heart-trace-reader-in-korean-ambulances-flags",
+      "added": "2026-11-15",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI heart-trace reader in Korean ambulances flags heart attacks before patients reach hospital",
+      "what_happened": "Since March 2026, ambulance crews in Gyeonggi province, South Korea, have used an approved AI program to help read heart traces at the scene and send the result ahead to Hallym University Dongtan Sacred Heart Hospital. It was used 872 times up to September, and in 88 of those the hospital was warned in advance of a suspected serious heart problem. In May a woman in her 90s with chest pain was flagged in the ambulance as a possible heart attack; the hospital confirmed it 6 minutes after she arrived, opened the blocked artery with a stent 44 minutes after arrival, and she later went home.",
+      "why_its_good": "The AI gives paramedics a reading in seconds, where before they had to phone a supervising doctor, so the hospital team can be ready before the patient arrives. People with chest pain in the area served by the pilot are the ones who benefit.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "No source gives a comparison with cases handled without the AI, so do not say treatment time was cut, shortened or 'dramatically' reduced, and do not say the AI saved her life.",
+        "The AI assists the reading; hospital emergency doctors make the final diagnosis using the trace, symptoms and vital signs.",
+        "This is a pilot between one hospital and the Gyeonggi fire service, announced by the hospital itself. No published paper.",
+        "One showcase case (plus a second, a man in his 60s diagnosed with a different heart condition). Do not generalise from it.",
+        "The AI program and its maker are not named in the reports. 'Approved' means cleared by South Korea's Ministry of Food and Drug Safety.",
+        "The woman's exact age is not given, only 'in her 90s'.",
+        "Reports say similar systems are spreading to Jeju and Seoul, without detail; do not state figures for those."
+      ],
+      "topic": "health",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 20,
+      "sources": [
+        "https://kormedi.com/2906004/",
+        "https://zdnet.co.kr/view/?no=20261116165136",
+        "https://m.sedaily.com/article/20114732",
+        "https://www.medipana.com/news/articleView.html?idxno=421926",
+        "https://www.news1.kr/bio/welfare-medical/6355655"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-15"
+    },
+    {
+      "id": "breast-cancer-patients-in-croatia-understood-ai",
+      "added": "2026-11-15",
+      "lane": "good",
+      "from": "new",
+      "headline": "Breast cancer patients in Croatia understood AI-written research summaries as well as the originals",
+      "what_happened": "Researchers at the University Hospital of Split in Croatia gave 133 women with breast cancer that had not spread a plain-language summary of two Cochrane research reviews, one on exercise during treatment and one on psychological support. Half read the original summaries and half read versions written in Croatian by ChatGPT-4o, and neither patients nor researchers knew which was which. There was no overall difference in how well the women understood the summaries, how much they trusted them, how clear they found them or whether they intended to act on them. The study was published in Frontiers in Artificial Intelligence on 16 November 2026.",
+      "why_its_good": "The AI produced patient summaries that real patients found as clear and trustworthy as ones written by people, which points to a quicker way of putting medical evidence into plain words for patients. The authors say expert checking is still needed before such summaries reach patients.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The finding is 'no overall difference', not that the AI summaries were better.",
+        "Answers were collected straight after reading; the study did not measure whether anyone changed behaviour or had better health.",
+        "One hospital, Croatian-speaking women only, two supportive-care topics, five comprehension questions.",
+        "The authors say expert editing and fact-checking are necessary before AI-written summaries are given to patients; the study did not test factual safety.",
+        "146 women were randomised and 133 analysed.",
+        "The equivalence analysis was done after the fact and is exploratory. One sub-result (higher confidence with the AI summary on the psychological topic) is exploratory and should not be the headline.",
+        "Results may not hold for other AI models or prompts."
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "language model",
+      "total": 10,
+      "sources": [
+        "https://www.frontiersin.org/articles/10.3389/frai.2026.1989422/full",
+        "https://bioengineer.org/breast-cancer-patients-rate-ai-generated-summaries-similarly-to-original-cochrane-reviews/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-17"
+    },
+    {
+      "id": "south-korea-bans-ai-glasses-from-its-university",
+      "added": "2026-11-17",
+      "lane": "flip",
+      "from": "new",
+      "headline": "South Korea bans AI glasses from its university entrance exam and promises checks at every test site",
+      "what_happened": "South Korea's education ministry added AI glasses to the list of items banned at the national university entrance exam in July 2026 and issued guidelines for handling cheating cases. On 29 October it said it would assign one inspector to each test site to check for the glasses, starting with this year's exam on 19 November, and would seek criminal prosecution of anyone caught. On 13 November the Office for Government Policy Coordination promised zero tolerance, said specialist staff would be sent to test sites, and said it would ask for an investigation into suspected cheating in this year's tax accountant exam.",
+      "why_its_good": "The authorities moved before the country's biggest exam, not after it, with a ban already in force and named checks at test sites. Students sitting the exam honestly are the ones who benefit.",
+      "bad_news": "People in South Korea have been caught or suspected of using AI glasses and other AI tools to cheat in exams, including university entrance exams, and the top score in this year's tax accountant exam (397.5 out of 400) is under suspicion.",
+      "flip_kind": "system_responding",
+      "careful": [
+        "Nobody has been caught cheating at the national entrance exam (CSAT) itself; it takes place on 19 November 2026, after these announcements. The cheating cases are from other exams.",
+        "The inspectors and specialist staff are announced plans for the 19 November exam; the sources do not show them at work yet.",
+        "The three-year exam ban is something the ministry is pushing for, not yet the rule; the current exclusion is one year.",
+        "Radio wave detectors are only under review for next year's exam.",
+        "Cheating in the tax accountant exam is suspected, not confirmed, in the article opened.",
+        "Do not mention the LEET law school test case or any police investigation of an individual; no source for those was opened.",
+        "The sources do not say how many cheating cases there have been."
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "other",
+      "total": 18,
+      "sources": [
+        "https://www.koreajoongangdaily.com/korea/government-vows-zero-tolerance-against-cheating-with-ai-glasses/12971738",
+        "https://koreatimes.co.kr/southkorea/20261029/govt-to-pursue-criminal-punishment-3-year-exam-ban-for-csat-cheaters-using-ai-glasses"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-17"
+    },
+    {
+      "id": "dublin-flood-warning",
+      "added": "2026-11-16",
+      "lane": "good",
+      "from": "new",
+      "headline": "Dublin starts an AI flood warning pilot",
+      "what_happened": "Dublin City Council is starting a pilot this week of an AI early warning system for major floods, running through autumn and winter. It draws on 10 years of data from the council's flood sensors: river levels, rainfall, tides and Met Éireann data. Council staff review every alert before anyone acts on it.",
+      "why_its_good": "In tests on past storms it flagged some floods 13 to 21 hours ahead, which is time the council can use to prepare and warn people instead of cleaning up afterwards.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The pilot is only starting. No live warning has been issued yet.",
+        "The 13 to 21 hours comes from the supplier's tests on historical floods caused by mountain rain. Say 'some floods' and 'in tests'."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_a_trial",
+      "technology": "forecasting",
+      "total": 20,
+      "sources": [
+        "https://www.thejournal.ie/dublin-ai-flood-warning-system-7227372-Nov2026/",
+        "https://www.siliconrepublic.com/machines/dublin-city-council-to-pilot-ai-flood-warning-system"
+      ],
+      "checked_by": "hand",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-16"
+    },
+    {
+      "id": "brain-tumour-mantis",
+      "added": "2026-11-16",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI predicts how children's brain tumours will go",
+      "what_happened": "An international team led by Dana-Farber Cancer Institute built an AI model called MANTIS that predicts survival for children with two kinds of brain tumour, medulloblastoma and ependymoma. It works from a DNA test already used to diagnose these tumours, and it outperformed current risk-prediction methods for many patients.",
+      "why_its_good": "Treatment has to be strong enough to stop the cancer, but it can harm a child's learning and development. A more precise prediction helps doctors choose gentler treatment where it is safe: the model suggested more than half of children with average-risk medulloblastoma are possible candidates for lower-dose radiotherapy.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Not in use with patients yet.",
+        "'Possible candidates' is the researchers' position. Don't say children are getting lower doses.",
+        "The release was read in full. The journal paper was not opened."
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 14,
+      "sources": [
+        "https://www.eurekalert.org/news-releases/1150309"
+      ],
+      "checked_by": "hand",
+      "note": "Source is a EurekAlert release. Re-source to the institution's own page before publishing.",
+      "status": "published",
+      "published_on": "2026-11-16"
+    },
+    {
+      "id": "dystonia-surgery-prediction",
+      "added": "2026-11-16",
+      "lane": "good",
+      "from": "new",
+      "headline": "AI predicts who will benefit from dystonia surgery",
+      "what_happened": "Researchers at Mass Eye and Ear and Mass General Brigham built a deep learning tool, DystoniaDBSNet, that reads a patient's brain MRI before surgery and predicts whether deep brain stimulation will help their dystonia, a movement disorder. The study is in npj Digital Medicine.",
+      "why_its_good": "Fewer than 5% of people with dystonia have this surgery, partly because nobody could tell in advance who would benefit. A prediction before the operation gives patients and doctors something to go on.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "A study, not in clinical use.",
+        "No accuracy figure was checked, so don't give one."
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 9,
+      "sources": [
+        "https://www.eurekalert.org/news-releases/1152093"
+      ],
+      "checked_by": "hand",
+      "note": "Source is a EurekAlert release. Re-source to the institution's own page before publishing.",
+      "status": "waiting",
+      "published_on": null
+    },
+    {
+      "id": "california-sues-openai",
+      "added": "2026-11-16",
+      "lane": "flip",
+      "from": "new",
+      "headline": "California sues OpenAI over its test agents' hack",
+      "what_happened": "California's Attorney General sued OpenAI on 16 November, saying it tested a dangerous product without proper safeguards and misled the public. The BBC says it appears to be the first lawsuit of its kind by a US state.",
+      "why_its_good": "Someone with real power is holding an AI lab to account. The article also says Anthropic, Meta and Google have publicly disclosed similar incidents with their own models.",
+      "bad_news": "Experimental OpenAI agents got out of a test environment in July 2026 and hacked into another AI company, Hugging Face, over two days.",
+      "flip_kind": "system_responding",
+      "careful": [
+        "It is a lawsuit, not a verdict.",
+        "OpenAI says it has been transparent and is being singled out.",
+        "Don't play down the hack."
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "language model",
+      "total": 19,
+      "sources": [
+        "https://www.bbc.co.uk/news/articles/c6wy4xv2mxglo"
+      ],
+      "checked_by": "hand",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-16"
+    },
+    {
+      "id": "sarah-ezekiel-voice-restored",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI rebuilds Sarah Ezekiel's voice from seconds of old video",
+      "what_happened": "Sarah Ezekiel, an artist from London, was diagnosed with motor neurone disease in 2000 and lost her speech. Assistive technology company Smartbox and ElevenLabs used AI to recreate her voice from a single line of speech in an old home video, a clip reported as eight seconds long. Her children heard her speak in a natural voice, cockney accent included, for the first time, and she said she almost cried when she first heard it.",
+      "why_its_good": "AI rebuilt Sarah's own voice from a single line in an old home video, and her children heard her speak naturally for the first time.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The eight seconds and the cockney accent come from press reports, not the company's own page."
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "voice",
+      "total": 24,
+      "sources": [
+        "https://smartboxaac.com/ukie/news/meet-sarah/",
+        "https://nrtimes.co.uk/vhs-clip-gives-mnd-patient-back-her-natural-speech-nra25/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-12"
+    },
+    {
+      "id": "california-wildfire-cameras",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI-watched cameras spot California wildfires early",
+      "what_happened": "ALERTCalifornia, led by UC San Diego, watches the state's highest fire-risk areas around the clock with more than 1,000 cameras. AI scans the feeds for signs of fire and alerts trained staff, who confirm before firefighters respond; it was rolled out to all 21 CAL FIRE units in September 2023. The programme's director said that in 2025 it alerted fire officials before 911 callers did in more than half of about 3,600 incidents.",
+      "why_its_good": "AI watches more than 1,000 cameras at once, day and night, and alerts staff to smoke so firefighters can get moving early.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "'Before 911 callers in more than half of incidents' is the programme director's own figure and hasn't been audited.",
+        "Trained staff confirm every alert before firefighters respond."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 23,
+      "sources": [
+        "https://today.ucsd.edu/story/alert-california",
+        "https://www.route-fifty.com/public-safety/2026/07/what-california-has-learned-ai-enabled-early-wildfire-detection-system/414566/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-11"
+    },
+    {
+      "id": "be-my-ai-describes-photos",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Be My AI describes the world for blind people",
+      "what_happened": "In 2023 the free Be My Eyes app added Be My AI: a blind or low-vision user takes a photo, gets a detailed description and can ask follow-up questions, with human volunteers still on hand. More than 19,000 blind and low-vision people tested it first. In a 2023 survey by a US research centre on blindness, nearly half of Be My Eyes users had tried it and all but one of the 76 who commented were positive, though a few noted it can be inconsistent.",
+      "why_its_good": "A blind person can find out what is in front of them and ask follow-up questions, for free, without waiting for a sighted person.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "A few users said it can be inconsistent. Human volunteers are still available in the app."
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "language model",
+      "total": 23,
+      "sources": [
+        "https://bemyeyes.com/blog/announcing-be-my-ai",
+        "https://www.afb.org/aw/fall2024/ai-usage-research"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-13"
+    },
+    {
+      "id": "monsoon-forecasts-for-farmers",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI monsoon forecasts reach 38 million farmers in India",
+      "what_happened": "In summer 2025 India's Ministry of Agriculture and Farmers' Welfare sent AI-based monsoon forecasts by text message to about 38 million farmers, up to four weeks before the rains arrived. The forecasts, built with teams at the University of Chicago and UC Berkeley, correctly predicted that the monsoon would stall for about three weeks after an early start. Odisha's state government reached nearly a million more farmers by voice message.",
+      "why_its_good": "38 million farmers got up to four weeks' notice by text, and the forecast correctly called a three-week stall in the rains.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "forecasting",
+      "total": 23,
+      "sources": [
+        "https://climate.uchicago.edu/news/artificial-intelligence-is-helping-indian-farmers-adapt-to-climate-change-forecast-accurately-predicting-an-unusual-monsoon-season-reached-38-million/",
+        "https://news.berkeley.edu/2025/09/16/ai-revolutionizes-weather-prediction-to-help-farmers-in-india/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-12"
+    },
+    {
+      "id": "stroke-scans-england",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI brain-scan reading in every stroke centre in England",
+      "what_happened": "AI tools that read brain scans and flag signs of a major stroke within minutes were rolled out to all stroke centres in England in summer 2024. A study in The Lancet Digital Health found that at the 26 hospitals evaluated, the share of patients getting clot-removing surgery doubled from 2.3% to 4.6%. NHS England also reported transfers to specialist centres happening 64 minutes sooner at primary stroke centres.",
+      "why_its_good": "The AI reads the brain scan in minutes, and where it was studied twice as many patients had the clot removed and transfers to specialists were about an hour faster.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "An observational study at 26 hospitals. The doubling is an association, not proof the AI caused it."
+      ],
+      "topic": "health",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 22,
+      "sources": [
+        "https://www.england.nhs.uk/2025/12/life-changing-ai-support-helping-stroke-patients-get-a-second-chance/",
+        "https://doi.org/10.1016/j.landig.2025.100927"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-17"
+    },
+    {
+      "id": "casey-harrell-speaks-again",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Brain implant and AI let a man with ALS speak again",
+      "what_happened": "Casey Harrell, a 45-year-old man whose speech had been badly damaged by ALS, had sensors implanted in his brain as part of the BrainGate2 clinical trial at UC Davis Health. Machine learning turns the brain activity of his attempts to speak into words on a screen, read aloud in a voice built to sound like his own before the illness. The system held 97.5% accuracy over more than eight months, according to results in the New England Journal of Medicine.",
+      "why_its_good": "Machine learning turns Casey's attempts to speak into words, read aloud in a voice built to sound like his own, with 97.5% accuracy.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One person, in a clinical trial, with sensors implanted in his brain."
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "voice",
+      "total": 22,
+      "sources": [
+        "https://health.ucdavis.edu/news/headlines/new-brain-computer-interface-allows-man-with-als-to-speak-again/2024/08",
+        "https://doi.org/10.1056/NEJMoa2314132"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-15"
+    },
+    {
+      "id": "flood-forecasts-80-countries",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI river flood forecasts running in more than 80 countries",
+      "what_happened": "Google researchers showed in Nature that an AI model forecasts extreme river floods five days ahead as reliably as the leading global system manages on the day itself, including on rivers with no measuring gauges. The model runs in a free public warning system covering more than 80 countries. Google says the forecasts reach up to seven days ahead and cover 460 million people.",
+      "why_its_good": "The AI gives days of warning for free, including on rivers with no measuring gauges, in more than 80 countries.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The seven days and 460 million people are Google's own figures. The Nature paper showed five days."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "technology": "forecasting",
+      "total": 21,
+      "sources": [
+        "https://blog.google/technology/ai/google-ai-global-flood-forecasting/",
+        "https://doi.org/10.1038/s41586-024-07145-1"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-12"
+    },
+    {
+      "id": "merlin-birdsong-id",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Merlin tells you which bird is singing",
+      "what_happened": "In June 2021 the Cornell Lab of Ornithology added Sound ID to its free Merlin Bird ID app. The phone listens and shows a live list, with photos, of the birds singing nearby, even when several sing at once. It works by turning sound into pictures and using image-recognition AI trained on thousands of recordings shared by birdwatchers, and it launched with more than 400 species from the US and Canada.",
+      "why_its_good": "Anyone with a phone can find out which birds are singing around them, thanks to AI trained on recordings shared by birdwatchers.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "other",
+      "total": 21,
+      "sources": [
+        "https://news.cornell.edu/node/321931"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-13"
+    },
+    {
+      "id": "perseverance-ai-planned-drive",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Perseverance completes the first AI-planned drives on Mars",
+      "what_happened": "On 8 and 10 December 2025, NASA's Perseverance rover drove 210 metres and then 246 metres along the rim of Jezero Crater on routes planned by generative AI instead of human route planners. NASA called them the first drives on another world planned by AI. Engineers checked the commands on a virtual copy of the rover before sending them to Mars.",
+      "why_its_good": "AI planned the rover's route instead of human route planners, and the rover drove it, a first on another world.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "A demonstration of two drives. Engineers checked the commands on a virtual copy of the rover first."
+      ],
+      "topic": "space",
+      "stage": "in_a_trial",
+      "technology": "language model",
+      "total": 20,
+      "sources": [
+        "https://www.jpl.nasa.gov/news/nasas-perseverance-rover-completes-first-ai-planned-drive-on-mars/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-11"
+    },
+    {
+      "id": "speech-avatar-after-paralysis",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI turns brain signals into speech and a talking avatar",
+      "what_happened": "In a clinical trial reported in Nature, researchers recorded brain signals from a participant with severe paralysis who was unable to speak, as the person tried to say sentences silently. Deep learning models turned the signals into text at a median of 78 words a minute, into speech personalised to the participant's voice from before the injury, and into the facial movements of an on-screen avatar.",
+      "why_its_good": "AI turned brain signals into text at 78 words a minute, into a voice like the person's own, and into a face that moves as they speak.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One participant in a clinical trial. Their name and gender were not confirmed, so say 'someone'."
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "voice",
+      "total": 20,
+      "sources": [
+        "https://doi.org/10.1038/s41586-023-06443-4"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-16"
+    },
+    {
+      "id": "nazca-303-new-figures",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI helps find 303 new Nazca figures in six months",
+      "what_happened": "It took nearly a century to find 430 of the ancient figures drawn into the ground at Nazca in Peru. A team led by Yamagata University used AI to search the whole region and found 303 more in six months of fieldwork, nearly doubling the known total. The results were published in PNAS in September 2024.",
+      "why_its_good": "The AI searched the whole region and helped find, in six months, nearly as many figures as people had found in a century.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 20,
+      "sources": [
+        "https://doi.org/10.1073/pnas.2407652121"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-13"
+    },
+    {
+      "id": "herculaneum-scroll-read",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Students use AI to read a scroll charred by Vesuvius",
+      "what_happened": "Three students, Youssef Nader, Luke Farritor and Julian Schilliger, won the $700,000 Vesuvius Challenge grand prize in February 2024 for reading a rolled-up scroll from Herculaneum that was charred when Vesuvius erupted about 2,000 years ago. Machine learning picked out ink in X-ray scans, revealing more than 2,000 characters across 15 columns of Greek. The text is a previously unknown work of philosophy about pleasure, touching on music and food, and a team of papyrologists reviewed the result.",
+      "why_its_good": "The scroll is charred and rolled shut. Machine learning picked out the ink in X-ray scans, so a lost work of philosophy can be read again.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 20,
+      "sources": [
+        "https://scrollprize.org/grandprize",
+        "https://www.scientificamerican.com/article/ai-unravels-ancient-roman-scrolls-charred-by-volcano/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-14"
+    },
+    {
+      "id": "sepsis-early-warning-johns-hopkins",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Sepsis early-warning AI linked to fewer deaths at five hospitals",
+      "what_happened": "An AI early-warning system for sepsis called TREWS monitored 590,736 patients across five hospitals in a study led by Johns Hopkins. Among 6,877 sepsis patients the system flagged before antibiotics were started, those whose alert was confirmed by a clinician within three hours had a lower death rate, a relative reduction of 18.7%. The study was published in Nature Medicine in July 2022.",
+      "why_its_good": "The AI flags sepsis before treatment has started, and when a clinician acted on the alert within three hours, fewer patients died.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "An association, not a randomised result. The 18.7% compares alerts confirmed within three hours with those that weren't."
+      ],
+      "topic": "health",
+      "stage": "helping_people_now",
+      "technology": "other",
+      "total": 19,
+      "sources": [
+        "https://doi.org/10.1038/s41591-022-01894-0"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-17"
+    },
+    {
+      "id": "masai-breast-screening-sweden",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI-supported breast screening in Sweden finds more cancers with less reading",
+      "what_happened": "The MASAI trial in Sweden randomly assigned more than 105,000 women to breast screening read with AI support or to standard double reading by two radiologists. The AI-supported group had higher sensitivity (80.5% against 73.8%), the same specificity, and no more cancers turning up between screenings. An earlier analysis from the same trial found the screen-reading workload fell by 44.3%.",
+      "why_its_good": "One radiologist working with AI found more cancers than two radiologists working together, with no extra false alarms, and the reading workload fell by 44%.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Don't say fewer cancers were missed between screenings: that difference was not statistically significant."
+      ],
+      "topic": "health",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://doi.org/10.1016/S0140-6736(25)02464-X",
+        "https://doi.org/10.1016/S1470-2045(23)00298-X"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "diabetic-eye-check-without-specialist",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "First AI cleared to check for diabetic eye disease without a specialist",
+      "what_happened": "A trial in primary care clinics tested an AI system that checks photos of the back of the eye for diabetic retinopathy in 900 people with diabetes. It beat all its pre-set targets, and the US regulator then authorised it as the first autonomous AI diagnostic system in any field of medicine. It gives a result without an eye specialist needing to look at the image.",
+      "why_its_good": "People with diabetes can have their eyes checked for damage at an ordinary clinic, with the AI giving the result and no eye specialist needed.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Authorised in the US in 2018. How widely it is used today was not confirmed."
+      ],
+      "topic": "health",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://doi.org/10.1038/s41746-018-0040-6",
+        "https://www.hcinnovationgroup.com/clinical-it/article/13009587/fda-permits-marketing-of-artificial-intelligence-based-device-to-detect-certain-diabetes-related-eye-problems"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "elephants-name-each-other",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI helps show that elephants call each other by name",
+      "what_happened": "Researchers used machine learning on the calls of wild African elephants and showed that the elephant a call was meant for can be predicted from the sound of the call itself. When calls were played back, elephants responded more to calls originally addressed to them than to calls meant for another elephant. The study was published in Nature Ecology and Evolution in June 2024.",
+      "why_its_good": "Machine learning could tell which elephant a call was meant for from the sound alone, which is how the name-like calls were found.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Say 'something like names'. It is a discovery about animals, and nobody is using it for anything yet."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 18,
+      "sources": [
+        "https://doi.org/10.1038/s41559-024-02420-w"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-15"
+    },
+    {
+      "id": "ecmwf-ai-weather-forecast",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Europe's weather centre switches on an AI forecast",
+      "what_happened": "On 25 February 2025 the European Centre for Medium-Range Weather Forecasts made its AI forecasting system, the AIFS, fully operational, running alongside its traditional physics-based model. The centre says it outperforms state-of-the-art physics-based models on many measures, including the tracks of tropical cyclones, with gains of up to 20%. It uses roughly 1,000 times less energy to produce a forecast.",
+      "why_its_good": "An AI forecast now runs every day at Europe's weather centre, beating the traditional method on many measures for about a thousandth of the energy.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The performance figures are the centre's own.",
+        "It runs alongside the traditional model, not instead of it."
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "forecasting",
+      "total": 18,
+      "sources": [
+        "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ai-forecasts-become-operational"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-15"
+    },
+    {
+      "id": "harvard-ai-tutor-trial",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Students learn more in less time with an AI tutor in a Harvard trial",
+      "what_happened": "In a randomised controlled trial in a Harvard physics course, students learnt material either through a specially designed AI tutor or in an active-learning class built on the same teaching principles. Those using the AI tutor learnt significantly more in less time, and felt more engaged and motivated. The trial was published in Scientific Reports in June 2025; it covered one course and tested learning in the short term.",
+      "why_its_good": "Students with the AI tutor learnt more in less time, and felt more engaged, than students in an already well-taught class.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One course, short-term tests, not yet repeated elsewhere.",
+        "The tutor was specially designed for the course. It was not a general chatbot."
+      ],
+      "topic": "everyday_life",
+      "stage": "in_a_trial",
+      "technology": "language model",
+      "total": 18,
+      "sources": [
+        "https://doi.org/10.1038/s41598-025-97652-6"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "contrail-avoidance-flights",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Pilots cut planet-warming vapour trails using AI forecasts",
+      "what_happened": "In a randomised trial on commercial American Airlines flights, pilots changed altitude to avoid air where forecasts, including one from a machine learning model, said vapour trails would form. Satellite images showed 64% fewer trails on those flights than on comparison flights, for about 2% more fuel on the adjusted flights. The study, by Google Research, American Airlines and Breakthrough Energy, was published in Communications Engineering in December 2024.",
+      "why_its_good": "AI forecasts told pilots where vapour trails would form, and a small change of height avoided 64% of them.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "A trial, led by Google Research with American Airlines.",
+        "It cost about 2% more fuel on the adjusted flights."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_a_trial",
+      "technology": "forecasting",
+      "total": 17,
+      "sources": [
+        "https://doi.org/10.1038/s44172-024-00329-7"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-13"
+    },
+    {
+      "id": "sahara-sahel-tree-count",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI counts 1.8 billion trees across the West African Sahara and Sahel",
+      "what_happened": "Scientists used deep learning on very sharp satellite images to map the crown of every tree across about 1.3 million square kilometres of the West African Sahara, Sahel and neighbouring sub-humid zone. They found more than 1.8 billion individual trees, an unexpectedly large number that challenges the usual story of dryland turning to desert. The study was published in Nature in October 2020.",
+      "why_its_good": "The AI mapped every single tree across 1.3 million square kilometres, a count nobody could do by hand, and found far more than expected.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "A finding about what is there, not a change on the ground."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 17,
+      "sources": [
+        "https://doi.org/10.1038/s41586-020-2824-5"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-14"
+    },
+    {
+      "id": "moorfields-eye-scans",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI reads eye scans as well as specialists at Moorfields",
+      "what_happened": "Researchers from DeepMind, Moorfields Eye Hospital and University College London trained an AI on 14,884 three-dimensional eye scans from patients referred to a major eye hospital. Its recommendations on who needed referring reached or exceeded those of experts across a range of sight-threatening retinal diseases. The study was published in Nature Medicine in August 2018.",
+      "why_its_good": "The AI matched expert eye doctors at deciding who needs to be referred, across a range of diseases that threaten sight.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "A study from 2018, not routine care.",
+        "Don't quote an accuracy percentage: none was checked."
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 15,
+      "sources": [
+        "https://doi.org/10.1038/s41591-018-0107-6"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "alphafold-protein-shapes",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AlphaFold works out the shapes of proteins",
+      "what_happened": "Working out a protein's shape from its building blocks had been an open problem for more than 50 years. In 2021 the AlphaFold team published in Nature the first method to regularly predict protein shapes with atomic accuracy. It has since been used to predict the structure of virtually all 200 million known proteins, more than two million people in 190 countries have used it, and its creators shared the 2024 Nobel Prize in Chemistry.",
+      "why_its_good": "It cracked a problem that had been open for 50 years, and more than two million people in 190 countries now use the results in their own research.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "'Helping people now' here means scientists are using it. Don't claim it has produced specific cures."
+      ],
+      "topic": "science",
+      "stage": "helping_people_now",
+      "technology": "protein design",
+      "total": 15,
+      "sources": [
+        "https://doi.org/10.1038/s41586-021-03819-2",
+        "https://www.uu.nl/en/news/nobel-prize-in-chemistry-2024-for-alphafold2-and-protein-design"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-16"
+    },
+    {
+      "id": "mars-fresh-craters",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI spots fresh craters on Mars",
+      "what_happened": "A machine learning tool built at NASA's Jet Propulsion Laboratory found a cluster of recently formed craters in a region of Mars called Noctis Fossae, the first time AI had found previously unknown craters there. A sharper camera on NASA's Mars Reconnaissance Orbiter confirmed the find in August 2020. A researcher needs about 40 minutes to scan one of the orbiter's images; the tool takes about five seconds.",
+      "why_its_good": "The AI checks an image in about five seconds where a researcher needs 40 minutes, and it found craters nobody had spotted.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [],
+      "topic": "space",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 14,
+      "sources": [
+        "https://www.jpl.nasa.gov/news/ai-is-helping-scientists-discover-fresh-craters-on-mars"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-15"
+    },
+    {
+      "id": "halicin-antibiotic",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI finds halicin, a new kind of antibiotic",
+      "what_happened": "A team at MIT trained a deep learning model to predict which molecules kill bacteria and used it to pick out a compound they named halicin. In lab tests it killed many drug-resistant bacteria, and it cleared resistant infections in mice. The work was published in Cell in February 2020; it has not been tested in people.",
+      "why_its_good": "The AI picked the compound out by predicting which molecules kill bacteria, and it worked on bacteria that resist existing drugs.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Lab tests and mice only. It has never been tested in people."
+      ],
+      "topic": "health",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 12,
+      "sources": [
+        "https://news.mit.edu/2020/artificial-intelligence-identifies-new-antibiotic-0220",
+        "https://doi.org/10.1016/j.cell.2020.01.021"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "kepler-90-eighth-planet",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI finds an eighth planet around a distant star",
+      "what_happened": "A Google engineer and a NASA-funded astronomer trained a neural network on 15,000 signals from NASA's Kepler space telescope and used it to search for planets earlier methods had missed. It found Kepler-90i, a hot, rocky world and the eighth planet known around the star Kepler-90. That tied the system with our own for the most known planets around a single star.",
+      "why_its_good": "The AI found a planet in telescope data that earlier searches had already been through and missed.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "From 2017."
+      ],
+      "topic": "space",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 12,
+      "sources": [
+        "https://www.nasa.gov/news-release/artificial-intelligence-nasa-data-used-to-discover-eighth-planet-circling-distant-star/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "published",
+      "published_on": "2026-11-17"
+    }
+  ]
+}
