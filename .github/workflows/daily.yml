@@ -1,6 +1,6 @@
 name: Daily story
 
-# Picks the day's story, has the headline editor write it with the company Anthropic key, emails it through the
+# Scores the new stories, picks the day's story, has the headline editor write it with the company Anthropic key, emails it through the
 # Worker and commits the run log. See "The daily run" in AGENTS.md.
 #
 # GitHub crons run in UTC and can start late, so there are two, and the run only goes ahead from 06:00 London.
@@ -66,6 +66,16 @@ jobs:
       - name: Install the Anthropic SDK
         if: steps.clock.outputs.go == 'true'
         run: python3 -m venv "$RUNNER_TEMP/venv" && "$RUNNER_TEMP/venv/bin/pip" install --quiet anthropic
+
+      # The quality filter: triage the stories pulled since the last run and score the shortlist against
+      # prompts/score-story.md, opening the sources. If it fails, the day still runs, from the bank.
+      - name: Score new stories
+        if: steps.clock.outputs.go == 'true'
+        continue-on-error: true
+        run: |
+          args=(--worker "$WORKER_URL")
+          [ "$DRY_RUN" = true ] && args+=(--dry-run)
+          "$RUNNER_TEMP/venv/bin/python" scripts/score.py "${args[@]}"
 
       - name: Run the daily story
         if: steps.clock.outputs.go == 'true'
