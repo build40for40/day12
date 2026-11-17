@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { isPullTime, scheduledPull } from './schedule'
+import { isPullTime, scheduledDaily, scheduledPull } from './schedule'
 import type { Env, PullReport } from './types'
 
 const CRON_HOURS_UTC = [5, 6]
@@ -57,5 +57,28 @@ describe('scheduledPull', () => {
 
     await expect(scheduledPull(at('2026-11-17', 6), env, async () => Promise.reject(new Error('D1 is down')), log)).rejects.toThrow('D1 is down')
     expect(log.error).toHaveBeenCalledWith('scheduled pull failed: D1 is down')
+  })
+})
+
+describe('scheduledDaily', () => {
+  it('runs the day at 06:00 London with the London date, and skips the other cron', async () => {
+    const daily = vi.fn(async (_env: Env, options: { date: string }) => ({ status: 'published' as const, date: options.date, storyId: 's' }))
+    const log = fakeLog()
+
+    await scheduledDaily(at('2026-11-17', 6), env, daily, log)
+    await scheduledDaily(at('2026-11-17', 5), env, daily, log)
+
+    expect(daily).toHaveBeenCalledTimes(1)
+    expect(daily).toHaveBeenCalledWith(env, { date: '2026-11-17' })
+  })
+
+  it('logs and rethrows a failed run so the invocation shows as failed', async () => {
+    const daily = vi.fn(async () => {
+      throw new Error('nothing left to run')
+    })
+    const log = fakeLog()
+
+    await expect(scheduledDaily(at('2026-11-17', 6), env, daily, log)).rejects.toThrow('nothing left to run')
+    expect(log.error).toHaveBeenCalledWith('daily story failed for 2026-11-17: nothing left to run')
   })
 })

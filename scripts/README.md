@@ -1,6 +1,6 @@
 # Scripts
 
-`daily.py` is the daily run: it picks the day's story from `data/backlog.json`, has the headline editor write the post, sends it through the Worker's `POST /publish` and marks the story as published. See "The daily run" in `AGENTS.md`. Its tests are in `test_daily.py` (`python3 scripts/test_daily.py`).
+The daily run lives in the Worker (`src/daily.ts`), not here; see "The daily run" in `AGENTS.md`. `backlog_to_sql.py` built `migrations/0005_stories.sql` from `data/backlog.json`, and `build-prompt.mjs` (`npm run prompt`) copies the headline editor prompt into `src/editor-prompt.ts`.
 
 The rest are one-off Python scripts from Day 12, kept so the runs in `runs/2026-11-17/` can be traced. They are not part of the Worker and nothing imports them. The live source pull is in `src/`.
 

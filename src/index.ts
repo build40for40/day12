@@ -1,8 +1,9 @@
+import { dailyRoute } from './daily'
 import { renderLanding, type LandingView } from './landing'
 import { findIssue, findLatestIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
-import { scheduledPull } from './schedule'
+import { scheduledDaily, scheduledPull } from './schedule'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -28,7 +29,13 @@ async function pull(request: Request, env: Env): Promise<Response> {
   return Response.json(await runPull(env, new Date()))
 }
 
-// The daily run posts the day's story here. It uses the same token as /pull.
+// Runs the day's story by hand, or previews it. It uses the same token as /pull.
+async function daily(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return dailyRoute(request, env)
+}
+
+// Sends a story that's already written, skipping the pick and the headline editor. Same token as /pull.
 async function publishIssue(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   return publishRoute(request, env)
@@ -65,6 +72,8 @@ export default {
         return landing(request, env)
       case 'POST /pull':
         return pull(request, env)
+      case 'POST /daily':
+        return daily(request, env)
       case 'POST /publish':
         return publishIssue(request, env)
       case 'GET /issues':
@@ -90,5 +99,6 @@ export default {
 
   async scheduled(controller, env, ctx) {
     ctx.waitUntil(scheduledPull(controller.scheduledTime, env))
+    ctx.waitUntil(scheduledDaily(controller.scheduledTime, env))
   },
 } satisfies ExportedHandler<Env>

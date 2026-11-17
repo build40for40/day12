@@ -15,4 +15,6 @@ export interface Env {
   ALLOWED_ORIGIN: string
   POSTMARK_TRANSACTIONAL_STREAM: string
   POSTMARK_BROADCAST_STREAM: string
+  // The company Anthropic key, for the headline editor. A Worker secret.
+  ANTHROPIC_API_KEY?: string
 }
