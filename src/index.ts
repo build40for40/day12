@@ -1,5 +1,6 @@
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
+import { scheduledPull } from './schedule'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -46,5 +47,9 @@ export default {
       default:
         return new Response('Not found', { status: 404 })
     }
+  },
+
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(scheduledPull(controller.scheduledTime, env))
   },
 } satisfies ExportedHandler<Env>
