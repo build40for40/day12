@@ -17,6 +17,7 @@
     { "pattern": "build40for40.com/feel-good/*", "zone_name": "build40for40.com" }
   ],
   "triggers": { "crons": ["0 5 * * *", "0 6 * * *"] },
+  "workflows": [{ "name": "day12-daily", "binding": "DAILY", "class_name": "DailyWorkflow" }],
   "vars": {
     "PUBLIC_BASE_URL": "https://build40for40.com/feel-good",
     "ALLOWED_ORIGIN": "https://build40for40.com",

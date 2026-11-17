@@ -36,7 +36,7 @@ export function londonDay(now: Date): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(now)
 }
 
-/** The link a reader should get for one source, or null. Mirrors reader_link in scripts/daily.py. */
+/** The link a reader should get for one source, or null. */
 export function readerLink(url: string): string | null {
   if (url.includes('eurekalert.org')) return null // its terms restrict reuse, so these need re-sourcing
   if (url.includes('europepmc/webservices')) {

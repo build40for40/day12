@@ -1,6 +1,6 @@
 # Headline editor prompt
 
-System prompt for the headline editor: the step that turns the day's top story from the scoring pipeline into one post, used for both X and the Feel good AI email. Version 2, 17 November 2026: field names now match `data/backlog.json`. `scripts/daily.py` sends everything below the line as the system prompt.
+System prompt for the headline editor: the step that turns the day's top story from the scoring pipeline into one post, used for both X and the Feel good AI email. Version 2, 17 November 2026: field names now match `data/backlog.json`. The Worker's daily run (`src/editor.ts`) sends everything below the line as the system prompt, from the copy in `src/prompts.ts`. After editing this file, run `npm run prompts` to update that copy; a test fails until you do.
 
 How it's evaluated: run it against the 29 stories on the "Day 12 - Headline eval labels" Superthread page and compare its output with Lawrence's good, okay and bad labels, plus a faithfulness check against each story's record.
 

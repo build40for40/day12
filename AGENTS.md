@@ -50,18 +50,16 @@ The source pull is a Cloudflare Worker (`src/index.ts`) with its own local D1 da
 
 ### The daily pull
 
-The pull also runs itself at 06:00 London every day. Cloudflare crons run in UTC, so `wrangler.jsonc` has two, `0 5 * * *` and `0 6 * * *`, and the `scheduled` handler (`src/schedule.ts`) only runs the pull when the event's scheduled time is 6am in Europe/London. That's the 05:00 UTC cron in summer and the 06:00 UTC one in winter, and the other one logs a skip. It logs how many stories were stored plus the id and error of any source that failed, and a pull that throws logs an error and fails the invocation. A second pull on the same day is harmless: anything already in `seen` is skipped, so it stores nothing new. The crons only fire on a deployed Worker, and a change to them can take up to 15 minutes to reach Cloudflare's network.
-
-`npm run dev` never fires crons by itself. To run the handler by hand, call `curl "localhost:8787/cdn-cgi/local/scheduled?cron=0+6+*+*+*&time=1794895200000&format=json"`. `time` is the scheduled time in epoch milliseconds (that one is 06:00 London on 17 November 2026). Leave it out to use the current time, which will usually skip. The pull's logs show in the dev server's output, and the response's `outcome` is `exception` if it failed.
+The pull also runs every morning as the first step of the daily run (see "The daily run"). `POST /pull` still runs it on its own, and a second pull on the same day is harmless: anything already in `seen` is skipped, so it stores nothing new.
 
 ## The evergreen bank and the daily pick
 
 The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 stories from `data/backlog.json`, and `0004` adds the pick and `0005` the issues. Statuses: `banked` (can run), `review` (promoted from the news, needs a fact-check before it is set to `banked`), `used`, `removed`. Deploys apply the migrations to the remote database, so there is no separate seed step.
 
-- **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
+- **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. The daily run makes the same pick every morning; this route is for doing it by hand.
 - **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.
 - **Health:** `GET /bank` (same token) reports ready, review and used counts, topic spread and `low: true` under 20 ready stories.
-- **Scoring:** `scripts/score.ts` scores candidates outside the Worker (see "Scoring the live pull"); the Worker stores the verdicts and the pick reads `candidates.score` (out of 24) and the handoff in `candidates.story`.
+- **Scoring:** the daily run scores new candidates inside the Worker (see "The daily run"); the pick reads `candidates.score` (out of 24) and the handoff in `candidates.story`.
 
 ## Signups and email
 
@@ -81,7 +79,7 @@ The Worker is served at `build40for40.com/feel-good`, so every route below lives
 
 1. **Sign up:** `POST /signups` trims and lower-cases the address, stores a `pending` row in `signups` and sends a confirmation email on the transactional stream. The same address gets at most one confirmation email every 24 hours.
 2. **Confirm:** the email links to `GET /confirm?token=...`, which shows a page with a button, so mail scanners that open links don't confirm anyone. The button does `POST /confirm?token=...`, which marks the row `confirmed`. Only confirmed rows are ever sent the newsletter.
-3. **Send:** the publish stage builds the issue with `renderNewsletter(stories, date, signupUrl)` from `src/templates.ts` and passes the result to `sendNewsletter(env, { subject, html, text })` from `src/emails.ts`. It sends to every confirmed subscriber on the broadcast stream, 500 per Postmark batch call, and returns `{ sent, failed, suppressed }`. The body carries no unsubscribe link of ours: Postmark adds its own to every message on the broadcast stream. Every message still carries our `List-Unsubscribe` and `List-Unsubscribe-Post` headers, which only take effect if the stream is ever switched to managing unsubscribes ourselves. There's no HTTP route that triggers a send.
+3. **Send:** the publish stage builds the issue with `renderNewsletter(stories, date, signupUrl)` from `src/templates.ts` and passes the result to `sendNewsletter(env, { subject, html, text })` from `src/emails.ts`. It sends to every confirmed subscriber on the broadcast stream, 500 per Postmark batch call, and returns `{ sent, failed, suppressed }`. The body carries no unsubscribe link of ours: Postmark adds its own to every message on the broadcast stream. Every message still carries our `List-Unsubscribe` and `List-Unsubscribe-Post` headers, which only take effect if the stream is ever switched to managing unsubscribes ourselves. The daily run sends it, and only `POST /daily` and `POST /publish`, behind the bearer token, can trigger a send by hand.
 4. **Unsubscribe:** `GET /unsubscribe?token=...` shows a page with a button, so mail scanners that open links don't unsubscribe anyone. The button and the one-click header both `POST /unsubscribe?token=...`, which marks the row `unsubscribed`. Signing up again after that goes back through a fresh confirmation.
 
 Our `signups` table is the source of truth for who gets mail. Postmark keeps its own suppression list per stream for hard bounces, spam complaints and its own unsubscribes, and refuses those recipients with error code 406. When a send gets a 406 the row's `suppressed_at` is set and we stop sending to it, so the two lists converge without a webhook.
@@ -106,6 +104,7 @@ Email addresses are personal data: never log them, and only use made-up `example
 | `ALLOWED_ORIGIN` | `wrangler.jsonc` vars | The one origin allowed to call `POST /signups` from a browser |
 | `POSTMARK_TRANSACTIONAL_STREAM` | `wrangler.jsonc` vars | Stream for confirmation emails, `outbound` by default |
 | `POSTMARK_BROADCAST_STREAM` | `wrangler.jsonc` vars | Stream for the newsletter, `broadcast` by default |
+| `ANTHROPIC_API_KEY` | Secret, `.dev.vars` locally | The company Anthropic key, for scoring and the headline editor in the daily run. The deploy copies it from the organisation's GitHub secret |
 
 To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fake.sender@example.com` and `PUBLIC_BASE_URL=http://localhost:8787` in `.dev.vars`, run `npm run db:migrate` and `npm run dev`, then `curl -X POST localhost:8787/signups -d 'email=fake.reader@example.com'`. Read the tokens back with `npm run wrangler -- d1 execute day12 --local --command "SELECT status, confirm_token, unsubscribe_token FROM signups"`.
 
@@ -125,43 +124,44 @@ The Worker serves its own sign-up page, "Feel good AI stories", at the base path
 
 ## The daily run
 
-One story a day goes out by email, is stored for the website, and is printed as a post for X. `scripts/daily.py` does it in four steps:
+One story a day goes out by email and is stored for the website. The whole run happens on Cloudflare, and nothing in it runs on GitHub Actions. The 06:00 London cron starts one instance of a [Cloudflare Workflow](https://developers.cloudflare.com/workflows/), `day12-daily` (`DailyWorkflow` in `src/workflow.ts`, with the steps in `src/daily.ts`). Each step starts only when the one before it has finished, and Cloudflare stores each finished step's result, so a run that is interrupted resumes after the last finished step instead of starting again.
 
-1. **Pick:** `POST /pick` on the Worker, which keeps the evergreen bank and what has run in D1 (see "The evergreen bank and the daily pick"). The rules are `docs/scoring.md`, layer 3. A story with no link a reader can use (only EurekAlert, or only an API search) is skipped until it's re-sourced, and a Europe PMC search link becomes the paper's DOI link. The pick is saved when it's made, so running again the same day gets the same story.
-2. **Write:** `prompts/headline-editor.md`, sent to Claude Opus 5.5 with the company key in `ANTHROPIC_API_KEY`, through the `anthropic` Python package, with server-side fallbacks on so a decline is retried on another model. Without the key it falls back to the `claude` command line tool, signed in, for running on a laptop. The post is checked before it goes anywhere: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then it stops.
-3. **Publish:** `POST /publish` on the Worker, with the same bearer token as `/pull`. It emails every confirmed subscriber and stores the issue in the `issues` table. The Worker refuses a second send for the same date, so a rerun can't email people twice.
-4. **Log:** writes `runs/<date>/daily.json`. The database already knows the story has run, so nothing else needs committing.
+1. **Check:** if today's issue already went out, the run stops here, successfully.
+2. **Pull:** `runPull`, the same as `POST /pull`. If it fails, it's tried once more after a minute, then the run goes on with the leads already stored.
+3. **Score:** up to 12 leads pulled in the last 14 days that have no verdict, three at a time, each in its own step. Claude Opus 5.5 researches each lead with web search and web fetch, then applies `prompts/score-story.md`. A passing lead must have fetched evidence, a checked handoff and an original publication date. Verdicts are checked and saved as `POST /candidates/scores` saves them. A lead whose answer can't be used, or whose API call fails twice, stays unscored and is tried the next day, with a warning in the logs. Scoring never stops the day.
+4. **Pick:** `dailyPick` from `src/bank.ts`, the same as `POST /pick` (see "The evergreen bank and the daily pick"). Just before it, the run stops if `ANTHROPIC_API_KEY` or `POSTMARK_SERVER_TOKEN` is missing, so a run that can't finish never uses up a story. The run also stops if there's nothing to run. Once made, the pick is saved, so a rerun of the day gets the same story.
+5. **Write:** `prompts/headline-editor.md`, sent to Claude Opus 5.5 with server-side fallbacks on, so a decline is retried on another model, and held to a JSON schema. A bank story's draft line from `data/evergreen.json` goes with it. The post is checked: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then the run stops. An API outage is retried twice more over a few minutes.
+6. **Publish:** the same as `POST /publish`: an email to every confirmed subscriber, and the issue stored in the `issues` table for the landing page. This step is never retried by itself, because a send that timed out after Postmark took it would reach people twice. If nothing went out, the date is freed and the run stops for a person to restart it. `/publish` refuses a second send for the same date either way.
+7. **Refill:** as `POST /pick` does, scored news that aged out of its 14 days goes into the bank for review. A failure here is only logged.
 
-The X post is printed, not posted: there's no X account or API key in the repo yet.
+A stopped run shows as errored in the Cloudflare dashboard under Workflows, `day12-daily`, with the failed step and its error, and the Worker logs `daily <date> stopped at <step>: <reason>`. The finished run logs a summary without the post or the email. Email addresses are never logged. Cloudflare keeps each run and its step history for 7 days on Workers Paid (3 on Free), Workers Logs keep the log lines, and D1 already records the verdicts, the pick and the issue with its send counts, so nothing is committed to the repository.
 
-### The 6am schedule
+The X post is in the run's summary, not posted: there's no X account or API key yet.
 
-`.github/workflows/daily.yml` runs it every morning at 06:00 London, using the organisation's `ANTHROPIC_API_KEY` secret, and commits the run log to `main`. It runs on two UTC crons and only goes ahead from 06:00 London, so it's right in summer and winter. Before it calls the model it checks `GET /issues/latest`: if today's issue already went out it stops.
+### When it runs
 
-Switching it on is a one-time job for a human:
+Cloudflare crons run in UTC, so `wrangler.jsonc` has two, `0 5 * * *` and `0 6 * * *`, and the `scheduled` handler (`src/schedule.ts`) only starts the run when the event's scheduled time is 6am in Europe/London. That's the 05:00 UTC cron in summer and the 06:00 UTC one in winter, and the other one logs a skip. The run's instance id is the London date, like `2026-11-18`, so a date can only ever have one run: a second trigger logs that the run already exists and starts nothing, whatever state the first one is in. The crons only fire on a deployed Worker, and a change to them can take up to 15 minutes to reach Cloudflare's network.
 
-1. **Give the repo the key:** the organisation secret `ANTHROPIC_API_KEY` has to list this repository under its repository access.
-2. **Add the publish token:** the Actions secret `PUBLISH_TOKEN`, with the same value as the Worker's `PULL_TOKEN`.
-3. **Point it at the Worker:** optional. The Actions variable `WORKER_URL` defaults to `https://build40for40.com/feel-good`.
-4. **Try it:** run "Daily story" by hand from the Actions tab. It defaults to a dry run, which shows the pick, the post and the email without sending.
-5. **Flip the switch:** add the Actions variable `DAILY_ENABLED` with the value `true`. Until then the schedule is skipped, and only manual runs work.
-
-If `main` has branch protection, the workflow's push of the run log needs to be allowed.
+Scoring is the slow part, at up to a few minutes of research per lead, three at a time, so the email goes out some minutes after 06:00 rather than on the hour. It hasn't been timed against the real API yet.
 
 ### Running it by hand
 
+Everything is behind the same bearer token as `/pull`. With the Worker's `PULL_TOKEN` in `$PULL_TOKEN`:
+
 ```bash
-python3 scripts/daily.py --dry-run --worker https://build40for40.com/feel-good
-python3 scripts/daily.py --worker https://build40for40.com/feel-good
+W=https://build40for40.com/feel-good
+curl -X POST -H "Authorization: Bearer $PULL_TOKEN" $W/daily -d '{"dry_run": true, "leads": 1}'
+curl -H "Authorization: Bearer $PULL_TOKEN" "$W/daily?id=dry-2026-11-18-1a2b3c4d"
+curl -X POST -H "Authorization: Bearer $PULL_TOKEN" $W/daily -d '{"restart": true}'
 ```
 
-Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`, and `ANTHROPIC_API_KEY` if you have the key; otherwise sign in the `claude` command. Useful flags: `--story <slug>` to run a banked story chosen by a person (the pick is for today in London, so there is no `--date`), `--story <id> --text "..."` to use a post written by a person instead of calling the editor (`--text` only works with `--story`, so the post can't go out with the wrong story), `--place "..."` for the place line on the page, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. A real run writes `runs/`, so commit it.
+- **`POST /daily`** with no body starts today's run if the cron hasn't. It answers `202` with the run's id, or `409` `already_started` with the existing run's status.
+- **`"dry_run": true`** starts a separate run, `dry-<date>-<random>`, that never blocks the real one. It skips the pull, scores without saving, previews the pick, writes the post and previews the email. It writes nothing to the database and sends nothing, but it does pay for the model calls, so `"leads": 1` keeps it cheap and `"leads": 0` skips scoring.
+- **`"story": "<slug>"`** runs a banked story instead of the pick, without scoring.
+- **`"restart": true`** reruns today's failed run from the pick, keeping the pull and the scores it already paid for. A run that stopped before the pick starts again from the top. Either way the pick gives the same story and the send refuses a date that already went out.
+- **`GET /daily?id=...`**, today's date by default, answers with the run's status, its error if it stopped, and once it's finished the summary: what the pull stored, each lead's outcome, the pick, the post and the send report or email preview.
 
-### Scoring the live pull
-
-The daily workflow runs `scripts/score.ts` before picking. It researches up to 12 pending leads using Claude web search and fetch, then applies `prompts/score-story.md`. A passing lead must have fetched evidence, a checked handoff and an original publication date. The Worker ranks those passes, requires at least 16 points for news and limits flips to one in any seven London dates. Extra leads and transient errors stay pending.
-
-`node scripts/score.ts --dry-run` previews the verdicts without saving them. Set `PUBLISH_TOKEN` and `ANTHROPIC_API_KEY` to run it by hand.
+The single steps still work on their own: `/pull`, `/pick`, `/publish` and `/bank`. `GET /candidates/unscored` and `POST /candidates/scores` have no caller now that scoring runs inside the Worker, and stay for scoring by hand.
 
 ### For the website
 
@@ -178,7 +178,7 @@ Body: `{ "date": "2026-11-18", "story": { "id", "headline", "text", "url", "stag
 
 ### Trying it locally
 
-With `.dev.vars` set up as in "Signups and email" and `npm run dev` running, sign up a made-up address and confirm it (read the token as shown there and `curl -X POST "localhost:8787/confirm?token=..."`), then `python3 scripts/daily.py --dry-run`. A real run against `POSTMARK_API_TEST` goes through Postmark's checks and delivers nothing, but it does use up that day's pick in your local database.
+With `.dev.vars` set up as in "Signups and email" (and `ANTHROPIC_API_KEY` if you have the key) and `npm run dev` running, sign up a made-up address and confirm it (read the token as shown there and `curl -X POST "localhost:8787/confirm?token=..."`). `npm run dev` never fires crons by itself, so fire the 06:00 one by hand with `curl "localhost:8787/cdn-cgi/local/scheduled?cron=0+6+*+*+*&time=1794895200000&format=json"`, where `time` is the scheduled time in epoch milliseconds (that one is 06:00 London on 17 November 2026), or call `POST /daily` as above. Follow a run with `GET /daily`, with `npm run wrangler -- workflows instances describe day12-daily <id> --local`, or in the local explorer at `localhost:8787/cdn-cgi/local/explorer`. Without the key the run stops before the pick. A real run against `POSTMARK_API_TEST` goes through Postmark's checks and delivers nothing, but it does use up that day's pick in your local database.
 
 ## Deploying it
 
@@ -193,6 +193,8 @@ Switching it on is a one-time job for a human, in this order:
 3. **Set the token:** `npm run wrangler -- secret put PULL_TOKEN`, with a long random string. If wrangler says the Worker doesn't exist yet, let it create the Worker when it offers.
 4. **Add the GitHub secrets:** in the repo's Actions secrets, add `CLOUDFLARE_API_TOKEN` (a Cloudflare API token that can edit Workers Scripts and D1 on the account, and Workers Routes on the `build40for40.com` zone) and `CLOUDFLARE_ACCOUNT_ID` (the `account_id` in `wrangler.jsonc`).
 5. **Flip the switch:** add the Actions repository variable `DEPLOY_ENABLED` with the value `true`.
+
+The deploy also creates or updates the `day12-daily` Workflow, and copies the organisation's `ANTHROPIC_API_KEY` secret into the Worker's secrets when this repository can see it. The organisation secret has to list this repository under its repository access, or the key can be set by hand with `npm run wrangler -- secret put ANTHROPIC_API_KEY`.
 
 After that every merge to `main` deploys. To deploy without a new commit, rerun the latest Deploy workflow on `main`. To stop deploys, set `DEPLOY_ENABLED` to anything else.
 

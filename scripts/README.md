@@ -1,6 +1,6 @@
 # Scripts
 
-`daily.py` is the daily run: it asks the Worker's `POST /pick` for the day's story, has the headline editor write the post and sends it through the Worker's `POST /publish`. See "The daily run" in `AGENTS.md`. Its tests are in `test_daily.py` (`python3 scripts/test_daily.py`). `score.ts` is the quality filter that runs before it: it researches and scores leads with `prompts/score-story.md` and saves verdicts on the Worker.
+The daily run lives in the Worker (see "The daily run" in `AGENTS.md`). `build-prompts.mjs` (`npm run prompts`) copies `prompts/` into `src/prompts.ts` for it, since a Worker can't read files.
 
 The rest are one-off Python scripts from Day 12, kept so the runs in `runs/2026-11-17/` can be traced. They are not part of the Worker and nothing imports them. The live source pull is in `src/`.
 

@@ -1,33 +1,30 @@
-import { runPull } from './pull'
-import type { Env, PullReport } from './types'
+import { londonDay } from './bank'
+import { startDay } from './runs'
+import type { Env } from './types'
 
-const PULL_HOUR_LONDON = 6
+const RUN_HOUR_LONDON = 6
 
 const londonHour = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: 'numeric', hourCycle: 'h23' })
 
-export function isPullTime(scheduledTime: number): boolean {
-  return Number(londonHour.format(scheduledTime)) === PULL_HOUR_LONDON
+export function isRunTime(scheduledTime: number): boolean {
+  return Number(londonHour.format(scheduledTime)) === RUN_HOUR_LONDON
 }
 
-type Pull = (env: Env, now: Date) => Promise<PullReport>
 type Log = Pick<Console, 'log' | 'warn' | 'error'>
 
-export async function scheduledPull(scheduledTime: number, env: Env, pull: Pull = runPull, log: Log = console): Promise<void> {
-  if (!isPullTime(scheduledTime)) {
-    log.log(`skipped pull, not ${PULL_HOUR_LONDON}am in London`)
+/** The 06:00 London cron starts the day's Workflow run. A date that already has a run is left alone. */
+export async function scheduledDaily(scheduledTime: number, env: Env, log: Log = console): Promise<void> {
+  if (!isRunTime(scheduledTime)) {
+    log.log(`skipped the daily run, not ${RUN_HOUR_LONDON}am in London`)
     return
   }
-
-  let report: PullReport
+  const date = londonDay(new Date(scheduledTime))
   try {
-    report = await pull(env, new Date(scheduledTime))
+    const run = await startDay(env.DAILY, { date })
+    if (run.started) log.log({ message: 'daily run started', id: run.id })
+    else log.warn({ message: 'daily run already exists, not starting another', id: run.id, status: run.status })
   } catch (thrown) {
-    log.error(`scheduled pull failed: ${thrown instanceof Error ? thrown.message : String(thrown)}`)
+    log.error(`could not start the daily run for ${date}: ${thrown instanceof Error ? thrown.message : String(thrown)}`)
     throw thrown
   }
-
-  const failed = report.sources.filter((s) => s.error !== undefined).map(({ sourceId, error }) => ({ sourceId, error }))
-  const summary = { message: 'scheduled pull finished', stored: report.stored, failed }
-  if (failed.length > 0) log.warn(summary)
-  else log.log(summary)
 }
