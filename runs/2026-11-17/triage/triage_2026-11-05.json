@@ -1,0 +1,146 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    1
+   ],
+   "lane": "good",
+   "story": "A project in Sunderland is using AI during routine eye tests to detect diabetes.",
+   "best_title": "Sunderland project using AI to help eye tests detect diabetes",
+   "publisher": "BBC",
+   "why": "BBC coverage implies a real, running project; AI detects diabetes through an existing clinical touchpoint (eye test); high mass appeal; health topic outside the AI industry."
+  },
+  {
+   "items": [
+    4
+   ],
+   "lane": "good",
+   "story": "Columbia University's AI-powered radiation therapy system has now treated its 500th patient, marking sustained real-world clinical use.",
+   "best_title": "AI-Powered Radiation Therapy at Columbia Treats 500th Patient",
+   "publisher": "Columbia University Irving Medical Center",
+   "why": "A 500th-patient milestone strongly implies the system is in routine clinical use, not a pilot; AI drives the treatment; named institution; clear health benefit."
+  },
+  {
+   "items": [
+    7
+   ],
+   "lane": "good",
+   "story": "South Korea's LG Group deployed AI across 4,226 CCTVs that automatically cut equipment power the moment danger is detected, aiming to prevent workplace accidents.",
+   "best_title": "South Korea's LG Group Ties AI to 4,226 CCTVs, Cutting Equipment Power Automatically When Danger Detected",
+   "publisher": "BigGo Finance",
+   "why": "Specific scale (4,226 cameras) signals real deployment; AI is the reason the safety response is automatic; workplace safety affects ordinary workers; outside the AI industry."
+  },
+  {
+   "items": [
+    8
+   ],
+   "lane": "good",
+   "story": "Banner Health, a large US hospital network, is actively using AI to improve outcomes for heart patients.",
+   "best_title": "Banner Health using AI for heart patients",
+   "publisher": "Your Valley",
+   "why": "Named health system and local outlet suggest genuine in-use story rather than product marketing; heart disease is universally relatable; AI is the reason; borderline on specificity but plausibly passes all gates."
+  },
+  {
+   "items": [
+    10
+   ],
+   "lane": "good",
+   "story": "An AI-powered app is helping patients manage chronic pain.",
+   "best_title": "AI Pain App Helps Patients With Chronic Pain",
+   "publisher": "Pain Medicine News",
+   "why": "Pain Medicine News is a clinical outlet unlikely to run speculative pieces; 'helps' implies active use; chronic pain affects a huge population; AI is the core mechanism."
+  },
+  {
+   "items": [
+    13
+   ],
+   "lane": "good",
+   "story": "Two brothers in New Zealand used AI to expand their family GP practice, allowing them to serve more patients in primary care.",
+   "best_title": "The brothers using AI to expand their family GP service",
+   "publisher": "NZ Herald",
+   "why": "Real named people, real place, real healthcare service; AI enables the expansion; NZ Herald is a credible general-audience outlet; strong human-interest hook for non-tech readers."
+  },
+  {
+   "items": [
+    17
+   ],
+   "lane": "good",
+   "story": "AI is being used to support conservation efforts for African manatees.",
+   "best_title": "AI in the service of African manatee conservation",
+   "publisher": "Beauval Actus",
+   "why": "Conservation of an obscure, endangered species via AI is a surprising real-use story; nature topic adds day-mix variety; headline framing implies active deployment."
+  },
+  {
+   "items": [
+    31,
+    33,
+    34
+   ],
+   "lane": "good",
+   "story": "After a 70-year-old speech-impaired oral cancer survivor publicly appealed for affordable AI speech tools, Sarvam AI's CEO offered the man lifetime free access.",
+   "best_title": "'Your voice matters': Sarvam AI CEO Pratyush Kumar offers lifetime access to 70-year-old speech-impaired cancer survivor",
+   "publisher": "Livemint",
+   "why": "Real named person (cancer survivor), real AI tool restoring communication, something that already happened (public offer made and confirmed); accessibility angle; widely picked up across outlets."
+  },
+  {
+   "items": [
+    74
+   ],
+   "lane": "good",
+   "story": "Chinese scientists developed an AI hybrid model that substantially improves predictions of Earth's rotational motion, with direct benefits for GPS and satellite navigation accuracy.",
+   "best_title": "Chinese scientists developed a new model that substantially improves Earth rotation forecast accuracy",
+   "publisher": "KeAi Communications Co., Ltd.",
+   "why": "Completed published study with a measured improvement; AI is the reason for the accuracy gain; benefits GPS systems used globally every day; real scientific evidence."
+  },
+  {
+   "items": [
+    76
+   ],
+   "lane": "good",
+   "story": "Cambridge scientists used AI to engineer a new bird flu vaccine candidate that outperforms the government-stockpiled jabs currently held in reserve against a pandemic.",
+   "best_title": "Cambridge scientists use AI to develop bird flu vaccine that outperforms current stockpiled jab",
+   "publisher": "University of Cambridge",
+   "why": "Named researcher (Prof. Jonathan Heeney), university press release, direct measurable comparison to existing vaccines; bird flu pandemic risk gives high mass appeal; AI designed the antigens."
+  },
+  {
+   "items": [
+    79
+   ],
+   "lane": "good",
+   "story": "Researchers at the Hebrew University of Jerusalem used AI and molecular modelling to screen more than 50 million chemicals and identify promising new sweeteners without the bitter aftertaste of current sugar substitutes.",
+   "best_title": "A sweeter future? AI helps scientists discover new sugar substitutes",
+   "publisher": "The Hebrew University of Jerusalem",
+   "why": "Completed study with 50 million-compound screen; AI is the reason a search at that scale was possible; sugar and taste are universally relatable; university source implies peer-reviewed or near-published work."
+  },
+  {
+   "items": [
+    46
+   ],
+   "lane": "flip",
+   "story": "Meta reversed controversial new AI terms it had tried to impose on businesses after a public backlash, in a 'the fix shipped' moment.",
+   "best_title": "Meta does a U-turn on controversial new AI terms for businesses",
+   "publisher": "Computerworld",
+   "why": "Bad story (overreaching AI terms) got cross-outlet coverage including mainstream outlets; nobody physically harmed or defrauded; the reversal is a separate factual event (fix shipped); the story admits the terms were problematic before noting the retreat."
+  },
+  {
+   "items": [
+    65
+   ],
+   "lane": "flip",
+   "story": "Singapore's authorities issued formal guidance demanding strict limits on how much autonomy AI agents can have and what personal accounts they can access.",
+   "best_title": "Singapore authorities urge strict limits on AI agent autonomy, access to personal accounts",
+   "publisher": "The Straits Times",
+   "why": "System-is-responding flip: a government regulator acted on documented AI-agent risks; no physical harm; the guidance is a separate sourced fact from the concern it addresses; Singapore's AI governance moves are widely followed."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 15,
+  "industry_news": 25,
+  "opinion_or_explainer": 25,
+  "ai_not_the_reason": 2,
+  "negative_no_flip": 3,
+  "other": 0
+ },
+ "date": "2026-11-05",
+ "n_items": 85
+}

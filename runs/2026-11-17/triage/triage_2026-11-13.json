@@ -1,0 +1,142 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    10
+   ],
+   "lane": "good",
+   "story": "Cleerly's AI tool for assessing coronary artery plaque outperformed traditional cardiac stress testing in a clinical comparison.",
+   "best_title": "Cleerly's AI-powered plaque assessments outperform cardiac stress testing",
+   "publisher": "Cardiovascular Business",
+   "why": "Headline states a direct comparative result ('outperform'); AI is the mechanism; the story is about heart disease diagnosis outside the AI industry; a study or trial result is plausible."
+  },
+  {
+   "items": [
+    18,
+    20
+   ],
+   "lane": "good",
+   "story": "An AI tool analysed emergency room patient accounts and identified those at risk of PTSD, potentially enabling earlier intervention.",
+   "best_title": "AI Tool Predicts PTSD Risk From Emergency Room Narratives",
+   "publisher": "Bioengineer.org",
+   "why": "A concrete result is claimed (predicting PTSD risk from real ER narratives); AI is the reason; the story is about mental health outside the AI industry; a peer-reviewed study is likely behind it."
+  },
+  {
+   "items": [
+    21
+   ],
+   "lane": "good",
+   "story": "AI screening identified cardiovascular risk across 27,300 patients in the Russian city of Kirov.",
+   "best_title": "AI detects cardiovascular risk in 27,300 patients in Kirov",
+   "publisher": "Foro3D",
+   "why": "Specific patient numbers and a named city suggest a real deployment or study result; AI is clearly the detection tool; the story is about population health in a specific real place."
+  },
+  {
+   "items": [
+    40
+   ],
+   "lane": "good",
+   "story": "A new lip-reading AI improves sentence accuracy by first locking on to the words it recognises most confidently, then using those anchors to fill in uncertain gaps.",
+   "best_title": "Lip-reading AI fills gaps in sentences by recognizing most certain words first",
+   "publisher": "Tech Xplore",
+   "why": "A specific method and result are described; AI is the reason for the accuracy improvement; the story has clear accessibility implications for deaf and hard-of-hearing people; a study is plausible."
+  },
+  {
+   "items": [
+    59
+   ],
+   "lane": "good",
+   "story": "Bishkek, Kyrgyzstan installed AI-equipped traffic lights to manage traffic flow more efficiently.",
+   "best_title": "Traffic Lights Equipped with Artificial Intelligence Installed in Bishkek",
+   "publisher": "EGOV.KG",
+   "why": "A government source reports a real installation (not a plan); AI is the named technology; named city and everyday commuters are the beneficiaries; helping people now stage is plausible."
+  },
+  {
+   "items": [
+    80
+   ],
+   "lane": "good",
+   "story": "An AI system identified patterns in visual brain activity and reconstructed them as pictures of what a person was seeing.",
+   "best_title": "This AI finds patterns in visual brain activity and turns them into pictures",
+   "publisher": "Live Science",
+   "why": "A concrete result is stated; AI is the mechanism; the story is about neuroscience with potential brain–computer interface implications; a study is likely; high surprise value for a non-specialist audience."
+  },
+  {
+   "items": [
+    85
+   ],
+   "lane": "good",
+   "story": "AI-generated cardiac imaging reports performed at a level comparable to trained sonographers and cardiologists in a clinical comparison.",
+   "best_title": "AI imaging reports comparable to the work of sonographers and cardiologists",
+   "publisher": "Cardiovascular Business",
+   "why": "A direct clinical comparison with a clear result is implied; AI is the reason; the story is about healthcare quality and access, not about the AI industry itself."
+  },
+  {
+   "items": [
+    118
+   ],
+   "lane": "good",
+   "story": "AI models predicted how Alzheimer's disease would progress in individual patients years before any clinical symptoms appeared.",
+   "best_title": "Artificial Intelligence Models Predict Alzheimer's Progression Years Before Clinical Symptoms Emerge",
+   "publisher": "Bioengineer.org",
+   "why": "A specific, striking result (years-earlier prediction) is claimed; AI is the reason; the story is about dementia care outside the AI industry; a study is plausible; mass appeal is high."
+  },
+  {
+   "items": [
+    129
+   ],
+   "lane": "good",
+   "story": "Machine learning models accurately predicted in-hospital and six-month mortality for heart attack patients, according to results presented at the ESC Digital & AI Summit 2026.",
+   "best_title": "Machine-learning models accurately predict mortality after a heart attack",
+   "publisher": "European Society of Cardiology (EurekAlert)",
+   "why": "Results presented at a major cardiology conference with a credible primary source (ESC); a specific clinical outcome is claimed; AI is the reason; real study evidence is explicitly noted."
+  },
+  {
+   "items": [
+    135
+   ],
+   "lane": "good",
+   "story": "Patients whose AI-estimated heart age exceeded their real age faced significantly higher rates of cardiovascular and dementia-related death, per a study at the ESC Digital & AI Summit 2026.",
+   "best_title": "Having older AI-estimated heart age than actual age is linked with cardiovascular/dementia-related death",
+   "publisher": "European Society of Cardiology (EurekAlert)",
+   "why": "A concrete prognostic finding from a study at a credible cardiology summit; AI ultrasound analysis is the differentiating tool; clear implications for earlier risk identification; real evidence explicit."
+  },
+  {
+   "items": [
+    93,
+    96,
+    112
+   ],
+   "lane": "flip",
+   "story": "US airspace shut down days after the FAA rolled out a new AI air traffic tool, but the agency's overseer stated publicly that the AI played no role and investigations are under way.",
+   "best_title": "Duffy says FAA's new AI air traffic tool played no role in nationwide ground stop",
+   "publisher": "Washington Times",
+   "why": "Widely covered bad-news story (nationwide ground stop linked by press to new AI tool); no one was physically injured; official exoneration and active investigation are separate sourced facts; fits 'the system is responding' flip type."
+  },
+  {
+   "items": [
+    73,
+    86,
+    107,
+    109,
+    114,
+    115
+   ],
+   "lane": "flip",
+   "story": "Following revelations of mass Nvidia AI-chip smuggling to China in defiance of export controls, criminal charges were brought against a Chinese national and the firm at the centre of the scandal announced an inventory audit.",
+   "best_title": "Malaysia and Singapore step up Nvidia AI chip probes as charges brought against Chinese national over 917 smuggled servers",
+   "publisher": "Tom's Hardware",
+   "why": "Dominant bad-news story of the day across multiple outlets; no one was physically injured; criminal charges and a corporate audit are separate sourced facts showing accountability; fits 'the system is responding' flip type."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 7,
+  "industry_news": 48,
+  "opinion_or_explainer": 61,
+  "ai_not_the_reason": 1,
+  "negative_no_flip": 1,
+  "other": 1
+ },
+ "date": "2026-11-13",
+ "n_items": 139
+}

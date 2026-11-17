@@ -1,0 +1,119 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    27,
+    29
+   ],
+   "lane": "good",
+   "story": "India deployed an AI chatbot called Khushi, built on BharatGPT, to answer tuberculosis questions and guide patients to nearby health centres.",
+   "best_title": "India launches Khushi AI chatbot to aid tuberculosis patients",
+   "publisher": "NewsBytes",
+   "why": "Real deployment in a country with a severe TB burden; AI is the direct mechanism connecting patients to care; two outlets confirm it launched."
+  },
+  {
+   "items": [
+    33,
+    38
+   ],
+   "lane": "good",
+   "story": "An AI flood-warning system is being rolled out in Dublin this week, giving residents more lead time to prepare for flooding.",
+   "best_title": "New AI flood warning system to be rolled out in Dublin this week with 'time most valuable thing' to help people prepare",
+   "publisher": "The Irish Sun",
+   "why": "Deployment is imminent/current, not hypothetical; climate/nature topic; real community at risk; item 38 is specific about timing and benefit while item 33 corroborates it."
+  },
+  {
+   "items": [
+    55
+   ],
+   "lane": "good",
+   "story": "A person living with ALS used AI to decode their brain signals and produce singing, allowing them to make music despite losing motor control.",
+   "best_title": "ALS Singer Sings via AI Brain Signals",
+   "publisher": "조선일보",
+   "why": "Specific real person, compelling accessibility story; AI is the reason music is possible; likely based on a documented case or demo."
+  },
+  {
+   "items": [
+    54
+   ],
+   "lane": "good",
+   "story": "An AI learning tool is helping blind students in Malawi achieve academic success.",
+   "best_title": "AI learning tool helps blind students excel in Malawi",
+   "publisher": "Modern Ghana (Al Jazeera)",
+   "why": "Real students, real place, real reported outcome; AI is the enabling factor for access to education; Al Jazeera sourcing adds credibility."
+  },
+  {
+   "items": [
+    115
+   ],
+   "lane": "good",
+   "story": "A Bolivian engineer built the first AI system capable of speaking Aymara, an indigenous language, and Bolivian officials are already using it.",
+   "best_title": "Bolivian Engineer Built the First AI That Speaks Aymara — and Officials Are Already Using It",
+   "publisher": "Latin Times",
+   "why": "Real use, not a plan; language preservation for a living indigenous language; named country and identifiable creator; compelling for a non-tech audience."
+  },
+  {
+   "items": [
+    139
+   ],
+   "lane": "good",
+   "story": "Researchers at Mass General Brigham developed a deep-learning algorithm that uses MRI scans to predict, before surgery, whether deep brain stimulation will help patients with dystonia.",
+   "best_title": "Research spotlight: Novel algorithm predicts brain surgery outcomes in dystonia patients",
+   "publisher": "Mass General Brigham (EurekAlert)",
+   "why": "Peer-reviewed study from a credible institution; AI is the reason surgeons could have foresight they currently lack; real patients, real condition."
+  },
+  {
+   "items": [
+    3
+   ],
+   "lane": "good",
+   "story": "Utah is running a formal trial to test whether AI can safely diagnose patients and prescribe medications.",
+   "best_title": "Utah tests if AI can safely diagnose patients, prescribe medication",
+   "publisher": "KUTV",
+   "why": "A real trial is under way, not a proposal; health topic; AI is directly the subject under test; real place and real patients involved."
+  },
+  {
+   "items": [
+    85
+   ],
+   "lane": "good",
+   "story": "The City of Tampere used AI to deliver a long-requested improvement for users of eVaka, its municipal childcare management system.",
+   "best_title": "eVaka users' wish came true thanks to artificial intelligence [City of Tampere]",
+   "publisher": "Tampereen kaupunki",
+   "why": "A city government reporting a completed real-world AI deployment; AI is stated as the reason it was possible; direct source is the city itself."
+  },
+  {
+   "items": [
+    106,
+    127
+   ],
+   "lane": "flip",
+   "story": "California's attorney general sued OpenAI, alleging the company built dangerous AI products without adequate safety safeguards.",
+   "best_title": "California sues OpenAI, alleges it endangered the public by building AI without safeguards",
+   "publisher": "Los Angeles Times",
+   "why": "Widely covered bad-AI story; good side is 'the system is responding' — a state using its legal system to demand accountability from an AI company; no person was physically hurt or defrauded."
+  },
+  {
+   "items": [
+    6,
+    26,
+    75
+   ],
+   "lane": "flip",
+   "story": "AI-automated cyberattacks were detected in real-world use for the first time, with Google identifying and publicly disclosing the events.",
+   "best_title": "In a first, Google detects AI-automated cyberattack",
+   "publisher": "UPI",
+   "why": "Widely covered security scare; good side is 'owning up' — Google detected and disclosed the attack publicly, giving defenders a documented blueprint to respond; no person was physically injured or defrauded."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 15,
+  "industry_news": 48,
+  "opinion_or_explainer": 42,
+  "ai_not_the_reason": 7,
+  "negative_no_flip": 17,
+  "other": 5
+ },
+ "date": "2026-11-16",
+ "n_items": 149
+}

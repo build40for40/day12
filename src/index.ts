@@ -1,6 +1,7 @@
-import { LANDING_PATH, type LandingState, renderLanding, SUBSCRIBE_PATH } from './landing'
+import { renderLanding } from './landing'
 import { runPull } from './pull'
-import { normaliseEmail, subscribe } from './subscribers'
+import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
+import { scheduledPull } from './schedule'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -21,40 +22,42 @@ async function authorised(request: Request, env: Env): Promise<boolean> {
   return tokensMatch(token, env.PULL_TOKEN)
 }
 
-function landingState(url: URL): LandingState {
-  if (url.searchParams.has('joined')) return 'joined'
-  if (url.searchParams.get('error') === 'email') return 'invalid_email'
-  return 'form'
+async function pull(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return Response.json(await runPull(env, new Date()))
 }
 
-function landing(url: URL): Response {
-  return new Response(renderLanding(landingState(url)), {
-    headers: { 'Content-Type': 'text/html; charset=utf-8' },
-  })
-}
-
-function backToLanding(url: URL, query: string): Response {
-  return new Response(null, { status: 303, headers: { Location: new URL(`${LANDING_PATH}?${query}`, url).toString() } })
-}
-
-async function signUp(request: Request, env: Env, url: URL): Promise<Response> {
-  const fields = await request.formData()
-  if (fields.get('website')) return backToLanding(url, 'joined=1')
-  const given = fields.get('email')
-  const email = typeof given === 'string' ? normaliseEmail(given) : null
-  if (!email) return backToLanding(url, 'error=email')
-  await subscribe(env.DB, email, new Date())
-  return backToLanding(url, 'joined=1')
+function landing(env: Env): Response {
+  const base = URL.canParse(env.PUBLIC_BASE_URL) ? new URL(env.PUBLIC_BASE_URL).pathname.replace(/\/+$/, '') : ''
+  return new Response(renderLanding(`${base}/signups`), { headers: { 'Content-Type': 'text/html; charset=utf-8' } })
 }
 
 export default {
-  async fetch(request, env) {
-    const url = new URL(request.url)
-    const pathname = url.pathname.replace(/\/$/, '')
-    if (request.method === 'GET' && pathname === LANDING_PATH) return landing(url)
-    if (request.method === 'POST' && pathname === SUBSCRIBE_PATH) return signUp(request, env, url)
-    if (request.method !== 'POST' || pathname !== '/pull') return new Response('Not found', { status: 404 })
-    if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
-    return Response.json(await runPull(env, new Date()))
+  async fetch(request, env, ctx) {
+    const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
+    switch (`${request.method} ${pathname}`) {
+      case 'GET /':
+        return landing(env)
+      case 'POST /pull':
+        return pull(request, env)
+      case 'OPTIONS /signups':
+        return signupPreflight(request, env)
+      case 'POST /signups':
+        return signup(request, env, (work) => ctx.waitUntil(work))
+      case 'GET /confirm':
+        return confirmForm(request)
+      case 'POST /confirm':
+        return confirmNow(request, env)
+      case 'GET /unsubscribe':
+        return unsubscribeForm(request)
+      case 'POST /unsubscribe':
+        return unsubscribeNow(request, env)
+      default:
+        return new Response('Not found', { status: 404 })
+    }
+  },
+
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(scheduledPull(controller.scheduledTime, env))
   },
 } satisfies ExportedHandler<Env>

@@ -6,11 +6,29 @@ import { purgeOld, saveNew } from './store'
 import type { Candidate, Env, FetchLike, PullReport, RawItem, Source, SourceReport } from './types'
 
 const REQUEST_TIMEOUT_MS = 15_000
+const GNEWS_GAP_MS = 2_000
+const BUSY_RETRY_WAITS_MS = [5_000, 15_000]
+const TOO_MANY_REQUESTS = 429
+
+export type Wait = (ms: number) => Promise<void>
 
 const defaultFetch: FetchLike = (input, init) => fetch(input, init)
+const defaultWait: Wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 function withTimeout(fetchImpl: FetchLike): FetchLike {
   return (input, init) => fetchImpl(input, { ...init, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) })
+}
+
+function retryingWhenBusy(fetchImpl: FetchLike, wait: Wait): FetchLike {
+  return async (input, init) => {
+    for (const pause of BUSY_RETRY_WAITS_MS) {
+      const response = await fetchImpl(input, init)
+      if (response.status !== TOO_MANY_REQUESTS) return response
+      await response.body?.cancel()
+      await wait(pause)
+    }
+    return fetchImpl(input, init)
+  }
 }
 
 async function fetchSource(source: Source, fetchImpl: FetchLike): Promise<RawItem[]> {
@@ -42,9 +60,26 @@ async function pullSource(source: Source, fetchImpl: FetchLike, now: Date): Prom
   return { report, candidates }
 }
 
-export async function runPull(env: Env, now: Date, fetchImpl: FetchLike = defaultFetch): Promise<PullReport> {
+// Google News answers 429 when its searches arrive together, so they go one at a time.
+async function pullGnewsInTurn(sources: Source[], fetchImpl: FetchLike, wait: Wait, now: Date): Promise<SourceResult[]> {
+  const results: SourceResult[] = []
+  for (const source of sources) {
+    if (results.length > 0) await wait(GNEWS_GAP_MS)
+    results.push(await pullSource(source, fetchImpl, now))
+  }
+  return results
+}
+
+export async function runPull(env: Env, now: Date, fetchImpl: FetchLike = defaultFetch, wait: Wait = defaultWait): Promise<PullReport> {
   const timedFetch = withTimeout(fetchImpl)
-  const results = await Promise.all(SOURCES.map((source) => pullSource(source, timedFetch, now)))
+  const gnews = SOURCES.filter((source) => source.type === 'gnews')
+  const feeds = SOURCES.filter((source) => source.type !== 'gnews')
+  const [gnewsResults, feedResults] = await Promise.all([
+    pullGnewsInTurn(gnews, retryingWhenBusy(timedFetch, wait), wait, now),
+    Promise.all(feeds.map((source) => pullSource(source, timedFetch, now))),
+  ])
+  const bySource = new Map([...gnewsResults, ...feedResults].map((result) => [result.report.sourceId, result]))
+  const results = SOURCES.map((source) => bySource.get(source.id)!)
 
   const stored = await saveNew(env.DB, dedupe(results.flatMap((r) => r.candidates)), now)
   await purgeOld(env.DB, now)

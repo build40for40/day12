@@ -1,8 +1,3 @@
-export const LANDING_PATH = '/feel-good'
-export const SUBSCRIBE_PATH = `${LANDING_PATH}/subscribe`
-
-export type LandingState = 'form' | 'joined' | 'invalid_email'
-
 const story = {
   date: '17 November 2026',
   line: 'Dublin is piloting an AI flood warning that, in tests on past storms, flagged some floods 13 hours early.',
@@ -79,34 +74,44 @@ a:hover { color: #55524B; }
 .join .small { margin: 0; font-size: 16px; line-height: 1.4; }
 .join .error { margin: 0; font-size: 17px; font-style: italic; }
 .join .joined { margin: 0; font-size: 28px; line-height: 1.25; }
-.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.join button:disabled { opacity: 0.6; cursor: progress; }
+[hidden] { display: none !important; }
 footer { margin-top: auto; padding-top: 48px; font-size: 15px; }
 `
 
-const form = (invalid: boolean) => `
-      <form method="post" action="${SUBSCRIBE_PATH}">
-        <div>
-          <label for="email">Your email</label>
-          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"${
-            invalid ? ' aria-invalid="true" aria-describedby="email-error"' : ''
-          }>
-        </div>${
-          invalid
-            ? '\n        <p class="error" id="email-error" role="alert">That email doesn\'t look right. Check it and try again.</p>'
-            : ''
-        }
-        <div class="trap" aria-hidden="true">
-          <label for="website">Leave this empty</label>
-          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <button type="submit">Send me tomorrow's story</button>
-        <p class="small">Free. 6am UK time. Leave whenever you like.</p>
-      </form>`
+const signupScript = `
+const form = document.querySelector('.join form')
+const error = document.getElementById('email-error')
+const email = document.getElementById('email')
+const button = form.querySelector('button')
+const messages = {
+  invalid_email: "That email doesn't look right. Check it and try again.",
+  other: "We couldn't sign you up just now. Try again in a minute.",
+}
+form.addEventListener('submit', async (event) => {
+  event.preventDefault()
+  error.hidden = true
+  email.removeAttribute('aria-invalid')
+  button.disabled = true
+  let problem = 'other'
+  try {
+    const response = await fetch(form.action, { method: 'POST', body: new URLSearchParams({ email: email.value }) })
+    const result = await response.json()
+    if (result.ok) {
+      form.hidden = true
+      document.querySelector('.join .joined').hidden = false
+      return
+    }
+    if (result.error === 'invalid_email') problem = 'invalid_email'
+  } catch {}
+  button.disabled = false
+  error.textContent = messages[problem]
+  error.hidden = false
+  if (problem === 'invalid_email') email.setAttribute('aria-invalid', 'true')
+})
+`
 
-const joined = `
-      <p class="joined" role="status">You're on the list. Your story arrives at 6am UK time.</p>`
-
-export function renderLanding(state: LandingState): string {
+export function renderLanding(signupsPath: string): string {
   return `<!doctype html>
 <html lang="en-GB">
 <head>
@@ -133,10 +138,21 @@ export function renderLanding(state: LandingState): string {
       <div class="place">${story.place}</div>
     </article>
     <section class="join">
-      <p class="pitch">Daily positive AI news you can read in 10 seconds</p>${state === 'joined' ? joined : form(state === 'invalid_email')}
+      <p class="pitch">Daily positive AI news you can read in 10 seconds</p>
+      <form method="post" action="${signupsPath}">
+        <div>
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" aria-describedby="email-error">
+        </div>
+        <p class="error" id="email-error" role="alert" hidden></p>
+        <button type="submit">Send me tomorrow's story</button>
+        <p class="small">Free. 6am UK time. Leave whenever you like.</p>
+      </form>
+      <p class="joined" role="status" hidden>Check your inbox. One click to confirm and you're in.</p>
     </section>
     <footer>Day 12 of <a href="https://build40for40.com">40 for 40</a></footer>
   </main>
+  <script>${signupScript}</script>
 </body>
 </html>
 `

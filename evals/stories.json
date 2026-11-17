@@ -84,7 +84,7 @@
       "input": {
         "lane": "good",
         "title": "Farmers in a Kenyan co-op diagnose crop disease from a phone photo",
-        "summary": "A 600-member farming co-operative in western Kenya has used a free photo app to identify cassava disease for a year. A peer-reviewed field study found members lost a third less of their crop than neighbouring farms.",
+        "summary": "A 600-member farming co-operative in western Kenya has used a free photo app, built on a machine learning model, to identify cassava disease for a year. A peer-reviewed field study found members lost a third less of their crop than neighbouring farms.",
         "published": "2026-11-05",
         "source_type": "journal",
         "primary_source_checked": true,

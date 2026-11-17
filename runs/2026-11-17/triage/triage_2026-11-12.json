@@ -1,0 +1,128 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    1
+   ],
+   "lane": "good",
+   "story": "A project at Barts Health NHS Trust is using AI-powered eye-tracking to help patients who cannot speak find a way to communicate.",
+   "best_title": "Barts Health project sees AI eye-tracking tech to help patients with speech difficulties communicate",
+   "publisher": "HTN Health Tech News",
+   "why": "Real named NHS project; AI is the core enabling technology; affects a vulnerable patient group outside the AI industry; plausibly in trial or early deployment."
+  },
+  {
+   "items": [
+    5
+   ],
+   "lane": "good",
+   "story": "An AI system reading standard ECG traces has shown it can detect dangerously low potassium levels in the blood, a condition that normally requires a blood test to identify.",
+   "best_title": "AI-ECG Shows Promise for Monitoring Severe Hypokalemia",
+   "publisher": "Medscape",
+   "why": "Clinical study result on a specialist medical outlet; AI is the reason a non-invasive test can flag a dangerous condition; plausible direct patient benefit outside the AI industry."
+  },
+  {
+   "items": [
+    6,
+    119
+   ],
+   "lane": "good",
+   "story": "Mayo Clinic researchers built and tested an AI model that uses a routine 24-hour urine test to predict kidney stone composition more accurately than existing methods, potentially sparing patients from more invasive procedures.",
+   "best_title": "Mayo Clinic researchers use AI to better predict kidney stone composition",
+   "publisher": "Mayo Clinic via EurekaAlert",
+   "why": "Named institution, real study released via EurekaAlert; item 119 gives the full source detail; AI is the reason for improved accuracy; directly benefits patients outside the AI industry."
+  },
+  {
+   "items": [
+    9
+   ],
+   "lane": "good",
+   "story": "The NHS is running a trial of an AI assistant that proactively phones patients with long-term conditions to check on them, aiming to free up clinical time and catch people who might otherwise be missed.",
+   "best_title": "NHS trials AI assistant to phone patients with long-term illness",
+   "publisher": "DPA Magazine",
+   "why": "Real named NHS trial; AI is what makes the proactive outreach scalable; outside the AI industry; plausible evidence implied by a formal trial."
+  },
+  {
+   "items": [
+    12
+   ],
+   "lane": "good",
+   "story": "A study of more than 280,000 AI-read ECGs found that financial stress and food insecurity show up in the heart's electrical patterns, suggesting economic hardship accelerates cardiac ageing.",
+   "best_title": "More than 280,000 AI-read ECGs point to money worries and food insecurity as major markers of an older-looking heart",
+   "publisher": "Medical Daily",
+   "why": "Very large dataset gives real evidential weight; AI analysis surfaced a finding humans reviewing ECGs would not have spotted; the result is about health and social conditions outside the AI industry and has wide human appeal."
+  },
+  {
+   "items": [
+    27
+   ],
+   "lane": "good",
+   "story": "Samsung Medical Centre in South Korea is testing an AI speech-to-text system that transcribes doctor-patient consultations directly into medical records, reducing paperwork for clinicians.",
+   "best_title": "Samsung Medical Centre tests AI speech-to-text for medical records",
+   "publisher": "Healthcare Asia Magazine",
+   "why": "Named hospital running a real test; AI is the reason the administrative burden can be lifted; outside the AI industry; plausibly at trial stage with real-world evidence."
+  },
+  {
+   "items": [
+    30,
+    37
+   ],
+   "lane": "good",
+   "story": "Perth astronomers used an AI originally trained on cat photos to independently reconstruct the famous first image of a black hole, and the bright ring came out the same, confirming the original result by a completely different method.",
+   "best_title": "Perth scientists confirm famous black hole image using AI",
+   "publisher": "PerthNow",
+   "why": "It happened; AI is the reason for the independent confirmation; a science result entirely outside the AI industry; the 'trained on cat photos' angle is a genuine surprise with broad public appeal."
+  },
+  {
+   "items": [
+    69
+   ],
+   "lane": "good",
+   "story": "An AI tool scanning the Linux kernel—software that runs most of the world's servers and smartphones—found security bugs that had gone undetected for decades.",
+   "best_title": "AI found Linux kernel bugs that remained undetected for decades",
+   "publisher": "CSO Online",
+   "why": "It happened; AI is the reason the decades-old bugs were found; affects critical global infrastructure used by billions outside the AI industry; broad practical significance that is easy to explain."
+  },
+  {
+   "items": [
+    96
+   ],
+   "lane": "good",
+   "story": "A multimodal AI system accurately detected Alzheimer's disease in clinical tests, though it was less reliable at determining how advanced the disease was.",
+   "best_title": "Multimodal Artificial Intelligence Accurately Detects Alzheimer Disease but Stumbles on Staging",
+   "publisher": "Bioengineer.org",
+   "why": "Study result on a named, widely feared disease; AI is the detection tool; the honest mixed finding (detection yes, staging uncertain) suggests real reporting rather than hype; high public relevance outside the AI industry."
+  },
+  {
+   "items": [
+    108
+   ],
+   "lane": "good",
+   "story": "A systematic review of ten years of research concluded that AI can help cut carbon emissions and adapt to climate change at every stage of a construction project, from producing materials to demolition, while noting it is not a complete solution on its own.",
+   "best_title": "AI can help construction cut emissions and brace for climate change, but it is no silver bullet",
+   "publisher": "KeAi Communications Co. via EurekaAlert",
+   "why": "Systematic review gives solid evidential weight; AI is the enabling tool across the supply chain; construction is a major real-world emissions source; the 'no silver bullet' caveat signals honest, credible reporting."
+  },
+  {
+   "items": [
+    61,
+    78,
+    79
+   ],
+   "lane": "flip",
+   "story": "Several nonprofit advocacy groups have filed lawsuits against major AI companies seeking to pause the release of new frontier models, arguing the pace of development poses catastrophic risks.",
+   "best_title": "Advocacy groups sue AI giants to freeze new models, warning of 'catastrophic' risks",
+   "publisher": "AP News",
+   "why": "Widely covered bad-news story about unchecked AI development; the lawsuits are a concrete 'system is responding' fact separate from the underlying concern; no person was physically harmed; the good side does not shrink the harm but adds to it by showing accountability mechanisms activating."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 8,
+  "industry_news": 42,
+  "opinion_or_explainer": 44,
+  "ai_not_the_reason": 4,
+  "negative_no_flip": 5,
+  "other": 5
+ },
+ "date": "2026-11-12",
+ "n_items": 123
+}
