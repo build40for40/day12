@@ -36,3 +36,25 @@ Keep about 30 evergreen stories banked as a fallback for thin days. Prompts and 
 ### Where it publishes
 
 Not chosen yet. The front runners can go live the same day: SMS or text, an RSS feed or podcast, or a website with an email digest. These were ruled out for today because review takes too long: ChatGPT and Claude Code plugins, Alexa skills and podcast directory listings. On X, posting from our own account is fine, but automated replies to keyword searches aren't allowed without approval.
+
+## Running it
+
+The source pull is a Cloudflare Worker (`src/index.ts`) with its own local D1 database, `day12`.
+
+1. **Install:** `npm install`
+2. **Configure:** copy `.dev.vars.example` to `.dev.vars` and set `PULL_TOKEN` to any random string.
+3. **Migrate:** `npm run db:migrate` applies `migrations/` to the local database.
+4. **Run:** `npm run dev`, then in another shell load the token with `export $(grep ^PULL_TOKEN= .dev.vars)` and trigger a pull with `curl -X POST -H "Authorization: Bearer $PULL_TOKEN" localhost:8787/pull`. The response is a JSON report with fetched, kept and stored counts per source.
+5. **Inspect:** `npm run wrangler -- d1 execute day12 --local --command "SELECT source_id, COUNT(*) FROM candidates GROUP BY source_id"`
+6. **Test:** `npm run typecheck` and `npm test`.
+
+Cloudflare crons run in UTC, so a single cron is 06:00 London only in winter. For 06:00 London all year, add two crons to `wrangler.jsonc` under `triggers.crons` (`0 5 * * *` and `0 6 * * *`) and a `scheduled` handler in `src/index.ts` that calls `runPull` only when the hour in Europe/London is 6.
+
+## Deploying it
+
+`wrangler.jsonc` holds a placeholder `database_id`, so the first deploy needs the remote database created first:
+
+1. **Create the database:** `npm run wrangler -- d1 create day12`, then put the id it prints into `wrangler.jsonc`.
+2. **Migrate:** `npm run wrangler -- d1 migrations apply day12 --remote`
+3. **Set the token:** `npm run wrangler -- secret put PULL_TOKEN`
+4. **Deploy:** `npm run wrangler -- deploy`
