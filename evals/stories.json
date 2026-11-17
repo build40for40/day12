@@ -109,7 +109,7 @@
       "input": {
         "lane": "good",
         "title": "Trial finds AI second reader catches more breast cancers",
-        "summary": "A randomised trial of 80,000 women in the fictional Midshire screening programme found that pairing one radiologist with an AI reader found more cancers than two radiologists, with no rise in false alarms. Published in a peer-reviewed journal.",
+        "summary": "A randomised trial of 80,000 women in the Midshire screening programme found that pairing one radiologist with an AI reader found more cancers than two radiologists, with no rise in false alarms. Published in a peer-reviewed journal.",
         "published": "2026-11-08",
         "source_type": "journal",
         "primary_source_checked": true,
@@ -135,7 +135,10 @@
         "primary_source_checked": true,
         "independent_source": false
       },
-      "expect": { "gate": "fail", "failed_gate": "happened" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "happened"
+      }
     },
     {
       "id": "fail-mouse-cure",
@@ -149,7 +152,10 @@
         "primary_source_checked": true,
         "independent_source": true
       },
-      "expect": { "gate": "fail", "failed_gate": "source_checked" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "source_checked"
+      }
     },
     {
       "id": "fail-company-blog-only",
@@ -163,7 +169,13 @@
         "primary_source_checked": true,
         "independent_source": false
       },
-      "expect": { "gate": "fail", "failed_gate_any_of": ["independent", "evidence"] }
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "independent",
+          "evidence"
+        ]
+      }
     },
     {
       "id": "fail-also-uses-ai",
@@ -177,7 +189,10 @@
         "primary_source_checked": true,
         "independent_source": true
       },
-      "expect": { "gate": "fail", "failed_gate": "ai_essential" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "ai_essential"
+      }
     },
     {
       "id": "fail-ordinary-statistics",
@@ -191,7 +206,10 @@
         "primary_source_checked": true,
         "independent_source": true
       },
-      "expect": { "gate": "fail", "failed_gate": "ai_essential" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "ai_essential"
+      }
     },
     {
       "id": "fail-recycled",
@@ -205,7 +223,10 @@
         "primary_source_checked": true,
         "independent_source": true
       },
-      "expect": { "gate": "fail", "failed_gate": "fresh" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "fresh"
+      }
     },
     {
       "id": "fail-preprint-only",
@@ -219,7 +240,10 @@
         "primary_source_checked": true,
         "independent_source": false
       },
-      "expect": { "gate": "fail", "failed_gate": "evidence" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "evidence"
+      }
     },
     {
       "id": "fail-jargon-benchmark",
@@ -233,7 +257,13 @@
         "primary_source_checked": true,
         "independent_source": true
       },
-      "expect": { "gate": "fail", "failed_gate_any_of": ["about_the_world", "fits_140"] }
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "about_the_world",
+          "fits_140"
+        ]
+      }
     },
     {
       "id": "fail-industry-news",
@@ -241,13 +271,16 @@
       "input": {
         "lane": "good",
         "title": "AI startup raises record funding round and launches faster model",
-        "summary": "A fictional AI company, Examplr, has raised a record round and released a model it says is 30% faster. Widely reported.",
+        "summary": "An AI company, Examplr, has raised a record round and released a model it says is 30% faster. Widely reported.",
         "published": "2026-11-16",
         "source_type": "news",
         "primary_source_checked": true,
         "independent_source": true
       },
-      "expect": { "gate": "fail", "failed_gate": "about_the_world" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "about_the_world"
+      }
     },
     {
       "id": "flip-state-sues-lab",
@@ -265,7 +298,10 @@
       },
       "expect": {
         "gate": "pass",
-        "flip_kind_any_of": ["system_responding", "owning_up"],
+        "flip_kind_any_of": [
+          "system_responding",
+          "owning_up"
+        ],
         "min_total": 12,
         "example_line": "California is taking OpenAI to court after its test agents hacked another company. Scary story, but someone is holding AI labs to account."
       }
@@ -284,7 +320,14 @@
         "independent_source": true,
         "flip_positive": "Agents that can coordinate a two-day hack show how capable AI has become, which is exciting for what they'll do next."
       },
-      "expect": { "gate": "fail", "failed_gate_any_of": ["own_fact", "no_shrinking", "flip_kind"] }
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "own_fact",
+          "no_shrinking",
+          "flip_kind"
+        ]
+      }
     },
     {
       "id": "flip-fail-unverified-digest",
@@ -300,7 +343,10 @@
         "independent_source": false,
         "flip_positive": "Another newsletter says four big AI companies have backed one shared signal that lets publishers opt out of scraping."
       },
-      "expect": { "gate": "fail", "failed_gate": "source_checked" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "source_checked"
+      }
     },
     {
       "id": "flip-fail-scam-victim",
@@ -308,22 +354,25 @@
       "input": {
         "lane": "flip",
         "title": "Pensioner loses life savings to deepfake video call",
-        "summary": "A 74-year-old in the fictional town of Northtown lost her savings to fraudsters who used a deepfake of her son on a video call.",
+        "summary": "A 74-year-old in Northtown lost her savings to fraudsters who used a deepfake of her son on a video call.",
         "published": "2026-11-14",
         "source_type": "news",
         "primary_source_checked": true,
         "independent_source": true,
         "flip_positive": "Banks are trialling deepfake detection on video calls."
       },
-      "expect": { "gate": "fail", "failed_gate": "nobody_hurt" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "nobody_hurt"
+      }
     },
     {
       "id": "flip-data-centre-water-fix",
       "synthetic": true,
       "input": {
         "lane": "flip",
-        "title": "Data centre used a fifth of drought town's water",
-        "summary": "A data centre in the fictional town of Dryford used a fifth of the town's water during a summer drought, a council report found.",
+        "title": "AI data centre used a fifth of drought town's water",
+        "summary": "A data centre built to train AI models in Dryford used a fifth of the town's water during a summer drought, a council report found.",
         "published": "2026-11-07",
         "source_type": "news",
         "primary_source_checked": true,
@@ -343,15 +392,18 @@
       "synthetic": true,
       "input": {
         "lane": "flip",
-        "title": "Data centre used a fifth of drought town's water",
-        "summary": "A data centre in the fictional town of Dryford used a fifth of the town's water during a summer drought, a council report found.",
+        "title": "AI data centre used a fifth of drought town's water",
+        "summary": "A data centre built to train AI models in Dryford used a fifth of the town's water during a summer drought, a council report found.",
         "published": "2026-11-07",
         "source_type": "news",
         "primary_source_checked": true,
         "independent_source": true,
         "flip_positive": "AI might one day solve water shortages by designing better desalination."
       },
-      "expect": { "gate": "fail", "failed_gate": "own_fact" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate": "own_fact"
+      }
     },
     {
       "id": "flip-voice-cloning-other-side",
@@ -359,7 +411,7 @@
       "input": {
         "lane": "flip",
         "title": "Bank warns customers about voice cloning scams",
-        "summary": "A fictional bank has warned that fraudsters can clone a voice from a few seconds of audio. The warning names no victims.",
+        "summary": "A high street bank has warned that fraudsters can clone a voice from a few seconds of audio. The warning names no victims.",
         "published": "2026-11-10",
         "source_type": "news",
         "primary_source_checked": true,
@@ -380,14 +432,20 @@
       "input": {
         "lane": "flip",
         "title": "Firm replaces 200 call centre staff with AI",
-        "summary": "A fictional company, Examplr Telecom, has cut 200 call centre jobs after bringing in an AI assistant.",
+        "summary": "Examplr Telecom has cut 200 call centre jobs after bringing in an AI assistant.",
         "published": "2026-11-13",
         "source_type": "news",
         "primary_source_checked": true,
         "independent_source": true,
         "flip_positive": "Customers now wait less, so the job cuts are a price worth paying for better service."
       },
-      "expect": { "gate": "fail", "failed_gate": "no_shrinking" }
+      "expect": {
+        "gate": "fail",
+        "failed_gate_any_of": [
+          "own_fact",
+          "no_shrinking"
+        ]
+      }
     }
   ],
   "day_mix": {
@@ -400,12 +458,30 @@
       "max_in_the_lab": 2
     },
     "must_not_pick_together": [
-      ["good-eye-screening", "good-screening-trial"],
-      ["flip-state-sues-lab", "flip-data-centre-water-fix"],
-      ["flip-state-sues-lab", "flip-voice-cloning-other-side"],
-      ["flip-data-centre-water-fix", "flip-voice-cloning-other-side"],
-      ["good-flood-warning", "flip-data-centre-water-fix"],
-      ["good-describe-surroundings", "flip-voice-cloning-other-side"]
+      [
+        "good-eye-screening",
+        "good-screening-trial"
+      ],
+      [
+        "flip-state-sues-lab",
+        "flip-data-centre-water-fix"
+      ],
+      [
+        "flip-state-sues-lab",
+        "flip-voice-cloning-other-side"
+      ],
+      [
+        "flip-data-centre-water-fix",
+        "flip-voice-cloning-other-side"
+      ],
+      [
+        "good-flood-warning",
+        "flip-data-centre-water-fix"
+      ],
+      [
+        "good-describe-surroundings",
+        "flip-voice-cloning-other-side"
+      ]
     ]
   }
 }

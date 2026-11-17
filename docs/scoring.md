@@ -31,9 +31,11 @@ The 140 gate is tested by writing the line. If the agent can't write it, the sto
 
 | Gate | Passes when | Typical fail |
 | --- | --- | --- |
-| The good side is its own fact | It has its own source and would be true even if you'd never read the bad story | "This shows how capable AI is", "AI might fix this one day" |
+| Nobody was hurt | No person was killed, physically injured, abused or defrauded in the original story, named or not. A company being hacked or sued doesn't count. Job losses and shortages are judged by the "doesn't shrink the harm" gate instead. Checked first | A scam victim, a self-harm case, a crash |
+| The good side is its own fact | It is a separate, sourced fact, not an opinion about the bad story. It can sit in the same article: a lawsuit over a hack is a separate fact from the hack | "This shows how capable AI is", "AI might fix this one day" |
 | It doesn't shrink the harm | The line admits the bad news, then adds to it | "It's not that bad", "but think of the productivity" |
-| Nobody was hurt | No death, injury, abuse or named victim in the original story | A scam victim, a self-harm case, a crash |
+
+Two of the main gates read differently for a flip. "AI is the reason" passes when the bad story is about AI or the things built to run it, such as data centres. "It's about the world" passes when the bad story reached the popular news.
 
 A flip must also be one of these four kinds:
 
@@ -77,7 +79,13 @@ Pick from the ranked list, top down, skipping any story that would break a rule:
 - No jargon, and no dashes in the middle of a sentence.
 - A flip names the bad news first, then the good side.
 
-Every story carries one stage tag next to its line: **in the lab**, **in a trial** or **helping people now**.
+Every story carries one stage tag next to its line:
+
+- **In the lab:** a discovery, or a tool shown to work in a study. Nobody is relying on it yet.
+- **In a trial:** being tested with real people or in a real place, including pilots.
+- **Helping people now:** in routine use outside a study. For a flip, the good side is already happening.
+
+The 140 limit is enforced in code, not left to the model. In the first test the model wrote a 142-character line and didn't notice.
 
 ## Decisions made here, to confirm
 

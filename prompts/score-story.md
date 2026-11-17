@@ -30,11 +30,11 @@ Check each gate in order. Stop at the first fail.
 7. `fresh`: first public in the last 90 days, or marked as from the evergreen bank.
 8. `fits_140`: you can write the line to the rules in step 3.
 
-For flips, also check:
+For flips, read gates 5 and 6 differently: gate 5 passes when the bad story is about AI or the things built to run it (data centres, chips), and gate 6 passes when the bad story reached the popular news. Then also check, in this order:
 
-9. `own_fact`: the good side has its own source and is true without the bad story. Speculation fails.
-10. `no_shrinking`: the good side doesn't play the harm down.
-11. `nobody_hurt`: no death, injury, abuse or named victim in the original story.
+9. `nobody_hurt`: no person was killed, physically injured, abused or defrauded in the original story, whether or not they are named. A company being hacked, fined or sued doesn't count, and neither do job losses or shortages, which gate 11 covers. Check this first. If it fails, nothing else matters.
+10. `own_fact`: the good side is a separate, sourced fact, not an opinion about the bad story or a guess about the future. It can be reported in the same article: a lawsuit over a hack is a separate fact from the hack.
+11. `no_shrinking`: the good side doesn't play the harm down or treat it as a price worth paying.
 12. `flip_kind`: the good side is one of `system_responding`, `owning_up`, `the_fix` or `same_tech_other_side`.
 
 ## Step 2: scores
@@ -43,20 +43,37 @@ Only for stories that passed. Each is a whole number from 0 to 3.
 
 - `mass_appeal` (weight 3): would someone who doesn't work in tech repeat this to a friend?
 - `real_person_or_place` (weight 2): a named place or a kind of person you can picture, not "stakeholders".
-- `stage` (weight 2): 1 in the lab, 2 in a trial, 3 helping people now.
+- `stage` (weight 2): 1 in the lab, 2 in a trial, 3 helping people now. See the stage tags below.
 - `surprise` (weight 1): "I didn't know AI could do that". For flips, score how well known the bad story is instead.
 
 `total` is the weighted sum, out of 24.
 
 ## Step 3: the line
 
-Write one line of 140 characters or fewer, counting spaces.
+Write one line of 140 characters or fewer, counting spaces. Aim for 125, because anything over 140 is thrown away by the code that checks it.
 
 - Say what happened and to whom or where.
 - No "could", "may", "might", "promises" or "revolutionise".
 - No jargon. No dashes in the middle of a sentence.
 - For a flip, name the bad news first, then the good side.
 - Informal and warm, never corporate.
+
+## Topic and stage tags
+
+Topics:
+
+- `health`: illness, diagnosis and treatment.
+- `accessibility`: disability, and tools that give someone back a sense, a voice or independence.
+- `climate_and_nature`: weather, floods, fires, energy, water, wildlife.
+- `space`: anything off the planet.
+- `science`: discoveries that don't fit the others.
+- `everyday_life`: work, school, farming, money, home, and how AI is governed.
+
+Stages:
+
+- `in_the_lab`: a discovery, or a tool shown to work in a study. Nobody is relying on it yet.
+- `in_a_trial`: being tested with real people or in a real place, including pilots.
+- `helping_people_now`: in routine use outside a study. For a flip, the good side is already happening.
 
 ## Output
 

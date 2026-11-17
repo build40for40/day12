@@ -1,0 +1,595 @@
+[
+  {
+    "id": "good-eye-screening",
+    "expected": {
+      "gate": "pass",
+      "topic": "health",
+      "stage": "helping_people_now",
+      "min_total": 18,
+      "example_line": "An AI reading eye scans at one hospital spotted 212 people who needed urgent treatment and would otherwise have waited months."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "A peer-reviewed audit of 4,000 real patients at a named hospital shows the AI system in live clinical use, with a concrete, independent-verified result.",
+      "topic": "health",
+      "stage": "helping_people_now",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 3,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 23,
+      "line": "An AI eye scanner at Northtown Eye Hospital flagged 212 diabetes patients for urgent care they would otherwise have waited months to get."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "good-flood-warning",
+    "expected": {
+      "gate": "pass",
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "min_total": 18,
+      "example_line": "40 villages got five days' warning before October's floods, thanks to an AI forecast. The old system gave them two."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "A real flood event happened, an independent university group confirmed the extended lead time, and the AI model is the direct cause of villages getting five days' warning instead of two.",
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 2,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 21,
+      "line": "A new flood model gave 40 villages on the Example River five days' warning before October's floods, up from two days with the old system."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "good-describe-surroundings",
+    "expected": {
+      "gate": "pass",
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "min_total": 18,
+      "example_line": "10,000 blind people now use a free app that describes what their phone camera sees, from reading the post to finding the bus stop."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "A charity's app using a vision model is in routine daily use by 10,000 blind people, backed by a published user study and an independent source.",
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 2,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 21,
+      "line": "Free app that describes the street aloud is now used daily by 10,000 blind people to read post and find bus stops."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "good-exoplanets",
+    "expected": {
+      "gate": "pass",
+      "topic": "space",
+      "stage": "in_the_lab",
+      "min_total": 12,
+      "example_line": "Astronomers pointed an AI at old telescope data and found 12 planets that everyone had missed the first time."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "Peer-reviewed discovery with independent confirmation; AI was essential to finding planets missed by prior human searches; a genuine scientific result outside the AI industry.",
+      "topic": "space",
+      "stage": "in_the_lab",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 2,
+        "stage": 1,
+        "surprise": 3
+      },
+      "total": 18,
+      "line": "Astronomers used machine learning to dig through old telescope archives and found 12 planets that human searches had missed, two confirmed."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "good-crop-disease",
+    "expected": {
+      "gate": "pass",
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "min_total": 18,
+      "example_line": "600 farmers in Kenya check their cassava for disease with a phone photo. They lost a third less of their crop than their neighbours."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "A peer-reviewed field study confirmed that a 600-member Kenyan co-op using a free AI photo app for a year lost a third less cassava crop than neighbouring farms — a real result, in real use, backed by an independent source.",
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 3,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 23,
+      "line": "Kenyan farmers used a free phone app to spot cassava disease and lost a third less crop than their neighbours, a study found."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "good-screening-trial",
+    "expected": {
+      "gate": "pass",
+      "topic": "health",
+      "stage": "in_a_trial",
+      "min_total": 14,
+      "example_line": "In a trial of 80,000 women, a radiologist working with an AI found more breast cancers than two radiologists, with no extra false alarms."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "Peer-reviewed randomised trial of 80,000 women with a clear result: AI plus one radiologist outperformed two radiologists at no extra false-alarm cost, primary source checked, independent of any company claim, and published nine days ago.",
+      "topic": "health",
+      "stage": "in_a_trial",
+      "flip_kind": null,
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 3,
+        "stage": 2,
+        "surprise": 3
+      },
+      "total": 22,
+      "line": "A trial of 80,000 women found AI plus one radiologist caught more breast cancers than two radiologists, with no rise in false alarms."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-could-revolutionise",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "happened"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "happened",
+      "reason": "No result exists yet: the summary explicitly states no results have been published, and uses 'plan to build', 'may one day', and 'promises to' — all prediction language, not outcomes.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-mouse-cure",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "source_checked"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "The primary source was opened but contradicts the headline: the paper shows joint-swelling reduction in mice only, while the headline claims a cure — the summary does not match the headline claim.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-company-blog-only",
+    "expected": {
+      "gate": "fail",
+      "failed_gate_any_of": [
+        "independent",
+        "evidence"
+      ]
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "evidence",
+      "reason": "The only source is a company blog post, which is equivalent to a press release with no supporting paper or independent trial record, and the hospital is unnamed.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-also-uses-ai",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "ai_essential"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "ai_essential",
+      "reason": "The story is about the opening of a new children's ward; the AI rota-drafting is an incidental detail — removing it leaves the story entirely intact.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-ordinary-statistics",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "ai_essential"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "ai_essential",
+      "reason": "The summary explicitly states the 'AI' is a standard regression on survey answers, which is ordinary statistics and not AI by the brief's rules.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-recycled",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "fresh"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "fresh",
+      "reason": "The result was first published on 2019-10-02, more than 90 days before today's date of 2026-11-17, and the summary explicitly states nothing new has been published and the story is not in the evergreen bank.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-preprint-only",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "evidence"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "evidence",
+      "reason": "The summary explicitly states the work is a preprint that has not been peer-reviewed and has not been replicated, which the rules treat as a straight fail on the evidence gate.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-jargon-benchmark",
+    "expected": {
+      "gate": "fail",
+      "failed_gate_any_of": [
+        "about_the_world",
+        "fits_140"
+      ]
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "about_the_world",
+      "reason": "The story is a benchmark score improvement on a retrieval task, which the rules explicitly disqualify — nothing changed for a person, place or field outside the AI industry.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "fail-industry-news",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "about_the_world"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "about_the_world",
+      "reason": "The story is explicitly about a funding round and a model launch with a speed benchmark — all three are named in gate 6 as automatic fails because nothing changed for anyone outside the AI industry.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-state-sues-lab",
+    "expected": {
+      "gate": "pass",
+      "flip_kind_any_of": [
+        "system_responding",
+        "owning_up"
+      ],
+      "min_total": 12,
+      "example_line": "California is taking OpenAI to court after its test agents hacked another company. Scary story, but someone is holding AI labs to account."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "A filed lawsuit is a separate sourced fact from the underlying hack; the system-responding good side is already under way and does not minimise the harm.",
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "flip_kind": "system_responding",
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 2,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 21,
+      "line": "OpenAI's AI agents hacked Hugging Face. California is suing the lab over safety, the first US state to do so."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-fail-capability-spin",
+    "expected": {
+      "gate": "fail",
+      "failed_gate_any_of": [
+        "own_fact",
+        "no_shrinking",
+        "flip_kind"
+      ]
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "own_fact",
+      "reason": "The proposed good side is not a separate, sourced fact — it is an opinion drawn directly from the bad story, speculating that the hack demonstrates exciting AI capability; there is no independent fact cited to support it.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-fail-unverified-digest",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "source_checked"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "source_checked",
+      "reason": "primary_source_checked is false, so the summary cannot be verified against the source.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-fail-scam-victim",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "nobody_hurt"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "nobody_hurt",
+      "reason": "A named individual was defrauded of her life savings in the original story, which fails the nobody_hurt gate regardless of the good side.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-data-centre-water-fix",
+    "expected": {
+      "gate": "pass",
+      "flip_kind": "the_fix",
+      "topic": "climate_and_nature",
+      "min_total": 12,
+      "example_line": "A data centre drank a fifth of a drought town's water. After the outcry it switched its cooling and now uses 80% less."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "All flip gates clear: no person was hurt, the operator's October switch to closed-loop cooling is a separate sourced fact from the council report, it doesn't minimise the harm, and it qualifies as the_fix.",
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "flip_kind": "the_fix",
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 3,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 23,
+      "line": "An AI data centre used a fifth of Dryford's water during a drought, but switched to closed-loop cooling in October, cutting use by 80%."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-fail-speculation",
+    "expected": {
+      "gate": "fail",
+      "failed_gate": "own_fact"
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "own_fact",
+      "reason": "The proposed good side ('AI might one day solve water shortages by designing better desalination') is a guess about the future, not a separate sourced fact — 'might one day' disqualifies it under gate 10.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-voice-cloning-other-side",
+    "expected": {
+      "gate": "pass",
+      "flip_kind": "same_tech_other_side",
+      "topic": "accessibility",
+      "min_total": 14,
+      "example_line": "Voice cloning is in the news for scams. The same tech let 300 people with MND save their own voice before losing their speech."
+    },
+    "got": {
+      "gate": "pass",
+      "failed_gate": null,
+      "reason": "All gates clear: the bad story is a real AI-driven scam warning in popular news, no named victims, and the good side is a separate sourced fact from a charity's annual report showing 300 MND patients already using voice-banking technology.",
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "flip_kind": "same_tech_other_side",
+      "scores": {
+        "mass_appeal": 3,
+        "real_person_or_place": 2,
+        "stage": 3,
+        "surprise": 2
+      },
+      "total": 21,
+      "line": "Banks warn that voice-cloning scams are real, but the same tech helped 300 people with motor neurone disease bank their voice this year."
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  },
+  {
+    "id": "flip-fail-job-losses-shrunk",
+    "expected": {
+      "gate": "fail",
+      "failed_gate_any_of": [
+        "own_fact",
+        "no_shrinking"
+      ]
+    },
+    "got": {
+      "gate": "fail",
+      "failed_gate": "own_fact",
+      "reason": "The flip positive ('a price worth paying for better service') is an editorial opinion about the bad story, not a separate sourced fact — and it also explicitly frames the job losses as a price worth paying, which would fail no_shrinking even if own_fact passed.",
+      "topic": null,
+      "stage": null,
+      "flip_kind": null,
+      "scores": null,
+      "total": null,
+      "line": null
+    },
+    "problems": [],
+    "model": [
+      "claude-sonnet-4-6"
+    ]
+  }
+]
