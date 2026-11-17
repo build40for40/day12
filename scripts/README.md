@@ -2,6 +2,8 @@
 
 The daily run lives in the Worker (`src/daily.ts`); see "The daily run" in `AGENTS.md`. `build-prompt.mjs` (`npm run prompt`) copies the headline editor prompt into `src/editor-prompt.ts`.
 
+`score.py` is the quality filter that runs before the daily pick, from `.github/workflows/score.yml`: it triages and scores the live pull with `prompts/score-story.md`, opening the sources, and saves the verdicts on the Worker (`python3 scripts/test_score.py`).
+
 The rest are one-off Python scripts from Day 12, kept so the runs in `runs/2026-11-17/` can be traced. They are not part of the Worker and nothing imports them. The live source pull is in `src/`.
 
 | Script | What it does |

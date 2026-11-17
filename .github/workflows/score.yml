@@ -1,0 +1,69 @@
+name: Score new stories
+
+# The quality filter: triages the stories the Worker pulled since the last run and scores the shortlist against
+# prompts/score-story.md, opening the sources, then saves the verdicts on the Worker. See scripts/score.py.
+#
+# It runs about 05:15 London, so the Worker's own 06:00 cron picks and sends from fresh scores. That cron doesn't
+# depend on this: if GitHub runs this late or not at all, the day still goes out, from the stories scored before.
+# GitHub crons run in UTC, so there are two, and a run before 05:00 London stops.
+
+on:
+  schedule:
+    - cron: '15 4 * * *'
+    - cron: '15 5 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Print the verdicts, save nothing
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: score-stories
+  cancel-in-progress: false
+
+jobs:
+  score:
+    if: github.event_name == 'workflow_dispatch' || vars.SCORE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+      WORKER_URL: ${{ vars.WORKER_URL || 'https://build40for40.com/feel-good' }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - name: Wait for 05:00 London
+        id: clock
+        run: |
+          hour=$(TZ=Europe/London date +%H)
+          if [ "$GITHUB_EVENT_NAME" = schedule ] && [ "$hour" -lt 5 ]; then
+            echo "It's $hour:15 in London, so the other cron will run it."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check the secrets are there
+        if: steps.clock.outputs.go == 'true'
+        run: |
+          [ -n "$ANTHROPIC_API_KEY" ] || { echo "::error::ANTHROPIC_API_KEY isn't available to this repository."; exit 1; }
+          [ -n "$PUBLISH_TOKEN" ] || { echo "::error::PUBLISH_TOKEN isn't set. It's the Worker's PULL_TOKEN."; exit 1; }
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.clock.outputs.go == 'true'
+        with:
+          persist-credentials: false
+
+      - name: Install the Anthropic SDK
+        if: steps.clock.outputs.go == 'true'
+        run: python3 -m venv "$RUNNER_TEMP/venv" && "$RUNNER_TEMP/venv/bin/pip" install --quiet anthropic
+
+      - name: Score new stories
+        if: steps.clock.outputs.go == 'true'
+        run: |
+          args=(--worker "$WORKER_URL")
+          [ "$DRY_RUN" = true ] && args+=(--dry-run)
+          "$RUNNER_TEMP/venv/bin/python" scripts/score.py "${args[@]}"
