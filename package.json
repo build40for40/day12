@@ -8,9 +8,11 @@
     "dev": "npm run wrangler -- dev",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "db:migrate": "npm run wrangler -- d1 migrations apply day12 --local"
+    "db:migrate": "npm run wrangler -- d1 migrations apply day12 --local",
+    "prompts": "node scripts/build-prompts.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.9.0",
     "fast-xml-parser": "^5.12.1"
   },
   "devDependencies": {

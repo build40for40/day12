@@ -1,61 +1,53 @@
 import { describe, expect, it, vi } from 'vitest'
-import { isPullTime, scheduledPull } from './schedule'
-import type { Env, PullReport } from './types'
+import { isRunTime, scheduledDaily } from './schedule'
+import { fakeEnv } from './test-env'
 
 const CRON_HOURS_UTC = [5, 6]
 
 const at = (day: string, hourUtc: number) => Date.parse(`${day}T0${hourUtc}:00:00Z`)
 
-describe('isPullTime', () => {
+describe('isRunTime', () => {
   it.each([
     ['a winter day', '2026-11-17', 6],
     ['a summer day', '2026-07-01', 5],
     ['the day the clocks go forward', '2026-03-29', 5],
     ['the day the clocks go back', '2026-10-25', 6],
   ])('picks exactly one of the two crons on %s', (_, day, expectedHour) => {
-    expect(CRON_HOURS_UTC.filter((hour) => isPullTime(at(day, hour)))).toEqual([expectedHour])
+    expect(CRON_HOURS_UTC.filter((hour) => isRunTime(at(day, hour)))).toEqual([expectedHour])
   })
 })
 
-const report: PullReport = {
-  startedAt: '2026-07-01T05:00:00.000Z',
-  sources: [
-    { sourceId: 'sciencedaily-ai', fetched: 2, kept: 2, stored: 2 },
-    { sourceId: 'physorg-ml-ai', fetched: 0, kept: 0, stored: 0, error: 'connection reset' },
-  ],
-  stored: 2,
-}
-
-const env = { PULL_TOKEN: 'x' } as Env
 const fakeLog = () => ({ log: vi.fn(), warn: vi.fn(), error: vi.fn() })
 
-describe('scheduledPull', () => {
-  it('runs the pull at 06:00 London and logs the stored count and failed sources', async () => {
-    const pull = vi.fn(async () => report)
-    const log = fakeLog()
+describe('scheduledDaily', () => {
+  it('starts one run named after the London date at 06:00 London, and skips the other cron', async () => {
+    const env = fakeEnv()
 
-    await scheduledPull(at('2026-07-01', 5), env, pull, log)
+    await scheduledDaily(at('2026-07-01', 5), env, fakeLog())
+    await scheduledDaily(at('2026-07-01', 6), env, fakeLog())
 
-    expect(pull).toHaveBeenCalledWith(env, new Date('2026-07-01T05:00:00Z'))
-    expect(log.warn).toHaveBeenCalledWith({
-      message: 'scheduled pull finished',
-      stored: 2,
-      failed: [{ sourceId: 'physorg-ml-ai', error: 'connection reset' }],
-    })
+    expect([...env.DAILY.instances.values()].map((i) => [i.id, i.params])).toEqual([['2026-07-01', { date: '2026-07-01' }]])
   })
 
-  it('skips the pull at any other hour in London', async () => {
-    const pull = vi.fn(async () => report)
+  it('leaves a date that already has a run alone, whatever state it is in', async () => {
+    const env = fakeEnv()
+    const log = fakeLog()
+    await scheduledDaily(at('2026-11-17', 6), env, log)
+    env.DAILY.instances.get('2026-11-17')!.status = { status: 'errored', error: { name: 'Error', message: 'boom' } }
 
-    await scheduledPull(at('2026-07-01', 6), env, pull, fakeLog())
+    await scheduledDaily(at('2026-11-17', 6), env, log)
 
-    expect(pull).not.toHaveBeenCalled()
+    expect(env.DAILY.instances.size).toBe(1)
+    expect(env.DAILY.instances.get('2026-11-17')!.restarts).toEqual([])
+    expect(log.warn).toHaveBeenCalledWith({ message: 'daily run already exists, not starting another', id: '2026-11-17', status: 'errored' })
   })
 
-  it('logs and rethrows when the pull fails', async () => {
+  it('logs and rethrows when the run cannot be started, so the cron shows as failed', async () => {
+    const env = fakeEnv()
+    env.DAILY.create = async () => Promise.reject(new Error('Workflows is down'))
     const log = fakeLog()
 
-    await expect(scheduledPull(at('2026-11-17', 6), env, async () => Promise.reject(new Error('D1 is down')), log)).rejects.toThrow('D1 is down')
-    expect(log.error).toHaveBeenCalledWith('scheduled pull failed: D1 is down')
+    await expect(scheduledDaily(at('2026-11-17', 6), env, log)).rejects.toThrow('Workflows is down')
+    expect(log.error).toHaveBeenCalledWith('could not start the daily run for 2026-11-17: Workflows is down')
   })
 })

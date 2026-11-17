@@ -15,6 +15,18 @@ export interface Env {
   ALLOWED_ORIGIN: string
   POSTMARK_TRANSACTIONAL_STREAM: string
   POSTMARK_BROADCAST_STREAM: string
+  ANTHROPIC_API_KEY?: string
+  DAILY: Workflow<DailyParams>
+}
+
+export interface DailyParams {
+  /** The London date the run is for. A real run's Workflow instance id is this date. */
+  date: string
+  dryRun?: boolean
+  /** A banked story's slug, run instead of the pick. */
+  story?: string
+  /** Score at most this many new leads, 12 at most. */
+  leads?: number
 }
 
 export interface Pick { day: string; storyKey: string; lane: 'news' | 'evergreen'; title: string; total: number; reason: string }

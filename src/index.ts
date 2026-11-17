@@ -4,8 +4,11 @@ import { findIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute 
 import { runPull } from './pull'
 import { listUnscored, saveVerdicts } from './scores'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
-import { scheduledPull } from './schedule'
+import { dailyRoute, dailyStatusRoute } from './runs'
+import { scheduledDaily } from './schedule'
 import type { Env } from './types'
+
+export { DailyWorkflow } from './workflow'
 
 async function digest(text: string): Promise<Uint8Array> {
   return new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)))
@@ -40,7 +43,7 @@ async function pick(request: Request, env: Env): Promise<Response> {
   return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
 }
 
-// scripts/score.ts reads the stories it hasn't scored yet and writes its verdicts back. Same token as /pull.
+// A scorer outside the Worker can read the stories with no verdict yet and write its verdicts back. Same token as /pull.
 async function unscored(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   const limit = Number(new URL(request.url).searchParams.get('limit') ?? '300')
@@ -54,12 +57,18 @@ async function scores(request: Request, env: Env): Promise<Response> {
   return Response.json({ ok: true, ...(await saveVerdicts(env.DB, body, new Date())) })
 }
 
+// Starts today's run by hand, or a dry run, and reports on runs. Same token as /pull.
+async function daily(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return request.method === 'POST' ? dailyRoute(request, env) : dailyStatusRoute(request, env)
+}
+
 async function bank(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   return Response.json(await bankHealth(env.DB))
 }
 
-// The daily run posts the day's story here. It uses the same token as /pull.
+// Publishes a story by hand. The daily run calls publish() directly. Same token as /pull.
 async function publishIssue(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   return publishRoute(request, env)
@@ -104,6 +113,9 @@ export default {
         return issuesRoute(request, env)
       case 'GET /issues/latest':
         return latestIssueRoute(request, env)
+      case 'POST /daily':
+      case 'GET /daily':
+        return daily(request, env)
       case 'POST /pick':
         return pick(request, env)
       case 'GET /bank':
@@ -130,6 +142,6 @@ export default {
   },
 
   async scheduled(controller, env, ctx) {
-    ctx.waitUntil(scheduledPull(controller.scheduledTime, env))
+    ctx.waitUntil(scheduledDaily(controller.scheduledTime, env))
   },
 } satisfies ExportedHandler<Env>

@@ -1,4 +1,4 @@
-// The Worker's side of live scoring: hand unscored candidates to scripts/score.ts and save its verdicts.
+// The Worker's side of live scoring: find the candidates with no verdict yet, and check and save the scorer's verdicts.
 
 const DAY = 86_400_000
 // Only stories young enough to still run as news are worth the cost of scoring.
@@ -39,25 +39,38 @@ export type Verdict =
   | { id: number; gate: 'triage' | 'fail'; failedGate: string | null; reason: string }
   | { id: number; gate: 'pass'; reason: string; total: number; topic: string; stage: string; story: StoryHandoff }
 
+const UNSCORED_COLUMNS = 'id, title, summary, url, publisher, published_at, source_id, tier, pulled_at'
+
+const toUnscored = (r: Record<string, string | number | null>): UnscoredCandidate => ({
+  id: Number(r.id),
+  title: String(r.title),
+  summary: String(r.summary ?? ''),
+  url: String(r.url),
+  publisher: (r.publisher as string | null) ?? null,
+  publishedAt: (r.published_at as string | null) ?? null,
+  sourceId: String(r.source_id),
+  tier: String(r.tier),
+  pulledAt: String(r.pulled_at),
+})
+
 export async function listUnscored(db: D1Database, now: Date, limit = MAX_LIST): Promise<UnscoredCandidate[]> {
   const rows = await db
     .prepare(
-      `SELECT id, title, summary, url, publisher, published_at, source_id, tier, pulled_at FROM candidates
+      `SELECT ${UNSCORED_COLUMNS} FROM candidates
        WHERE scored_at IS NULL AND pulled_at >= ? ORDER BY pulled_at DESC LIMIT ?`,
     )
     .bind(new Date(now.getTime() - SCORE_WINDOW_DAYS * DAY).toISOString(), Math.min(Math.max(1, limit), MAX_LIST))
     .all<Record<string, string | number | null>>()
-  return rows.results.map((r) => ({
-    id: Number(r.id),
-    title: String(r.title),
-    summary: String(r.summary ?? ''),
-    url: String(r.url),
-    publisher: (r.publisher as string | null) ?? null,
-    publishedAt: (r.published_at as string | null) ?? null,
-    sourceId: String(r.source_id),
-    tier: String(r.tier),
-    pulledAt: String(r.pulled_at),
-  }))
+  return rows.results.map(toUnscored)
+}
+
+/** One candidate by id, or null once it has a verdict. */
+export async function findUnscored(db: D1Database, id: number): Promise<UnscoredCandidate | null> {
+  const row = await db
+    .prepare(`SELECT ${UNSCORED_COLUMNS} FROM candidates WHERE id = ? AND scored_at IS NULL`)
+    .bind(id)
+    .first<Record<string, string | number | null>>()
+  return row ? toUnscored(row) : null
 }
 
 const text = (value: unknown, max: number): string | null =>

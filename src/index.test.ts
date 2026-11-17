@@ -132,3 +132,16 @@ describe('GET /', () => {
     expect(html).not.toContain('class="place"')
   })
 })
+
+describe('/daily', () => {
+  it('needs the token to start or read a run', async () => {
+    const env = fakeEnv()
+    const call = (method: string, token?: string) =>
+      worker.fetch(new Request('https://brief.example.com/daily', { method, headers: token ? { Authorization: `Bearer ${token}` } : {} }), env, {} as ExecutionContext)
+
+    expect((await call('POST')).status).toBe(401)
+    expect((await call('GET', 'wrong')).status).toBe(401)
+    expect(env.DAILY.instances.size).toBe(0)
+    expect((await call('POST', 'x')).status).toBe(202)
+  })
+})
