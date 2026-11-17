@@ -14,10 +14,15 @@ function setup(keepMigratedBank = false) {
         `INSERT INTO evergreen (slug, url, title, summary, score, status, verified_at, topic) VALUES (?, ?, ?, 'x', ?, ?, ?, 'health')`,
       )
       .run(slug, `https://example.com/${slug}`, `Bank ${slug}`, total, status, verified)
-  const news = (id: number, score: number | null, pulledAt: string) =>
-    sqlite
-      .prepare(`INSERT INTO candidates (id, url, url_key, title_key, title, summary, source_id, tier, pulled_at, score) VALUES (?, ?, ?, ?, ?, '', 's', 'lead', ?, ?)`)
-      .run(id, `https://example.com/n${id}`, `n${id}`, `n${id}`, `News ${id}`, pulledAt, score)
+  const news = (id: number, score: number | null, pulledAt: string) => {
+    const url = `https://example.com/n${id}`
+    const story = { headline: `News ${id}`, what_happened: 'Checked facts.', why_its_good: 'It helped.',
+      careful: [], sources: [url], lane: 'good', published: pulledAt.slice(0, 10) }
+    sqlite.prepare(
+      `INSERT INTO candidates (id, url, url_key, title_key, title, summary, source_id, tier, pulled_at, score, gate, story)
+       VALUES (?, ?, ?, ?, ?, '', 's', 'lead', ?, ?, ?, ?)`,
+    ).run(id, url, `n${id}`, `n${id}`, `News ${id}`, pulledAt, score, score === null ? null : 'pass', JSON.stringify(story))
+  }
   return { db, sqlite, bank, news }
 }
 
@@ -105,7 +110,7 @@ describe('refillBank', () => {
     news(2, 15, daysAgo(20))
     news(3, 19, daysAgo(3))
     news(4, 20, daysAgo(20))
-    sqlite.exec("INSERT INTO picks VALUES ('2026-10-30', 'news:4', 'news', 'News 4', 20, 'ran', '2026-10-30T06:00:00Z')")
+    sqlite.exec("INSERT INTO picks (day, story_key, lane, title, total, reason, picked_at) VALUES ('2026-10-30', 'news:4', 'news', 'News 4', 20, 'ran', '2026-10-30T06:00:00Z')")
     expect(await refillBank(db, now)).toBe(1)
     const rows = sqlite.prepare('SELECT url, status, score FROM evergreen ORDER BY url').all()
     expect(rows.map((r) => r.url)).toEqual(['https://example.com/n1'])

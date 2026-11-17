@@ -40,7 +40,7 @@ async function pick(request: Request, env: Env): Promise<Response> {
   return Response.json({ ...result, refilled, bank: await bankHealth(env.DB) })
 }
 
-// scripts/score.py reads the stories it hasn't scored yet and writes its verdicts back. Same token as /pull.
+// scripts/score.ts reads the stories it hasn't scored yet and writes its verdicts back. Same token as /pull.
 async function unscored(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   const limit = Number(new URL(request.url).searchParams.get('limit') ?? '300')
