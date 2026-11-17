@@ -1,0 +1,151 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    3
+   ],
+   "lane": "good",
+   "story": "An AI system aboard an ambulance detected a heart attack before the patient reached hospital, dramatically cutting treatment time.",
+   "best_title": "\"AI in an Ambulance Saved a Life\"... Heart Attack Detected Before Hospital Arrival, Dramatically Shortening Treatment Time",
+   "publisher": "스포츠조선",
+   "why": "A reported real event; AI is the reason the detection happened early; measurable health outcome; plausibly backed by a case report or trial data."
+  },
+  {
+   "items": [
+    8
+   ],
+   "lane": "good",
+   "story": "A person with ALS was able to sing again after AI decoded their brain signals and reconstructed their voice.",
+   "best_title": "ALS Singer Sings Again via Brain Signal AI",
+   "publisher": "조선일보",
+   "why": "Real outcome for a specific individual; AI decoding brain signals is the reason; high emotional and mass appeal; plausibly a trial or published case study."
+  },
+  {
+   "items": [
+    2
+   ],
+   "lane": "good",
+   "story": "AI scribe technology deployed in Ontario hospitals is freeing physicians to spend more time with patients.",
+   "best_title": "AI Scribe Technology Helps Physicians Spend Time Where it Matters Most",
+   "publisher": "Ontario Hospital Association",
+   "why": "Present-tense language suggests real deployment, not a plan; AI is the reason; about healthcare delivery rather than the AI industry; hospital association source lends credibility."
+  },
+  {
+   "items": [
+    6
+   ],
+   "lane": "good",
+   "story": "Breast cancer patients rated AI-generated plain-language summaries of Cochrane reviews as just as useful as the originals.",
+   "best_title": "Breast Cancer Patients Rate AI-Generated Summaries Similarly to Original Cochrane Reviews",
+   "publisher": "Bioengineer.org",
+   "why": "Specific participant group; AI is the reason the summaries exist; about patient experience, not the AI industry; Cochrane context suggests peer-reviewed study."
+  },
+  {
+   "items": [
+    20
+   ],
+   "lane": "good",
+   "story": "AI analysis let art conservators discover content that restorers had painted over in a William Merritt Chase work.",
+   "best_title": "How AI Helped Conservators Find What Restorers Erased From a William Merritt Chase Painting",
+   "publisher": "The Art Insider",
+   "why": "Named artwork and specific outcome; AI is the tool that made the discovery possible; clearly outside the tech industry; likely a real conservation project with physical evidence."
+  },
+  {
+   "items": [
+    30
+   ],
+   "lane": "good",
+   "story": "AI improved the spatial precision of a visual-cortex implant in one blind patient, though it did not restore sight.",
+   "best_title": "AI Made a Visual-Cortex Implant More Precise in One Blind Man—But It Did Not Restore Sight",
+   "publisher": "Medical Daily",
+   "why": "Specific individual, specific measurable outcome honestly reported; AI is the reason for improved precision; likely a lab or early-trial report."
+  },
+  {
+   "items": [
+    36
+   ],
+   "lane": "good",
+   "story": "Seoul National University's STARLINC AI tool successfully removes Starlink satellite trails from telescope observation data.",
+   "best_title": "SNU's STARLINC AI Filters SpaceX Starlink Trails from Telescope Data",
+   "publisher": "DongA Science",
+   "why": "Named tool and institution; a real result that solves a recognised astronomy problem; AI is the reason; outside the AI industry; likely a published study."
+  },
+  {
+   "items": [
+    37
+   ],
+   "lane": "good",
+   "story": "An AI system can now decipher what someone is saying by reading their lip movements alone, with no audio input.",
+   "best_title": "AI Deciphers Speech Through Lip Movements Alone",
+   "publisher": "조선일보",
+   "why": "Specific capability result; AI is the reason; potential benefit for deaf or speech-impaired people; likely a study or demonstration with evidence."
+  },
+  {
+   "items": [
+    34
+   ],
+   "lane": "good",
+   "story": "A Virginia congressional representative addressed Congress using an AI-generated voice, apparently because of a medical condition.",
+   "best_title": "Virginia representative addresses Congress using AI voice",
+   "publisher": "Britannica",
+   "why": "Real named event in a real place; AI enabled political participation that might otherwise be impossible; strong accessibility and human-interest angle."
+  },
+  {
+   "items": [
+    4
+   ],
+   "lane": "good",
+   "story": "AI analysis of facial features has identified new markers linked to health conditions, revealing clues not previously detectable from the face.",
+   "best_title": "What can your face reveal about your health? AI finds new clues",
+   "publisher": "Earth.com",
+   "why": "Suggests a study result; AI is the reason for the discovery; about health outside the AI industry; Earth.com typically reports published science."
+  },
+  {
+   "items": [
+    82
+   ],
+   "lane": "good",
+   "story": "An AI-integrated multi-omics pipeline has accelerated breeding of cotton varieties that can withstand climate stress.",
+   "best_title": "Integrated Multi-Omics and Artificial Intelligence Pipeline Accelerates Climate-Resilient Cotton Breeding",
+   "publisher": "Bioengineer.org",
+   "why": "Specific agricultural and climate result; AI is the reason for the acceleration; outside the AI industry; Bioengineer.org typically covers published research."
+  },
+  {
+   "items": [
+    86
+   ],
+   "lane": "good",
+   "story": "Combining aerial drones with AI, researchers can now accurately identify when cattle in feedlots are ready for harvest, reducing guesswork.",
+   "best_title": "Aerial Drones and Artificial Intelligence Identify Optimal Cattle Slaughter Timing in Feedlots",
+   "publisher": "Bioengineer.org",
+   "why": "Specific agricultural application with a measurable outcome; AI is part of the reason; outside the tech industry; likely a study or field trial."
+  },
+  {
+   "items": [
+    15,
+    17,
+    23,
+    27,
+    29,
+    32,
+    71,
+    89
+   ],
+   "lane": "flip",
+   "story": "AI cheating on South Korea's high-stakes university and professional exams is widely reported; a top-scorer publicly confessed and South Korea is now deploying radio-wave detectors to catch cheaters.",
+   "best_title": "South Korea to Deploy Radio-Wave Detectors to Catch AI Exam Cheating Early Next Year, but On-Device AI Remains a Blind Spot",
+   "publisher": "BigGo Finance",
+   "why": "Widely covered bad-news story; no physical injury to any person; has both an owning-up element (public confession by a top-scorer) and a system-is-responding element (detector deployment announced); each is a separate sourced fact; the line admits the harm before adding the response."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 9,
+  "industry_news": 29,
+  "opinion_or_explainer": 41,
+  "ai_not_the_reason": 3,
+  "negative_no_flip": 4,
+  "other": 0
+ },
+ "date": "2026-11-15",
+ "n_items": 106
+}

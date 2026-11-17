@@ -1,0 +1,124 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    1
+   ],
+   "lane": "good",
+   "story": "An AI tool predicts which emergency-room patients are at high risk of developing PTSD by analysing the stories they tell about what brought them in.",
+   "best_title": "AI Predicts PTSD Risk Based on Stories About What Brought Patients to the Emergency Room",
+   "publisher": "NYU Langone Health",
+   "why": "Institution-sourced, implies a completed study, AI is the specific mechanism (narrative analysis), clear health benefit outside the AI industry."
+  },
+  {
+   "items": [
+    3
+   ],
+   "lane": "good",
+   "story": "An AI system at The Christie cancer centre is letting doctors spend more time with patients rather than on paperwork, as reported by a named local survivor.",
+   "best_title": "Ramsbottom cancer survivor welcomes AI helping Christie doctors focus on patients",
+   "publisher": "The Bury Times",
+   "why": "Named person, named real-world hospital, 'helping' implies current use, AI is the stated reason for the change."
+  },
+  {
+   "items": [
+    6
+   ],
+   "lane": "good",
+   "story": "An AI platform described as 'game changing' is already in use by GPs and is reported to be transforming how they work day to day.",
+   "best_title": "'Game changing' AI platform is transforming GPs' working lives",
+   "publisher": "Healthcare Today",
+   "why": "Present-tense framing implies real use rather than a launch; health topic affecting a recognisable group of workers and their patients. Worth opening to confirm it's deployment not announcement."
+  },
+  {
+   "items": [
+    7
+   ],
+   "lane": "good",
+   "story": "UVA Health reports an AI tool that is accelerating the discovery of new treatments for disease.",
+   "best_title": "AI Tool to Accelerate New Disease Treatments",
+   "publisher": "UVA Health",
+   "why": "Healthcare institution as source (not an AI company), implies a result rather than a forecast, AI is the method. Worth opening to confirm evidence level."
+  },
+  {
+   "items": [
+    44
+   ],
+   "lane": "good",
+   "story": "Research covered by Futurity shows an AI model can identify which people are at high risk of developing tooth decay.",
+   "best_title": "AI can predict who's at high risk for cavities",
+   "publisher": "Futurity",
+   "why": "Futurity reports peer-reviewed studies; practical everyday health benefit; clear AI role; wide non-specialist appeal."
+  },
+  {
+   "items": [
+    62
+   ],
+   "lane": "good",
+   "story": "Flinders University researchers used AI to analyse healthcare quality in a way that captures hard-to-measure aspects of care such as patient wellbeing, not just waiting times and costs.",
+   "best_title": "AI assesses what really matters to people in healthcare – wellbeing",
+   "publisher": "EurekAlert (Flinders University)",
+   "why": "University press release on EurekAlert, implies a completed study, AI is the reason previously unmeasured aspects are now captured, real-world healthcare impact."
+  },
+  {
+   "items": [
+    63
+   ],
+   "lane": "good",
+   "story": "An AI called AlphaOracle can read 3,000-year-old Chinese oracle bone script the way scholars do, potentially unlocking around 3,000 characters that have had no agreed translation.",
+   "best_title": "An AI that reads oracle bones the way scholars do: AlphaOracle traces form, context and classical texts to 3,000-year-old characters",
+   "publisher": "EurekAlert (Innovation Press)",
+   "why": "Specific completed tool, surprising real-world cultural/scientific benefit, described in plain terms, strong mass appeal outside any specialist field."
+  },
+  {
+   "items": [
+    64
+   ],
+   "lane": "good",
+   "story": "Researchers at AIMR used an AI-driven framework to discover promising new solid-electrolyte battery materials, replacing slow trial-and-error lab work.",
+   "best_title": "Beyond trial and error: A framework for AI-driven solid-electrolyte discovery",
+   "publisher": "EurekAlert (AIMR)",
+   "why": "EurekAlert research result, AI is the core method, climate/energy relevance, moves beyond the lab announcement framing to a concrete framework in use."
+  },
+  {
+   "items": [
+    65
+   ],
+   "lane": "good",
+   "story": "A multicenter study in China developed BC-SMART, an AI that reads MRI scans, pathology slides and clinical records together to predict before surgery whether a breast cancer patient will fully respond to chemotherapy.",
+   "best_title": "AI that reads MRI, pathology slides, and clinical data together predicts breast cancer chemo response before treatment starts",
+   "publisher": "EurekAlert (Innovation Press)",
+   "why": "Multicenter study (strong evidence), AI is essential to the result, concrete clinical benefit for a recognisable group of patients, plain to explain."
+  },
+  {
+   "items": [
+    5
+   ],
+   "lane": "flip",
+   "story": "An Australian state is banning the practice of AI cameras issuing parking fines without a physical ticket, acting on concerns about automated enforcement.",
+   "best_title": "This Aussie state will ban ticketless parking fines from AI cameras",
+   "publisher": "Drive",
+   "why": "Bad news: AI cameras handing out fines with no ticket. Good side: government acting to ban the practice — 'system is responding'. No physical injury. Widely relatable grievance for general readers."
+  },
+  {
+   "items": [
+    25
+   ],
+   "lane": "flip",
+   "story": "After a hack involving OpenAI, Australia is introducing mandatory reporting requirements to prevent AI systems from 'going rogue', making it one of the first countries to impose such obligations.",
+   "best_title": "Australia to introduce mandatory reporting after OpenAI hack to combat artificial intelligence 'going rogue'",
+   "publisher": "The Guardian",
+   "why": "Bad news: an AI company was hacked, raising fears. Good side: government mandating transparency and accountability — 'system is responding'. No physical injury reported. The Guardian gives it mainstream reach."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 5,
+  "industry_news": 24,
+  "opinion_or_explainer": 21,
+  "ai_not_the_reason": 1,
+  "negative_no_flip": 2,
+  "other": 1
+ },
+ "date": "2026-11-08",
+ "n_items": 65
+}

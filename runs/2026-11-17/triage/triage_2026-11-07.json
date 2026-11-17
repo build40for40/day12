@@ -1,0 +1,115 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    1
+   ],
+   "lane": "good",
+   "story": "An AI system for quantifying coronary artery plaque outperformed standard clinical care in patients with suspected coronary artery disease.",
+   "best_title": "AI-Driven Quantification of Coronary Plaque Outperforms Standard Care in Suspected CAD",
+   "publisher": "HCPLive",
+   "why": "A result has happened (study or trial), AI is the direct cause of the improvement, and it is a health outcome outside the AI industry with plausible evidence."
+  },
+  {
+   "items": [
+    2
+   ],
+   "lane": "good",
+   "story": "An AI echocardiography tool detected cardiac amyloidosis 13 months earlier than human readers in the same patients.",
+   "best_title": "AI Echocardiography Detects Cardiac Amyloidosis 13 Months Earlier Than Human Readers",
+   "publisher": "Consultant360",
+   "why": "Specific, quantified result; AI is the reason; health benefit to real patients; likely a study or trial with evidence."
+  },
+  {
+   "items": [
+    3
+   ],
+   "lane": "good",
+   "story": "Columbia University's AI-guided radiation therapy system has now treated its 500th patient.",
+   "best_title": "Columbia AI Radiation Therapy Treats 500th Patient",
+   "publisher": "Mirage News",
+   "why": "Real milestone of a system in routine use ('helping people now'); named institution; AI is the reason; health topic."
+  },
+  {
+   "items": [
+    4
+   ],
+   "lane": "good",
+   "story": "An AI model trained on ECG data has been validated as an adjunct tool for triaging heart attack patients.",
+   "best_title": "AI ECG Model Validates as Heart Attack Triage Adjunct",
+   "publisher": "Bioengineer.org",
+   "why": "Validation implies a study result; AI is directly the reason; real-world health application outside the AI industry."
+  },
+  {
+   "items": [
+    5
+   ],
+   "lane": "good",
+   "story": "AI technology has been deployed to transform radiology units at a hospital in Durban, South Africa.",
+   "best_title": "AI technology transforms radiology units at Durban hospital",
+   "publisher": "IOL",
+   "why": "Named place, something has already happened (deployment), AI is the reason, health outcome outside the AI industry."
+  },
+  {
+   "items": [
+    9
+   ],
+   "lane": "good",
+   "story": "An AI model using electrical impedance data has been developed to screen for cancer in dialysis patients.",
+   "best_title": "AI Model Uses Impedance Data for Cancer Screening in Dialysis",
+   "publisher": "Bioengineer.org",
+   "why": "A result has happened (model/study); AI is the reason; addresses a vulnerable patient group; health topic."
+  },
+  {
+   "items": [
+    12
+   ],
+   "lane": "good",
+   "story": "AI analysis has identified thousands of animals in survey data that human observers had missed.",
+   "best_title": "AI has identified thousands of animals that people had overlooked",
+   "publisher": "UkrMedia News",
+   "why": "Something happened (AI found overlooked animals); AI is directly the reason; real-world conservation/science outcome; plausibly a study or deployment result."
+  },
+  {
+   "items": [
+    13,
+    14
+   ],
+   "lane": "good",
+   "story": "Conservation groups have adopted AI tools to aid their wildlife and environmental work, though they also warn about data centre energy demands.",
+   "best_title": "Conservation Groups Adopt AI Tools While Warning of Data Center Strain",
+   "publisher": "BigGo Finance",
+   "why": "Real adoption by named conservation groups has happened; AI is the reason for new capability; outside the AI industry; the data-centre caveat is worth noting but doesn't negate the story."
+  },
+  {
+   "items": [
+    22
+   ],
+   "lane": "good",
+   "story": "A visually impaired music teacher named Sukhchain at the Blind Home in Ferozepur is using AI as a substitute for sight in his daily work.",
+   "best_title": "AI becomes eyes for visually impaired Music Teacher Sukhchain at Blind Home, Ferozepur",
+   "publisher": "Babushahi.com",
+   "why": "Named real person in a named place; AI is directly the reason; accessibility outcome; something is already happening."
+  },
+  {
+   "items": [
+    38
+   ],
+   "lane": "flip",
+   "story": "Delhi High Court has issued an order setting legal limits on AI-generated video and speech content.",
+   "best_title": "Delhi High Court AI Video Order Sets Speech Limits",
+   "publisher": "Urban Acres",
+   "why": "Bad story is AI-generated fake video/deepfakes (widely covered concern); the court acting is a 'system is responding' flip; no person named as physically hurt or defrauded; a court order is a separate, sourced fact."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 7,
+  "industry_news": 24,
+  "opinion_or_explainer": 25,
+  "ai_not_the_reason": 0,
+  "negative_no_flip": 5,
+  "other": 1
+ },
+ "date": "2026-11-07",
+ "n_items": 73
+}

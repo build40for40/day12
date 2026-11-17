@@ -1,0 +1,130 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    9
+   ],
+   "lane": "good",
+   "story": "An AI chatbot called Khushi, built on BharatGPT, is helping tuberculosis patients in India find and access care.",
+   "best_title": "Khushi chatbot uses BharatGPT to help TB patients find care",
+   "publisher": "YourStory.com",
+   "why": "Present-tense real use; AI is the specific mechanism; TB is a massive public-health burden in India; about patients outside the AI industry."
+  },
+  {
+   "items": [
+    14
+   ],
+   "lane": "good",
+   "story": "A mother working on a rare disease mission has brought an AI tool to an event in Las Vegas, suggesting active real-world use helping rare-disease patients or families.",
+   "best_title": "'You're not alone': Mom brings rare disease mission, AI tool to Las Vegas",
+   "publisher": "KTNV Las Vegas",
+   "why": "Real named person, real place, AI tool in use; about patients outside the industry. Borderline — evidence detail unknown until source is opened."
+  },
+  {
+   "items": [
+    21
+   ],
+   "lane": "good",
+   "story": "A Malawian innovator has developed and deployed an AI tool that improves learning for blind students.",
+   "best_title": "Malawian Innovator Uses AI To Improve Learning For Blind Students",
+   "publisher": "TVC News",
+   "why": "Present-tense real use; named geography; accessibility impact; AI is the reason."
+  },
+  {
+   "items": [
+    23
+   ],
+   "lane": "good",
+   "story": "AI-powered, 3D-printed glasses have been developed that give real-time audio guidance to help blind people navigate.",
+   "best_title": "Eye AI: 3D-printed glasses that guide blind people with audio",
+   "publisher": "Foro3D",
+   "why": "Concrete product for accessibility; AI is the core mechanism; about blind people's daily mobility. Stage and evidence level to confirm on source."
+  },
+  {
+   "items": [
+    27
+   ],
+   "lane": "good",
+   "story": "A Nature publication describes how AI is being used to discover and design new antibiotics, addressing a critical global-health crisis.",
+   "best_title": "Artificial intelligence for antibiotic discovery and design",
+   "publisher": "Nature",
+   "why": "Peer-reviewed Nature publication; antibiotic resistance is a world-level problem; AI is specifically what enables the new discovery approach."
+  },
+  {
+   "items": [
+    46
+   ],
+   "lane": "good",
+   "story": "A study shows AI improves the accuracy of CT scan outcome predictions for adults with brain trauma, potentially guiding treatment decisions.",
+   "best_title": "Artificial Intelligence Enhances CT Scan Outcome Predictions in Adult Brain Trauma",
+   "publisher": "Bioengineer.org",
+   "why": "Reported study result; AI is the tool; clinically meaningful improvement in a high-stakes setting. Original paper and journal to verify on source."
+  },
+  {
+   "items": [
+    47
+   ],
+   "lane": "good",
+   "story": "The Philippine government's weather bureau has integrated AI into its PANaHON public app as part of an AI-powered disaster-resilience programme.",
+   "best_title": "The government weather bureau launched the integration of artificial intelligence to its PANaHON app",
+   "publisher": "Facebook (PAGASA/government post)",
+   "why": "Real deployment serving the public; AI for disaster warning outside the AI industry. Source is a Facebook post — independent confirmation needed."
+  },
+  {
+   "items": [
+    81
+   ],
+   "lane": "good",
+   "story": "Research published in Brain Medicine describes how AI combined with brain-biology data points toward staged, personalised treatment for people with treatment-resistant depression.",
+   "best_title": "Not all treatment-resistant depression is the same: AI and brain biology point to staged, precision care",
+   "publisher": "Genomic Press (via EurekAlert)",
+   "why": "Peer-reviewed journal publication; treatment-resistant depression affects millions worldwide; AI enables a precision-medicine approach that standard care cannot."
+  },
+  {
+   "items": [
+    10,
+    61,
+    62,
+    64,
+    65,
+    67,
+    68
+   ],
+   "lane": "flip",
+   "story": "AI-powered smart glasses were caught being used to cheat at South Korea's high-stakes university entrance exam, prompting government emergency measures and a police investigation.",
+   "best_title": "The government's emergency measures to prevent 'artificial intelligence (AI) cheating' in the College entrance exam",
+   "publisher": "매일경제",
+   "why": "Widely covered bad-news story (7 items across two outlets); no individual physically harmed or defrauded; system is responding — government emergency rules and police acting. Good side: concrete regulatory action taken."
+  },
+  {
+   "items": [
+    44
+   ],
+   "lane": "flip",
+   "story": "Google detected what it describes as the first known autonomous AI-powered cyberattack and publicly warned the security community about growing threats.",
+   "best_title": "Google flags first autonomous AI cyberattack, warns of growing threats",
+   "publisher": "Business Standard",
+   "why": "Bad news (AI used for attacks) is widely covered; good side is a separate fact — Google's systems caught it and disclosed it publicly; nobody physically harmed; fits 'the system is responding' and 'owning up' flip kinds."
+  },
+  {
+   "items": [
+    17
+   ],
+   "lane": "flip",
+   "story": "New York's Attorney General has announced a dedicated new unit to oversee AI safety and enforce AI-related rules.",
+   "best_title": "NY Attorney General James announces new unit to oversee AI safety and enforcement",
+   "publisher": "WPEC",
+   "why": "Concrete regulatory action in response to growing AI-harm concerns; fits 'the system is responding'; nobody physically hurt. The underlying bad story (AI harms prompting regulatory action) is widely covered. Flip kind confirmed on source."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 9,
+  "industry_news": 22,
+  "opinion_or_explainer": 29,
+  "ai_not_the_reason": 0,
+  "negative_no_flip": 2,
+  "other": 2
+ },
+ "date": "2026-11-17",
+ "n_items": 81
+}

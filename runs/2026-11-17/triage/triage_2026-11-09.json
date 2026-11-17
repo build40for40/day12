@@ -1,0 +1,160 @@
+{
+ "shortlist": [
+  {
+   "items": [
+    2,
+    20,
+    114
+   ],
+   "lane": "good",
+   "story": "An AI tool developed at NYU Langone analyses patients' own narratives about injuries that brought them to the ER and predicts who will later develop PTSD.",
+   "best_title": "AI predicts PTSD risk based on stories about what brought patients to the emergency room",
+   "publisher": "NYU Langone Health / NYU Grossman School of Medicine (EurekAlert)",
+   "why": "Peer-reviewed study with a clear result, AI is the reason (NLP on narrative text), directly about a patient-health outcome outside the AI industry."
+  },
+  {
+   "items": [
+    4,
+    8
+   ],
+   "lane": "good",
+   "story": "The first randomised controlled trial of AI-guided plaque-based care in suspected coronary artery disease patients met its primary endpoint at AHA 2026.",
+   "best_title": "First Randomized Trial of AI-Enabled Plaque-Based Care Meets Primary Endpoint",
+   "publisher": "dicardiology.com",
+   "why": "Randomised trial result — the gold standard of evidence; AI is explicitly the differentiating intervention; cardiology outcome in real patients."
+  },
+  {
+   "items": [
+    13
+   ],
+   "lane": "good",
+   "story": "An AI system reading heart MRIs outperformed clinicians at predicting death risk in a study of 27,382 patients, though a survival benefit has not yet been proven in practice.",
+   "best_title": "AI Heart MRI Readings Edged Out Clinicians in Predicting Death Risk Among 27,382 Patients, but Benefit Is Unproven",
+   "publisher": "Medical Daily",
+   "why": "Large-scale study with a concrete comparative result; AI is the reason; real patient data. Headline itself flags the caveat, which is honest."
+  },
+  {
+   "items": [
+    19,
+    51
+   ],
+   "lane": "good",
+   "story": "A study found that AI analysis of ECG data from consumer smartwatches can detect reduced heart-pumping function, though roughly one in eleven patients received conflicting results.",
+   "best_title": "AI-analysis of ECG data measured by smartwatch may help detect reduced heart pumping function",
+   "publisher": "heart.org (American Heart Association)",
+   "why": "Published study result via AHA; AI is the reason; has real-world accessibility angle (consumer wearables). Limitation noted in headline."
+  },
+  {
+   "items": [
+    62
+   ],
+   "lane": "good",
+   "story": "AI-interpreted echocardiograms were found comparable to human cardiologist reports while cutting the time cardiologists spend on reporting by about 50%.",
+   "best_title": "AI-interpreted echocardiograms comparable to human reports, cardiologists' time cut by about 50%",
+   "publisher": "heart.org (American Heart Association)",
+   "why": "Study result from AHA Scientific Sessions; AI is clearly the reason for the efficiency gain; concrete measurable outcome in clinical practice."
+  },
+  {
+   "items": [
+    27
+   ],
+   "lane": "good",
+   "story": "Researchers used machine learning to map the trade-offs in how smallholder farmers in Malawi allocate crop residues, identifying pathways to improve soil health and food security.",
+   "best_title": "Machine Learning Explores Crop Residue Allocation Trade-Offs in Malawian Farming Systems",
+   "publisher": "Bioengineer.org",
+   "why": "Completed research study with a real-world application in a specific country; AI/ML is the reason for the analysis; climate and food-security stakes outside the AI industry."
+  },
+  {
+   "items": [
+    28
+   ],
+   "lane": "good",
+   "story": "Environmental organisations are actively using AI tools to track wildfires and wildlife populations in real time.",
+   "best_title": "Environmental Groups Are Using AI To Track Fires and Wildlife While Warning About Data Centre Damage",
+   "publisher": "techtimes.co.uk",
+   "why": "Real current deployment by non-AI organisations; AI is the reason for improved monitoring; climate-and-nature topic. The data-centre caveat in the headline needs checking but the core good-news use is plausibly documented."
+  },
+  {
+   "items": [
+    103
+   ],
+   "lane": "good",
+   "story": "The FAA's new AI air-traffic tool is already in live operation at Dallas–Fort Worth Airport and is helping reduce delays.",
+   "best_title": "FAA's new AI air traffic tool is now helping reduce DFW Airport delays",
+   "publisher": "Dallas News",
+   "why": "'Is now helping' signals in-use deployment; AI is the reason; tangible everyday benefit for travellers; independent government agency, not an AI company claim."
+  },
+  {
+   "items": [
+    112
+   ],
+   "lane": "good",
+   "story": "An international team has published a study in the peer-reviewed journal Caries Research showing AI can predict which people are at high risk of developing cavities.",
+   "best_title": "Researchers use AI to predict cavities",
+   "publisher": "New York University (EurekAlert)",
+   "why": "Published in a named peer-reviewed journal; AI is the reason; everyday health outcome that any reader can relate to."
+  },
+  {
+   "items": [
+    119
+   ],
+   "lane": "good",
+   "story": "A teenager built an AI-powered app that helps interpret autistic cues, and it is now being used by hundreds of families.",
+   "best_title": "Interpreting Autistic Cues Is Difficult, a Teen Built an App That's Helping Hundreds of Families",
+   "publisher": "Good News Network",
+   "why": "Real demonstrated use ('helping hundreds of families'); accessibility topic; human story with a named actor; AI is plausibly the mechanism—needs source check to confirm."
+  },
+  {
+   "items": [
+    111
+   ],
+   "lane": "good",
+   "story": "A researcher at the University of Pittsburgh has developed a generative-AI framework that screens existing drug compounds for new therapeutic potential, potentially shortening the drug-discovery pipeline.",
+   "best_title": "He's using AI to screen existing compounds for therapeutic potential",
+   "publisher": "University of Pittsburgh (EurekAlert)",
+   "why": "Completed framework with presented results; AI is the reason; drug-discovery outcome outside the AI industry. Lab-stage caveat applies."
+  },
+  {
+   "items": [
+    55
+   ],
+   "lane": "flip",
+   "story": "Pennsylvania has enacted a law specifically targeting AI-generated deceptive advertising, making it a legal offence.",
+   "best_title": "Pennsylvania Enacts Artificial Intelligence Deceptive Advertising Act",
+   "publisher": "Inside Global Tech",
+   "why": "Bad news is the well-documented problem of AI-generated deceptive ads; good side is a law that has actually been enacted (system is responding); no individual was hurt in the predicate story; the new law is a separate verifiable fact."
+  },
+  {
+   "items": [
+    64,
+    79,
+    80
+   ],
+   "lane": "flip",
+   "story": "After OpenAI breached an Australian government portal, Australia announced it will create a mandatory AI safety regulator.",
+   "best_title": "Australia to launch AI safety regulator after OpenAI's breach of a government portal",
+   "publisher": "ABC News",
+   "why": "Bad news (government portal breach) was widely covered; good side is a concrete regulatory decision already announced (system is responding); no individual was physically hurt or defrauded in the predicate story; regulatory action is a separate documented fact."
+  },
+  {
+   "items": [
+    89
+   ],
+   "lane": "flip",
+   "story": "Instagram is rolling out AI-powered age-verification checks globally to stop teenagers from accessing adult content by entering false birthdays.",
+   "best_title": "Instagram takes AI age checks global to catch teens using adult birthdays",
+   "publisher": "BetaNews",
+   "why": "Bad news (minors circumventing age gates on social media) is a widely covered concern; good side is a specific technical fix now being shipped globally (the fix); no individual was physically hurt in the predicate story; deployment is a verifiable separate fact."
+  }
+ ],
+ "rejected_summary": {
+  "not_happened": 11,
+  "industry_news": 42,
+  "opinion_or_explainer": 40,
+  "ai_not_the_reason": 1,
+  "negative_no_flip": 4,
+  "other": 1
+ },
+ "date": "2026-11-09",
+ "n_items": 119
+}
