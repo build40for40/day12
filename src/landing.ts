@@ -1,3 +1,4 @@
+import type { StandIn } from './bank'
 import type { Issue } from './publish'
 import { sourceName, STAGE_LABELS, type Stage } from './templates'
 
@@ -9,9 +10,8 @@ interface LandingStory {
   stage: Stage | null
 }
 
-// Shown only until the daily run publishes its first issue.
-const FALLBACK: LandingStory = {
-  date: '17 November 2026',
+// Shown only when today has no issue and the bank has nothing ready.
+const FALLBACK: Omit<LandingStory, 'date'> = {
   line: 'Dublin is piloting an AI flood warning that, in tests on past storms, flagged some floods 13 hours early.',
   place: 'Dublin, Ireland',
   url: 'https://www.thejournal.ie/dublin-ai-flood-warning-system-7227372-Nov2026/',
@@ -28,8 +28,11 @@ function longDate(isoDate: string): string {
 }
 
 export interface LandingView {
-  // The issue to show. Without one, the page shows the fallback story.
+  // The issue to show. Without one, the page shows a stand-in dated today.
   issue?: Issue | null
+  // The London day, and the bank story standing in until that day's issue goes out.
+  today?: string
+  standIn?: StandIn | null
   // A date someone asked for that has no issue.
   missingDate?: string
   // Links to the issues either side, as dates, under the page's base path.
@@ -38,8 +41,9 @@ export interface LandingView {
 
 function storyFor(view: LandingView): LandingStory {
   if (view.missingDate) return { date: longDate(view.missingDate), line: `No story went out on ${longDate(view.missingDate)}.`, place: null, url: null, stage: null }
-  if (!view.issue) return FALLBACK
-  return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place, url: view.issue.url, stage: view.issue.stage }
+  if (view.issue) return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place, url: view.issue.url, stage: view.issue.stage }
+  const date = view.today ? longDate(view.today) : ''
+  return view.standIn ? { date, line: view.standIn.title, place: null, url: view.standIn.url, stage: view.standIn.stage } : { date, ...FALLBACK }
 }
 
 function daysNav(days: LandingView['days']): string {

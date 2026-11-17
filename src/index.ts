@@ -1,6 +1,6 @@
-import { bankHealth, dailyPick, refillBank } from './bank'
+import { bankHealth, dailyPick, londonDay, refillBank, standInFor } from './bank'
 import { renderLanding, type LandingView } from './landing'
-import { findIssue, findLatestIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
+import { findIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
 import { listUnscored, saveVerdicts } from './scores'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
@@ -67,22 +67,23 @@ async function publishIssue(request: Request, env: Env): Promise<Response> {
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 
-// The page shows the most recent issue, or the one for ?date=YYYY-MM-DD, with links to the days either side.
+// The page shows today's story, or the one for ?date=YYYY-MM-DD, with links to the days either side.
+// Until today's issue goes out, a bank story stands in, so the page changes every day regardless.
 async function landing(request: Request, env: Env): Promise<Response> {
   const base = URL.canParse(env.PUBLIC_BASE_URL) ? new URL(env.PUBLIC_BASE_URL).pathname.replace(/\/+$/, '') : ''
   const signups = `${base}/signups`
   const page = (html: string, status = 200) =>
     new Response(html, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' } })
   const daysAround = async (date: string): Promise<LandingView['days']> => ({ basePath: base || '/', ...(await findNeighbours(env.DB, date)) })
+  const todayView = async (): Promise<LandingView> => {
+    const today = londonDay(new Date())
+    const issue = await findIssue(env.DB, today)
+    return { issue, today, standIn: issue ? null : await standInFor(env.DB, today), days: await daysAround(today) }
+  }
 
   const asked = new URL(request.url).searchParams.get('date')
-  if (asked === null) {
-    const issue = await findLatestIssue(env.DB)
-    return page(renderLanding(signups, issue ? { issue, days: await daysAround(issue.date) } : {}))
-  }
-  if (!ISO_DATE.test(asked) || Number.isNaN(Date.parse(asked))) {
-    return page(renderLanding(signups, { issue: await findLatestIssue(env.DB) }), 404)
-  }
+  if (asked === null) return page(renderLanding(signups, await todayView()))
+  if (!ISO_DATE.test(asked) || Number.isNaN(Date.parse(asked))) return page(renderLanding(signups, await todayView()), 404)
   const issue = await findIssue(env.DB, asked)
   const days = await daysAround(asked)
   return issue ? page(renderLanding(signups, { issue, days })) : page(renderLanding(signups, { missingDate: asked, days }), 404)

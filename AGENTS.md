@@ -120,7 +120,7 @@ To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fa
 
 The Worker serves its own sign-up page, "Feel good AI stories", at the base path: `build40for40.com/feel-good` in production and `localhost:8787/feel-good` locally.
 
-- **The page:** `src/landing.ts` renders it as one HTML string. It shows the most recent issue in the `issues` table, which the daily run fills (see below): the post's text, its date in London and the place the editor named. Before the first issue goes out it shows a fallback story kept at the top of that file. Past days are at `/feel-good?date=2026-11-15`, and every page links to the issues either side ("Earlier" and "Later"). A date with no issue answers 404 with "No story went out on ...".
+- **The page:** `src/landing.ts` renders it as one HTML string. It always shows today's story, by the London date. That's today's issue from the `issues` table, which the daily run fills (see below): the post's text and the place the editor named. Until today's issue goes out, or on a day the run is missed, a headline from the evergreen bank stands in, with its stage and source link. The stand-in steps through the `banked` stories one a day (`standInFor` in `src/bank.ts`), so the page is different every day even with the daily run switched off. It doesn't mark the story `used`, so the same story can still go out as an issue later. Only if the bank has nothing `banked` does the page show the fallback story kept at the top of that file. Past days are at `/feel-good?date=2026-11-15`, and every page links to the issues either side ("Earlier" and "Later"). A date with no issue answers 404 with "No story went out on ...".
 - **Signing up:** a few lines of inline script post the email to `POST /signups`, described above, and swap the form for "Check your inbox" when it answers `ok`. An `invalid_email` answer shows a message under the field, and anything else asks the reader to try again.
 
 ## The daily run
@@ -167,7 +167,7 @@ Not covered yet: flips (triage shortlists good news only), and a person checking
 
 ### For the website
 
-The landing page at `/feel-good` already shows the latest issue. For anything else that wants it:
+The landing page at `/feel-good` already shows today's issue. For anything else that wants it:
 
 - `GET /feel-good/issues/latest`: `{ "ok": true, "issue": { "date", "storyId", "headline", "text", "url", "stage", "place", "createdAt" } }`, or `404` with `{ "ok": false, "error": "no_issues" }` before the first send.
 - `GET /feel-good/issues`: `{ "ok": true, "issues": [...] }`, newest first, at most 30.
