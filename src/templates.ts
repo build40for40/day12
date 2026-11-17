@@ -1,6 +1,5 @@
 export const NEWSLETTER_NAME = 'Feel good AI'
 export const MAX_STORY_CHARS = 280
-export const UNSUBSCRIBE_PLACEHOLDER = '{{unsubscribe_url}}'
 
 const HOME_URL = 'https://build40for40.com'
 const TIME_ZONE = 'Europe/London'
@@ -73,12 +72,10 @@ ${footer}
 </div>`
 }
 
-function aboutHtml(signupUrl: string): string {
-  return `<p style="margin:0 0 8px">${NEWSLETTER_NAME} is the <a href="${escapeHtml(signupUrl)}">Day 12 Build</a> of 40 for 40: 40 apps in 40 days, built live. See the rest at <a href="${HOME_URL}">build40for40.com</a>.</p>`
-}
+const HOME_HTML = `<p style="margin:0"><a href="${HOME_URL}">build40for40.com</a></p>`
 
-function aboutText(signupUrl: string): string {
-  return `${NEWSLETTER_NAME} is the Day 12 Build of 40 for 40: 40 apps in 40 days, built live.\nDay 12 Build: ${signupUrl}\nThe rest: ${HOME_URL}`
+function subscribeHtml(signupUrl: string): string {
+  return `<p style="margin:0 0 8px">Was this forwarded to you? <a href="${escapeHtml(signupUrl)}">Subscribe here</a>.</p>`
 }
 
 export function renderNewsletter(stories: NewsletterStory[], date: Date, signupUrl: string): RenderedEmail {
@@ -102,19 +99,19 @@ export function renderNewsletter(stories: NewsletterStory[], date: Date, signupU
 
   return {
     subject: issueSubject(date),
-    html: shell(longDate(date), htmlStories, `${aboutHtml(signupUrl)}\n<p style="margin:0"><a href="${UNSUBSCRIBE_PLACEHOLDER}">Unsubscribe</a></p>`),
-    text: `${NEWSLETTER_NAME}\n${longDate(date)}\n\n${textStories}\n\n--\n${aboutText(signupUrl)}\nUnsubscribe: ${UNSUBSCRIBE_PLACEHOLDER}\n`,
+    html: shell(longDate(date), htmlStories, `${subscribeHtml(signupUrl)}\n${HOME_HTML}`),
+    text: `${NEWSLETTER_NAME}\n${longDate(date)}\n\n${textStories}\n\n--\nWas this forwarded to you? Subscribe here: ${signupUrl}\n${HOME_URL}\n`,
   }
 }
 
-export function renderConfirmation(confirmUrl: string, signupUrl: string): RenderedEmail {
+export function renderConfirmation(confirmUrl: string): RenderedEmail {
   const body = `<p style="margin:0 0 16px">Hello! Someone (hopefully you) asked for ${NEWSLETTER_NAME}, our daily handful of good news about AI.</p>
 <p style="margin:0 0 16px"><a href="${escapeHtml(confirmUrl)}" style="font-weight:700">Yes, send me the good news</a></p>
 <p style="margin:0">Not you? Ignore this and you won't hear from us again.</p>`
 
   return {
     subject: `Confirm your ${NEWSLETTER_NAME} sign-up`,
-    html: shell('One quick thing before we start', body, aboutHtml(signupUrl)),
-    text: `${NEWSLETTER_NAME}\n\nHello! Someone (hopefully you) asked for ${NEWSLETTER_NAME}, our daily handful of good news about AI.\n\nOpen this link to confirm and we'll start sending:\n${confirmUrl}\n\nNot you? Ignore this and you won't hear from us again.\n\n--\n${aboutText(signupUrl)}\n`,
+    html: shell('One quick thing before we start', body, HOME_HTML),
+    text: `${NEWSLETTER_NAME}\n\nHello! Someone (hopefully you) asked for ${NEWSLETTER_NAME}, our daily handful of good news about AI.\n\nOpen this link to confirm and we'll start sending:\n${confirmUrl}\n\nNot you? Ignore this and you won't hear from us again.\n\n--\n${HOME_URL}\n`,
   }
 }

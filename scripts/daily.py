@@ -240,9 +240,13 @@ def main():
     parser.add_argument('--story', help='run this story id instead of the pick')
     parser.add_argument('--model', help=f'model for the headline editor, default {API_MODEL} with the API key, opus with the claude command')
     parser.add_argument('--text', help='use this post text instead of calling the headline editor (still checked for length and links)')
+    parser.add_argument('--place', help='the place line for the website, overriding the editor (use with --text)')
     parser.add_argument('--dry-run', action='store_true', help='preview the email, send nothing, change no files')
     parser.add_argument('--force', action='store_true', help='send again even if this date has already gone out')
     args = parser.parse_args()
+
+    if args.text and not args.story:
+        raise Stop('--text needs --story too, so a hand-written post can only go out with the story it was written for.')
 
     backlog = json.load(open(BACKLOG, encoding='utf-8'))
     stories = backlog['stories']
@@ -280,9 +284,12 @@ def main():
     if editor.get('needs_from_source'):
         print(f"   Missing from the record: {editor['needs_from_source']}")
 
+    place = args.place if args.place is not None else editor.get('place')
+    place = place.strip()[:80] if isinstance(place, str) and place.strip() else None
+    print(f"   Place: {place or '(none)'}")
     payload = {
         'date': args.date,
-        'story': {'id': story['id'], 'headline': story['headline'], 'text': text, 'url': record['source_url'], 'stage': story['stage']},
+        'story': {'id': story['id'], 'headline': story['headline'], 'text': text, 'url': record['source_url'], 'stage': story['stage'], 'place': place},
         'dry_run': args.dry_run,
         'force': args.force,
     }

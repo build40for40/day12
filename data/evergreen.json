@@ -603,26 +603,6 @@
       "line": null
     },
     {
-      "id": "paws-rangers-find-snares-cambodia",
-      "title": "AI tells rangers in Cambodia where to patrol, and they pull out 1,000 snares in a month",
-      "summary": "In December 2018 rangers in Srepok Wildlife Sanctuary in Cambodia began testing PAWS, AI software from a Harvard-led research group that learns from past poaching records and suggests where to patrol. In the first month, rangers on the suggested patrols found and removed 1,000 snares, more than double the number before. They also seized 42 chainsaws, 24 motorbikes and a truck.",
-      "happened": "2018-12",
-      "topic": "climate_and_nature",
-      "stage": "in_a_trial",
-      "technology": "forecasting",
-      "primary_source": "https://teamcore.seas.harvard.edu/research-paws-protection-assistant-wildlife-security",
-      "independent_source": null,
-      "confirmed": "The Harvard Teamcore page says field tests began in December 2018 in Srepok Wildlife Sanctuary and that in the first month rangers removed 1,000 snares, more than double before the AI software, and confiscated 42 chainsaws, 24 motorbikes and one truck.",
-      "scores": {
-        "mass_appeal": 2,
-        "real_person_or_place": 3,
-        "stage": 2,
-        "surprise": 2
-      },
-      "total": 18,
-      "line": null
-    },
-    {
       "id": "ai-hurricane-model-best-of-2025-season",
       "title": "An AI model gave the most accurate hurricane forecasts of the 2025 Atlantic season",
       "summary": "Google DeepMind's AI hurricane model was the most accurate forecast model of the 2025 Atlantic season for both where storms went and how strong they got, according to an analysis by James Franklin, a former branch chief at the US National Hurricane Center. The centre's forecasters cited it in many of their public forecast discussions, especially for Hurricane Melissa. About a week before Melissa hit Jamaica as a Category 5 storm in late October, when other models disagreed, the AI model correctly predicted both its path and its strength.",
@@ -900,26 +880,6 @@
         "surprise": 2
       },
       "total": 20,
-      "line": null
-    },
-    {
-      "id": "gert-jan-oskam-walks-with-brain-spine-link",
-      "title": "A paralysed man walks again after AI links his brain to his spine",
-      "summary": "Gert-Jan Oskam was paralysed from the hips down in an accident in 2011. Researchers in Lausanne in Switzerland put implants in his skull and spine, and an AI program reads his intention to move from his brain signals and passes it to the nerves in his spine. A study in the journal Nature in May 2023 reported that he stands, walks and climbs stairs with the system, which stayed reliable for over a year, including at home.",
-      "happened": "2023-05",
-      "topic": "accessibility",
-      "stage": "in_a_trial",
-      "technology": "other",
-      "primary_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41586-023-06094-5&resultType=core&format=json",
-      "independent_source": "https://www.irishtimes.com/health/your-wellness/2023/06/11/weve-captured-the-thoughts-of-gert-jan-and-translated-these-thoughts-into-a-stimulation-of-the-spinal-cord-to-reestablish-voluntary-movement",
-      "confirmed": "The Europe PMC record for the Nature paper (volume 618, online 24 May 2023) says a brain-spine interface let one participant stand, walk and climb stairs, stayed reliable for over a year including at home, and that he walked with crutches even with it switched off; the New York Times report carried by the Irish Times names Gert-Jan Oskam and describes the machine-learning thought decoder.",
-      "scores": {
-        "mass_appeal": 3,
-        "real_person_or_place": 3,
-        "stage": 2,
-        "surprise": 3
-      },
-      "total": 22,
       "line": null
     },
     {
@@ -1420,26 +1380,6 @@
         "surprise": 2
       },
       "total": 18,
-      "line": null
-    },
-    {
-      "id": "baricitinib-covid-ai-suggestion",
-      "title": "An arthritis pill that an AI search flagged for Covid in February 2020 went on to save lives",
-      "summary": "In February 2020 scientists at the London company BenevolentAI, with a doctor from Imperial College London, searched the company's store of medical knowledge, which is built using machine learning, for approved drugs to try against the new coronavirus. They named baricitinib, an arthritis pill, in a letter in The Lancet. In the RECOVERY trial of 8,156 hospital patients, 12% of those given baricitinib died within 28 days against 14% given usual care. In January 2022 the World Health Organization strongly recommended it for severe Covid.",
-      "happened": "2022-01",
-      "topic": "health",
-      "stage": "helping_people_now",
-      "technology": "other",
-      "primary_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7137985/fullTextXML",
-      "independent_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Baricitinib%20in%20patients%20admitted%20to%20hospital%20with%20COVID-19%20(RECOVERY)%22&resultType=core&format=json",
-      "confirmed": "The full text of the Lancet letter (online 4 February 2020, BenevolentAI and Imperial College authors) describes searching BenevolentAI's knowledge graph, built with machine learning, and proposing baricitinib; the RECOVERY record gives 513 of 4,148 deaths against 546 of 4,008; the WHO page of 14 January 2022 strongly recommends it for severe or critical Covid.",
-      "scores": {
-        "mass_appeal": 3,
-        "real_person_or_place": 2,
-        "stage": 3,
-        "surprise": 2
-      },
-      "total": 21,
       "line": null
     }
   ]

@@ -6,10 +6,11 @@ import type { Env, FetchLike } from './types'
 const MAX_PUBLISH_BYTES = 16_384
 const STAGES: Stage[] = ['in_the_lab', 'in_a_trial', 'helping_people_now']
 const DATE = /^\d{4}-\d{2}-\d{2}$/
+const MAX_PLACE_CHARS = 80
 
 export interface PublishRequest {
   date: string
-  story: { id: string; headline?: string; text: string; url: string; stage?: Stage }
+  story: { id: string; headline?: string; text: string; url: string; stage?: Stage; place?: string }
   dryRun: boolean
   force: boolean
 }
@@ -21,6 +22,7 @@ export interface Issue {
   text: string
   url: string
   stage: Stage | null
+  place: string | null
   createdAt: string
 }
 
@@ -35,9 +37,11 @@ export function parsePublish(body: unknown): Parsed {
   if (typeof s.url !== 'string' || !/^https?:\/\//.test(s.url) || !URL.canParse(s.url)) return { ok: false, error: 'bad_url' }
   if (s.stage !== undefined && !STAGES.includes(s.stage as Stage)) return { ok: false, error: 'bad_stage' }
   if (s.headline !== undefined && typeof s.headline !== 'string') return { ok: false, error: 'bad_headline' }
+  if (s.place != null && (typeof s.place !== 'string' || [...s.place].length > MAX_PLACE_CHARS)) return { ok: false, error: 'bad_place' }
   const story: PublishRequest['story'] = { id: s.id, text: s.text.trim(), url: s.url }
   if (typeof s.headline === 'string') story.headline = s.headline
   if (s.stage !== undefined) story.stage = s.stage as Stage
+  if (typeof s.place === 'string' && s.place.trim()) story.place = s.place.trim()
   return { ok: true, request: { date: b.date, story, dryRun: b.dry_run === true, force: b.force === true } }
 }
 
@@ -54,8 +58,13 @@ function toIssue(row: Record<string, unknown>): Issue {
     text: String(row.text),
     url: String(row.url),
     stage: (row.stage as Stage | null) ?? null,
+    place: (row.place as string | null) ?? null,
     createdAt: String(row.created_at),
   }
+}
+
+export async function findLatestIssue(db: D1Database): Promise<Issue | null> {
+  return (await listIssues(db, 1))[0] ?? null
 }
 
 export async function findIssue(db: D1Database, date: string): Promise<Issue | null> {
@@ -86,12 +95,23 @@ export async function publish(env: Env, request: PublishRequest, fetchImpl?: Fet
   // Claim the date before sending, so two runs at once can't both send.
   const createdAt = now.toISOString()
   const claim = await env.DB.prepare(
-    `INSERT INTO issues (date, story_id, headline, text, url, stage, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `INSERT INTO issues (date, story_id, headline, text, url, stage, place, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT (date) DO UPDATE SET story_id = excluded.story_id, headline = excluded.headline, text = excluded.text,
-        url = excluded.url, stage = excluded.stage, created_at = excluded.created_at, sent = NULL, failed = NULL, suppressed = NULL
+        url = excluded.url, stage = excluded.stage, place = excluded.place, created_at = excluded.created_at,
+        sent = NULL, failed = NULL, suppressed = NULL
       WHERE ?`,
   )
-    .bind(request.date, request.story.id, request.story.headline ?? null, story.text, story.url, story.stage ?? null, createdAt, request.force ? 1 : 0)
+    .bind(
+      request.date,
+      request.story.id,
+      request.story.headline ?? null,
+      story.text,
+      story.url,
+      story.stage ?? null,
+      request.story.place ?? null,
+      createdAt,
+      request.force ? 1 : 0,
+    )
     .run()
   if ((claim.meta.changes ?? 0) === 0) {
     const raced = await findIssue(env.DB, request.date)

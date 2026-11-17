@@ -1,6 +1,8 @@
-import { issuesRoute, latestIssueRoute, publishRoute } from './publish'
+import { renderLanding } from './landing'
+import { findLatestIssue, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
+import { scheduledPull } from './schedule'
 import type { Env } from './types'
 
 async function digest(text: string): Promise<Uint8Array> {
@@ -32,10 +34,21 @@ async function publishIssue(request: Request, env: Env): Promise<Response> {
   return publishRoute(request, env)
 }
 
+// The page shows the most recent issue the daily run published.
+async function landing(env: Env): Promise<Response> {
+  const base = URL.canParse(env.PUBLIC_BASE_URL) ? new URL(env.PUBLIC_BASE_URL).pathname.replace(/\/+$/, '') : ''
+  const issue = await findLatestIssue(env.DB)
+  return new Response(renderLanding(`${base}/signups`, issue), {
+    headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' },
+  })
+}
+
 export default {
   async fetch(request, env, ctx) {
     const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
     switch (`${request.method} ${pathname}`) {
+      case 'GET /':
+        return landing(env)
       case 'POST /pull':
         return pull(request, env)
       case 'POST /publish':
@@ -59,5 +72,9 @@ export default {
       default:
         return new Response('Not found', { status: 404 })
     }
+  },
+
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(scheduledPull(controller.scheduledTime, env))
   },
 } satisfies ExportedHandler<Env>

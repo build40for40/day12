@@ -1,6 +1,6 @@
 import { INACTIVE_RECIPIENT, sendBatch, sendEmail, type PostmarkMessage, type SendResult } from './postmark'
 import { listConfirmed, markSuppressed } from './signups'
-import { NEWSLETTER_NAME, renderConfirmation, UNSUBSCRIBE_PLACEHOLDER } from './templates'
+import { NEWSLETTER_NAME, renderConfirmation } from './templates'
 import type { Env, FetchLike } from './types'
 
 export interface Newsletter {
@@ -29,12 +29,8 @@ function sender(env: Env): string {
   return `${NEWSLETTER_NAME} <${env.EMAIL_FROM}>`
 }
 
-function withUnsubscribe(body: string, url: string, footer: string): string {
-  return body.includes(UNSUBSCRIBE_PLACEHOLDER) ? body.replaceAll(UNSUBSCRIBE_PLACEHOLDER, url) : body + footer
-}
-
 export async function sendConfirmation(env: Env, email: string, confirmToken: string, fetchImpl: FetchLike = defaultFetch): Promise<SendResult> {
-  const rendered = renderConfirmation(link(env, '/confirm', confirmToken), publicUrl(env))
+  const rendered = renderConfirmation(link(env, '/confirm', confirmToken))
   return sendEmail(
     env.POSTMARK_SERVER_TOKEN,
     {
@@ -57,8 +53,8 @@ export async function sendNewsletter(env: Env, newsletter: Newsletter, fetchImpl
       from: sender(env),
       to: subscriber.email,
       subject: newsletter.subject,
-      htmlBody: withUnsubscribe(newsletter.html, url, `<p><a href="${url}">Unsubscribe</a></p>`),
-      textBody: withUnsubscribe(newsletter.text, url, `\n\nUnsubscribe: ${url}\n`),
+      htmlBody: newsletter.html,
+      textBody: newsletter.text,
       messageStream: env.POSTMARK_BROADCAST_STREAM,
       headers: { 'List-Unsubscribe': `<${url}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
     }

@@ -63,6 +63,7 @@ When there is a `draft_line`, judge it first. If it already has a named person o
 - The post is the text, then a space, then `source_url`. X counts every link as 23 characters, so the text must be 255 characters or fewer.
 - Aim for roughly 120 to 220 characters of text. One or two sentences. The room is there for a context fact, not for padding.
 - No hashtags, no emoji, no "🧵", no calls to action.
+- The website shows `place` in small type under the post. Take it from the record: the town, region or institution plus the country, under 40 characters. Use null when the story has no single place, like a global forecast or a discovery in space.
 
 ## Examples
 
@@ -98,6 +99,7 @@ Return JSON only:
   "decision": "keep", "rewrite" or "write" (no draft line was given),
   "post": "the full post: text, a space, then the source URL",
   "text_length": number of characters in the text before the URL,
+  "place": "where it happened, for the line under the story on the website, like \"Dublin, Ireland\" or \"Moorfields Eye Hospital, London\", or null",
   "changes": "one or two sentences on what you changed and why, or why you kept the draft",
   "needs_from_source": "a detail that would make the post better but isn't in the record, or null"
 }

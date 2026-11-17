@@ -130,6 +130,16 @@ describe('GET /issues/latest', () => {
     const response = await latestIssueRoute(request(), env)
 
     expect(response.headers.get('Access-Control-Allow-Origin')).toBe('https://site.example.com')
-    expect(await response.json()).toMatchObject({ ok: true, issue: { date: '2026-11-18', text: story.text, url: story.url, stage: 'in_a_trial' } })
+    expect(await response.json()).toMatchObject({ ok: true, issue: { date: '2026-11-18', text: story.text, url: story.url, stage: 'in_a_trial', place: null } })
+  })
+
+  it('stores the place line when one is given', async () => {
+    const env = fakeEnv()
+    subscribe(env, 'fake.reader@example.com')
+
+    await call(env, { date: '2026-11-18', story: { ...story, place: ' Tokyo, Japan ' } }, postmark().fetchImpl)
+    const response = await latestIssueRoute(new Request(`${BASE}/issues/latest`), env)
+
+    expect(await response.json()).toMatchObject({ issue: { place: 'Tokyo, Japan' } })
   })
 })

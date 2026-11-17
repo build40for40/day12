@@ -7,6 +7,7 @@ CREATE TABLE issues (
   text TEXT NOT NULL,
   url TEXT NOT NULL,
   stage TEXT,
+  place TEXT,
   created_at TEXT NOT NULL,
   sent INTEGER,
   failed INTEGER,

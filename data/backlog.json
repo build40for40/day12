@@ -1,5 +1,5 @@
 {
-  "about": "The big list. Every story that has passed the gates, with its handoff record and what has happened to it. status is waiting, published, in_bank (evergreen, not yet used) or removed (failed a later ruling, kept so it is not added again). A published story is never picked again. This file is the memory: the daily run reads it, ranks what is waiting, and writes back what it published.",
+  "about": "The big list. Every story that has passed the gates, with its handoff record and what has happened to it. status is waiting (news, not yet run), in_bank (evergreen, not yet run), published, or removed (failed a later ruling, kept so it is not added again). A published story is never picked again. This file is the memory: the daily run reads it, ranks what has not run, and writes back what it published. Nothing has been published yet: the marks from the simulated week were reset on 17 November, and that week is recorded in runs/2026-11-17/week-run.json.",
   "updated": "2026-11-17",
   "stories": [
     {
@@ -59,8 +59,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-11"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "an-ai-operator-now-answers-most-non-emergency-ca",
@@ -88,8 +88,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-11"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "ai-let-scientists-watch-thousands-of-brain-cance",
@@ -176,8 +176,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-12"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "ai-reads-what-emergency-room-patients-say-and-fl",
@@ -208,8 +208,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-13"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "montreal-woman-with-als-speaks-in-her-own-voice",
@@ -239,8 +239,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-14"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "south-korea-s-top-tax-exam-scorer-admits-cheatin",
@@ -275,8 +275,8 @@
       ],
       "checked_by": "agent",
       "note": "Merged with a second report of the same story on 15 November (the government's review of all national licensing exams).",
-      "status": "published",
-      "published_on": "2026-11-14"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "ai-heart-trace-reader-in-korean-ambulances-flags",
@@ -310,8 +310,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-15"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "breast-cancer-patients-in-croatia-understood-ai",
@@ -374,8 +374,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-17"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "dublin-flood-warning",
@@ -401,8 +401,8 @@
       ],
       "checked_by": "hand",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-16"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "brain-tumour-mantis",
@@ -428,8 +428,8 @@
       ],
       "checked_by": "hand",
       "note": "Source is a EurekAlert release. Re-source to the institution's own page before publishing.",
-      "status": "published",
-      "published_on": "2026-11-16"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "dystonia-surgery-prediction",
@@ -481,8 +481,8 @@
       ],
       "checked_by": "hand",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-16"
+      "status": "waiting",
+      "published_on": null
     },
     {
       "id": "sarah-ezekiel-voice-restored",
@@ -507,8 +507,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-12"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "california-wildfire-cameras",
@@ -534,8 +534,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-11"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "be-my-ai-describes-photos",
@@ -560,8 +560,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-13"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "monsoon-forecasts-for-farmers",
@@ -584,8 +584,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-12"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "stroke-scans-england",
@@ -610,8 +610,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-11"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "casey-harrell-speaks-again",
@@ -636,8 +636,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-15"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "flood-forecasts-80-countries",
@@ -662,8 +662,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-12"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "merlin-birdsong-id",
@@ -685,8 +685,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-13"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "perseverance-ai-planned-drive",
@@ -710,8 +710,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-11"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "speech-avatar-after-paralysis",
@@ -735,8 +735,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-16"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "nazca-303-new-figures",
@@ -758,8 +758,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-12"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "herculaneum-scroll-read",
@@ -782,8 +782,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-13"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "sepsis-early-warning-johns-hopkins",
@@ -807,8 +807,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-14"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "masai-breast-screening-sweden",
@@ -833,8 +833,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-17"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "diabetic-eye-check-without-specialist",
@@ -859,8 +859,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-17"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "elephants-name-each-other",
@@ -884,8 +884,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-14"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "ecmwf-ai-weather-forecast",
@@ -910,8 +910,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-15"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "harvard-ai-tutor-trial",
@@ -936,8 +936,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-17"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "contrail-avoidance-flights",
@@ -962,8 +962,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-13"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "sahara-sahel-tree-count",
@@ -987,8 +987,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-14"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "moorfields-eye-scans",
@@ -1013,8 +1013,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-17"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "alphafold-protein-shapes",
@@ -1039,8 +1039,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-15"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "mars-fresh-craters",
@@ -1062,8 +1062,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-15"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "halicin-antibiotic",
@@ -1113,8 +1113,8 @@
       ],
       "checked_by": "agent",
       "note": null,
-      "status": "published",
-      "published_on": "2026-11-16"
+      "status": "in_bank",
+      "published_on": null
     },
     {
       "id": "eagle-spotting-cameras-wyoming-wind-farm",
@@ -1283,8 +1283,8 @@
         "https://teamcore.seas.harvard.edu/research-paws-protection-assistant-wildlife-security"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov by Samira: the write-up is a conference paper, not a peer-reviewed journal article.",
+      "status": "removed",
       "published_on": null
     },
     {
@@ -1765,8 +1765,8 @@
         "https://www.irishtimes.com/health/your-wellness/2023/06/11/weve-captured-the-thoughts-of-gert-jan-and-translated-these-thoughts-into-a-stimulation-of-the-spinal-cord-to-reestablish-voluntary-movement"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov by Samira: the paper's own summary does not call the decoder AI.",
+      "status": "removed",
       "published_on": null
     },
     {
@@ -2547,8 +2547,8 @@
         "https://www.who.int/news/item/14-01-2022-who-recommends-two-new-drugs-to-treat-covid-19"
       ],
       "checked_by": "agent",
-      "note": null,
-      "status": "in_bank",
+      "note": "Removed 17 Nov by Samira: people picked the drug from the AI's shortlist, so AI is not clearly the reason.",
+      "status": "removed",
       "published_on": null
     }
   ]
