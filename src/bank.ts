@@ -1,3 +1,4 @@
+import { STAGE_LABELS, type Stage } from './templates'
 import type { BankHealth, Pick, PickResult, StoryRecord } from './types'
 
 // Rules from docs/scoring.md, "The daily pick".
@@ -33,14 +34,6 @@ export function londonDay(now: Date): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(now)
 }
 
-/** The headline of the bank story that stands in for a day with no issue yet. It moves on one story a day. */
-export async function standInFor(db: D1Database, day: string): Promise<string | null> {
-  const { results } = await db.prepare("SELECT title FROM evergreen WHERE status = 'banked' ORDER BY id ASC").all<{ title: string }>()
-  if (results.length === 0) return null
-  const dayNumber = Math.round(Date.parse(`${day}T00:00:00Z`) / 86_400_000)
-  return results[dayNumber % results.length]!.title
-}
-
 /** The link a reader should get for one source, or null. Mirrors reader_link in scripts/daily.py. */
 export function readerLink(url: string): string | null {
   if (url.includes('eurekalert.org')) return null // its terms restrict reuse, so these need re-sourcing
@@ -68,7 +61,7 @@ function usableLink(sources: unknown): string | null {
   return null
 }
 
-interface NewsRow { id: number; title: string; summary: string; url: string; score: number }
+interface NewsRow { id: number; title: string; summary: string; url: string; score: number; stage: string | null; tags: string | null; story: string | null }
 interface BankRow { slug: string; title: string; summary: string; why_its_good: string | null; careful: string | null; sources: string | null; url: string; stage: string | null; topic: string | null; total: number }
 
 const BANK_COLUMNS = 'slug, title, summary, why_its_good, careful, sources, url, stage, topic, score AS total'
@@ -76,7 +69,7 @@ const BANK_COLUMNS = 'slug, title, summary, why_its_good, careful, sources, url,
 async function topNews(db: D1Database, now: Date): Promise<NewsRow | null> {
   const rows = await db
     .prepare(
-      `SELECT id, title, summary, url, score FROM candidates
+      `SELECT id, title, summary, url, score, stage, tags, story FROM candidates
        WHERE score >= ? AND pulled_at >= ? AND 'news:' || id NOT IN (SELECT story_key FROM picks)
        ORDER BY score DESC, pulled_at DESC LIMIT 20`,
     )
@@ -105,21 +98,35 @@ const bankRecord = (r: BankRow): StoryRecord => ({
   sourceUrl: usableLink(r.sources ?? [r.url]),
 })
 
-const newsRecord = (r: NewsRow): StoryRecord => ({
-  id: `news-${r.id}`,
-  headline: r.title,
-  whatHappened: r.summary || r.title,
-  whyItsGood: null,
-  careful: [],
-  stage: null,
-  topic: null,
-  lane: 'good',
-  sourceUrl: readerLink(r.url),
-})
+interface Handoff { headline?: string; what_happened?: string; why_its_good?: string; careful?: string[]; sources?: string[] }
+
+function handoff(r: NewsRow): Handoff {
+  try {
+    return r.story ? (JSON.parse(r.story) as Handoff) : {}
+  } catch {
+    return {}
+  }
+}
+
+// A scored news story carries the scorer's checked handoff; fall back to the feed's own words.
+const newsRecord = (r: NewsRow): StoryRecord => {
+  const h = handoff(r)
+  return {
+    id: `news-${r.id}`,
+    headline: h.headline ?? r.title,
+    whatHappened: h.what_happened ?? (r.summary || r.title),
+    whyItsGood: h.why_its_good ?? null,
+    careful: h.careful ?? [],
+    stage: r.stage,
+    topic: r.tags,
+    lane: 'good',
+    sourceUrl: usableLink(h.sources ?? [r.url]) ?? readerLink(r.url),
+  }
+}
 
 async function recordFor(db: D1Database, storyKey: string): Promise<StoryRecord | null> {
   if (storyKey.startsWith('news:')) {
-    const row = await db.prepare('SELECT id, title, summary, url, score FROM candidates WHERE id = ?').bind(Number(storyKey.slice(5))).first<NewsRow>()
+    const row = await db.prepare('SELECT id, title, summary, url, score, stage, tags, story FROM candidates WHERE id = ?').bind(Number(storyKey.slice(5))).first<NewsRow>()
     return row ? newsRecord(row) : null
   }
   const row = await db.prepare(`SELECT ${BANK_COLUMNS} FROM evergreen WHERE slug = ?`).bind(storyKey.slice('evergreen:'.length)).first<BankRow>()
@@ -202,28 +209,32 @@ const slugify = (title: string): string =>
 export async function refillBank(db: D1Database, now: Date): Promise<number> {
   const aged = await db
     .prepare(
-      `SELECT id, url, title, summary, score, stage FROM candidates
+      `SELECT id, title, summary, url, score, stage, tags, story FROM candidates
        WHERE score >= ? AND pulled_at < ? AND 'news:' || id NOT IN (SELECT story_key FROM picks)
          AND url NOT IN (SELECT url FROM evergreen)`,
     )
     .bind(PROMOTE_MIN_SCORE, new Date(now.getTime() - NEWS_WINDOW_DAYS * DAY).toISOString())
-    .all<{ id: number; url: string; title: string; summary: string; score: number; stage: string | null }>()
+    .all<NewsRow>()
 
   let added = 0
   for (const c of aged.results) {
+    const h = handoff(c)
     const result = await db
       .prepare(
-        `INSERT OR IGNORE INTO evergreen (slug, url, title, summary, stage, score, status, sources, added_at)
-         VALUES (?, ?, ?, ?, ?, ?, 'review', ?, ?)`,
+        `INSERT OR IGNORE INTO evergreen (slug, url, title, summary, why_its_good, careful, stage, topic, score, status, sources, added_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'review', ?, ?)`,
       )
       .bind(
         `${slugify(c.title)}-${c.id}`,
         c.url,
-        c.title,
-        c.summary || c.title,
+        h.headline ?? c.title,
+        h.what_happened ?? (c.summary || c.title),
+        h.why_its_good ?? null,
+        JSON.stringify(h.careful ?? []),
         c.stage,
+        c.tags,
         Math.round(c.score),
-        JSON.stringify([c.url]),
+        JSON.stringify(h.sources ?? [c.url]),
         now.toISOString(),
       )
       .run()
@@ -241,4 +252,22 @@ export async function bankHealth(db: D1Database): Promise<BankHealth> {
   for (const r of rows.results) if (r.status === 'banked') topics[r.topic ?? 'untagged'] = (topics[r.topic ?? 'untagged'] ?? 0) + r.n
   const ready = count('banked')
   return { ready, review: count('review'), used: count('used'), low: ready < BANK_FLOOR, floor: BANK_FLOOR, topics }
+}
+
+export interface StandIn {
+  title: string
+  url: string | null
+  stage: Stage | null
+}
+
+/** The bank story that stands in for a day with no issue yet. It moves on one story a day. */
+export async function standInFor(db: D1Database, day: string): Promise<StandIn | null> {
+  const { results } = await db
+    .prepare("SELECT title, url, stage FROM evergreen WHERE status = 'banked' ORDER BY id ASC")
+    .all<{ title: string; url: string; stage: string | null }>()
+  if (results.length === 0) return null
+  const dayNumber = Math.round(Date.parse(`${day}T00:00:00Z`) / 86_400_000)
+  const row = results[dayNumber % results.length]!
+  const stage = Object.keys(STAGE_LABELS).find((known) => known === row.stage) as Stage | undefined
+  return { title: row.title, url: readerLink(row.url), stage: stage ?? null }
 }

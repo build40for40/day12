@@ -61,7 +61,7 @@ The bank is the `evergreen` table in D1. Migration `0003` fills it with the 69 s
 - **Pick:** `POST /pick` (bearer `PULL_TOKEN`, `?dry=1` to preview) chooses one story for the London day and records it in `picks`. A news story scored 16 or more in the last 14 days runs first, otherwise the best `banked` story runs and becomes `used`. `?story=<slug>` forces a banked story by hand. Stories with no link a reader can use (EurekAlert, API URLs) are skipped. The response includes the story `record` for the headline editor. Asking twice in a day returns the same story, so a run that died can be repeated. Nothing triggers this on a schedule yet, and it only records the pick; the publish stage reads it.
 - **Refill:** the same call then promotes scored news that aged out of the 14 days, never ran and scored 16 or more into `review`. Candidates are purged after 30 days, so the pick has to run at least every two weeks.
 - **Health:** `GET /bank` (same token) reports ready, review and used counts, topic spread and `low: true` under 20 ready stories.
-- **Scoring:** candidates are scored outside the Worker, which only reads `candidates.score` (out of 24).
+- **Scoring:** `scripts/score.py` scores candidates outside the Worker (see "Scoring the live pull"); the Worker stores the verdicts and the pick reads `candidates.score` (out of 24) and the handoff in `candidates.story`.
 
 ## Signups and email
 
@@ -120,7 +120,7 @@ To try it locally, put `POSTMARK_SERVER_TOKEN=POSTMARK_API_TEST`, `EMAIL_FROM=fa
 
 The Worker serves its own sign-up page, "Feel good AI stories", at the base path: `build40for40.com/feel-good` in production and `localhost:8787/feel-good` locally.
 
-- **The page:** `src/landing.ts` renders it as one HTML string. It always shows today's story, by the London date. That's today's issue from the `issues` table, which the daily run fills (see below): the post's text and the place the editor named. Until today's issue goes out, or on a day the run is missed, a headline from the evergreen bank stands in. The stand-in steps through the `banked` stories one a day (`standInFor` in `src/bank.ts`), so the page is different every day even with the daily run switched off. It doesn't mark the story `used`, so the same story can still go out as an issue later. Only if the bank has nothing `banked` does the page show the fallback story kept at the top of that file. Past days are at `/feel-good?date=2026-11-15`, and every page links to the issues either side ("Earlier" and "Later"). A date with no issue answers 404 with "No story went out on ...".
+- **The page:** `src/landing.ts` renders it as one HTML string. It always shows today's story, by the London date. That's today's issue from the `issues` table, which the daily run fills (see below): the post's text and the place the editor named. Until today's issue goes out, or on a day the run is missed, a headline from the evergreen bank stands in, with its stage and source link. The stand-in steps through the `banked` stories one a day (`standInFor` in `src/bank.ts`), so the page is different every day even with the daily run switched off. It doesn't mark the story `used`, so the same story can still go out as an issue later. Only if the bank has nothing `banked` does the page show the fallback story kept at the top of that file. Past days are at `/feel-good?date=2026-11-15`, and every page links to the issues either side ("Earlier" and "Later"). A date with no issue answers 404 with "No story went out on ...".
 - **Signing up:** a few lines of inline script post the email to `POST /signups`, described above, and swap the form for "Check your inbox" when it answers `ok`. An `invalid_email` answer shows a message under the field, and anything else asks the reader to try again.
 
 ## The daily run
@@ -157,7 +157,13 @@ python3 scripts/daily.py --worker https://build40for40.com/feel-good
 
 Set `PUBLISH_TOKEN` to the Worker's `PULL_TOKEN`, and `ANTHROPIC_API_KEY` if you have the key; otherwise sign in the `claude` command. Useful flags: `--story <slug>` to run a banked story chosen by a person (the pick is for today in London, so there is no `--date`), `--story <id> --text "..."` to use a post written by a person instead of calling the editor (`--text` only works with `--story`, so the post can't go out with the wrong story), `--place "..."` for the place line on the page, `--force` to send a date again. Exit code 1 means the run stopped, with the reason on stderr. A real run writes `runs/`, so commit it.
 
-The daily run doesn't score new stories. Something still has to run `prompts/score-story.md` over the live pull, open the sources and write the score onto `candidates.score` (card 320). Until then no news story can reach 16, so every day runs from the evergreen bank.
+### Scoring the live pull
+
+`scripts/score.py` is the quality filter, and the workflow runs it just before the daily story. It reads the stories pulled in the last 14 days that have no verdict (`GET /candidates/unscored`), has Claude Opus 5.5 triage all the headlines in one call, then scores up to 8 shortlisted stories with `prompts/score-story.md`. For those, the model has web fetch and web search, opens the story and its primary source itself, and rules on the gates from what it read. Verdicts go back through `POST /candidates/scores` (same token): `triage` and `fail` are kept so a story is never paid for twice, and only a `pass` gets a score, stage, topic and the checked handoff, which the daily pick and the headline editor use. The Worker checks every verdict and drops malformed ones. Shortlisted stories over the cap, and any that error, wait for the next run.
+
+`python3 scripts/score.py --dry-run` prints the verdicts and saves nothing; `--max 3` scores fewer. It needs `ANTHROPIC_API_KEY`, so the first real test is a manual dry run of the workflow. Tests: `python3 scripts/test_score.py`.
+
+Not covered yet: flips (triage shortlists good news only), and a person checking a pass before it runs. A pass scoring 16 or more runs the next morning on the model's own fact-check.
 
 ### For the website
 

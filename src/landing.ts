@@ -1,15 +1,21 @@
+import type { StandIn } from './bank'
 import type { Issue } from './publish'
+import { sourceName, STAGE_LABELS, type Stage } from './templates'
 
 interface LandingStory {
   date: string
   line: string
   place: string | null
+  url: string | null
+  stage: Stage | null
 }
 
 // Shown only when today has no issue and the bank has nothing ready.
-const FALLBACK = {
+const FALLBACK: Omit<LandingStory, 'date'> = {
   line: 'Dublin is piloting an AI flood warning that, in tests on past storms, flagged some floods 13 hours early.',
   place: 'Dublin, Ireland',
+  url: 'https://www.thejournal.ie/dublin-ai-flood-warning-system-7227372-Nov2026/',
+  stage: 'in_a_trial',
 }
 
 function escapeHtml(value: string): string {
@@ -26,7 +32,7 @@ export interface LandingView {
   issue?: Issue | null
   // The London day, and the bank story standing in until that day's issue goes out.
   today?: string
-  standIn?: string | null
+  standIn?: StandIn | null
   // A date someone asked for that has no issue.
   missingDate?: string
   // Links to the issues either side, as dates, under the page's base path.
@@ -34,10 +40,10 @@ export interface LandingView {
 }
 
 function storyFor(view: LandingView): LandingStory {
-  if (view.missingDate) return { date: longDate(view.missingDate), line: `No story went out on ${longDate(view.missingDate)}.`, place: null }
-  if (view.issue) return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place }
+  if (view.missingDate) return { date: longDate(view.missingDate), line: `No story went out on ${longDate(view.missingDate)}.`, place: null, url: null, stage: null }
+  if (view.issue) return { date: longDate(view.issue.date), line: view.issue.text, place: view.issue.place, url: view.issue.url, stage: view.issue.stage }
   const date = view.today ? longDate(view.today) : ''
-  return view.standIn ? { date, line: view.standIn, place: null } : { date, ...FALLBACK }
+  return view.standIn ? { date, line: view.standIn.title, place: null, url: view.standIn.url, stage: view.standIn.stage } : { date, ...FALLBACK }
 }
 
 function daysNav(days: LandingView['days']): string {
@@ -85,7 +91,8 @@ a:hover { color: #55524B; }
 .story { margin-top: clamp(72px, 16vh, 150px); }
 .story p { margin: 0; font-size: clamp(31px, 8.6vw, 40px); line-height: 1.2; letter-spacing: -0.005em; }
 .story hr { width: 40px; margin: 26px 0; border: 0; border-top: 1px solid #1C1B19; }
-.story .place { font-size: 17px; font-style: italic; }
+.story .place, .story .source { font-size: 17px; font-style: italic; }
+.story .source { margin-top: 4px; }
 .days { margin-top: 40px; display: flex; justify-content: space-between; gap: 16px; font-size: 16px; font-style: italic; }
 .join { margin-top: clamp(64px, 14vh, 130px); display: flex; flex-direction: column; gap: 28px; }
 .join .pitch { margin: 0; font-size: 22px; line-height: 1.35; }
@@ -157,9 +164,18 @@ form.addEventListener('submit', async (event) => {
 })
 `
 
+function sourceLine(url: string, stage: Stage | null): string {
+  const link = `<a href="${escapeHtml(url)}">${escapeHtml(sourceName(url))}</a>`
+  return stage ? `${STAGE_LABELS[stage]} · ${link}` : link
+}
+
 export function renderLanding(signupsPath: string, view: LandingView = {}): string {
   const story = storyFor(view)
-  const place = story.place ? `\n      <hr>\n      <div class="place">${escapeHtml(story.place)}</div>` : ''
+  const details = [
+    story.place ? `<div class="place">${escapeHtml(story.place)}</div>` : '',
+    story.url ? `<div class="source">${sourceLine(story.url, story.stage)}</div>` : '',
+  ].filter(Boolean)
+  const place = details.length ? `\n      <hr>\n      ${details.join('\n      ')}` : ''
   return `<!doctype html>
 <html lang="en-GB">
 <head>

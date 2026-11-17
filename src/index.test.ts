@@ -34,6 +34,7 @@ describe('GET /', () => {
     expect(html).toContain('18 November 2026')
     expect(html).toContain('AI cameras slow turbines when eagles fly near &lt;fast&gt;.')
     expect(html).toContain('<div class="place">Wyoming, USA</div>')
+    expect(html).toContain('<div class="source">In a trial · <a href="https://example.org/eagles">example.org</a></div>')
     expect(html).not.toContain('An older story.')
   })
 
@@ -58,6 +59,7 @@ describe('GET /', () => {
 
     const html = await (await worker.fetch(new Request('https://site.example.com/feel-good'), env, {} as ExecutionContext)).text()
     expect(html).toContain('19 November 2026')
+    expect(html).toContain('<div class="source">')
     expect(html).not.toContain('An older story.')
     expect(html).toContain('href="/feel-good?date=2026-11-17" rel="prev"')
   })
