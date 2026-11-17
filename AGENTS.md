@@ -36,3 +36,34 @@ Keep about 30 evergreen stories banked as a fallback for thin days. Prompts and 
 ### Where it publishes
 
 Not chosen yet. The front runners can go live the same day: SMS or text, an RSS feed or podcast, or a website with an email digest. These were ruled out for today because review takes too long: ChatGPT and Claude Code plugins, Alexa skills and podcast directory listings. On X, posting from our own account is fine, but automated replies to keyword searches aren't allowed without approval.
+
+## Running it
+
+The source pull is a Cloudflare Worker (`src/index.ts`) with its own local D1 database, `day12`.
+
+1. **Install:** `npm install`
+2. **Configure:** copy `.dev.vars.example` to `.dev.vars` and set `PULL_TOKEN` to any random string.
+3. **Migrate:** `npm run db:migrate` applies `migrations/` to the local database.
+4. **Run:** `npm run dev`, then in another shell load the token with `export $(grep ^PULL_TOKEN= .dev.vars)` and trigger a pull with `curl -X POST -H "Authorization: Bearer $PULL_TOKEN" localhost:8787/pull`. The response is a JSON report with fetched, kept and stored counts per source.
+5. **Inspect:** `npm run wrangler -- d1 execute day12 --local --command "SELECT source_id, COUNT(*) FROM candidates GROUP BY source_id"`
+6. **Test:** `npm run typecheck` and `npm test`.
+
+Cloudflare crons run in UTC, so a single cron is 06:00 London only in winter. For 06:00 London all year, add two crons to `wrangler.jsonc` under `triggers.crons` (`0 5 * * *` and `0 6 * * *`) and a `scheduled` handler in `src/index.ts` that calls `runPull` only when the hour in Europe/London is 6.
+
+## Deploying it
+
+GitHub Actions does the checking and the deploying. `.github/workflows/ci.yml` runs `npm ci`, `npm run typecheck` and `npm test` on every pull request, on the Node version in `.node-version`. `.github/workflows/deploy.yml` runs the same checks on every push to `main`, then applies the D1 migrations to the remote database and deploys the Worker. Deploys queue up one at a time and never overlap.
+
+The deploy job is switched off until the repository variable `DEPLOY_ENABLED` is `true`, so it shows as skipped rather than failed. CI calls `npx wrangler` directly with `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` from the environment, because the `wrangler` npm script needs the `40for40` profile that only exists on the team's machines.
+
+Switching it on is a one-time job for a human, in this order:
+
+1. **Create the database:** `npm run wrangler -- d1 create day12`
+2. **Paste its id:** replace the all-zero `database_id` in `wrangler.jsonc` with the id that command prints, and merge that change to `main`. The checks run and the deploy is still skipped.
+3. **Set the token:** `npm run wrangler -- secret put PULL_TOKEN`, with a long random string. If wrangler says the Worker doesn't exist yet, let it create the Worker when it offers.
+4. **Add the GitHub secrets:** in the repo's Actions secrets, add `CLOUDFLARE_API_TOKEN` (a Cloudflare API token that can edit Workers Scripts and D1 on the account) and `CLOUDFLARE_ACCOUNT_ID` (the `account_id` in `wrangler.jsonc`).
+5. **Flip the switch:** add the Actions repository variable `DEPLOY_ENABLED` with the value `true`.
+
+After that every merge to `main` deploys. To deploy without a new commit, rerun the latest Deploy workflow on `main`. To stop deploys, set `DEPLOY_ENABLED` to anything else.
+
+Migrations run before the deploy, so a migration has to work with the Worker version that's already live.

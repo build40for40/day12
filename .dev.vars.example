@@ -1,0 +1,2 @@
+# Copy to .dev.vars for wrangler dev. Set it in production with: npm run wrangler -- secret put PULL_TOKEN
+PULL_TOKEN=
