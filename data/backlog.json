@@ -1115,6 +1115,1441 @@
       "note": null,
       "status": "published",
       "published_on": "2026-11-16"
+    },
+    {
+      "id": "eagle-spotting-cameras-wyoming-wind-farm",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI cameras that pause wind turbines cut eagle deaths at a Wyoming wind farm",
+      "what_happened": "At the Top of the World wind farm in Wyoming, cameras watch the sky, software works out whether a flying object is an eagle, and individual turbines are slowed or stopped when one is at risk. A study in the Journal of Applied Ecology found eagle deaths there fell by 63% after the system went in, while deaths at a nearby wind farm without it rose by 113%. Set against that neighbour, the death rate was 82% lower.",
+      "why_its_good": "The system uses machine learning to tell eagles from other flying things in time to stop the right turbine, so clean power and big birds of prey get in each other's way less.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Deaths were reduced, not ended: the authors say it is not a complete solution.",
+        "The 82% figure is relative to the comparison site 15 km away; the drop at the wind farm itself was 63%.",
+        "One wind farm in Wyoming. A 2022 re-analysis by the same authors answered critics and again found a large fall, but with a very wide range of uncertainty (I saw this in a search listing only, the page would not open).",
+        "The camera maker IdentiFlight and the site owner Duke Energy Renewables took part in the announcement; the study itself was by The Peregrine Fund, Western EcoSystems Technology and the US Geological Survey.",
+        "The paper's summary says cameras 'detect and classify' birds; the words machine learning and neural networks come from The Peregrine Fund's release."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 23,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1111/1365-2664.13831&resultType=core&format=json",
+        "https://peregrinefund.org/news-release/research-shows-identiflight-camera-technology-greatly-reduces-wind-turbine-eagle"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-cameras-stop-trains-for-elephants-tamil-nadu",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI cameras warn trains when elephants are near the tracks in Tamil Nadu",
+      "what_happened": "On a seven kilometre stretch of railway through forest near Madukkarai, on the Tamil Nadu and Kerala border, heat-sensing cameras on 12 towers use AI to spot elephants approaching the line and alert forest and railway staff. The system was officially switched on in February 2024. In July 2026 the state's top forest official, Supriya Sahu, said it had seen 9,481 safe elephant crossings, with trains slowed or stopped 3,821 times and no elephant killed on those tracks in two and a half years.",
+      "why_its_good": "The AI spots elephants in the dark early enough for train drivers to slow down, on a stretch where a local conservationist counts 11 elephants killed by trains since 2008.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "All the results are the Tamil Nadu government's own figures, given by Supriya Sahu in a social media post and reported by DT Next and Down To Earth. There is no independent study.",
+        "The zero deaths claim covers only the monitored stretch near Madukkarai, not the whole line or other railways.",
+        "The figure of 11 earlier deaths comes from a conservation activist, S Guruvayurappan, quoted by Down To Earth.",
+        "People still do the work: forest staff and control room workers act on the alerts."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 23,
+      "sources": [
+        "https://www.downtoearth.org.in/wildlife-biodiversity/ai-enabled-system-successful-in-preventing-elephant-train-collisions-on-kerala-tamil-nadu-border",
+        "https://www.dtnext.in/news/tamilnadu/ai-powered-elephant-alert-system-enables-9481-safe-crossings-records-zero-train-track-deaths"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "tiger-alert-cameras-kanha-pench",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI cameras in central India send a tiger alert to rangers' phones in about 30 seconds",
+      "what_happened": "Researchers put 12 small AI cameras in the forest corridor between the Kanha and Pench tiger reserves in Madhya Pradesh, India, for a two month trial. The cameras recognise tigers and people on the spot and send the picture to rangers' phones about 30 seconds after the animal walks past. Rangers pass sightings near villages on to residents by WhatsApp or Telegram, and a second trial in Dudhwa tiger reserve led to four poachers being arrested.",
+      "why_its_good": "The AI inside the camera sorts tigers and poachers from everything else and sends only those pictures, so villagers get a warning while the tiger is still nearby and rangers do not wade through thousands of empty photos.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "This was a two month trial with 12 cameras, not a permanent system.",
+        "The study shows the alerts work. It does not show that attacks on people or livestock went down.",
+        "The four arrests in Dudhwa and the 98.8% accuracy figure are as reported by CNN; I did not see them in the paper's summary.",
+        "The camera was built by the US non-profit Resolve, whose staff are among the paper's authors."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 21,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC10580963&resultType=core&format=json",
+        "https://abc17news.com/news/national-world/cnn-world/2023/12/14/in-india-ai-enabled-cameras-are-sending-out-tiger-alerts-in-real-time/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-maps-hidden-fishing-fleets",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI and satellites show that three quarters of the world's big fishing boats were not on public maps",
+      "what_happened": "A team led by the non-profit Global Fishing Watch used AI to search five years of satellite pictures of the world's coastal waters, from 2017 to 2021, for ships. They found that between 72% and 76% of industrial fishing vessels do not show up in public tracking systems, with much of that fishing around South Asia, Southeast Asia and Africa. The study was published in the journal Nature.",
+      "why_its_good": "AI did the looking across far more satellite pictures than a team of people can get through, giving governments and researchers their first full picture of where industrial fishing really happens.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Not being on public tracking is not the same as fishing illegally. Many boats are not required to broadcast their position.",
+        "This is a map of the problem, not a fix. The paper does not report any change in fishing as a result.",
+        "The figure is a range, 72% to 76%, and covers coastal waters, not every part of the ocean."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 12,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41586-023-06825-8&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "koala-spotting-drones-queensland",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Drones and AI find koalas hidden in the treetops in Queensland",
+      "what_happened": "Researchers at Queensland University of Technology flew drones with heat-sensing cameras over bushland at Petrie, Queensland, and used AI to pick out koalas by their body heat. They checked the results against koalas wearing radio collars, whose positions were known. The AI found between 68% and 100% of the koalas, with smaller errors than people checking the same footage by eye.",
+      "why_its_good": "Koalas are very hard to see from the ground, and the AI picks their heat out of drone footage automatically, giving wildlife managers a more reliable and less intrusive way to count them.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One study site, with radio-collared koalas used as the answer key.",
+        "The AI also raised false alarms: only 43% to 71% of the things it flagged were koalas.",
+        "The paper says manual checking of the same footage took a similar amount of time, so do not claim it is faster.",
+        "Later use of the method after bushfires was mentioned in news reports I did not open, so leave it out."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 16,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Automated%20detection%20of%20koalas%20using%20low-level%20aerial%20surveillance%20and%20machine%20learning%22&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "paws-rangers-find-snares-cambodia",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI tells rangers in Cambodia where to patrol, and they pull out 1,000 snares in a month",
+      "what_happened": "In December 2018 rangers in Srepok Wildlife Sanctuary in Cambodia began testing PAWS, AI software from a Harvard-led research group that learns from past poaching records and suggests where to patrol. In the first month, rangers on the suggested patrols found and removed 1,000 snares, more than double the number before. They also seized 42 chainsaws, 24 motorbikes and a truck.",
+      "why_its_good": "The AI learns where poachers are likely to set traps and points a small ranger team to the right patches of a huge forest, in a place picked as a home for returning tigers.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The figures come from the research team's own page at Harvard, which gives no exact number for the months before.",
+        "It was a one month field test, not proof that poaching has fallen for good.",
+        "The fuller write-up is a computing conference paper (ICDE 2020), not a journal article.",
+        "Srepok is described as the best site for bringing tigers back to the region. Tigers are not there yet."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_a_trial",
+      "technology": "forecasting",
+      "total": 18,
+      "sources": [
+        "https://teamcore.seas.harvard.edu/research-paws-protection-assistant-wildlife-security"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-hurricane-model-best-of-2025-season",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "An AI model gave the most accurate hurricane forecasts of the 2025 Atlantic season",
+      "what_happened": "Google DeepMind's AI hurricane model was the most accurate forecast model of the 2025 Atlantic season for both where storms went and how strong they got, according to an analysis by James Franklin, a former branch chief at the US National Hurricane Center. The centre's forecasters cited it in many of their public forecast discussions, especially for Hurricane Melissa. About a week before Melissa hit Jamaica as a Category 5 storm in late October, when other models disagreed, the AI model correctly predicted both its path and its strength.",
+      "why_its_good": "Earlier AI weather models were poor at judging a hurricane's strength, and this one got both path and strength right, giving forecasters better guidance to warn people in a storm's way.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Melissa was the strongest storm ever to hit Jamaica and killed dozens of people. This is a story about a better warning, not a happy ending.",
+        "One season only, and the ranking is James Franklin's analysis as reported by NPR, not an official National Hurricane Center verification report.",
+        "Human forecasters still write the official forecast. NPR's experts say AI will not replace physics-based models or forecasters' judgement.",
+        "Do not say the AI saved lives or was the reason people evacuated. The source does not say that.",
+        "The model is Google's, built with National Hurricane Center and Colorado State University scientists. The independent source here is NPR."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "technology": "forecasting",
+      "total": 23,
+      "sources": [
+        "https://www.wfae.org/united-states-world/2025-11-29/as-the-2025-atlantic-hurricane-season-ends-the-future-of-forecasting-is-ai"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "great-grevys-rally-zebra-photo-census",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Volunteers' photos and stripe-reading software give Kenya its first precise count of a rare zebra",
+      "what_happened": "Over two days in January 2016, more than 350 volunteers drove across northern Kenya photographing every Grevy's zebra they saw, taking over 40,000 pictures. Image recognition software called IBEIS read each animal's stripes like a barcode and picked out 1,942 individual zebras. From that, scientists put Kenya's total at about 2,350, and the Kenya Wildlife Service accepted the result as the official count.",
+      "why_its_good": "The software recognised individual zebras by their stripes across tens of thousands of photos, a job too big to do by eye, so Kenya knows how many of these endangered animals it has without catching or tagging any.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The organisers' report calls IBEIS computer vision software and does not use the words artificial intelligence. Describe it as image recognition.",
+        "About 2,350 is an estimate worked out from the 1,942 zebras the software identified, not a head count.",
+        "The count is the organisers' own report, not a journal paper. Its acceptance as the official figure is stated by the Grevy's Zebra Trust.",
+        "The rally was repeated in 2018 and 2020, but I did not confirm the later totals, so do not quote them."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 20,
+      "sources": [
+        "https://www.grevyszebratrust.org/wp-content/uploads/2023/05/Great-Grevys-Rally-2016-Report-FINAL.pdf",
+        "https://www.grevyszebratrust.org/great-grevys-rally/",
+        "https://paw.princeton.edu/article/ecology-and-evolutionary-biology-counting-stripes"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "salmon-vision-first-nations-weirs",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI counts salmon swimming past First Nations fish fences in British Columbia",
+      "what_happened": "On the Kitwanga, Bear and Koeye rivers in British Columbia, First Nations fisheries teams and the Wild Salmon Center put underwater video cameras at traditional fish-counting fences and trained an AI called Salmon Vision to recognise and count the fish going past. In a pilot published in Frontiers in Marine Science, it was more than 90% accurate for coho salmon and more than 80% for sockeye, and it tracks 12 kinds of fish.",
+      "why_its_good": "Salmon numbers are usually not known until the season is over, and the AI counts the fish as they pass, so the Nations who look after these rivers get the numbers while there is still time to act on them.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "This is a pilot on a few rivers. Real-time counts for partners were a goal for 2024, not something the source says has happened.",
+        "Accuracy differs by species: over 90% for coho, over 80% for sockeye.",
+        "I confirmed the details on the Wild Salmon Center's own page, which is one of the project partners. I did not open the journal paper itself.",
+        "The partners named are the Gitanyow Fisheries Authority, Skeena Fisheries Commission, Heiltsuk Nation and Pacific Salmon Foundation. Do not credit the AI alone."
+      ],
+      "topic": "climate_and_nature",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://wildsalmoncenter.org/2023/10/18/artificial-intelligence-meet-indigenous-fishing-technology/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "exominer-301-exoplanets",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "NASA's ExoMiner AI adds 301 planets to the list of known worlds",
+      "what_happened": "A NASA team built an AI called ExoMiner and set it to work on a pile of possible planets spotted by the Kepler space telescope that nobody had been able to confirm. Running on NASA's Pleiades supercomputer, it validated 301 of them as real planets, adding them to the 4,569 already on the list. The results were published in The Astrophysical Journal.",
+      "why_its_good": "ExoMiner learned from earlier confirmed planets and false alarms how to tell a real planet from an impostor, and it cleared a backlog that human experts had not been able to get through.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "These planets were 'validated', meaning shown by statistics to be very likely real, which NASA treats as different from 'confirmed' by several kinds of observation.",
+        "Kepler had already detected all 301 as candidates. The AI did not find new signals.",
+        "NASA says none of the 301 is thought to be Earth-like or in the zone where liquid water is possible."
+      ],
+      "topic": "space",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 12,
+      "sources": [
+        "https://www.jpl.nasa.gov/news/new-deep-learning-method-adds-301-planets-to-keplers-total-count"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "curiosity-picks-its-own-laser-targets",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "NASA's Curiosity rover picks its own rocks to zap with a laser on Mars",
+      "what_happened": "Since 2016, NASA's Curiosity rover on Mars has used software called AEGIS to look at its own photos after a drive, choose a rock that matches what scientists are after, and fire its laser at it to read what the rock is made of. NASA said it was the first time any robot on another planet had been able to choose targets for this kind of instrument by itself. By mid 2016 the rover was doing this several times most weeks.",
+      "why_its_good": "Signals to Mars take time and the science team is not always available, so the rover's own image analysis lets it keep doing useful science instead of sitting idle.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "NASA's release calls AEGIS autonomous software that analyses images against criteria scientists set. It does not use the term AI on that page, so describe it as the rover's own image-reading software.",
+        "Scientists still choose most laser targets. NASA says AEGIS adds to their choices and does not replace them.",
+        "The usage figures are from July 2016. I did not check how often it is used today.",
+        "An earlier version ran on the Opportunity rover for a different instrument, so the 'first' is for this kind of instrument."
+      ],
+      "topic": "space",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://www.jpl.nasa.gov/news/nasa-mars-rover-can-choose-laser-targets-on-its-own"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "btsbot-first-fully-automatic-supernova",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "An AI finds, confirms and announces an exploding star with no human involved",
+      "what_happened": "In October 2023 an AI tool called BTSbot, built by a team led from Northwestern University, picked out a possible exploding star in pictures from a robotic telescope at Palomar Observatory in California. It asked a second robotic telescope for a closer look, the result was classified automatically as a supernova, and the discovery was shared with astronomers worldwide two days later. Northwestern says it was the first time the whole process happened without a person. The method has since been published in The Astrophysical Journal.",
+      "why_its_good": "People on the team had spent about 2,200 hours over six years checking candidates by eye, and the AI now does that sorting so astronomers have more time to study the explosions.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The supernova itself, SN2023tyk, is an ordinary one. The news is that no human was needed, not the star.",
+        "'First ever' is the team's own claim, repeated in their journal paper.",
+        "BTSbot does the spotting. A separate automatic tool, SNIascore, did the classifying.",
+        "Search results suggested human scanners also saw the same object. Do not say the AI found something people missed.",
+        "The 2,200 hours figure is Northwestern's estimate."
+      ],
+      "topic": "space",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://news.northwestern.edu/stories/2023/10/first-supernova-detected-confirmed-classified-and-shared-by-ai/",
+        "https://par.nsf.gov/biblio/10578341"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "drone-and-ai-find-meteorite-nullarbor",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A drone and AI find a freshly fallen meteorite in the Australian outback",
+      "what_happened": "After cameras recorded a fireball over Western Australia on 1 April 2021, a Curtin University team led by PhD student Seamus Anderson worked out roughly where the rock had landed on the Nullarbor Plain. They flew a drone over about five square kilometres at Kybo Station, and an AI trained on photos of earlier meteorites flagged likely rocks in the pictures. On the fourth day they picked up a 70 gram meteorite within 50 metres of the predicted line, which the team says is the first found this way.",
+      "why_its_good": "Meteorite hunts usually mean lines of people walking the ground for days, and the team says the drone and AI search needs about a tenth of the labour and time.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "People still checked the AI's picks and threw out false alarms before walking to the rock.",
+        "'First' is the authors' own claim, made in their paper in The Astrophysical Journal Letters.",
+        "The 'one tenth of the labour and time' figure is the team's estimate in Curtin's release, not a measured comparison.",
+        "This was one successful search, not yet a routine method."
+      ],
+      "topic": "space",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 19,
+      "sources": [
+        "https://iopscience.iop.org/article/10.3847/2041-8213/ac66d4",
+        "https://arxiv.org/abs/2203.01466",
+        "https://www.curtin.edu.au/news/media-release/drones-and-artificial-intelligence-aid-hunt-for-fallen-meteorite-in-outback-wa/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-steadies-ligo-mirrors",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI steadies the mirrors of a machine that listens for colliding black holes",
+      "what_happened": "LIGO detects ripples in space from colliding black holes by measuring tiny movements of its mirrors, and unwanted shaking of those mirrors drowns out the faintest signals. Researchers from Caltech, the Gran Sasso Science Institute in Italy and Google DeepMind built an AI method that steadies the mirrors, and tested it on LIGO itself. It cut the unwanted motion 30 to 100 times better than the usual methods alone, in a study published in the journal Science.",
+      "why_its_good": "The AI learned a better way to hold the mirrors still than engineers had found by hand, which Caltech's scientists say opens the door to detecting bigger black holes.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The authors call it a proof of concept. The test on the real detector lasted one hour.",
+        "It is not yet in everyday use and has not yet led to any new detection.",
+        "DeepMind is a company. The independent source is Caltech's own LIGO page and the paper in Science.",
+        "The test site (Livingston, Louisiana) appeared only in a search summary of DeepMind's blog, which I did not open, so leave the site unnamed."
+      ],
+      "topic": "space",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 13,
+      "sources": [
+        "https://www.ligo.caltech.edu/news/ligo20250908"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "satellite-ai-skips-the-clouds",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A small satellite uses AI to look ahead and skip photos that would only show cloud",
+      "what_happened": "In July 2025 NASA's Jet Propulsion Laboratory tested AI on a briefcase-sized satellite called CogniSAT-6, built by the British company Open Cosmos. The satellite tilts to look about 500 kilometres ahead along its path, the AI on board decides whether the view is cloudy or clear, and it takes a picture of the ground only when it is clear. The whole decision takes 60 to 90 seconds with no human involved, and NASA says the cloud-dodging ability is now proven.",
+      "why_its_good": "Clouds block the view for satellites like this up to two thirds of the time, and the onboard AI saves the effort for clear shots, so scientists get far more usable pictures of Earth.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "This was a flight test, not routine use on a science mission, which NASA says is the end goal.",
+        "Spotting wildfires, storms and eruptions from orbit are planned next tests, not results.",
+        "The 'up to two thirds' cloud figure and the claim of success are NASA's own."
+      ],
+      "topic": "space",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 14,
+      "sources": [
+        "https://www.nasa.gov/missions/earth/how-nasa-is-testing-ai-to-make-earth-observing-satellites-smarter/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-finds-109000-new-moon-craters",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI finds more than 109,000 craters on the Moon that nobody had catalogued",
+      "what_happened": "Researchers led from Jilin University in China taught an AI what craters look like using about 7,900 already known ones, then ran it over maps of the Moon made by China's Chang'e-1 and Chang'e-2 orbiters. It found 109,956 new craters, more than a dozen times the number it started from, and the team worked out the rough age of nearly 19,000 of the larger ones. The results were published in Nature Communications.",
+      "why_its_good": "Counting craters by eye is slow and experts disagree, and the AI did it across the Moon's middle and lower latitudes, giving scientists a much fuller record of what has hit the Moon and when.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The new catalogue covers the Moon's mid and low latitudes, not the poles.",
+        "'New' means not in the existing catalogue the team started from. The craters are old.",
+        "Ages were estimated only for 18,996 craters wider than 8 km."
+      ],
+      "topic": "space",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 14,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC7755906&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-finds-72-missed-radio-bursts",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI finds 72 mysterious radio flashes from deep space that astronomers had missed",
+      "what_happened": "Fast radio bursts are split-second flashes of radio waves from distant galaxies, and nobody is sure what makes them. Astronomers had already found 21 bursts in five hours of recordings of one source, about 3 billion light years away, made with the Green Bank Telescope in West Virginia. Gerry Zhang, a PhD student at the University of California, Berkeley, trained an AI on those and ran it over the same recordings, and it found 72 more.",
+      "why_its_good": "The AI caught faint flashes that the standard search had missed in data that had already been combed, giving astronomers 93 bursts from one source to study instead of 21.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The 72 bursts were found in existing recordings from 26 August 2017, not in new observations.",
+        "The work was done within Breakthrough Listen, a project that searches for signs of intelligent life. Nothing here suggests aliens.",
+        "The finding does not explain what causes the bursts."
+      ],
+      "topic": "space",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 12,
+      "sources": [
+        "https://greenbankobservatory.org/press-release/artificial-intelligence-uncovers-72-new-fast-radio-bursts-in-gbts-breakthrough-listen-data/",
+        "https://arxiv.org/abs/1809.03043"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "blind-classroom-malawi",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A talking AI classroom helps blind pupils in Malawi study on their own",
+      "what_happened": "Staff Nyoni, a young Malawian who studied ICT, built Blind Classroom, an AI learning system that reads lessons aloud, asks questions and lets pupils answer by voice. It is being piloted at Chilanga School for the Blind and St Joseph Resource Centre in central Malawi, with backing from Save the Children. Yankho Maganga, 14, who used to rely on Braille and a teacher's help, says she is now among the top performers in her class.",
+      "why_its_good": "The AI turns written lessons into spoken ones a blind pupil can replay and answer by voice, so children at the two pilot schools can study without waiting for a teacher or Braille copies.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It is a pilot in two schools; the move to 14 schools is planned, not finished",
+        "Yankho's improved grades are her own account, not a measured study result",
+        "Not all subjects are loaded into the system yet",
+        "The article does not say which AI models it uses"
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "voice",
+      "total": 18,
+      "sources": [
+        "https://dandc.eu/en/article/malawi-tool-blind%20students"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "keith-thomas-double-neural-bypass",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Brain implants and AI let a paralysed New York man feed himself and feel his sister's hand",
+      "what_happened": "Keith Thomas, from Massapequa in New York, was paralysed from the chest down in a diving accident in 2020. In a trial at the Feinstein Institutes, surgeons put five small sensors in his brain, and AI reads the movements he intends and sends signals to his arm muscles, while sensors on his hand send touch back to his brain. Results published in Nature Medicine in July 2026 report that he now feeds himself, drinks from a cup and feels his sister's hand and his dog's fur.",
+      "why_its_good": "The AI works out what Keith is trying to do from his brain signals and passes it round his injured spine, and that has given one man back the use and feeling of his hand.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One participant only",
+        "The figures (arm strength up 86% and 62%) come from the institute's press release; the journal paper itself was not opened",
+        "It needed a 15-hour brain operation and he is not fully independent",
+        "Do not call it a cure for paralysis"
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 22,
+      "sources": [
+        "https://www.biospace.com/press-releases/feinstein-institutes-technology-that-restores-movement-and-sensation-after-paralysis-featured-in-nature-medicine",
+        "https://popsci.com/science/brain-computer-implant-paralysis-update",
+        "https://time.com/6298543/paralysis-reversal-keith-thomas"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "blind-runner-solo-5k-central-park",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A blind runner completed a 5 km run alone in Central Park, guided by AI on his phone",
+      "what_happened": "Thomas Panek, who is blind and leads the charity Guiding Eyes for the Blind, ran 5 km on his own in New York's Central Park in November 2020. A phone on his waistband used AI to spot a line marked on the path, and sounds in his headphones told him when he drifted left or right. He had needed guide dogs or human guides to run before that.",
+      "why_its_good": "The AI in the phone did the job of a guide by watching the line and steering him with sound, which gave a blind runner the freedom to run alone.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It was a Google research project, not an app the public can download",
+        "It only works where a line has been marked on the ground",
+        "One runner on one prepared course"
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 21,
+      "sources": [
+        "https://www.aljazeera.com/program/newsfeed/2020/11/23/blind-runner-completes-solo-5k-guided-by-ai/",
+        "https://blog.google/outreach-initiatives/accessibility/project-guideline/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-suitcase-guides-blind-visitors-japan",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A suitcase that steers itself guides blind visitors round a museum in Japan",
+      "what_happened": "Chieko Asakawa, a blind IBM Fellow who leads the Miraikan science museum in Japan, came up with the AI Suitcase on a business trip. It looks like ordinary luggage, but it uses sensors and image-recognition AI to spot walls, obstacles and people, and it leads its user to a chosen place while the handle vibrates to signal turns. A regular pilot service began at Miraikan in April 2024, with daily tours, and a large field trial ran at Expo 2025 in Osaka.",
+      "why_its_good": "The AI recognises people and obstacles and plans a safe route, so a blind person can walk through a busy building without a human guide.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It is a pilot service and field trials, not a product on sale",
+        "Miraikan gives no figures for how many people have used it and no results from the Expo trial",
+        "Tours follow set routes inside the museum"
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://www.miraikan.jst.go.jp/en/lab/AIsuitcase/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "terp-360-kenyan-sign-language-avatars",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A Kenyan app turns speech into sign language with lifelike 3D avatars",
+      "what_happened": "Elly Savatia of Kenya built Terp 360, an AI app that turns speech into sign language shown by 3D avatars. His team worked with Kenya's deaf community to record more than 2,300 signs. In October 2025 it won the Royal Academy of Engineering's Africa Prize for Engineering Innovation, worth £50,000, and Kenya's Star newspaper reports that it has reached more than 2,000 deaf users.",
+      "why_its_good": "The AI does the interpreting where there are too few human sign language interpreters, which helps deaf people follow what is said in classrooms and public services.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The figure of more than 2,000 users comes from the company's side and was reported by The Star, not by the Royal Academy",
+        "It translates speech into sign language, not sign language into speech",
+        "No independent test of how accurate the signing is"
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "language model",
+      "total": 20,
+      "sources": [
+        "https://www.raeng.org.uk/news/kenyan-innovator-elly-savatia-named-the-2025-africa-prize-for-engineering-innovation",
+        "https://www.the-star.co.ke/health/2025-10-23-kenyan-creates-first-sign-language-app"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "gert-jan-oskam-walks-with-brain-spine-link",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A paralysed man walks again after AI links his brain to his spine",
+      "what_happened": "Gert-Jan Oskam was paralysed from the hips down in an accident in 2011. Researchers in Lausanne in Switzerland put implants in his skull and spine, and an AI program reads his intention to move from his brain signals and passes it to the nerves in his spine. A study in the journal Nature in May 2023 reported that he stands, walks and climbs stairs with the system, which stayed reliable for over a year, including at home.",
+      "why_its_good": "The AI reads what he means to do and sends it past the injury, so his own thoughts control his legs again.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One participant only",
+        "He walks with a walker or crutches, not unaided",
+        "It took surgery and long physical therapy, and the team says it is probably not suited to restoring arm movement",
+        "Sources differ on the kind of accident, so do not specify it"
+      ],
+      "topic": "accessibility",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 22,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41586-023-06094-5&resultType=core&format=json",
+        "https://www.irishtimes.com/health/your-wellness/2023/06/11/weve-captured-the-thoughts-of-gert-jan-and-translated-these-thoughts-into-a-stimulation-of-the-spinal-cord-to-reestablish-voluntary-movement"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "jennifer-wexton-ai-voice-in-congress",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A US congresswoman who lost her voice to illness spoke in Congress in her own voice, rebuilt by AI",
+      "what_happened": "Jennifer Wexton, a member of the US House of Representatives from Virginia, has progressive supranuclear palsy, a rare brain disease that took away her speech. Her office sent more than an hour of her old speeches to the company ElevenLabs, which built an AI copy of her voice within a few days. On 25 July 2024 she used it to address the House, which NPR reported was the first time an AI-cloned voice had been used on the House floor.",
+      "why_its_good": "The AI rebuilt her own voice from old recordings, so she kept doing her job and sounded like herself instead of a robotic text reader.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The voice is a recreation from old recordings and she types what it says",
+        "The illness itself is not treated",
+        "NPR says it was a first for the House floor, not for any parliament anywhere",
+        "Similar in kind to other voice-clone stories already in the bank, so space them apart"
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "voice",
+      "total": 22,
+      "sources": [
+        "https://www.kunc.org/npr-news/2024-07-25/a-neurological-disease-stole-rep-jennifer-wextons-voice-ai-helped-her-get-it-back"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "speech-recognition-learns-parkinsons-voices",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Speech recognition got much better at understanding people with Parkinson's after they taught it themselves",
+      "what_happened": "Researchers at the University of Illinois Urbana-Champaign recruited about 250 adults whose speech is affected by Parkinson's disease, who recorded themselves on their own phones and computers. A speech recogniser trained on 151 hours of those recordings got about 24 in every 100 words wrong on new speakers with Parkinson's, compared with about 36 in 100 for a system trained without them. The study was published in the Journal of Speech, Language, and Hearing Research and the recordings are shared with researchers, charities and companies.",
+      "why_its_good": "Once the AI had heard enough speech from people with Parkinson's it made far fewer mistakes with them, which matters to people who rely on voice controls and dictation.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It is a study result; it does not mean everyday voice assistants already work this well",
+        "About a quarter of words were still wrong",
+        "The exact error rates are 23.69% and 36.3%; the university rounds the gain to 'about 30% more accurate'"
+      ],
+      "topic": "accessibility",
+      "stage": "in_the_lab",
+      "technology": "voice",
+      "total": 13,
+      "sources": [
+        "https://slcl.illinois.edu/news/2024-10-21t201245/automatic-speech-recognition-learned-understand-people-parkinsons-disease"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "live-transcribe-captions-for-deaf-people",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A deaf scientist helped build a free phone app that captions conversations as they happen",
+      "what_happened": "Dimitri Kanevsky, a Google research scientist who has been deaf since early childhood, worked with engineer Chet Gnegy on Live Transcribe, an Android app that turns speech around the phone into written captions in real time. Staff at Gallaudet University, a university for deaf and hard-of-hearing students, helped design and test it. Google released it in February 2019 with support for more than 70 languages and dialects.",
+      "why_its_good": "AI speech recognition writes out what people are saying as they say it, so a deaf person follows a chat at a counter or a meeting with only a phone.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It is a Google product and the description comes largely from Google; Hearing Tracker's report is the independent source",
+        "Captions contain mistakes, and at launch the app relied on cloud-based speech recognition",
+        "It launched as a limited beta on Android only",
+        "No usage numbers were confirmed"
+      ],
+      "topic": "accessibility",
+      "stage": "helping_people_now",
+      "technology": "voice",
+      "total": 19,
+      "sources": [
+        "https://blog.google/outreach-initiatives/accessibility/making-audio-more-accessible-two-new-apps/",
+        "https://www.hearingtracker.com/news/google-live-transcribe-app"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "togo-novissi-ai-cash-aid",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Togo used AI and phone data to get emergency cash to its poorest people during Covid",
+      "what_happened": "When Covid hit in 2020, Togo launched Novissi, a programme that sent emergency cash to people's mobile phones, but the country had no up-to-date list of who was poorest. Researchers used AI on satellite pictures to find the poorest areas and on phone use records to find the poorest people in them. A study in Nature in 2022 found this left 4 to 21% fewer needy people wrongly missed out than the area-based methods the government was considering.",
+      "why_its_good": "The AI found people in need without a household survey that Togo did not have time for, so more of the money reached the poorest.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The 4 to 21% is against the simpler area-based options, not against an ideal system",
+        "A full, up-to-date social register would have done better than the AI, by 9 to 35%, had one existed",
+        "Do not attribute the whole programme's reach of over half a million people to the AI part",
+        "Researchers say it should not replace traditional methods when there is time and data"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "other",
+      "total": 21,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41586-022-04484-9&resultType=core&format=json",
+        "https://www.povertyactionlab.org/project/using-mobile-phone-and-satellite-data-target-togos-emergency-cash-transfer-program"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "chatgpt-cuts-teachers-planning-time-england",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Teachers in England planned lessons about a third faster with ChatGPT, with no drop in quality",
+      "what_happened": "A trial in England involved 259 science teachers in 68 secondary schools. Half were given ChatGPT and a guide to using it for planning lessons for 11 to 13 year olds, and half were asked not to use AI. The ChatGPT group spent 56 minutes a week on planning instead of 82, a saving of 31%, and an independent panel of teachers saw no noticeable difference in the quality of their materials.",
+      "why_its_good": "The AI drafted quizzes, activity ideas and tailored materials, which gave teachers back about 25 minutes a week without worse lessons.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It covers Year 7 and 8 science planning only",
+        "The quality check used a limited sample of materials",
+        "Teachers were given a guide as well as the tool",
+        "It measured teachers' time, not pupils' results"
+      ],
+      "topic": "everyday_life",
+      "stage": "in_a_trial",
+      "technology": "language model",
+      "total": 15,
+      "sources": [
+        "https://schoolsweek.co.uk/using-chatgpt-can-cut-lesson-planning-by-31-eef-study"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "us-treasury-ai-cheque-fraud",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "The US Treasury used AI to recover $1 billion in cheque fraud in a year",
+      "what_happened": "The US Treasury said in October 2024 that it had started using machine learning AI to spot fraud involving government cheques faster. In the year to September 2024 that work recovered $1 billion. It was part of more than $4 billion in fraud and wrongful payments that the Treasury prevented or recovered that year, up from $652.7 million the year before.",
+      "why_its_good": "The AI flagged suspect cheques quickly enough for the money to be recovered, and that is public money returned to taxpayers.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Only the $1 billion from cheque fraud is tied to AI; the rest of the $4 billion came from other methods",
+        "The figures are the Treasury's own",
+        "The total covers fraud and improper payments, not fraud alone"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "other",
+      "total": 16,
+      "sources": [
+        "https://home.treasury.gov/news/press-releases/jy2650"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "plantvillage-nuru-cassava-disease-app",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A free phone app spots cassava disease better than farmers and farm advisers in East Africa",
+      "what_happened": "PlantVillage Nuru is a free phone app that uses AI to look at a cassava leaf through the camera and say whether the plant has a disease, with advice on what to do. Researchers tested it in Tanzania and western Kenya and published the results in Frontiers in Plant Science in December 2020. The app was right 65% of the time, compared with 40 to 58% for agricultural advisers and 18 to 31% for farmers, and it works without a phone signal.",
+      "why_its_good": "The AI puts an expert eye in a farmer's pocket, even where there is no signal, for a crop that many families depend on.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "65% is well short of trained experts, who scored 81 to 95% in the same study",
+        "It was weak on one disease, cassava brown streak, from a single leaf; checking six leaves gave 74 to 88%",
+        "The study measured diagnosis, not whether harvests improved"
+      ],
+      "topic": "everyday_life",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7775399"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "nigeria-ai-tutor-after-school-trial",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Pupils in Nigeria made big gains in English after six weeks with an AI tutor",
+      "what_happened": "In June and July 2024, secondary school pupils in Edo State in Nigeria took part in a six-week after-school programme where they used an AI chatbot as a tutor, guided by their teachers. Pupils were picked at random to join or not. The World Bank, which ran the trial, reported that those who joined did clearly better in English, AI knowledge and digital skills, and that girls, who started behind, gained the most.",
+      "why_its_good": "The AI gave each pupil a patient tutor to practise with while teachers guided the sessions, in schools where one-to-one help is rare.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The World Bank's 'nearly two years of learning' claim is its own conversion of a 0.3 standard deviation gain; do not present it as two years of schooling delivered",
+        "The comparison group got no extra lessons, so critics note the gain mixes AI with extra teaching time",
+        "Teachers led the sessions; it was not AI alone",
+        "Reported in a World Bank blog and working paper, not yet in a peer-reviewed journal",
+        "Six weeks only, long-term effect unknown"
+      ],
+      "topic": "everyday_life",
+      "stage": "in_a_trial",
+      "technology": "language model",
+      "total": 21,
+      "sources": [
+        "https://blogs.worldbank.org/en/education/From-chalkboards-to-chatbots-Transforming-learning-in-Nigeria"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "japan-ai-lost-property-keio",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A Tokyo railway returned nearly three times as many lost items after AI took over the lost property desk",
+      "what_happened": "Keio, a railway company in Tokyo with 69 stations, gets about 500 enquiries a day about lost property. Since 2023 its staff have photographed each found item, and AI from the Tokyo start-up Find records its colour, shape and size so owners can search by picture and chat in four languages. In Keio's trial the share of items returned to their owners nearly tripled and enquiries by phone and at station counters fell by about a third.",
+      "why_its_good": "The AI describes and matches items from a photo, so a plain umbrella or wallet gets back to its owner and station staff spend about a minute logging it, not ten.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The results come from Keio's trial as reported on the Tokyo government's news site; exact return rates were not confirmed",
+        "The ten minutes to one minute figure is for umbrellas",
+        "33 companies use it; do not say all of Japan"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 23,
+      "sources": [
+        "https://www.tokyoupdates.metro.tokyo.lg.jp/en/post-1641/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "petco-love-lost-ai-reunites-pets",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI photo matching has reunited more than 200,000 lost pets with their owners in the US",
+      "what_happened": "Love Lost is a free US database run by the charity Petco Love, where owners upload a photo of a missing pet and AI compares its face, coat and markings with photos from about 3,000 shelters and from social media. The database says it has reunited more than 200,000 pets and owners since 2021. When Millie, a dog who slipped her collar in Manhattan in 2024, was hit by a car and taken to a vet in New Jersey, the system matched her photo and her owner Michael Bown had her back within about 15 hours.",
+      "why_its_good": "The AI recognises one animal among huge numbers of shelter and social media photos, which gets pets home that paper posters would not have found.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The 200,000 figure is the charity's own count, reported by the Washington Post",
+        "Petco Love is linked to the pet shop chain Petco",
+        "Animal charities say it does not replace microchipping"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 23,
+      "sources": [
+        "https://www.spokesman.com/stories/2026/mar/22/these-people-used-ai-to-help-find-their-lost-pets",
+        "https://www.cbsnews.com/news/ai-lost-pets-petco-love-facial-recognition"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "te-hiku-maori-speech-ai",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A Māori radio station built its own AI that understands the Māori language, using voices from its community",
+      "what_happened": "Te Hiku Media, a Māori broadcaster in the Far North of New Zealand, built AI tools that write down spoken te reo Māori, give feedback on pronunciation and turn text into speech. More than 2,500 people signed up in ten days to read phrases aloud, which gave over 300 hours of recordings, and the data is held under a licence that keeps its use for the benefit of Māori. The tools run a transcription service and help about 20 Māori radio stations search more than 30 years of archive recordings.",
+      "why_its_good": "The AI makes decades of recordings in an endangered language searchable and helps learners with pronunciation, and the community that speaks the language owns it.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The 92% accuracy figure is Te Hiku's own claim and has not been independently tested, so leave it out or attribute it",
+        "Most detail on the data comes from a blog by Nvidia, whose tools Te Hiku used",
+        "No confirmed date for the recording campaign"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "voice",
+      "total": 20,
+      "sources": [
+        "https://www.rnz.co.nz/news/top/531303/why-google-maps-can-t-pronounce-maori-place-names",
+        "https://blogs.nvidia.com/blog/te-hiku-media-maori-speech-ai/"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "brazil-ai-essay-feedback-espirito-santo",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A Brazilian state gave every final-year pupil an AI writing coach after it raised exam scores",
+      "what_happened": "In 2019, about 12,000 final-year pupils in 110 state schools in Espírito Santo in Brazil used Letrus, an AI tool that gives instant feedback on practice essays for the national university entrance exam. A randomised trial across 178 schools found their essay scores rose by about 17 points out of 1,000, which closed about 9% of the gap with private school pupils. In 2022 the state announced it would offer the tool to every final-year pupil in its state schools, and more than 100,000 have been enrolled since 2020.",
+      "why_its_good": "The AI gave each pupil prompt, personal feedback that busy teachers had no time to write, and pupils then wrote more and talked more with their teachers about their essays.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The gain is modest: 17 points in 1,000 and 9% of the gap",
+        "The trial result is in a working paper and a J-PAL case study, not confirmed as peer-reviewed",
+        "Only about half to 60% of enrolled pupils submitted essays in the roll-out years",
+        "Enrolment figures come partly from the company and the state"
+      ],
+      "topic": "everyday_life",
+      "stage": "helping_people_now",
+      "technology": "language model",
+      "total": 19,
+      "sources": [
+        "https://www.povertyactionlab.org/case-study/artificial-intelligence-strengthen-high-school-students-writing-skills"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ithaca-greek-inscriptions",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI helps historians fill the gaps in damaged ancient Greek inscriptions",
+      "what_happened": "Researchers from DeepMind and the universities of Venice, Oxford and Athens built an AI called Ithaca that suggests the missing words in damaged ancient Greek inscriptions, and estimates where and when each one was carved. Working alone, historians restored the test texts correctly 25% of the time. Working with Ithaca, they got 72% right. The results were published in Nature.",
+      "why_its_good": "The AI turned a slow guessing job into a partnership, nearly tripling how often historians restored a damaged text correctly, and it places inscriptions to within 30 years of their accepted dates.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The figures come from tests on inscriptions where the answer was already known, not from new finds.",
+        "Ithaca on its own scored 62% on restoring text, so say it helps historians, not that it replaces them.",
+        "DeepMind is a company: the independent source is the peer-reviewed Nature paper with university co-authors.",
+        "Its re-dating of some Athenian decrees touches a live debate among historians, so do not call it settled."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "language model",
+      "total": 14,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41586-022-04448-z&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "dead-sea-scrolls-ai-dating",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI that studies handwriting suggests many Dead Sea Scrolls are older than thought",
+      "what_happened": "A team led from the University of Groningen in the Netherlands trained an AI called Enoch on the handwriting of 24 Dead Sea Scroll samples whose age had been measured by radiocarbon dating. They then used it to estimate the age of 135 scrolls that had never been dated. Many came out older than scholars had estimated from the handwriting by eye, and the study was published in PLOS One.",
+      "why_its_good": "Only 24 samples had a measured radiocarbon age to learn from. The AI used them to give an age estimate for 135 more scrolls from their handwriting alone.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The model learned from only 24 dated samples and its typical error is about 28 to 31 years.",
+        "Handwriting experts judged about 79% of its estimates realistic, not all of them.",
+        "Press coverage reported that some scroll scholars are not convinced by the earlier dates, so say 'suggests', not 'proves'.",
+        "Do not say the Bible has been re-dated."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 17,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Dating%20ancient%20manuscripts%20using%20radiocarbon%20and%20AI-based%20writing%20style%20analysis%22&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "raphael-joseph-face",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI finds that one face in a Raphael painting was probably painted by someone else",
+      "what_happened": "Researchers from the universities of Bradford, Nottingham and Stanford trained an AI on authenticated paintings by Raphael and pointed it at the Madonna della Rosa, which hangs in the Prado in Madrid. Tested as a whole, the painting gave no clear answer. Tested piece by piece, most of it came out as Raphael's work, but the face of Joseph most likely did not. The study was published in the journal Heritage Science.",
+      "why_its_good": "The AI gave art experts a new kind of evidence about who painted what, and it pointed to one specific face in a famous picture.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The researchers say the result is not enough on its own to decide who painted what. It is one tool to help experts.",
+        "The 98% accuracy figure is the team's own test result for the model.",
+        "Giulio Romano is only suggested as a possible painter of Joseph's face.",
+        "Some art historians were dismissive of the work in press coverage, and the Prado has not changed its attribution as far as we found.",
+        "The journal page could not be opened directly: facts were confirmed on the University of Nottingham's own news page."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 17,
+      "sources": [
+        "https://www.nottingham.ac.uk/news/madonna-della-rosa"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "night-watch-missing-edges",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI repaints the edges of Rembrandt's Night Watch that were cut off 300 years ago",
+      "what_happened": "In 1715 Rembrandt's Night Watch was trimmed on all four sides to fit a wall in Amsterdam's City Hall, and the strips were never found. In June 2021 the Rijksmuseum in Amsterdam showed the painting complete for the first time in 300 years. Its scientists had taught an AI Rembrandt's technique and colours, then had it recreate the missing parts from a small copy made in the 17th century. The new pieces were printed and hung around the original.",
+      "why_its_good": "The AI turned another painter's small copy into Rembrandt's own style at full size, so visitors saw the picture as he composed it, including 64 centimetres on the left that had been lost.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The added pieces are printed reconstructions placed around the painting, not recovered Rembrandt paint.",
+        "The display was temporary, for some months in 2021, and the museum said it would not add the pieces in the real restoration.",
+        "The reconstruction rests on a 17th-century copy attributed to Gerrit Lundens."
+      ],
+      "topic": "science",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 21,
+      "sources": [
+        "https://www.rijksmuseum.nl/en/press/press-releases/for-the-first-time-in-300-years-the-night-watch-is-complete-again"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "lope-de-vega-lost-play",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI spots an unknown play by Lope de Vega among anonymous manuscripts in Spain's National Library",
+      "what_happened": "Researchers from the universities of Valladolid and Vienna used AI to transcribe about 1,300 plays from Spain's Golden Age, then compared the wording of each with known authors. One anonymous manuscript in the National Library of Spain, La francesa Laura, matched Lope de Vega, one of Spain's greatest playwrights. The researchers then checked it by traditional methods, including its verse, and the library announced the find in early 2023.",
+      "why_its_good": "The play had sat in the library's catalogue since 1882 with no author. AI read the handwriting in hours and picked it out from the pile, which let scholars focus their checking on the right manuscript.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The attribution rests on writing style, checked by scholars. No document names Lope as the author.",
+        "Say 'attributed to', and that the play dates from the last years before his death in 1635.",
+        "The National Library's own announcement could not be opened: facts were confirmed on University of Valladolid and University of Innsbruck pages and in news reports."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 17,
+      "sources": [
+        "https://bibliotecahistorica.blogs.uva.es/2023/02/23/el-nuevo-hallazgo-de-lope-de-vega/",
+        "https://www.uibk.ac.at/de/newsroom/2023/ki-entdeckt-bisher-unbekannte-komodie/",
+        "https://www.eldebate.com/cultura/20230131/inteligencia-artificial-descubre-autor-obra-anonima-fondos-biblioteca-nacional-lope-vega_90151_amp.html",
+        "https://www.thestar.com.my/lifestyle/culture/2023/02/02/ai-uncovers-unknown-play-by-spanish-great-in-library-archive"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "henry-viii-shakespeare-fletcher",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "Machine learning backs the old theory that Shakespeare shared the writing of Henry VIII",
+      "what_happened": "Petr Plecháč of the Czech Academy of Sciences trained a machine learning model on the favourite words and verse rhythms of Shakespeare and of a second playwright named Fletcher. He ran it across the play Henry VIII passage by passage, ignoring scene breaks. The result strongly supported the split between the two writers that a scholar named James Spedding had proposed long before, and the study was published in Digital Scholarship in the Humanities.",
+      "why_its_good": "Scholars had argued over who wrote which parts of the play using their own ear for style. The AI measured word habits and rhythm across the whole text and came to the same division independently.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "It supports an existing theory. It did not discover the collaboration.",
+        "The paper's summary does not give a percentage for each writer, so do not say 'half'.",
+        "This is statistical evidence about style, not a document proving who wrote what."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 14,
+      "sources": [
+        "https://academic.oup.com/dsh/article/36/2/430/5880040"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "babylon-hymn-pieced-together",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI helps piece together a lost hymn in praise of Babylon",
+      "what_happened": "Enrique Jiménez of LMU Munich, working with the University of Baghdad, rediscovered a hymn in praise of the ancient city of Babylon, written around 1000 BCE and about 250 lines long. His team is digitising clay tablet fragments from around the world and uses AI to find pieces that belong to the same text. The AI turned up 30 more manuscripts of the hymn, which let the scholars fill in the missing parts. The work was published in the journal Iraq.",
+      "why_its_good": "Matching scattered fragments by hand would have taken decades, the lead researcher said. With AI the team recovered a poem describing Babylon's buildings, the Euphrates bringing spring to the fields, and the city's priestesses.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "'Would have taken decades' is the researcher's own estimate.",
+        "The AI matched fragments. Scholars did the reading and translation.",
+        "Facts come from LMU's own news page describing the peer-reviewed paper (DOI 10.1017/irq.2024.23), which was not opened directly."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 16,
+      "sources": [
+        "https://www.lmu.de/en/newsroom/news-overview/news/hymn-to-babylon-discovered.html"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "pig-grunts-emotions",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI learns to tell a happy pig from an unhappy one by its grunts",
+      "what_happened": "A team of European researchers, including scientists at the University of Copenhagen and ETH Zurich, recorded 7,414 calls from 411 pigs in situations from birth to slaughter. They trained an AI to tell from the sound alone whether the pig was in a good or bad situation, and it got it right 91.5% of the time. The study was published in Scientific Reports.",
+      "why_its_good": "A standard statistical method managed only about 62% on the same recordings. The authors say the result shows an automated system for checking pig welfare on farms can be built.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Nothing is in use on farms yet. This is a study on recorded calls.",
+        "The AI sorts calls into positive or negative situations as defined by the researchers. It does not read a pig's mind.",
+        "Its accuracy at naming the exact situation was lower, at 81.5%."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "voice",
+      "total": 15,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Classification%20of%20pig%20calls%20produced%20from%20birth%20to%20slaughter%22&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "fusion-plasma-ai-control",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI learns to hold and shape the super-hot gas inside a Swiss fusion machine",
+      "what_happened": "Scientists at EPFL's Swiss Plasma Center in Lausanne and DeepMind trained an AI in a simulator to control the magnets of a fusion machine called TCV. They then let it run the real machine, where it held plasma, a gas heated to hundreds of millions of degrees, in a range of shapes. It also kept two separate plasmas going in the machine at the same time. The results were published in Nature.",
+      "why_its_good": "One AI system learned to work the magnets for many different plasma shapes. The paper says this reduces the design effort needed each time scientists want a new one.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "This is a research machine that makes no electricity. Do not suggest fusion power is close.",
+        "DeepMind is a company: the independent sources are the Nature paper and EPFL."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "other",
+      "total": 14,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Magnetic%20control%20of%20tokamak%20plasmas%20through%20deep%20reinforcement%20learning%22&resultType=core&format=json",
+        "https://actu.epfl.ch/news/epfl-and-deepmind-use-ai-to-control-plasmas-for-nu"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "dinosaur-footprint-ai",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI trained on 2,000 fossil footprints helps work out which dinosaur made them",
+      "what_happened": "Researchers led by the Helmholtz-Zentrum Berlin, working with the University of Edinburgh, trained an AI on nearly 2,000 fossil footprints. It agreed with human experts about 90% of the time on what kind of dinosaur made a track, including ones experts argue over. It also found that some tracks more than 200 million years old share features with the feet of birds. The study was published in PNAS, and an app called DinoTracker lets anyone upload a photo or sketch of a footprint for analysis.",
+      "why_its_good": "Fossil footprints are common but hard to read, and experts often disagree. The AI gives a consistent second opinion and puts a tool once limited to specialists in the hands of anyone who finds a track.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The bird-like tracks have two explanations in the source: birds began much earlier than thought, or some early dinosaurs simply had bird-like feet. Do not pick one.",
+        "'About 90%' is agreement with experts, who can themselves be wrong.",
+        "The source does not say whether the app is free."
+      ],
+      "topic": "science",
+      "stage": "in_the_lab",
+      "technology": "vision",
+      "total": 17,
+      "sources": [
+        "https://www.ed.ac.uk/news/ai-sheds-light-on-mysterious-dinosaur-footprints"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "taiwan-ecg-alert-fewer-deaths",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI heart-trace alerts cut deaths among hospital patients in a Taiwan trial",
+      "what_happened": "Doctors at Tri-Service General Hospital in Taipei ran a trial with 39 physicians and 15,965 patients. An AI read each patient's routine heart trace and sent the doctor a warning when it judged the patient at high risk of dying. Within 90 days, 3.6% of patients whose doctors got the alerts had died, against 4.3% of those whose doctors did not. The trial was published in Nature Medicine.",
+      "why_its_good": "The AI picked out the patients in most danger from a routine heart trace and warned their doctors. Fewer of those doctors' patients died, in a randomised trial.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "One hospital system in Taiwan. It has not yet been repeated elsewhere as far as we found.",
+        "The gain was concentrated in patients the AI flagged as high risk.",
+        "The authors say exactly how the alerts led to fewer deaths still needs explaining.",
+        "Say 3.6% against 4.3%, not 'slashed' or 'halved'."
+      ],
+      "topic": "health",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 21,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41591-024-02961-4&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "mayo-ecg-weak-heart-pump",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI reading routine heart traces helps family doctors catch weak hearts earlier",
+      "what_happened": "Mayo Clinic ran a trial across 45 clinics and hospitals in Minnesota and Wisconsin with 22,641 adults who were having a routine heart trace. For half of the care teams, an AI read the trace and told the doctor when it saw signs of a weak heart pump. Doctors who got the AI result found more new cases, 2.1% of patients against 1.6%. The trial was published in Nature Medicine.",
+      "why_its_good": "The AI found a hidden warning in a test patients were already having, so more people with a weak heart were diagnosed, with no significant rise in follow-up heart scans overall.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The rise is from 1.6% to 2.1% of patients: real but modest.",
+        "The trial measured new diagnoses, not whether patients lived longer."
+      ],
+      "topic": "health",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 15,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41591-021-01335-4&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "pregnancy-ultrasound-novices-zambia",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "With an AI handheld scanner, beginners date pregnancies as well as trained sonographers",
+      "what_happened": "Researchers from the University of North Carolina and the University of Zambia tested a handheld ultrasound probe with built-in AI on 400 pregnant people in Lusaka, Zambia, and Chapel Hill in the United States. People with no training in ultrasound swept the probe across the belly and the AI estimated how far along the pregnancy was. Their estimates were off by 3.2 days on average, against 3.0 days for trained sonographers. The study was published in JAMA.",
+      "why_its_good": "The AI did the skilled part of the scan, so someone with no ultrasound training got an answer within a fraction of a day of a trained sonographer's.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "This was a study at two sites, not routine use.",
+        "The main test covered scans between 14 and 27 weeks of pregnancy.",
+        "It estimates how far along a pregnancy is. It does not check the baby's health.",
+        "The pregnancies studied were single babies with no known problems."
+      ],
+      "topic": "health",
+      "stage": "in_a_trial",
+      "technology": "vision",
+      "total": 21,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=AUTH:%22Stringer%20JSA%22%20AND%20TITLE:%22gestational%20age%22%20AND%20JOURNAL:%22JAMA%22%20AND%20PUB_YEAR:2024&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "ai-designed-lung-drug-trial",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "A drug found with AI improves breathing in a lung disease trial in China",
+      "what_happened": "Rentosertib is a drug for idiopathic pulmonary fibrosis, a disease that scars the lungs. The company Insilico Medicine found it using generative AI. In a trial of 71 patients run from Peking Union Medical College Hospital with other Chinese hospitals, people on the highest dose for 12 weeks gained 98 millilitres of breathing capacity on average, while those on a dummy pill lost 20. The trial was published in Nature Medicine.",
+      "why_its_good": "A medicine that began with an AI system has now been tested against a dummy pill in patients, and the top-dose group's breathing improved while the dummy pill group's got worse.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "Small, early trial: 71 patients over 12 weeks, mainly testing safety.",
+        "The breathing gain is in the top-dose group of 18 people and needs a larger trial to confirm.",
+        "Most patients in every group, including the dummy pill group, reported side effects, and some stopped because of liver problems or diarrhoea.",
+        "The drug is not approved anywhere.",
+        "Insilico is a company: the independent source is the peer-reviewed paper with hospital investigators."
+      ],
+      "topic": "health",
+      "stage": "in_a_trial",
+      "technology": "other",
+      "total": 16,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22A%20generative%20AI-discovered%20TNIK%20inhibitor%20for%20idiopathic%20pulmonary%20fibrosis%22&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "tb-xray-ai-who",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "AI that reads chest X-rays for tuberculosis is now backed by the World Health Organization",
+      "what_happened": "Since 2021 the World Health Organization has recommended software that reads chest X-rays to screen people aged 15 and over for tuberculosis, and in June 2025 it said six products met its standards. In a study of 23,954 people at three screening centres in Dhaka, Bangladesh, five AI programs were compared with three radiologists, and all five did significantly better. Anyone the software flags still gets a confirming test before treatment.",
+      "why_its_good": "WHO calls screening with chest X-rays and this software essential for finding tuberculosis cases that are being missed. In the Dhaka study the AI halved the number of confirming tests needed while still catching more than 90% of cases.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The AI screens. It does not diagnose: a positive result needs a confirming test.",
+        "WHO does not recommend it for children under 15.",
+        "The Dhaka study tested the programs on X-rays taken between 2014 and 2016, not in live use.",
+        "The WHO page does not name the countries using it, so do not name any."
+      ],
+      "topic": "health",
+      "stage": "helping_people_now",
+      "technology": "vision",
+      "total": 18,
+      "sources": [
+        "https://www.who.int/news/item/11-06-2025-who-approves-six-software-products-for-computer-aided-detection-of-tb-on-chest-x-ray",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Tuberculosis%20detection%20from%20chest%20x-rays%20for%20triaging%20in%20a%20high%20tuberculosis-burden%20setting%22&resultType=core&format=json"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
+    },
+    {
+      "id": "baricitinib-covid-ai-suggestion",
+      "added": null,
+      "lane": "good",
+      "from": "evergreen",
+      "headline": "An arthritis pill that an AI search flagged for Covid in February 2020 went on to save lives",
+      "what_happened": "In February 2020 scientists at the London company BenevolentAI, with a doctor from Imperial College London, searched the company's store of medical knowledge, which is built using machine learning, for approved drugs to try against the new coronavirus. They named baricitinib, an arthritis pill, in a letter in The Lancet. In the RECOVERY trial of 8,156 hospital patients, 12% of those given baricitinib died within 28 days against 14% given usual care. In January 2022 the World Health Organization strongly recommended it for severe Covid.",
+      "why_its_good": "The AI-built search pointed to a pill that was already approved for other uses, in the first weeks of the outbreak, so there was a candidate ready for trials.",
+      "bad_news": null,
+      "flip_kind": null,
+      "careful": [
+        "The AI produced the suggestion. Large trials run by others proved it.",
+        "The letter says the knowledge store uses machine learning: people chose baricitinib from the shortlist it produced.",
+        "RECOVERY showed 12% against 14% deaths, a modest gain, and the drug is given alongside steroids.",
+        "BenevolentAI is a company: the independent sources are the RECOVERY trial and WHO."
+      ],
+      "topic": "health",
+      "stage": "helping_people_now",
+      "technology": "other",
+      "total": 21,
+      "sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7137985/fullTextXML",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE:%22Baricitinib%20in%20patients%20admitted%20to%20hospital%20with%20COVID-19%20(RECOVERY)%22&resultType=core&format=json",
+        "https://www.who.int/news/item/14-01-2022-who-recommends-two-new-drugs-to-treat-covid-19"
+      ],
+      "checked_by": "agent",
+      "note": null,
+      "status": "in_bank",
+      "published_on": null
     }
   ]
 }
