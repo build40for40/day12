@@ -1,4 +1,4 @@
-// The Worker's side of live scoring: hand unscored candidates to scripts/score.py and save its verdicts.
+// The Worker's side of live scoring: hand unscored candidates to scripts/score.ts and save its verdicts.
 
 const DAY = 86_400_000
 // Only stories young enough to still run as news are worth the cost of scoring.
@@ -8,6 +8,7 @@ const MAX_VERDICTS = 300
 
 const GATES = ['pass', 'fail', 'triage'] as const
 const TOPICS = ['health', 'climate_and_nature', 'space', 'accessibility', 'science', 'everyday_life']
+const FLIPS = ['system_responding', 'owning_up', 'the_fix', 'same_tech_other_side']
 const STAGES = ['in_the_lab', 'in_a_trial', 'helping_people_now']
 
 export interface UnscoredCandidate {
@@ -28,6 +29,10 @@ export interface StoryHandoff {
   why_its_good: string
   careful: string[]
   sources: string[]
+  lane?: 'good' | 'flip'
+  published?: string
+  bad_news?: string
+  flip_kind?: string
 }
 
 export type Verdict =
@@ -80,6 +85,14 @@ export function parseVerdict(raw: unknown): Verdict | null {
   if (!Number.isInteger(v.total) || (v.total as number) < 0 || (v.total as number) > 24) return null
   if (!TOPICS.includes(v.topic as string) || !STAGES.includes(v.stage as string)) return null
   if (!headline || !whatHappened || !whyItsGood || !careful || careful.includes(null) || sources.length === 0) return null
+  const lane = v.lane
+  const published = text(v.published, 10)
+  const badNews = text(s.bad_news, 1000)
+  const flipKind = text(v.flip_kind, 40)
+  if (lane !== undefined && lane !== 'good' && lane !== 'flip') return null
+  if (lane !== undefined && (!published || !/^\d{4}-\d{2}-\d{2}$/.test(published) ||
+      Number.isNaN(Date.parse(published)) || new Date(published).toISOString().slice(0, 10) !== published)) return null
+  if (lane === 'flip' && (!badNews || !flipKind || !FLIPS.includes(flipKind) || sources.length < 2)) return null
   return {
     id,
     gate: 'pass',
@@ -87,7 +100,10 @@ export function parseVerdict(raw: unknown): Verdict | null {
     total: v.total as number,
     topic: v.topic as string,
     stage: v.stage as string,
-    story: { headline, what_happened: whatHappened, why_its_good: whyItsGood, careful: careful as string[], sources },
+    story: { headline, what_happened: whatHappened, why_its_good: whyItsGood, careful: careful as string[], sources,
+      ...(lane && published ? { lane, published } : {}),
+      ...(lane === 'flip' && badNews && flipKind ? { bad_news: badNews, flip_kind: flipKind } : {}),
+    },
   }
 }
 

@@ -1,7 +1,7 @@
 name: Score new stories
 
-# The quality filter: triages the stories the Worker pulled since the last run and scores the shortlist against
-# prompts/score-story.md, opening the sources, then saves the verdicts on the Worker. See scripts/score.py.
+# The quality filter: researches the leads the Worker pulled since the last run and scores them against
+# prompts/score-story.md, opening the sources, then saves the verdicts on the Worker. See scripts/score.ts.
 #
 # It runs about 05:15 London, so the Worker's own 06:00 cron picks and sends from fresh scores. That cron doesn't
 # depend on this: if GitHub runs this late or not at all, the day still goes out, from the stories scored before.
@@ -56,13 +56,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install the Anthropic SDK
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         if: steps.clock.outputs.go == 'true'
-        run: python3 -m venv "$RUNNER_TEMP/venv" && "$RUNNER_TEMP/venv/bin/pip" install --quiet anthropic
+        with:
+          node-version-file: .node-version
 
       - name: Score new stories
         if: steps.clock.outputs.go == 'true'
         run: |
           args=(--worker "$WORKER_URL")
           [ "$DRY_RUN" = true ] && args+=(--dry-run)
-          "$RUNNER_TEMP/venv/bin/python" scripts/score.py "${args[@]}"
+          node scripts/score.ts "${args[@]}"

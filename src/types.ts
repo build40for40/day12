@@ -24,6 +24,7 @@ export interface Considered { news: { title: string; total: number } | null; ban
 export interface StoryRecord {
   id: string; headline: string; whatHappened: string; whyItsGood: string | null; careful: string[]
   stage: string | null; topic: string | null; lane: 'good' | 'flip'; sourceUrl: string | null
+  badNews?: string; flipKind?: string
 }
 export type PickResult =
   | { day: string; status: 'picked' | 'dry_run'; pick: Pick; record: StoryRecord; considered: Considered }

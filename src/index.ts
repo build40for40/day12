@@ -47,7 +47,7 @@ async function daily(request: Request, env: Env): Promise<Response> {
   return dailyRoute(request, env)
 }
 
-// scripts/score.py reads the stories it hasn't scored yet and writes its verdicts back. Same token as /pull.
+// scripts/score.ts reads the stories it hasn't scored yet and writes its verdicts back. Same token as /pull.
 async function unscored(request: Request, env: Env): Promise<Response> {
   if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
   const limit = Number(new URL(request.url).searchParams.get('limit') ?? '300')
@@ -81,7 +81,8 @@ async function landing(request: Request, env: Env): Promise<Response> {
   const signups = `${base}/signups`
   const page = (html: string, status = 200) =>
     new Response(html, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' } })
-  const daysAround = async (date: string): Promise<LandingView['days']> => ({ basePath: base || '/', ...(await findNeighbours(env.DB, date)) })
+  // The trailing slash matters: the route for the bare base path doesn't match once a query string is added.
+  const daysAround = async (date: string): Promise<LandingView['days']> => ({ basePath: `${base}/`, ...(await findNeighbours(env.DB, date)) })
   const todayView = async (): Promise<LandingView> => {
     const today = londonDay(new Date())
     const issue = await findIssue(env.DB, today)

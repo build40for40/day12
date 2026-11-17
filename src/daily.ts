@@ -45,6 +45,7 @@ function editorRecord(record: StoryRecord, url: string): EditorRecord {
     topic: record.topic,
     lane: record.lane,
     source_url: url,
+    ...(record.lane === 'flip' ? { bad_news: record.badNews ?? null, flip_kind: record.flipKind ?? null } : {}),
   }
 }
 

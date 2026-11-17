@@ -21,6 +21,8 @@ const pass = (id: number, total = 18) => ({
   gate: 'pass',
   reason: 'A fake study that passed.',
   total,
+  lane: 'good',
+  published: daysAgo(1).slice(0, 10),
   topic: 'health',
   stage: 'in_a_trial',
   story: {
@@ -74,6 +76,22 @@ describe('listUnscored and saveVerdicts', () => {
 })
 
 describe('a scored story in the daily pick', () => {
+  it('uses first publication dates, keeps the checked flip handoff and caps flips across seven dates', async () => {
+    const { db, news } = setup()
+    for (const id of [1, 2, 3, 4]) news(id, daysAgo(1))
+    const flip = (id: number, score: number) => {
+      const base = pass(id, score)
+      return { ...base, lane: 'flip', flip_kind: 'system_responding',
+        story: { ...base.story, bad_news: 'The bad news.', sources: [...base.story.sources, 'https://example.org/coverage'] } }
+    }
+    await saveVerdicts(db, { verdicts: [
+      flip(1, 23), flip(2, 20), pass(3, 18), { ...pass(4, 24), published: daysAgo(18).slice(0, 10) },
+    ] }, now)
+    expect(await dailyPick(db, now)).toMatchObject({ record: { id: 'news-1', lane: 'flip', badNews: 'The bad news.' } })
+    expect(await dailyPick(db, new Date(+now + 86_400_000))).toMatchObject({ record: { id: 'news-3' } })
+    expect(await dailyPick(db, new Date(+now + 7 * 86_400_000))).toMatchObject({ record: { id: 'news-2' } })
+  })
+
   it('runs ahead of the bank with the checked handoff, not the feed text', async () => {
     const { db, sqlite, news } = setup()
     sqlite.exec(`INSERT INTO evergreen (slug, url, title, summary, score, status) VALUES ('b', 'https://example.com/b', 'Bank', 'x', 24, 'banked')`)
@@ -88,7 +106,7 @@ describe('a scored story in the daily pick', () => {
   it('moves a strong story that never ran into the bank for review, handoff included', async () => {
     const { db, sqlite, news } = setup()
     news(1, daysAgo(20))
-    sqlite.exec(`UPDATE candidates SET scored_at = '${daysAgo(19)}', gate = 'pass', score = 19, stage = 'in_a_trial', tags = 'health', story = '${JSON.stringify(pass(1).story)}'`)
+    sqlite.exec(`UPDATE candidates SET scored_at = '${daysAgo(19)}', gate = 'pass', score = 19, stage = 'in_a_trial', tags = 'health', story = '${JSON.stringify({ ...pass(1).story, lane: 'good', published: daysAgo(20).slice(0, 10) })}'`)
     expect(await refillBank(db, now)).toBe(1)
     expect(sqlite.prepare('SELECT title, why_its_good, topic, status FROM evergreen').get()).toEqual({
       title: 'Checked headline 1',
