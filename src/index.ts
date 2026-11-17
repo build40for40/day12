@@ -1,4 +1,5 @@
 import { bankHealth, dailyPick, refillBank } from './bank'
+import { renderLanding } from './landing'
 import { runPull } from './pull'
 import { confirmForm, confirmNow, routePath, signup, signupPreflight, unsubscribeForm, unsubscribeNow } from './routes'
 import { scheduledPull } from './schedule'
@@ -42,10 +43,17 @@ async function bank(request: Request, env: Env): Promise<Response> {
   return Response.json(await bankHealth(env.DB))
 }
 
+function landing(env: Env): Response {
+  const base = URL.canParse(env.PUBLIC_BASE_URL) ? new URL(env.PUBLIC_BASE_URL).pathname.replace(/\/+$/, '') : ''
+  return new Response(renderLanding(`${base}/signups`), { headers: { 'Content-Type': 'text/html; charset=utf-8' } })
+}
+
 export default {
   async fetch(request, env, ctx) {
     const pathname = routePath(new URL(request.url).pathname, env.PUBLIC_BASE_URL)
     switch (`${request.method} ${pathname}`) {
+      case 'GET /':
+        return landing(env)
       case 'POST /pull':
         return pull(request, env)
       case 'POST /pick':
