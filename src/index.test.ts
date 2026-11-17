@@ -61,7 +61,7 @@ describe('GET /', () => {
     expect(html).toContain('19 November 2026')
     expect(html).toContain('<div class="source">')
     expect(html).not.toContain('An older story.')
-    expect(html).toContain('href="/feel-good?date=2026-11-17" rel="prev"')
+    expect(html).toContain('href="/feel-good/?date=2026-11-17" rel="prev"')
   })
 
   it('shows the fallback story when the bank has nothing ready', async () => {
@@ -89,8 +89,8 @@ describe('GET /', () => {
     expect(middle.status).toBe(200)
     expect(html).toContain('Story of the sixteenth.')
     expect(html).toContain('16 November 2026')
-    expect(html).toContain('href="/feel-good?date=2026-11-15" rel="prev"')
-    expect(html).toContain('href="/feel-good?date=2026-11-17" rel="next"')
+    expect(html).toContain('href="/feel-good/?date=2026-11-15" rel="prev"')
+    expect(html).toContain('href="/feel-good/?date=2026-11-17" rel="next"')
 
     vi.setSystemTime(new Date('2026-11-17T09:00:00Z'))
     const latest = await (await get('')).text()
@@ -113,7 +113,7 @@ describe('GET /', () => {
     expect(gap.status).toBe(404)
     const html = await gap.text()
     expect(html).toContain('No story went out on 10 November 2026.')
-    expect(html).toContain('href="/feel-good?date=2026-11-16" rel="next"')
+    expect(html).toContain('href="/feel-good/?date=2026-11-16" rel="next"')
 
     const nonsense = await get('?date=<script>')
     expect(nonsense.status).toBe(404)
