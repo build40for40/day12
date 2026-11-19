@@ -11,12 +11,12 @@ function words(node: CardNode | string): string[] {
 }
 
 describe('storySize', () => {
-  it('shrinks the type as the story grows, and never below 54', () => {
-    expect([10, 110, 111, 170, 171, 230, 231, 280].map((n) => storySize('x'.repeat(n)))).toEqual([78, 78, 68, 68, 60, 60, 54, 54])
+  it('shrinks the type as the story grows, and never below 48', () => {
+    expect([10, 110, 111, 170, 171, 230, 231, 280].map((n) => storySize('x'.repeat(n)))).toEqual([72, 72, 62, 62, 54, 54, 48, 48])
   })
 
   it('counts a letter outside the basic range as one character', () => {
-    expect(storySize('Ł'.repeat(110))).toBe(78)
+    expect(storySize('Ł'.repeat(110))).toBe(72)
   })
 })
 

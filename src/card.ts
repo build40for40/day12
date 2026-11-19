@@ -36,10 +36,10 @@ const el = (style: Style, ...children: Array<CardNode | string>): CardNode => ({
 // Longer stories get smaller type, so every story fills the card about the same and none runs off it.
 export function storySize(text: string): number {
   const length = [...text].length
-  if (length <= 110) return 78
-  if (length <= 170) return 68
-  if (length <= 230) return 60
-  return 54
+  if (length <= 110) return 72
+  if (length <= 170) return 62
+  if (length <= 230) return 54
+  return 46
 }
 
 /**
