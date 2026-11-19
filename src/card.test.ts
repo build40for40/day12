@@ -11,8 +11,8 @@ function words(node: CardNode | string): string[] {
 }
 
 describe('storySize', () => {
-  it('shrinks the type as the story grows, and never below 48', () => {
-    expect([10, 110, 111, 170, 171, 230, 231, 280].map((n) => storySize('x'.repeat(n)))).toEqual([72, 72, 62, 62, 54, 54, 48, 48])
+  it('shrinks the type as the story grows, and never below 46', () => {
+    expect([10, 110, 111, 170, 171, 230, 231, 280].map((n) => storySize('x'.repeat(n)))).toEqual([72, 72, 62, 62, 54, 54, 46, 46])
   })
 
   it('counts a letter outside the basic range as one character', () => {
