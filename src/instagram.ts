@@ -6,31 +6,17 @@ import type { Env } from './types'
 
 export type RenderCard = (card: CardContent) => Promise<Uint8Array>
 
-const CORE_TAGS = ['#FeelGoodAI', '#GoodNews', '#AI']
-// Two more per topic, so the caption stays at five. Instagram is moving towards a handful of hashtags a post.
-const TOPIC_TAGS: Record<string, string[]> = {
-  science: ['#Science', '#Research'],
-  accessibility: ['#Accessibility', '#Inclusion'],
-  health: ['#Health', '#Medicine'],
-  climate_and_nature: ['#Climate', '#Nature'],
-  everyday_life: ['#Technology', '#EverydayLife'],
-  space: ['#Space', '#Astronomy'],
-}
-const OTHER_TAGS = ['#Hope', '#Innovation']
-
-export function hashtagsFor(topic: string | null): string[] {
-  return [...CORE_TAGS, ...((topic && TOPIC_TAGS[topic]) || OTHER_TAGS)]
+/** The sign-up address as people type it, with no "https://" and no trailing slash: "build40for40.com/feel-good". */
+export function signupAddress(publicBaseUrl: string): string {
+  return publicBaseUrl.replace(/^https?:\/\//, '').replace(/\/+$/, '')
 }
 
-/** The caption to paste under the card. Links don't work in an Instagram caption, so the call to action points at the bio. */
-export function buildCaption(issue: Pick<Issue, 'text' | 'place' | 'url'>, topic: string | null): string {
-  const credit = [issue.place, `Source: ${sourceName(issue.url)}`].filter(Boolean).join('\n')
-  return [
-    issue.text,
-    credit,
-    'Get one true, hopeful AI story in your inbox every morning. Link in bio.',
-    hashtagsFor(topic).join(' '),
-  ].join('\n\n')
+/**
+ * The caption to paste under the card: one line, like The Daily Stoic's. The card already carries the story, the place
+ * and the source. A link in an Instagram caption isn't clickable, but people can type it.
+ */
+export function buildCaption(publicBaseUrl: string): string {
+  return `Sign up for a daily feel good AI email at: ${signupAddress(publicBaseUrl)}`
 }
 
 export function cardContent(issue: Pick<Issue, 'date' | 'text' | 'place' | 'stage' | 'url'>): CardContent {
@@ -80,22 +66,10 @@ export async function instagramNeighbours(db: D1Database, date: string): Promise
   return { previous: row?.previous ?? null, next: row?.next ?? null }
 }
 
-/** The topic the day's story was picked under, kept on the pick. Null when the pick has none, such as a story added by hand. */
-export async function topicFor(db: D1Database, date: string): Promise<string | null> {
-  const row = await db.prepare('SELECT record FROM picks WHERE day = ?').bind(date).first<{ record: string | null }>()
-  if (!row?.record) return null
-  try {
-    const topic = (JSON.parse(row.record) as { topic?: unknown }).topic
-    return typeof topic === 'string' ? topic : null
-  } catch {
-    return null
-  }
-}
-
 /** Draws the card for an issue and saves it with its caption. Running it again for the same date replaces the old one. */
-export async function makeInstagramPost(env: Pick<Env, 'DB'>, issue: Issue, topic: string | null, render: RenderCard, now = new Date()): Promise<InstagramPost> {
+export async function makeInstagramPost(env: Pick<Env, 'DB' | 'PUBLIC_BASE_URL'>, issue: Issue, render: RenderCard, now = new Date()): Promise<InstagramPost> {
   const image = await render(cardContent(issue))
-  const caption = buildCaption(issue, topic)
+  const caption = buildCaption(env.PUBLIC_BASE_URL)
   const createdAt = now.toISOString()
   await env.DB.prepare(
     `INSERT INTO instagram_posts (date, caption, image, created_at) VALUES (?, ?, ?, ?)

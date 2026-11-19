@@ -98,7 +98,7 @@ describe('runDaily', () => {
     expect(env.sqlite.prepare('SELECT story_id, place FROM issues WHERE date = ?').get(date)).toEqual({ story_id: 'news-1', place: 'Somewhere, Earth' })
   })
 
-  it("makes the day's Instagram card from the story that went out, with the topic's hashtags", async () => {
+  it("makes the day's Instagram card from the story that went out, with the one-line caption", async () => {
     const { env, lead, deps } = setup()
     lead(1)
 
@@ -107,8 +107,7 @@ describe('runDaily', () => {
     expect(summary.instagram).toBe('made')
     expect(deps.renderCard).toHaveBeenCalledWith({ dateLabel: '18 November 2026', text: 'A short true story about AI helping someone.', place: 'Somewhere, Earth', stage: 'in_a_trial', source: 'example.org' })
     const saved = env.sqlite.prepare('SELECT caption FROM instagram_posts WHERE date = ?').get(date) as { caption: string }
-    expect(saved.caption).toMatch(/^A short true story about AI helping someone\.\n\nSomewhere, Earth\nSource: example\.org\n\n/)
-    expect(saved.caption).toContain('#Health #Medicine')
+    expect(saved.caption).toBe('Sign up for a daily feel good AI email at: brief.example.com')
   })
 
   it('still finishes the day when the card cannot be drawn, and says how to make it', async () => {

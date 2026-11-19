@@ -14,7 +14,7 @@ function setup() {
   const env = { ...fakeEnv(), PUBLIC_BASE_URL: 'https://site.example.com/feel-good' }
   const addIssue = (date: string) =>
     env.sqlite.prepare(`INSERT INTO issues (date, story_id, text, url, created_at) VALUES (?, ?, ?, 'https://www.example.org/fake', ?)`).run(date, `s-${date}`, `A fake story for ${date}.`, `${date}T06:00:00Z`)
-  const addPost = (date: string, text?: string) => makeInstagramPost(env, issue(date, text), 'science', render)
+  const addPost = (date: string, text?: string) => makeInstagramPost(env, issue(date, text), render)
   return { env, addIssue, addPost }
 }
 
@@ -30,7 +30,7 @@ describe('Instagram routes', () => {
   describe('the page', () => {
     it("shows today's card with a download link under the base path, and the caption to copy", async () => {
       const { env, addPost } = setup()
-      await addPost('2026-11-19', 'A story with <tags> & more.')
+      await addPost('2026-11-19')
 
       const response = await instagramPage(at('/instagram'), env)
       const html = await response.text()
@@ -40,8 +40,7 @@ describe('Instagram routes', () => {
       expect(response.headers.get('Cache-Control')).toBe('no-store')
       expect(html).toContain('<img class="card" src="/feel-good/instagram.jpg?date=2026-11-19"')
       expect(html).toContain('href="/feel-good/instagram.jpg?date=2026-11-19" download="feel-good-ai-2026-11-19.jpg"')
-      expect(html).toContain('A story with &lt;tags&gt; &amp; more.')
-      expect(html).toContain('#FeelGoodAI #GoodNews #AI #Science #Research')
+      expect(html).toContain('Sign up for a daily feel good AI email at: site.example.com/feel-good')
       expect(html).toContain('19 November 2026')
       expect(html).not.toContain("isn't ready yet")
     })
@@ -109,13 +108,12 @@ describe('Instagram routes', () => {
     it('draws the card for the date from its issue and says how big it is', async () => {
       const { env, addIssue } = setup()
       addIssue('2026-11-19')
-      env.sqlite.prepare(`INSERT INTO picks (day, story_key, lane, title, total, reason, picked_at, record) VALUES ('2026-11-19', 'news:1', 'news', 't', 18, 'r', '', ?)`).run(JSON.stringify({ topic: 'space' }))
 
       const response = await instagramMake(new Request('https://site.example.com/instagram', { method: 'POST' }), env, render)
       const body = (await response.json()) as { ok: boolean; date: string; bytes: number; caption: string }
 
       expect(body).toMatchObject({ ok: true, date: '2026-11-19', bytes: JPEG.length })
-      expect(body.caption).toContain('#Space #Astronomy')
+      expect(body.caption).toBe('Sign up for a daily feel good AI email at: site.example.com/feel-good')
     })
 
     it('answers 404 with no issue for the date, 400 for a bad date, and 500 when the drawing fails', async () => {
