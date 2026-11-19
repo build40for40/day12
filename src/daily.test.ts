@@ -3,6 +3,7 @@ import { NonRetryableError } from 'cloudflare:workflows'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { runDaily, type DailyDeps } from './daily'
 import { EditorError, type WritePost } from './editor'
+import type { RenderCard } from './instagram'
 import { ScoringError, type ScoreLead } from './scorer'
 import { fakeEnv } from './test-env'
 import type { FetchLike, PullReport } from './types'
@@ -67,6 +68,7 @@ function setup() {
       text: 'A short true story about AI helping someone.',
       output: { decision: 'write', post: `A short true story about AI helping someone. ${record.source_url}`, text_length: 44, place: 'Somewhere, Earth', changes: 'Wrote it.', needs_from_source: null },
     })),
+    renderCard: vi.fn<RenderCard>(async () => new Uint8Array([0xff, 0xd8, 0xff])),
     fetchImpl: postmark,
     log: quiet(),
   } satisfies DailyDeps
@@ -90,10 +92,48 @@ describe('runDaily', () => {
 
     const summary = await runDaily(env, { date }, step, deps)
 
-    expect(names).toEqual(['check today is not sent', 'pull', 'find new leads', 'score lead 1', 'pick', 'write', 'publish', 'refill the bank'])
+    expect(names).toEqual(['check today is not sent', 'pull', 'find new leads', 'score lead 1', 'pick', 'write', 'publish', 'make the Instagram card', 'refill the bank'])
     expect(summary).toMatchObject({ status: 'published', storyId: 'news-1', leads: [{ id: 1, outcome: 'saved', total: 18 }], report: { sent: 1 } })
     expect(emails).toHaveLength(1)
     expect(env.sqlite.prepare('SELECT story_id, place FROM issues WHERE date = ?').get(date)).toEqual({ story_id: 'news-1', place: 'Somewhere, Earth' })
+  })
+
+  it("makes the day's Instagram card from the story that went out, with the topic's hashtags", async () => {
+    const { env, lead, deps } = setup()
+    lead(1)
+
+    const summary = await runDaily(env, { date }, fakeStep().step, deps)
+
+    expect(summary.instagram).toBe('made')
+    expect(deps.renderCard).toHaveBeenCalledWith({ dateLabel: '18 November 2026', text: 'A short true story about AI helping someone.', place: 'Somewhere, Earth', stage: 'in_a_trial', source: 'example.org' })
+    const saved = env.sqlite.prepare('SELECT caption FROM instagram_posts WHERE date = ?').get(date) as { caption: string }
+    expect(saved.caption).toMatch(/^A short true story about AI helping someone\.\n\nSomewhere, Earth\nSource: example\.org\n\n/)
+    expect(saved.caption).toContain('#Health #Medicine')
+  })
+
+  it('still finishes the day when the card cannot be drawn, and says how to make it', async () => {
+    const { env, emails, deps, count } = setup()
+    deps.renderCard.mockRejectedValue(new Error('no wasm'))
+
+    const summary = await runDaily(env, { date }, fakeStep().step, deps)
+
+    expect(summary).toMatchObject({ status: 'published', instagram: 'failed' })
+    expect(deps.renderCard).toHaveBeenCalledTimes(2)
+    expect(deps.log.error).toHaveBeenCalledWith(expect.stringContaining('make it again with POST /instagram: no wasm'))
+    expect(count('SELECT COUNT(*) AS n FROM instagram_posts')).toBe(0)
+    expect(count("SELECT COUNT(*) AS n FROM evergreen WHERE status = 'used'")).toBe(1)
+    expect(emails).toHaveLength(1)
+  })
+
+  it('makes no card on a dry run, or when the day was already sent', async () => {
+    const { env, deps, count } = setup()
+
+    await runDaily(env, { date, dryRun: true }, fakeStep().step, deps)
+    await runDaily(env, { date }, fakeStep().step, deps)
+    await runDaily(env, { date }, fakeStep().step, deps)
+
+    expect(deps.renderCard).toHaveBeenCalledTimes(1)
+    expect(count('SELECT COUNT(*) AS n FROM instagram_posts')).toBe(1)
   })
 
   it('does nothing on a second run for the same date', async () => {

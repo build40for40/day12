@@ -23,7 +23,7 @@ function escapeHtml(value: string): string {
 }
 
 // "2026-11-18" becomes "18 November 2026". The issue date is already the London day.
-function longDate(isoDate: string): string {
+export function longDate(isoDate: string): string {
   return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${isoDate}T12:00:00Z`))
 }
 

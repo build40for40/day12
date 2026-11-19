@@ -4,6 +4,7 @@ import evergreen from '../data/evergreen.json'
 import { permanentFailure } from './anthropic'
 import { dailyPick, londonDay, refillBank } from './bank'
 import { EditorError, makeWritePost, type EditorRecord, type WritePost } from './editor'
+import { makeInstagramPost, renderCardInWorker, type RenderCard } from './instagram'
 import type { NewsletterReport } from './emails'
 import { findIssue, publish } from './publish'
 import { runPull } from './pull'
@@ -23,6 +24,8 @@ const PULL: WorkflowStepConfig = { retries: { limit: 1, delay: '1 minute' }, tim
 const SCORE: WorkflowStepConfig = { retries: { limit: 1, delay: '1 minute' }, timeout: '15 minutes' }
 const WRITE: WorkflowStepConfig = { retries: { limit: 2, delay: '1 minute', backoff: 'exponential' }, timeout: '15 minutes' }
 // A send that failed part way, or timed out after Postmark took it, could reach people twice, so a person decides.
+// A card that fails to draw is drawn again by hand with POST /instagram, so it gets one more go and no more.
+const CARD: WorkflowStepConfig = { retries: { limit: 1, delay: '30 seconds' }, timeout: '5 minutes' }
 const PUBLISH: WorkflowStepConfig = { retries: { limit: 0, delay: 0 }, timeout: '5 minutes' }
 
 const DRAFT_LINES = new Map(evergreen.stories.flatMap((story): [string, string][] => ('line' in story && story.line ? [[story.id, story.line]] : [])))
@@ -33,6 +36,7 @@ export interface DailyDeps {
   pull?: (env: Env, now: Date) => Promise<PullReport>
   scoreLead?: ScoreLead
   writePost?: WritePost
+  renderCard?: RenderCard
   fetchImpl?: FetchLike
   log?: Log
 }
@@ -56,6 +60,7 @@ export interface DailySummary {
   post?: { text: string; url: string; place: string | null; decision: string; changes: string }
   report?: NewsletterReport
   preview?: { subject: string; text: string }
+  instagram?: 'made' | 'failed'
   refilled?: number
 }
 
@@ -221,6 +226,23 @@ async function sequence(env: Env, params: DailyParams, step: WorkflowStep, deps:
     }
   })
 
+  let instagram: DailySummary['instagram']
+  if (sent.status === 'published') {
+    at.stage = 'the Instagram card'
+    try {
+      await step.do('make the Instagram card', CARD, async () => {
+        const issue = await findIssue(env.DB, date)
+        if (!issue) throw new Error(`no issue for ${date} to make a card from`)
+        const post = await makeInstagramPost(env, issue, record.topic, deps.renderCard ?? renderCardInWorker)
+        return { bytes: post.image.length }
+      })
+      instagram = 'made'
+    } catch (error) {
+      instagram = 'failed'
+      log.error(`daily ${date}: the email went out but the Instagram card failed, make it again with POST /instagram: ${reason(error)}`)
+    }
+  }
+
   let refilled = 0
   if (sent.status === 'published') {
     try {
@@ -230,5 +252,5 @@ async function sequence(env: Env, params: DailyParams, step: WorkflowStep, deps:
     }
   }
 
-  return { date, dryRun, pull, leads, pick, post: written, refilled, ...sent }
+  return { date, dryRun, pull, leads, pick, post: written, ...(instagram ? { instagram } : {}), refilled, ...sent }
 }

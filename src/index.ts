@@ -1,4 +1,6 @@
 import { bankHealth, dailyPick, londonDay, refillBank, standInFor } from './bank'
+import { renderCardInWorker } from './instagram'
+import { instagramImage, instagramMake, instagramPage } from './instagram-routes'
 import { renderLanding, type LandingView } from './landing'
 import { findIssue, findNeighbours, issuesRoute, latestIssueRoute, publishRoute } from './publish'
 import { runPull } from './pull'
@@ -74,6 +76,12 @@ async function publishIssue(request: Request, env: Env): Promise<Response> {
   return publishRoute(request, env)
 }
 
+// Makes a day's Instagram card by hand, or again. The daily run makes it itself. Same token as /pull.
+async function instagram(request: Request, env: Env): Promise<Response> {
+  if (!(await authorised(request, env))) return new Response('Unauthorised', { status: 401 })
+  return instagramMake(request, env, renderCardInWorker)
+}
+
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 
 // The page shows today's story, or the one for ?date=YYYY-MM-DD, with links to the days either side.
@@ -109,6 +117,12 @@ export default {
         return pull(request, env)
       case 'POST /publish':
         return publishIssue(request, env)
+      case 'GET /instagram':
+        return instagramPage(request, env)
+      case 'GET /instagram.jpg':
+        return instagramImage(request, env)
+      case 'POST /instagram':
+        return instagram(request, env)
       case 'GET /issues':
         return issuesRoute(request, env)
       case 'GET /issues/latest':

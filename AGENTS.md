@@ -132,11 +132,23 @@ One story a day goes out by email and is stored for the website. The whole run h
 4. **Pick:** `dailyPick` from `src/bank.ts`, the same as `POST /pick` (see "The evergreen bank and the daily pick"). Just before it, the run stops if `ANTHROPIC_API_KEY` or `POSTMARK_SERVER_TOKEN` is missing, so a run that can't finish never uses up a story. The run also stops if there's nothing to run. Once made, the pick is saved, so a rerun of the day gets the same story.
 5. **Write:** `prompts/headline-editor.md`, sent to Claude Opus 5.5 with server-side fallbacks on, so a decline is retried on another model, and held to a JSON schema. A bank story's draft line from `data/evergreen.json` goes with it. The post is checked: 255 characters or fewer plus the source link, no hashtags, no second link. Three tries, then the run stops. An API outage is retried twice more over a few minutes.
 6. **Publish:** the same as `POST /publish`: an email to every confirmed subscriber, and the issue stored in the `issues` table for the landing page. This step is never retried by itself, because a send that timed out after Postmark took it would reach people twice. If nothing went out, the date is freed and the run stops for a person to restart it. `/publish` refuses a second send for the same date either way.
-7. **Refill:** as `POST /pick` does, scored news that aged out of its 14 days goes into the bank for review. A failure here is only logged.
+7. **Instagram card:** draws the day's 1080 by 1080 card and its caption from the issue that just went out, and stores both in `instagram_posts` (see "The Instagram card"). A failure here is only logged, and the card can be made again by hand.
+8. **Refill:** as `POST /pick` does, scored news that aged out of its 14 days goes into the bank for review. A failure here is only logged.
 
 A stopped run shows as errored in the Cloudflare dashboard under Workflows, `day12-daily`, with the failed step and its error, and the Worker logs `daily <date> stopped at <step>: <reason>`. The finished run logs a summary without the post or the email. Email addresses are never logged. Cloudflare keeps each run and its step history for 7 days on Workers Paid (3 on Free), Workers Logs keep the log lines, and D1 already records the verdicts, the pick and the issue with its send counts, so nothing is committed to the repository.
 
 The X post is in the run's summary, not posted: there's no X account or API key yet.
+
+### The Instagram card
+
+Each morning the run also makes the day's Instagram post, to be posted by hand. Open `https://build40for40.com/feel-good/instagram`: it shows today's card, a **Download image** button and the **caption** with a **Copy caption** button. If today's isn't made yet it shows the latest one and says so. `?date=YYYY-MM-DD` shows an earlier day, with links to the days either side. The page and the image are public, since the story is already on the website, but send `noindex` so search engines don't list them.
+
+- **The card:** a 1080 by 1080 JPEG in the website's look: warm paper, ink and EB Garamond. It carries the name, the date, the story, the place, the stage and source, and "build40for40.com/feel-good". The layout is `src/card.ts`, and `src/card-render.ts` draws it with [satori](https://github.com/vercel/satori) (layout), [resvg](https://github.com/yisibl/resvg-js) (to pixels) and mozjpeg (to JPEG), all as WebAssembly inside the Worker. The side margins are wide because Instagram crops a square to a taller shape in the profile grid.
+- **The caption:** built by `buildCaption` in `src/instagram.ts` with no model call: the story, the place and source, "Get one true, hopeful AI story in your inbox every morning. Link in bio.", and five hashtags (`#FeelGoodAI #GoodNews #AI` and two for the story's topic). Links don't work in an Instagram caption, so it points at the bio.
+- **Where it lives:** the card is stored as base64 in the `instagram_posts` table, one row per day, so there's no bucket to set up. `GET /instagram` is the page and `GET /instagram.jpg` is the image, today's or `?date=`.
+- **Making one by hand:** `curl -X POST -H "Authorization: Bearer $PULL_TOKEN" "https://build40for40.com/feel-good/instagram?date=2026-11-19"` draws the card from that day's issue, or draws it again. Use it for a day the run missed, which the logs name, or to see a design change.
+- **Changing the design:** edit `cardTree` in `src/card.ts`. Check it for real with `npm run dev` and `POST /instagram`, since the tests don't load the WebAssembly: try the longest story (280 characters), a place with letters like "Łódź", and no place.
+- **Bundle size:** the Worker is about 1.7 MB compressed, under Cloudflare's 3 MB limit for the Free plan. `satori` is pinned to 0.12 on purpose: from 0.6x it embeds a second WebAssembly module that Workers refuses to compile.
 
 ### When it runs
 
