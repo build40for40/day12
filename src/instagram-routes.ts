@@ -1,5 +1,5 @@
 import { londonDay } from './bank'
-import { findInstagramPost, findLatestInstagramPost, instagramNeighbours, makeInstagramPost, topicFor, type InstagramPost, type RenderCard } from './instagram'
+import { findInstagramPost, findLatestInstagramPost, instagramNeighbours, makeInstagramPost, type InstagramPost, type RenderCard } from './instagram'
 import { longDate } from './landing'
 import { findIssue } from './publish'
 import type { Env } from './types'
@@ -136,7 +136,7 @@ export async function instagramMake(request: Request, env: Env, render: RenderCa
   const issue = await findIssue(env.DB, asked)
   if (!issue) return Response.json({ ok: false, error: 'no_issue', date: asked }, { status: 404 })
   try {
-    const post = await makeInstagramPost(env, issue, await topicFor(env.DB, asked), render, now)
+    const post = await makeInstagramPost(env, issue, render, now)
     return Response.json({ ok: true, date: post.date, bytes: post.image.length, caption: post.caption })
   } catch (error) {
     console.error(`instagram card failed: ${error instanceof Error ? error.message : 'unknown error'}`)

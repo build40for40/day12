@@ -233,7 +233,7 @@ async function sequence(env: Env, params: DailyParams, step: WorkflowStep, deps:
       await step.do('make the Instagram card', CARD, async () => {
         const issue = await findIssue(env.DB, date)
         if (!issue) throw new Error(`no issue for ${date} to make a card from`)
-        const post = await makeInstagramPost(env, issue, record.topic, deps.renderCard ?? renderCardInWorker)
+        const post = await makeInstagramPost(env, issue, deps.renderCard ?? renderCardInWorker)
         return { bytes: post.image.length }
       })
       instagram = 'made'
